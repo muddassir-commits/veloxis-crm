@@ -316,6 +316,17 @@ export function ClientsDashboard({ initialClients, profiles }: ClientsDashboardP
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error('Unauthenticated');
 
+      // 1. Cascade cleanup of dependent records
+      // Delete any won lead that was converted_to this client (prevents Kanban orphan cards)
+      await supabase.from('leads').delete().eq('converted_to', selectedClient.id);
+      // Also delete if the client has a direct lead_id FK reference stored on its own row
+      if (selectedClient.lead_id) {
+        await supabase.from('leads').delete().eq('id', selectedClient.lead_id);
+      }
+      // Delete any contracts linked to this client (prevents FK constraint violations)
+      await supabase.from('contracts').delete().eq('client_id', selectedClient.id);
+
+      // 2. Perform main deletion
       const { error } = await supabase.from('clients').delete().eq('id', selectedClient.id);
       if (error) throw error;
 
@@ -326,11 +337,11 @@ export function ClientsDashboard({ initialClients, profiles }: ClientsDashboardP
         entity_type: 'clients',
         entity_id: selectedClient.id,
         title: `Client deleted: ${selectedClient.name}`,
-        description: `Client account and all child relationships cascade deleted.`,
+        description: `Client account and all associated pipeline and contract data deleted.`,
         created_at: new Date().toISOString(),
       });
 
-      toast.success('Client deleted successfully');
+      toast.success('Client and associated data deleted successfully');
       setDeleteDialogOpen(false);
       setSelectedClient(null);
       refreshData();
