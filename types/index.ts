@@ -702,3 +702,44 @@ export interface AgencyMonthlySnapshot {
   created_at: string;
   updated_at: string;
 }
+
+export interface ContentItem {
+  id: string;
+  client_id: string;
+  keyword: string;
+  title: string | null;
+  content_type: string | null;
+  word_count_target: number;
+  assigned_to: string | null;
+  due_date: string | null;
+  brief: string | null;
+  status: 'idea' | 'brief' | 'writing' | 'review' | 'published';
+  word_count_current: number;
+  draft_url: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface WebProject {
+  id: string;
+  client_id: string;
+  name: string;
+  project_type: string | null;
+  status: 'scope' | 'design' | 'development' | 'review' | 'live';
+  budget: number;
+  start_date: string | null;
+  deadline: string | null;
+  scope: string | null;
+  notes: string | null;
+  milestones: {
+    discovery_complete: boolean;
+    wireframes_approved: boolean;
+    design_mockup_done: boolean;
+    development_done: boolean;
+    client_review: boolean;
+    go_live: boolean;
+  };
+  key_contacts: string | null;
+  created_at: string;
+  updated_at: string;
+}

@@ -1,11 +1,20 @@
 import { PageContainer } from '@/components/shared/page-container';
+import { AutomationsDashboard } from '@/components/admin/automations/automations-dashboard';
+import { createClient } from '@/lib/supabase/server';
 
-export default function Page() {
+export default async function Page() {
+  const supabase = await createClient();
+  
+  // Fetch cron jobs from the database server-side
+  const { data: cronJobs } = await supabase
+    .from('cron_jobs')
+    .select('*')
+    .order('name', { ascending: true });
+
   return (
-    <PageContainer title="Automations" description="Monitor n8n workflows and triggered event logs.">
-      <div className="rounded-lg border border-[#1E3352] bg-[#0D1829] p-8 text-center text-[#8BA3C7] select-none">
-        n8n Automations monitor is coming soon.
-      </div>
+    <PageContainer title="Automations Hub" description="Monitor n8n scheduled workflows and real-time system webhooks.">
+      <AutomationsDashboard initialCronJobs={cronJobs} />
     </PageContainer>
   );
 }
+

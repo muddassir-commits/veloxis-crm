@@ -1,11 +1,31 @@
-import { PageContainer } from '@/components/shared/page-container';
+// app/(admin)/dashboard/web-design/page.tsx
 
-export default function Page() {
+import React from 'react';
+import { createClient } from '@/lib/supabase/server';
+import { WebDesignDashboard } from '@/components/admin/web-design/web-design-dashboard';
+
+export const revalidate = 0;
+
+export default async function WebDesignPage() {
+  const supabase = await createClient();
+
+  // 1. Fetch active clients and agency self-client
+  const { data: clients } = await supabase
+    .from('clients')
+    .select('*')
+    .or('status.eq.active,is_agency_self.eq.true')
+    .order('name', { ascending: true });
+
+  // 2. Fetch all web projects
+  const { data: projects } = await supabase
+    .from('web_projects')
+    .select('*')
+    .order('created_at', { ascending: false });
+
   return (
-    <PageContainer title="Web Design" description="Track web design and development milestones.">
-      <div className="rounded-lg border border-[#1E3352] bg-[#0D1829] p-8 text-center text-[#8BA3C7] select-none">
-        Web design projects tracker is coming soon.
-      </div>
-    </PageContainer>
+    <WebDesignDashboard
+      initialClients={clients || []}
+      initialProjects={projects || []}
+    />
   );
 }

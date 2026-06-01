@@ -129,3 +129,16 @@ export function formatBytes(bytes: number | string | null | undefined): string {
   const i = Math.floor(Math.log(numeric) / Math.log(k));
   return parseFloat((numeric / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
+
+// Helper to get initials from a full name (e.g. Muddassir Ali -> MA)
+export function getInitials(name: string | null | undefined): string {
+  if (!name) return '';
+  return name
+    .trim()
+    .split(/\s+/)
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase()
+    .substring(0, 2);
+}
+
