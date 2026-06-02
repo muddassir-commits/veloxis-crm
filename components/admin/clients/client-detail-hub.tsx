@@ -240,16 +240,7 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
       if (!res.ok || data.error) {
         throw new Error(data.error || 'Failed to send invite');
       }
-      
-      if (data.mockPassword) {
-        toast.success('Mock Portal Invite Generated (Resend in Mock Mode)', {
-          id: toastId,
-          description: `Email: ${client.email} | Temporary Password: ${data.mockPassword}`,
-          duration: 15000,
-        });
-      } else {
-        toast.success('Client portal invitation sent successfully!', { id: toastId });
-      }
+      toast.success('Client portal invitation sent successfully!', { id: toastId });
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Unknown error';
       toast.error(`Invite failed: ${msg}`, { id: toastId });
