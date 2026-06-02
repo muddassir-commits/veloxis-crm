@@ -130,7 +130,7 @@ export async function POST(req: Request) {
         console.log(`[MOCK EMAIL] To: ${client.email}, Subject: Invoice Raised: ${invoice_number}`);
       } else {
         const resend = new Resend(resendKey);
-        await resend.emails.send({
+        const { data, error: sendError } = await resend.emails.send({
           from: `${process.env.RESEND_FROM_NAME || 'Veloxis Global'} <${process.env.RESEND_FROM_EMAIL || 'ops@veloxisglobal.com'}>`,
           to: client.email,
           subject: `Invoice Raised: ${invoice_number} — ${process.env.RESEND_FROM_NAME || 'Veloxis Global'}`,
@@ -152,6 +152,10 @@ export async function POST(req: Request) {
             <p>${process.env.RESEND_FROM_NAME || 'Veloxis Global'}</p>
           `,
         });
+
+        if (sendError) {
+          throw new Error(`Resend Error: ${sendError.message}`);
+        }
       }
     }
 

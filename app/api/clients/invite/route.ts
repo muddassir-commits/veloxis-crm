@@ -82,7 +82,7 @@ export async function POST(req: Request) {
       console.log(`[MOCK EMAIL] To: ${client.email}, Subject: Welcome to Client Portal. Temp Password: ${tempPassword}`);
     } else {
       const resend = new Resend(resendKey);
-      await resend.emails.send({
+      const { data, error: sendError } = await resend.emails.send({
         from: `${process.env.RESEND_FROM_NAME || 'Veloxis Global'} <${process.env.RESEND_FROM_EMAIL || 'ops@veloxisglobal.com'}>`,
         to: client.email,
         subject: 'Welcome to your Veloxis Client Portal',
@@ -101,6 +101,10 @@ export async function POST(req: Request) {
           <p>Veloxis Global Operations</p>
         `,
       });
+
+      if (sendError) {
+        throw new Error(`Resend Error: ${sendError.message}`);
+      }
     }
 
     return NextResponse.json({ success: true, userId, mockPassword: isMockResend ? tempPassword : undefined });
