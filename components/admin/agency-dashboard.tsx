@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 import { toast } from 'sonner';
 import {
   ResponsiveContainer,
@@ -100,6 +101,59 @@ export function AgencyDashboard({
   adCampaigns,
 }: AgencyDashboardProps) {
   const router = useRouter();
+  const supabase = createClient();
+
+  useEffect(() => {
+    // Listen to SEO, social, WhatsApp, email, and own ads updates
+    const channel = supabase
+      .channel(`agency-dashboard-${clientId}`)
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'seo_campaigns', filter: `client_id=eq.${clientId}` },
+        () => {
+          toast.success('Live Update: SEO Campaign metrics synchronized!');
+          router.refresh();
+        }
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'social_media_metrics', filter: `client_id=eq.${clientId}` },
+        () => {
+          toast.success('Live Update: Social Media statistics synchronized!');
+          router.refresh();
+        }
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'agency_whatsapp_campaigns' },
+        () => {
+          toast.success('Live Update: WhatsApp campaign broadcasts statistics updated!');
+          router.refresh();
+        }
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'agency_email_campaigns' },
+        () => {
+          toast.success('Live Update: Email marketing newsletter statistics updated!');
+          router.refresh();
+        }
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'agency_own_ad_campaigns' },
+        () => {
+          toast.success('Live Update: Paid Ads campaign performance updated!');
+          router.refresh();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [clientId, supabase, router]);
+
   const [activeTab, setActiveTab] = useState('overview');
   const [socialPlatform, setSocialPlatform] = useState('all');
   const [adsPlatform, setAdsPlatform] = useState('all');

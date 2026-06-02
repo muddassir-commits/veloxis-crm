@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Search, Bell, LogOut, User, Settings, CheckSquare, BellOff } from 'lucide-react';
 import type { Notification } from '@/types';
+import { toast } from 'sonner';
 
 interface HeaderProps {
   userProfile?: {
@@ -115,8 +116,14 @@ export function Header({ userProfile }: HeaderProps) {
           table: 'notifications',
           filter: `user_id=eq.${userProfile.id}`,
         },
-        () => {
+        (payload) => {
           loadNotifications();
+          if (payload.eventType === 'INSERT') {
+            const newNotif = payload.new as Notification;
+            toast(newNotif.title, {
+              description: newNotif.message || undefined,
+            });
+          }
         }
       )
       .subscribe();

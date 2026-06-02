@@ -159,6 +159,21 @@ export function SalesDashboard({
         created_at: new Date().toISOString(),
       });
 
+      // Notify ALL admins — new lead created
+      const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
+      if (admins && admins.length > 0) {
+        const notifs = admins.map((a) => ({
+          user_id: a.id,
+          title: '🆕 New Lead Added',
+          message: `New lead: ${leadForm.name} from ${leadForm.source} (Value: ₹${estValue})`,
+          type: 'lead_new',
+          link: `/dashboard/sales`,
+          is_read: false,
+          priority: 'normal'
+        }));
+        await supabase.from('notifications').insert(notifs);
+      }
+
       toast.success(`Lead ${leadForm.name} created successfully.`);
       setAddLeadOpen(false);
       setLeadForm({

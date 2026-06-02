@@ -30,6 +30,7 @@ import {
   LogOut,
   Building2,
   ListTodo,
+  History,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -74,6 +75,7 @@ export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCo
   ];
 
   const bottomRoutes = [
+    { name: 'Activity Log', path: '/dashboard/activity', icon: History },
     { name: 'Files', path: '/dashboard/files', icon: FolderOpen },
     { name: 'Automations', path: '/dashboard/automations', icon: Zap },
     { name: 'Settings', path: '/dashboard/settings', icon: Settings },

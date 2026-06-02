@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Sidebar } from './sidebar';
 import { Header } from './header';
 import { cn } from '@/lib/utils';
+import { Toaster } from '@/components/ui/sonner';
 
 interface AdminLayoutShellProps {
   userProfile: {
@@ -39,6 +40,22 @@ export function AdminLayoutShell({ userProfile, children }: AdminLayoutShellProp
           {children}
         </main>
       </div>
+
+      {/* Global Toast Notification System — Sonner */}
+      <Toaster
+        position="bottom-right"
+        theme="dark"
+        toastOptions={{
+          style: {
+            background: '#0D1829',
+            border: '1px solid #1E3352',
+            color: '#F0F4FF',
+            fontSize: '13px',
+            fontFamily: 'var(--font-dm-sans, DM Sans, sans-serif)',
+          },
+          duration: 4000,
+        }}
+      />
     </div>
   );
 }

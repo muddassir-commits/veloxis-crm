@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { Resend } from 'resend';
+import { logAudit } from '@/lib/audit';
 
 export async function POST(req: Request) {
   try {
@@ -88,6 +89,31 @@ export async function POST(req: Request) {
       title: `Invoice ${invoice_number} generated`,
       description: `Invoice worth ₹${total_amount} raised for ${client.name}.`,
     });
+
+    // 4a. Immutable system audit log
+    await logAudit({
+      userId: user?.id || null,
+      action: 'INSERT',
+      tableName: 'invoices',
+      recordId: invoice.id,
+      newValues: invoice,
+      request: req,
+    });
+
+    // 4b. Notify all admins — new invoice created
+    const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
+    if (admins && admins.length > 0) {
+      const notifs = admins.map((a) => ({
+        user_id: a.id,
+        type: 'invoice_created',
+        title: `🧾 Invoice ${invoice_number} raised`,
+        message: `New invoice for ${client.name}: ₹${Number(total_amount).toLocaleString('en-IN')} — due ${due_date || 'on receipt'}.`,
+        link: `/dashboard/finance`,
+        is_read: false,
+        priority: 'low',
+      }));
+      await supabase.from('notifications').insert(notifs);
+    }
 
     // 5. Optionally send email via Resend
     if (send_email && client.email) {

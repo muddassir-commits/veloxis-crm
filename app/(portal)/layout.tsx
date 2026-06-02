@@ -2,6 +2,7 @@ import React from 'react';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { PortalHeader } from '@/components/portal/portal-header';
+import { Toaster } from '@/components/ui/sonner';
 
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -73,6 +74,7 @@ export default async function PortalLayout({ children }: { children: React.React
           Powered by <a href="https://veloxisglobal.com" target="_blank" rel="noopener noreferrer" className="text-[#1B4FD8] hover:underline font-bold">Veloxis Global</a>
         </p>
       </footer>
+      <Toaster position="bottom-right" theme="light" />
     </div>
   );
 }

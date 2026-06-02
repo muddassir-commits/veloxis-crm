@@ -257,6 +257,53 @@ function SeoTabContent({ client }: SeoTabProps) {
     return () => clearTimeout(timer);
   }, [searchParams, fetchIntegrationStatus, handleSync]);
 
+  useEffect(() => {
+    const campaignsChannel = supabase
+      .channel(`seo-campaigns-${client.id}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'seo_campaigns',
+          filter: `client_id=eq.${client.id}`,
+        },
+        (payload) => {
+          if (payload.eventType === 'UPDATE' || payload.eventType === 'INSERT') {
+            toast.success('Live Analytics Update: Organic search metrics synchronized in real time!', {
+              description: 'The charts and stat cards have been refreshed dynamically.'
+            });
+          }
+          fetchSeoData();
+        }
+      )
+      .subscribe();
+
+    const keywordsChannel = supabase
+      .channel(`seo-keywords-${client.id}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'seo_keywords',
+          filter: `client_id=eq.${client.id}`,
+        },
+        (payload) => {
+          if (payload.eventType === 'INSERT') {
+            toast.success('Live Keyword Tracker: New organic search rank queries discovered in real time!');
+          }
+          fetchSeoData();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(campaignsChannel);
+      supabase.removeChannel(keywordsChannel);
+    };
+  }, [client.id, supabase, fetchSeoData]);
+
   const handlePrevMonth = () => {
     setCurrentDate((prev) => {
       const copy = new Date(prev);

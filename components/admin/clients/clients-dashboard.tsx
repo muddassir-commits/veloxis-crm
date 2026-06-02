@@ -215,25 +215,21 @@ export function ClientsDashboard({ initialClients, profiles }: ClientsDashboardP
         created_at: new Date().toISOString(),
       });
 
-      // 2. Insert notification
-      const { data: adminProfile } = await supabase
-        .from('profiles')
-        .select('id')
-        .eq('role', 'admin')
-        .limit(1)
-        .maybeSingle();
-
-      const targetUserId = adminProfile?.id || user.id;
-
-      await supabase.from('notifications').insert({
-        user_id: targetUserId,
-        type: 'client_new',
-        title: 'New Client Created',
-        message: `New client: ${form.name}`,
-        link: `/dashboard/clients/${newClient.id}`,
-        priority: 'normal',
-        created_at: new Date().toISOString(),
-      });
+      // 2. Notify ALL admins — new client created
+      const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
+      if (admins && admins.length > 0) {
+        const notifs = admins.map((a) => ({
+          user_id: a.id,
+          type: 'client_new',
+          title: `👤 New client added — ${form.name}`,
+          message: `${form.name}${form.company ? ` (${form.company})` : ''} added. Monthly retainer: ₹${Number(form.monthly_retainer || 0).toLocaleString('en-IN')}.`,
+          link: `/dashboard/clients/${newClient.id}`,
+          priority: 'normal',
+          is_read: false,
+          created_at: new Date().toISOString(),
+        }));
+        await supabase.from('notifications').insert(notifs);
+      }
 
       toast.success('Client added successfully');
       setAddModalOpen(false);

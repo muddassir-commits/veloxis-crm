@@ -2,8 +2,48 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 export async function proxy(request: NextRequest) {
+  const path = request.nextUrl.pathname;
+
+  // ── RATE LIMITING ──────────────────────────────────────────
+  if (path.startsWith('/api/')) {
+    const ip = (request as any).ip || request.headers.get('x-forwarded-for') || 'unknown';
+    
+    // Check if it's the login route
+    if (path.startsWith('/api/auth/login')) {
+      const limitResult = checkRateLimit(ip, 5, 15 * 60 * 1000);
+      if (!limitResult.success) {
+        return new NextResponse(
+          JSON.stringify({ error: 'Too many login attempts. Please try again after 15 minutes.' }),
+          {
+            status: 429,
+            headers: {
+              'Content-Type': 'application/json',
+              'Retry-After': String(Math.ceil((limitResult.reset - Date.now()) / 1000)),
+            },
+          }
+        );
+      }
+    } else {
+      // General API rate limit (100 req / minute)
+      const limitResult = checkRateLimit(ip, 100, 60 * 1000);
+      if (!limitResult.success) {
+        return new NextResponse(
+          JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+          {
+            status: 429,
+            headers: {
+              'Content-Type': 'application/json',
+              'Retry-After': String(Math.ceil((limitResult.reset - Date.now()) / 1000)),
+            },
+          }
+        );
+      }
+    }
+  }
+
   let response = NextResponse.next({
     request: {
       headers: request.headers,
@@ -36,7 +76,6 @@ export async function proxy(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   const host = request.headers.get('host') || '';
-  const path = request.nextUrl.pathname;
   const isProduction = host.includes('veloxisglobal.com');
 
   if (user) {

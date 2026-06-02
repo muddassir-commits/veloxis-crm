@@ -295,6 +295,32 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
         created_at: new Date().toISOString(),
       });
 
+      // 4. Activity log + Notify all admins — new client won!
+      const { data: { user } } = await supabase.auth.getUser();
+      await supabase.from('activity_log').insert({
+        user_id: user?.id || null,
+        client_id: client.id,
+        action: 'lead_converted',
+        entity_type: 'client',
+        entity_id: client.id,
+        title: `Lead converted: ${selectedLead.name}`,
+        description: `${selectedLead.name} converted to active client at ₹${Number(convertForm.monthly_retainer || 0).toLocaleString('en-IN')}/mo.`,
+      });
+
+      const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
+      if (admins && admins.length > 0) {
+        const notifs = admins.map((a) => ({
+          user_id: a.id,
+          type: 'lead_converted',
+          title: `🎉 New client won — ${selectedLead.name}`,
+          message: `${selectedLead.name} converted at ₹${Number(convertForm.monthly_retainer || 0).toLocaleString('en-IN')}/mo. Check their profile!`,
+          link: `/dashboard/clients/${client.id}`,
+          is_read: false,
+          priority: 'normal',
+        }));
+        await supabase.from('notifications').insert(notifs);
+      }
+
       toast.success(`${selectedLead.name} successfully converted to client.`);
       setModalOpen((prev) => ({ ...prev, convert: false }));
       onLeadUpdated();

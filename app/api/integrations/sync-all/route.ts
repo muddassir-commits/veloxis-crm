@@ -112,6 +112,23 @@ export async function POST(request: NextRequest) {
         } catch (e: unknown) {
           const errMsg = e instanceof Error ? e.message : String(e);
           gscResults.push({ client_id: conn.client_id, status: 'failed', error: errMsg });
+          try {
+            const { data: client } = await supabase.from('clients').select('name').eq('id', conn.client_id).single();
+            const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
+            if (admins && admins.length > 0) {
+              await supabase.from('notifications').insert(admins.map((a) => ({
+                user_id: a.id,
+                type: 'sync_failed',
+                title: `⚠ GSC Sync Failed`,
+                message: `Google Search Console sync failed for ${client?.name || 'Client'}: ${errMsg.slice(0, 100)}`,
+                link: `/dashboard/it`,
+                is_read: false,
+                priority: 'high'
+              })));
+            }
+          } catch (err) {
+            console.error('Error creating GSC fail notif:', err);
+          }
         }
       }
     }
@@ -125,6 +142,23 @@ export async function POST(request: NextRequest) {
         } catch (e: unknown) {
           const errMsg = e instanceof Error ? e.message : String(e);
           ga4Results.push({ client_id: conn.client_id, status: 'failed', error: errMsg });
+          try {
+            const { data: client } = await supabase.from('clients').select('name').eq('id', conn.client_id).single();
+            const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
+            if (admins && admins.length > 0) {
+              await supabase.from('notifications').insert(admins.map((a) => ({
+                user_id: a.id,
+                type: 'sync_failed',
+                title: `⚠ GA4 Sync Failed`,
+                message: `Google Analytics 4 sync failed for ${client?.name || 'Client'}: ${errMsg.slice(0, 100)}`,
+                link: `/dashboard/it`,
+                is_read: false,
+                priority: 'high'
+              })));
+            }
+          } catch (err) {
+            console.error('Error creating GA4 fail notif:', err);
+          }
         }
       }
     }
@@ -138,6 +172,23 @@ export async function POST(request: NextRequest) {
         } catch (e: unknown) {
           const errMsg = e instanceof Error ? e.message : String(e);
           metaResults.push({ client_id: conn.client_id, status: 'failed', error: errMsg });
+          try {
+            const { data: client } = await supabase.from('clients').select('name').eq('id', conn.client_id).single();
+            const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
+            if (admins && admins.length > 0) {
+              await supabase.from('notifications').insert(admins.map((a) => ({
+                user_id: a.id,
+                type: 'sync_failed',
+                title: `⚠ Meta Ads Sync Failed`,
+                message: `Meta Ads sync failed for ${client?.name || 'Client'}: ${errMsg.slice(0, 100)}`,
+                link: `/dashboard/it`,
+                is_read: false,
+                priority: 'high'
+              })));
+            }
+          } catch (err) {
+            console.error('Error creating Meta fail notif:', err);
+          }
         }
       }
     }
@@ -151,6 +202,23 @@ export async function POST(request: NextRequest) {
         } catch (e: unknown) {
           const errMsg = e instanceof Error ? e.message : String(e);
           googleAdsResults.push({ client_id: conn.client_id, status: 'failed', error: errMsg });
+          try {
+            const { data: client } = await supabase.from('clients').select('name').eq('id', conn.client_id).single();
+            const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
+            if (admins && admins.length > 0) {
+              await supabase.from('notifications').insert(admins.map((a) => ({
+                user_id: a.id,
+                type: 'sync_failed',
+                title: `⚠ Google Ads Sync Failed`,
+                message: `Google Ads sync failed for ${client?.name || 'Client'}: ${errMsg.slice(0, 100)}`,
+                link: `/dashboard/it`,
+                is_read: false,
+                priority: 'high'
+              })));
+            }
+          } catch (err) {
+            console.error('Error creating Google Ads fail notif:', err);
+          }
         }
       }
     }

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { logAudit } from '@/lib/audit';
 
 export async function POST(req: Request) {
   try {
@@ -48,6 +49,33 @@ export async function POST(req: Request) {
       title: `Invoice ${invoice.invoice_number} paid`,
       description: `Invoice paid: ₹${Number(amount_received || invoice.total_amount).toLocaleString('en-IN')} from ${clientName}`,
     });
+
+    // 3a. Immutable system audit log
+    await logAudit({
+      userId: user?.id || null,
+      action: 'UPDATE',
+      tableName: 'invoices',
+      recordId: invoice_id,
+      oldValues: { status: invoice.status, paid_date: invoice.paid_date, payment_method: invoice.payment_method },
+      newValues: { status: 'paid', paid_date, payment_method },
+      request: req,
+    });
+
+    // 3b. Notify all admins — payment received bell notification
+    const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
+    if (admins && admins.length > 0) {
+      const amountFormatted = `₹${Number(amount_received || invoice.total_amount).toLocaleString('en-IN')}`;
+      const notifs = admins.map((a) => ({
+        user_id: a.id,
+        type: 'invoice_paid',
+        title: `💰 Payment received — ${clientName}`,
+        message: `Invoice ${invoice.invoice_number} paid: ${amountFormatted} via ${payment_method}.`,
+        link: `/dashboard/finance`,
+        is_read: false,
+        priority: 'normal',
+      }));
+      await supabase.from('notifications').insert(notifs);
+    }
 
     // 4. POST to /api/webhooks/n8n with type='invoice_paid'
     try {

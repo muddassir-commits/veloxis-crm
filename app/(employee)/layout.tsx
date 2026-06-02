@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { EmployeeHeader } from '@/components/employee/employee-header';
 import { EmployeeNav } from '@/components/employee/employee-nav';
+import { Toaster } from '@/components/ui/sonner';
 
 export default async function EmployeeLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -31,6 +32,7 @@ export default async function EmployeeLayout({ children }: { children: React.Rea
       <main className="flex-1 p-4 pb-24 md:pb-6 max-w-4xl mx-auto w-full">
         {children}
       </main>
+      <Toaster position="bottom-right" theme="dark" />
     </div>
   );
 }

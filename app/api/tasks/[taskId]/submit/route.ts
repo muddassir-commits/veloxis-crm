@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { logAudit } from '@/lib/audit';
 
 export async function POST(
   req: NextRequest,
@@ -66,6 +67,17 @@ export async function POST(
       user_id: user.id,
       entity_type: 'task',
       entity_id: taskId,
+    });
+
+    // system audit log with old and new values
+    await logAudit({
+      userId: user.id,
+      action: 'UPDATE',
+      tableName: 'tasks',
+      recordId: taskId,
+      oldValues: { status: task.status },
+      newValues: { status: 'review' },
+      request: req,
     });
 
     // Get admin users to notify

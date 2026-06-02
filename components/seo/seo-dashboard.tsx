@@ -1,7 +1,7 @@
 // components/seo/seo-dashboard.tsx
 'use client';
 
-import React, { useState, useTransition } from 'react';
+import React, { useState, useTransition, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { toast } from 'sonner';
@@ -55,6 +55,48 @@ export function SeoDashboard({
   // Syncing loaders
   const [syncingAll, setSyncingAll] = useState(false);
   const [syncingClientId, setSyncingClientId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const campaignsChannel = supabase
+      .channel('seo-campaigns-dashboard')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'seo_campaigns'
+        },
+        (payload) => {
+          if (payload.eventType === 'UPDATE' || payload.eventType === 'INSERT') {
+            toast.success('Live Update: SEO Campaign metrics updated in real-time!', {
+              description: 'Dashboard metrics refreshed automatically.'
+            });
+          }
+          router.refresh();
+        }
+      )
+      .subscribe();
+
+    const keywordsChannel = supabase
+      .channel('seo-keywords-dashboard')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'seo_keywords'
+        },
+        (payload) => {
+          router.refresh();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(campaignsChannel);
+      supabase.removeChannel(keywordsChannel);
+    };
+  }, [supabase, router]);
 
   // Month navigation (e.g. "Jun 2026")
   const handleMonthChange = (offset: number) => {
