@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { PortalHeader } from '@/components/portal/portal-header';
 import { Toaster } from '@/components/ui/sonner';
+import { PortalRealtimeListener } from '@/components/portal/portal-realtime-listener';
 
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -59,6 +60,9 @@ export default async function PortalLayout({ children }: { children: React.React
 
   return (
     <div className="theme-light bg-background text-foreground min-h-screen flex flex-col antialiased">
+      {/* Realtime WebSockets Listener */}
+      <PortalRealtimeListener clientId={client.id} />
+
       {/* Top Navigation */}
       <PortalHeader profile={profile} client={client} />
 
