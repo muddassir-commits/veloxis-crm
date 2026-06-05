@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { toast } from 'sonner';
+import { Profile, Client, AuditLog } from '@/types';
 import {
   Building,
   Mail,
@@ -60,10 +61,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { FileUpload } from '@/components/shared/file-upload';
 
 interface SettingsDashboardProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- dynamic settings config map
   initialSettings: Record<string, any>;
-  initialProfiles: any[];
-  initialClients: any[];
-  initialActiveSessions: any[];
+  initialProfiles: Profile[];
+  initialClients: Pick<Client, 'id' | 'name' | 'company'>[];
+  initialActiveSessions: AuditLog[];
   initialCounts: {
     profiles: number;
     clients: number;
@@ -124,7 +126,7 @@ export function SettingsDashboard({
   ]);
 
   // Tab 4: Users Cabinet
-  const [usersList, setUsersList] = useState<any[]>(initialProfiles);
+  const [usersList, setUsersList] = useState<Profile[]>(initialProfiles);
   const [isInviteOpen, setIsInviteOpen] = useState(false);
   const [inviteRole, setInviteRole] = useState<'admin' | 'employee' | 'client'>('employee');
   const [inviteFullName, setInviteFullName] = useState('');
@@ -151,7 +153,7 @@ export function SettingsDashboard({
   const [notifPrefs, setNotifPrefs] = useState<Record<string, Record<string, boolean>>>(initialPrefs);
 
   // Tab 6: Session Security
-  const [activeSessions, setActiveSessions] = useState<any[]>(initialActiveSessions);
+  const [activeSessions, setActiveSessions] = useState<AuditLog[]>(initialActiveSessions);
   const [sessionTimeout, setSessionTimeout] = useState(initialSettings.session_timeout || '24');
 
   // Tab 7: Data Storage
@@ -172,6 +174,7 @@ export function SettingsDashboard({
   const handleSaveSettings = async (type: 'agency' | 'invoice') => {
     setIsSaving(true);
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- dynamic payload mapping
       let payload: Record<string, any> = {};
       
       if (type === 'agency') {
@@ -209,6 +212,7 @@ export function SettingsDashboard({
       }
 
       toast.success(`${type === 'agency' ? 'Agency settings' : 'Invoice parameters'} successfully saved.`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- catch block err type
     } catch (err: any) {
       toast.error(`Save failed: ${err.message}`);
     } finally {
@@ -234,6 +238,7 @@ export function SettingsDashboard({
       }
 
       toast.success('Notification trigger rules successfully updated.');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- catch block err type
     } catch (err: any) {
       toast.error(`Save failed: ${err.message}`);
     } finally {
@@ -259,6 +264,7 @@ export function SettingsDashboard({
       }
 
       toast.success(`Session inactivity timeout updated to ${val} hours.`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- catch block err type
     } catch (err: any) {
       toast.error(`Inactivity update failed: ${err.message}`);
     }
@@ -274,6 +280,7 @@ export function SettingsDashboard({
 
     setIsSaving(true);
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- invite user request body
       const payload: Record<string, any> = {
         email: inviteEmail,
         full_name: inviteFullName,
@@ -314,9 +321,15 @@ export function SettingsDashboard({
           full_name: data.user.full_name,
           email: data.user.email,
           role: data.user.role,
+          avatar_url: null,
+          phone: null,
+          whatsapp: null,
           is_active: true,
-          last_seen: null
-        },
+          last_seen: null,
+          preferences: {},
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        } as Profile,
         ...prev
       ]);
 
@@ -329,6 +342,7 @@ export function SettingsDashboard({
       setInviteClientId('');
       setEmpSkills('');
       setEmpDesignation('');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- catch block err type
     } catch (err: any) {
       toast.error(`Invite failed: ${err.message}`);
     } finally {
@@ -366,6 +380,7 @@ export function SettingsDashboard({
         }));
         toast.success(data.message || 'User profile updated successfully.', { id: toastId });
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- catch block err type
     } catch (err: any) {
       toast.error(`Action failed: ${err.message}`, { id: toastId });
     }
@@ -389,7 +404,7 @@ export function SettingsDashboard({
   };
 
   // Revoke Security Logins
-  const handleRevokeSession = (sessionId: string) => {
+  const handleRevokeSession = (sessionId: number) => {
     setActiveSessions(prev => prev.filter(s => s.id !== sessionId));
     toast.success('Session token successfully revoked. Active device logged out.');
   };
@@ -455,6 +470,7 @@ export function SettingsDashboard({
           return (
             <button
               key={tab.id}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any -- casting tab id
               onClick={() => selectTab(tab.id as any)}
               className={`flex items-center gap-3 rounded-md px-3.5 py-2.5 text-sm font-medium transition-all select-none ${
                 isActive
@@ -1159,6 +1175,7 @@ export function SettingsDashboard({
           <form onSubmit={handleInviteUser} className="space-y-4 py-2">
             <div className="space-y-1.5">
               <Label className="text-xs text-[#8BA3C7]">User Cabinet Role</Label>
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any -- select callback val */}
               <Select value={inviteRole} onValueChange={(val: any) => setInviteRole(val)}>
                 <SelectTrigger className="border-[#1E3352] bg-[#060D1A] text-white">
                   <SelectValue placeholder="Select role" />

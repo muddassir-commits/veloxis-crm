@@ -4,6 +4,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { handleGoogleOAuthCallback } from '@/lib/integrations/gsc';
+import { createClient } from '@supabase/supabase-js';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -11,40 +12,82 @@ export async function GET(request: NextRequest) {
   const stateStr = searchParams.get('state');
   const error = searchParams.get('error');
 
-  // User denied access
-  if (error) {
-    return NextResponse.redirect(
-      new URL(`/dashboard/clients?oauth_error=${encodeURIComponent(error)}`, request.url)
-    );
+  // Parse state early to identify the client ID
+  let clientId: string | null = null;
+  let service: 'gsc' | 'ga4' = 'gsc';
+  if (stateStr) {
+    try {
+      const state = JSON.parse(stateStr) as { clientId: string; service: 'gsc' | 'ga4' };
+      clientId = state.clientId;
+      service = state.service;
+    } catch (e) {
+      console.error('Failed to parse state in OAuth callback:', e);
+    }
   }
 
-  if (!code || !stateStr) {
-    return NextResponse.redirect(
-      new URL('/dashboard/clients?oauth_error=missing_code', request.url)
-    );
+  // Helper to get error/success redirect path based on client type
+  const getRedirectPath = async () => {
+    if (!clientId) return '/dashboard/clients';
+    try {
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
+      );
+      const { data: client } = await supabase
+        .from('clients')
+        .select('is_agency_self')
+        .eq('id', clientId)
+        .single();
+
+      if (client?.is_agency_self) {
+        return '/dashboard/my-agency';
+      }
+      return `/dashboard/clients/${clientId}`;
+    } catch (e) {
+      console.error('Failed to fetch client in OAuth redirect logic:', e);
+      return `/dashboard/clients/${clientId}`;
+    }
+  };
+
+  // User denied access
+  if (error) {
+    const redirectPath = await getRedirectPath();
+    const redirectUrl = new URL(redirectPath, request.url);
+    redirectUrl.searchParams.set('tab', 'seo');
+    redirectUrl.searchParams.set('oauth_error', error);
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  if (!code || !clientId) {
+    const redirectPath = await getRedirectPath();
+    const redirectUrl = new URL(redirectPath, request.url);
+    redirectUrl.searchParams.set('tab', 'seo');
+    redirectUrl.searchParams.set('oauth_error', 'missing_code_or_client');
+    return NextResponse.redirect(redirectUrl);
   }
 
   try {
-    const state = JSON.parse(stateStr) as { clientId: string; service: 'gsc' | 'ga4' };
-    const result = await handleGoogleOAuthCallback(code, state.clientId, state.service);
+    const origin = request.nextUrl.origin;
+    const redirectUri = `${origin}/api/integrations/gsc/callback`;
+    const result = await handleGoogleOAuthCallback(code, clientId, service, redirectUri);
 
-    // Redirect back to the client's SEO tab with success
-    const redirectUrl = new URL(
-      `/dashboard/clients/${state.clientId}?tab=seo&oauth_success=${result.service}`,
-      request.url
-    );
+    const redirectPath = await getRedirectPath();
+    const redirectUrl = new URL(redirectPath, request.url);
+    redirectUrl.searchParams.set('tab', 'seo');
+    redirectUrl.searchParams.set('oauth_success', result.service);
 
     if (result.service === 'gsc' && result.propertyUrl) {
-      redirectUrl.searchParams.set('property', encodeURIComponent(result.propertyUrl));
+      redirectUrl.searchParams.set('property', result.propertyUrl);
     }
 
     return NextResponse.redirect(redirectUrl);
   } catch (err) {
     const msg = err instanceof Error ? err.message : 'OAuth callback failed';
-    const fallbackUrl = new URL(
-      `/dashboard/clients?oauth_error=${encodeURIComponent(msg)}`,
-      request.url
-    );
-    return NextResponse.redirect(fallbackUrl);
+    const redirectPath = await getRedirectPath();
+    const redirectUrl = new URL(redirectPath, request.url);
+    redirectUrl.searchParams.set('tab', 'seo');
+    redirectUrl.searchParams.set('oauth_error', msg);
+    return NextResponse.redirect(redirectUrl);
   }
 }
+

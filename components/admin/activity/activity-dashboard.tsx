@@ -45,7 +45,7 @@ interface ActivityLog {
   entity_id: string | null;
   title: string;
   description: string | null;
-  metadata: any;
+  metadata: Record<string, unknown> | null;
   is_read: boolean;
   created_at: string;
   clients: ClientRelation | null;
@@ -118,6 +118,7 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
 
       setLogs((prev) => prev.map((log) => ({ ...log, is_read: true })));
       toast.success('All activities marked as read.');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- cosmetic catch block error
     } catch (err: any) {
       toast.error(err.message || 'Failed to mark activities as read.');
     } finally {
@@ -162,6 +163,7 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
         setOffset((prev) => prev + 50);
         setHasMore(data?.length === 50);
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- cosmetic catch block error
     } catch (err: any) {
       toast.error(err.message || 'Failed to query activities.');
     } finally {
@@ -171,7 +173,10 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
 
   // Trigger search/filters
   useEffect(() => {
-    fetchFilteredLogs(true);
+    const timer = setTimeout(() => {
+      fetchFilteredLogs(true);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [selectedClient, selectedAction, searchQuery]);
 
   // Load more handler

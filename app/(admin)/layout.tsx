@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { AdminLayoutShell } from '@/components/admin/admin-layout-shell';
+import { Toaster } from '@/components/ui/sonner';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -34,8 +35,11 @@ export default async function Layout({ children }: { children: React.ReactNode }
   }
 
   return (
-    <AdminLayoutShell userProfile={profile}>
-      {children}
-    </AdminLayoutShell>
+    <>
+      <AdminLayoutShell userProfile={profile}>
+        {children}
+      </AdminLayoutShell>
+      <Toaster position="bottom-right" theme="dark" />
+    </>
   );
 }

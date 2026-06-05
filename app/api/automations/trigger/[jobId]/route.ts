@@ -53,7 +53,7 @@ export async function POST(
 
   const startTime = Date.now();
   let status = 'success';
-  let outputPayload: any = { message: 'Trigger successfully completed' };
+  let outputPayload: Record<string, unknown> | null = { message: 'Trigger successfully completed' };
   let errorPayload: string | null = null;
 
   try {
@@ -96,6 +96,7 @@ export async function POST(
         run_id: run.id,
       };
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- cosmetic catch block error
   } catch (err: any) {
     status = 'failed';
     errorPayload = err.message || 'Unknown automation execution error';

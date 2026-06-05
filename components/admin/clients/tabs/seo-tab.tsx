@@ -20,6 +20,7 @@ import {
   Link2,
   Link2Off,
   Loader2,
+  Settings,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/shared/data-table';
@@ -57,6 +58,8 @@ function SeoTabContent({ client }: SeoTabProps) {
   const [disconnectingService, setDisconnectingService] = useState<string | null>(null);
   const [ga4PropertyModalOpen, setGa4PropertyModalOpen] = useState(false);
   const [ga4PropertyId, setGa4PropertyId] = useState('');
+  const [gscPropertyModalOpen, setGscPropertyModalOpen] = useState(false);
+  const [gscPropertyUrl, setGscPropertyUrl] = useState('');
   const [connecting, setConnecting] = useState(false);
 
   // Month-Year state (defaults to current month)
@@ -204,6 +207,32 @@ function SeoTabContent({ client }: SeoTabProps) {
       handleSync('ga4');
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Failed to save GA4 Property');
+    } finally {
+      setConnecting(false);
+    }
+  };
+
+  const handleSaveGscProperty = async () => {
+    if (!gscPropertyUrl.trim()) {
+      toast.error('Please enter a GSC Property URL.');
+      return;
+    }
+    setConnecting(true);
+    try {
+      const res = await fetch('/api/integrations/gsc/property', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId: client.id, propertyUrl: gscPropertyUrl.trim() }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      toast.success('GSC Property URL saved. Syncing data...');
+      setGscPropertyModalOpen(false);
+      setGscPropertyUrl('');
+      fetchIntegrationStatus();
+      handleSync('gsc');
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Failed to save GSC Property');
     } finally {
       setConnecting(false);
     }
@@ -703,6 +732,10 @@ function SeoTabContent({ client }: SeoTabProps) {
                       {syncingService === 'gsc' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
                       Sync
                     </Button>
+                    <Button size="sm" onClick={() => { setGscPropertyUrl(integrationStatus.gsc?.propertyUrl || ''); setGscPropertyModalOpen(true); }} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                      <Settings size={10} className="mr-1" />
+                      Configure
+                    </Button>
                     <Button size="sm" onClick={() => handleDisconnect('gsc')} disabled={disconnectingService === 'gsc'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
                       <Link2Off size={10} className="mr-1" />
                       Disconnect
@@ -1162,6 +1195,34 @@ function SeoTabContent({ client }: SeoTabProps) {
             </Button>
             <Button onClick={handleAddKeyword} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer">
               Track Keyword
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* GSC Property URL Dialog */}
+      <Dialog open={gscPropertyModalOpen} onOpenChange={setGscPropertyModalOpen}>
+        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+          <DialogHeader>
+            <DialogTitle className="text-base font-semibold">Set GSC Property URL</DialogTitle>
+            <DialogDescription className="text-xs text-[#8BA3C7]">
+              Google OAuth is connected. Enter GSC property URL (e.g. sc-domain:example.com) to finish setup.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="my-2 space-y-1 text-xs">
+            <label className="label">Property URL</label>
+            <input
+              type="text"
+              placeholder="e.g. sc-domain:example.com"
+              value={gscPropertyUrl}
+              onChange={(e) => setGscPropertyUrl(e.target.value)}
+              className="input h-9"
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setGscPropertyModalOpen(false)} className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] cursor-pointer">Skip</Button>
+            <Button onClick={handleSaveGscProperty} disabled={connecting} className="bg-[#F59E0B] hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold">
+              {connecting ? 'Saving...' : 'Save & Sync'}
             </Button>
           </DialogFooter>
         </DialogContent>

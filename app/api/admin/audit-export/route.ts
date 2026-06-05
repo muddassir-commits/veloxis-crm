@@ -77,6 +77,7 @@ export async function GET(request: NextRequest) {
     });
 
     return response;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- cosmetic catch block error
   } catch (err: any) {
     return NextResponse.json({ error: err.message || 'Failed to export logs' }, { status: 500 });
   }

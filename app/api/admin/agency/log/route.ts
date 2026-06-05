@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { logAudit } from '@/lib/audit';
 
 export async function POST(req: NextRequest) {
   try {
@@ -75,6 +76,16 @@ export async function POST(req: NextRequest) {
         .single();
 
       if (error) throw error;
+
+      await logAudit({
+        userId: user.id,
+        action: 'INSERT',
+        tableName: 'social_media_metrics',
+        recordId: data.id,
+        newValues: data,
+        request: req,
+      });
+
       return NextResponse.json({ success: true, data });
 
     } else if (type === 'ad') {
@@ -130,10 +141,21 @@ export async function POST(req: NextRequest) {
         .single();
 
       if (error) throw error;
+
+      await logAudit({
+        userId: user.id,
+        action: 'INSERT',
+        tableName: 'agency_own_ad_campaigns',
+        recordId: data.id,
+        newValues: data,
+        request: req,
+      });
+
       return NextResponse.json({ success: true, data });
 
     } else if (type === 'email') {
       const {
+        client_id,
         name,
         subject,
         month_year,
@@ -165,6 +187,7 @@ export async function POST(req: NextRequest) {
       const { data, error } = await adminSupabase
         .from('agency_email_campaigns')
         .insert({
+          client_id: client_id || null,
           name,
           subject: subject || null,
           month_year,
@@ -187,10 +210,21 @@ export async function POST(req: NextRequest) {
         .single();
 
       if (error) throw error;
+
+      await logAudit({
+        userId: user.id,
+        action: 'INSERT',
+        tableName: 'agency_email_campaigns',
+        recordId: data.id,
+        newValues: data,
+        request: req,
+      });
+
       return NextResponse.json({ success: true, data });
 
     } else if (type === 'whatsapp') {
       const {
+        client_id,
         name,
         month_year,
         campaign_type,
@@ -220,6 +254,7 @@ export async function POST(req: NextRequest) {
       const { data, error } = await adminSupabase
         .from('agency_whatsapp_campaigns')
         .insert({
+          client_id: client_id || null,
           name,
           month_year,
           campaign_type: campaign_type || 'broadcast',
@@ -238,6 +273,16 @@ export async function POST(req: NextRequest) {
         .single();
 
       if (error) throw error;
+
+      await logAudit({
+        userId: user.id,
+        action: 'INSERT',
+        tableName: 'agency_whatsapp_campaigns',
+        recordId: data.id,
+        newValues: data,
+        request: req,
+      });
+
       return NextResponse.json({ success: true, data });
 
     } else {

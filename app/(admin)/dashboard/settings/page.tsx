@@ -10,7 +10,7 @@ export default async function Page() {
     .from('agency_settings')
     .select('*');
 
-  const settingsMap: Record<string, any> = {};
+  const settingsMap: Record<string, unknown> = {};
   if (settingsData) {
     settingsData.forEach((item) => {
       settingsMap[item.key] = item.value;

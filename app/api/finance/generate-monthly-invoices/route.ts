@@ -4,6 +4,10 @@ import { createAdminClient } from '@/lib/supabase/admin';
 export const revalidate = 0;
 
 export async function POST(req: NextRequest) {
+  const startedAt = new Date().toISOString();
+  let jobId: string | null = null;
+  let supabase;
+
   try {
     // 1. Verify CRON_SECRET or shared secret
     const secret = req.headers.get('x-cron-secret');
@@ -11,7 +15,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const supabase = createAdminClient();
+    supabase = createAdminClient();
+
+    // Look up the cron job ID
+    const { data: job } = await supabase
+      .from('cron_jobs')
+      .select('id')
+      .eq('name', 'Monthly Invoice Generator')
+      .maybeSingle();
+    
+    if (job) {
+      jobId = job.id;
+    }
 
     // 2. Fetch active paying clients (exclude self agency client)
     const { data: clients, error: clientsErr } = await supabase
@@ -24,21 +39,28 @@ export async function POST(req: NextRequest) {
     if (clientsErr) throw clientsErr;
 
     if (!clients || clients.length === 0) {
-      return NextResponse.json({ success: true, message: 'No active paying clients found to invoice.' });
+      const message = 'No active paying clients found to invoice.';
+      if (jobId) {
+        await supabase.from('cron_job_runs').insert({
+          job_id: jobId,
+          started_at: startedAt,
+          ended_at: new Date().toISOString(),
+          status: 'success',
+          output: { count: 0, invoices: [], message }
+        });
+        await supabase
+          .from('cron_jobs')
+          .update({
+            last_run: startedAt,
+            last_status: 'success',
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', jobId);
+      }
+      return NextResponse.json({ success: true, message });
     }
 
-    // 3. Fetch invoice counter setting
-    const { data: setting } = await supabase
-      .from('agency_settings')
-      .select('value')
-      .eq('key', 'invoice_counter')
-      .maybeSingle();
 
-    let counter = 1;
-    if (setting?.value !== undefined && setting?.value !== null) {
-      counter = typeof setting.value === 'number' ? setting.value : Number(setting.value);
-      if (isNaN(counter)) counter = 1;
-    }
 
     const currentYear = new Date().getFullYear();
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -46,10 +68,27 @@ export async function POST(req: NextRequest) {
     const monthYearStr = `${currentMonthName} ${currentYear}`;
 
     const generatedInvoices = [];
+    const skippedClients: string[] = [];
 
     // 4. Generate invoice for each client
     for (let i = 0; i < clients.length; i++) {
       const client = clients[i];
+
+      // Check if invoice already exists for this client and month
+      const { data: existingInvoices, error: checkErr } = await supabase
+        .from('invoices')
+        .select('id')
+        .eq('client_id', client.id)
+        .eq('month_year', monthYearStr);
+
+      if (checkErr) throw checkErr;
+
+      if (existingInvoices && existingInvoices.length > 0) {
+        console.log(`Skipping invoice generation for client ${client.name}: already invoiced for ${monthYearStr}`);
+        skippedClients.push(client.name);
+        continue;
+      }
+
       const baseRetainer = Number(client.monthly_retainer || 0);
 
       // 18% GST
@@ -57,8 +96,12 @@ export async function POST(req: NextRequest) {
       const gstAmount = Number((baseRetainer * 0.18).toFixed(2));
       const totalAmount = Number((baseRetainer + gstAmount).toFixed(2));
 
+      // Get next sequence value atomically
+      const { data: nextCounter, error: rpcError } = await supabase.rpc('get_next_invoice_counter');
+      if (rpcError) throw rpcError;
+
       // VG-YYYY-XXX invoice pattern
-      const invoiceNumber = `VG-${currentYear}-${String(counter).padStart(3, '0')}`;
+      const invoiceNumber = `VG-${currentYear}-${String(nextCounter).padStart(3, '0')}`;
 
       // Insert invoice
       const { data: invoice, error: invoiceErr } = await supabase
@@ -87,7 +130,6 @@ export async function POST(req: NextRequest) {
       }
 
       generatedInvoices.push(invoice);
-      counter++;
 
       // Log activity
       await supabase.from('activity_log').insert({
@@ -100,14 +142,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 5. Save updated invoice counter
-    await supabase
-      .from('agency_settings')
-      .update({
-        value: counter,
-        updated_at: new Date().toISOString(),
-      })
-      .eq('key', 'invoice_counter');
+
 
     // 6. Broadcast notification to admins
     const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
@@ -124,14 +159,66 @@ export async function POST(req: NextRequest) {
       await supabase.from('notifications').insert(notifs);
     }
 
+    if (jobId) {
+      await supabase.from('cron_job_runs').insert({
+        job_id: jobId,
+        started_at: startedAt,
+        ended_at: new Date().toISOString(),
+        status: 'success',
+        output: {
+          count: generatedInvoices.length,
+          skippedCount: skippedClients.length,
+          skipped: skippedClients,
+          invoices: generatedInvoices.map((inv) => inv.invoice_number),
+          message: `Billing generated successfully: ${generatedInvoices.length} invoices created, ${skippedClients.length} skipped.`
+        }
+      });
+      await supabase
+        .from('cron_jobs')
+        .update({
+          last_run: startedAt,
+          last_status: 'success',
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', jobId);
+    }
+
     return NextResponse.json({
       success: true,
-      message: `Billing generated successfully: ${generatedInvoices.length} invoices created.`,
+      message: `Billing generated successfully: ${generatedInvoices.length} invoices created, ${skippedClients.length} skipped.`,
       invoices: generatedInvoices.map((inv) => inv.invoice_number),
+      skipped: skippedClients,
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error('[Generate Invoices API Error]:', err);
-    return NextResponse.json({ error: err.message || 'Failed to generate monthly invoices' }, { status: 500 });
+    
+    const endedAt = new Date().toISOString();
+    const errMsg = err instanceof Error ? err.message : 'Failed to generate monthly invoices';
+    
+    if (supabase && jobId) {
+      try {
+        await supabase.from('cron_job_runs').insert({
+          job_id: jobId,
+          started_at: startedAt,
+          ended_at: endedAt,
+          status: 'failed',
+          error: errMsg,
+          output: { error: errMsg }
+        });
+        await supabase
+          .from('cron_jobs')
+          .update({
+            last_run: startedAt,
+            last_status: 'failed',
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', jobId);
+      } catch (logErr) {
+        console.error('Failed to log cron error to DB:', logErr);
+      }
+    }
+
+    return NextResponse.json({ error: errMsg }, { status: 500 });
   }
 }
 

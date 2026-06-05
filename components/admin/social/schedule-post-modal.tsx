@@ -18,13 +18,15 @@ interface SchedulePostModalProps {
   onOpenChange: (open: boolean) => void;
   onSuccess: () => void;
   prefilledDate?: Date | null;
+  prefilledClientId?: string | null;
 }
 
 export function SchedulePostModal({
   open,
   onOpenChange,
   onSuccess,
-  prefilledDate
+  prefilledDate,
+  prefilledClientId
 }: SchedulePostModalProps) {
   const supabase = createClient();
   const [clients, setClients] = useState<Client[]>([]);
@@ -63,7 +65,7 @@ export function SchedulePostModal({
     if (open) {
       loadData();
       // Reset form
-      setClientId('');
+      setClientId(prefilledClientId || '');
       setPlatform('instagram');
       setContentType('post');
       setCaption('');
@@ -81,7 +83,7 @@ export function SchedulePostModal({
         setScheduledDate('');
       }
     }
-  }, [open, prefilledDate]);
+  }, [open, prefilledDate, prefilledClientId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -9,11 +9,11 @@ export async function proxy(request: NextRequest) {
 
   // ── RATE LIMITING ──────────────────────────────────────────
   if (path.startsWith('/api/')) {
-    const ip = (request as any).ip || request.headers.get('x-forwarded-for') || 'unknown';
+    const ip = (request as NextRequest & { ip?: string }).ip || request.headers.get('x-forwarded-for') || 'unknown';
     
     // Check if it's the login route
     if (path.startsWith('/api/auth/login')) {
-      const limitResult = checkRateLimit(ip, 5, 15 * 60 * 1000);
+      const limitResult = await checkRateLimit(ip, 5, 15 * 60 * 1000);
       if (!limitResult.success) {
         return new NextResponse(
           JSON.stringify({ error: 'Too many login attempts. Please try again after 15 minutes.' }),
@@ -28,7 +28,7 @@ export async function proxy(request: NextRequest) {
       }
     } else {
       // General API rate limit (100 req / minute)
-      const limitResult = checkRateLimit(ip, 100, 60 * 1000);
+      const limitResult = await checkRateLimit(ip, 100, 60 * 1000);
       if (!limitResult.success) {
         return new NextResponse(
           JSON.stringify({ error: 'Too many requests. Please try again later.' }),

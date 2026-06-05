@@ -1,63 +1,37 @@
-// lib/rate-limit.ts
-// Fully-functional, high-performance in-memory rate limiter to bypass third-party dependencies
+import { createAdminClient } from './supabase/admin';
 
-interface RateLimitTracker {
-  timestamps: number[];
-}
-
-const cache = new Map<string, RateLimitTracker>();
-
-// Periodic garbage collection to prevent memory leaks (runs every 5 minutes)
-if (typeof window === 'undefined') {
-  setInterval(() => {
-    const now = Date.now();
-    for (const [key, value] of cache.entries()) {
-      // Keep only timestamps within the last 15 minutes
-      const activeTimestamps = value.timestamps.filter((t) => now - t < 15 * 60 * 1000);
-      if (activeTimestamps.length === 0) {
-        cache.delete(key);
-      } else {
-        cache.set(key, { timestamps: activeTimestamps });
-      }
-    }
-  }, 5 * 60 * 1000);
-}
-
-export function checkRateLimit(
+export async function checkRateLimit(
   ip: string,
   limit: number,
   windowMs: number
-): { success: boolean; limit: number; remaining: number; reset: number } {
-  const now = Date.now();
-  const key = `${ip}`;
-
-  let tracker = cache.get(key);
-  if (!tracker) {
-    tracker = { timestamps: [] };
-  }
-
-  // Filter timestamps within the current window
-  const activeTimestamps = tracker.timestamps.filter((t) => now - t < windowMs);
-
-  if (activeTimestamps.length >= limit) {
-    const oldestTimestamp = activeTimestamps[0];
-    const resetTime = oldestTimestamp + windowMs;
+): Promise<{ success: boolean; limit: number; remaining: number; reset: number }> {
+  try {
+    const supabase = createAdminClient();
+    
+    // Call database-backed rate limiter RPC
+    // windowMs is in milliseconds, RPC expects window in seconds
+    const windowSeconds = Math.ceil(windowMs / 1000);
+    
+    const { data, error } = await supabase.rpc('check_rate_limit', {
+      p_key: ip,
+      p_limit: limit,
+      p_window_seconds: windowSeconds
+    });
+    
+    if (error || !data) {
+      console.error('Database rate limiter error, falling back to allow:', error);
+      return { success: true, limit, remaining: 1, reset: Date.now() + windowMs };
+    }
     
     return {
-      success: false,
-      limit,
-      remaining: 0,
-      reset: resetTime,
+      success: !!data.success,
+      limit: Number(data.limit || limit),
+      remaining: Number(data.remaining ?? 0),
+      reset: Number(data.reset || (Date.now() + windowMs))
     };
+  } catch (err) {
+    console.error('Rate limiter exception, falling back to allow:', err);
+    return { success: true, limit, remaining: 1, reset: Date.now() + windowMs };
   }
-
-  activeTimestamps.push(now);
-  cache.set(key, { timestamps: activeTimestamps });
-
-  return {
-    success: true,
-    limit,
-    remaining: limit - activeTimestamps.length,
-    reset: now + windowMs,
-  };
 }
+

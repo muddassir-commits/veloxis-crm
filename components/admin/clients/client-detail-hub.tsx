@@ -25,6 +25,7 @@ import {
   Calendar,
   MoreHorizontal,
   Star,
+  MessageSquare,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -52,6 +53,7 @@ import { AdsTab } from '@/components/admin/clients/tabs/ads-tab';
 import { InvoicesTab } from '@/components/admin/clients/tabs/invoices-tab';
 import { FilesTab } from '@/components/admin/clients/tabs/files-tab';
 import { ActivityTab } from '@/components/admin/clients/tabs/activity-tab';
+import { ClientRelationsTab } from '@/components/admin/clients/tabs/client-relations-tab';
 import { ClientStatus } from '@/types';
 
 interface ClientDetailHubProps {
@@ -65,6 +67,7 @@ type TabId =
   | 'deliverables'
   | 'seo'
   | 'ads'
+  | 'relations'
   | 'invoices'
   | 'files'
   | 'activity';
@@ -82,6 +85,7 @@ const TABS: Tab[] = [
   { id: 'deliverables', label: 'Deliverables', icon: ListTodo },
   { id: 'seo', label: 'SEO', icon: Search },
   { id: 'ads', label: 'Ads', icon: Megaphone },
+  { id: 'relations', label: 'Client Relations', icon: MessageSquare },
   { id: 'invoices', label: 'Invoices', icon: FileText },
   { id: 'files', label: 'Files', icon: FileText },
   { id: 'activity', label: 'Activity', icon: Activity },
@@ -284,6 +288,8 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
         return <AdsTab client={client} />;
       case 'invoices':
         return !client.is_agency_self ? <InvoicesTab client={client} /> : null;
+      case 'relations':
+        return <ClientRelationsTab client={client} profiles={profiles} />;
       case 'files':
         return <FilesTab client={client} />;
       case 'activity':

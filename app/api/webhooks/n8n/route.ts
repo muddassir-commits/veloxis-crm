@@ -344,6 +344,7 @@ export async function POST(req: NextRequest) {
       default:
         return NextResponse.json({ error: 'Unknown event type' }, { status: 400 });
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- cosmetic catch block error
   } catch (err: any) {
     console.error('[n8n Webhook Error]:', err);
     return NextResponse.json({ error: err.message || 'Failed to process webhook' }, { status: 500 });

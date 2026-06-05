@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { PageContainer } from '@/components/shared/page-container';
 import { EmptyState } from '@/components/shared/empty-state';
 import { StatusBadge } from '@/components/shared/status-badge';
-import { Button } from '@/components/ui/button';
 import { createClient } from '@/lib/supabase/server';
-import { Building2, RefreshCw } from 'lucide-react';
+import { Building2 } from 'lucide-react';
 import { AgencyDashboard } from '@/components/admin/agency-dashboard';
+import { MyAgencySyncButton } from '@/components/admin/my-agency-sync-button';
 
 export default async function MyAgencyPage() {
   const supabase = await createClient();
@@ -62,29 +62,45 @@ export default async function MyAgencyPage() {
     .from('agency_own_ad_campaigns')
     .select('*')
     .order('month_year', { ascending: false });
+
+  // 3. Fetch brand assets from agency bucket
+  const { data: brandFiles } = await supabase
+    .from('files')
+    .select('*, profiles:uploaded_by (full_name)')
+    .eq('bucket', 'agency')
+    .order('created_at', { ascending: false });
+
+  // 4. Fetch social media content planning posts
+  const { data: socialPosts } = await supabase
+    .from('social_posts')
+    .select('*, profiles:assigned_to (full_name)')
+    .eq('client_id', agencyClient.id)
+    .order('scheduled_for', { ascending: true });
+
   return (
     <PageContainer
-      title="My Agency — veloxisglobal.com"
-      description="Performance and metrics tracking for Veloxis Global."
+      title="Agency Marketing — veloxisglobal.com"
+      description="Performance, brand assets, and marketing content planner for Veloxis Global."
       actions={
         <div className="flex items-center gap-2 select-none">
           <StatusBadge status="agency_self" />
-          <Button size="sm" className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer">
-            <RefreshCw size={13} className="stroke-[1.5]" />
-            <span>Sync All Data</span>
-          </Button>
+          <MyAgencySyncButton clientId={agencyClient.id} />
         </div>
       }
     >
-      <AgencyDashboard
-        clientId={agencyClient.id}
-        seoCampaigns={seoCampaigns}
-        seoKeywords={seoKeywords}
-        socialMetrics={socialMetrics}
-        whatsappCampaigns={whatsappCampaigns}
-        emailCampaigns={emailCampaigns}
-        adCampaigns={adCampaigns}
-      />
+      <Suspense fallback={<div className="text-xs text-[#8BA3C7] animate-pulse">Loading dashboard...</div>}>
+        <AgencyDashboard
+          clientId={agencyClient.id}
+          seoCampaigns={seoCampaigns}
+          seoKeywords={seoKeywords}
+          socialMetrics={socialMetrics}
+          whatsappCampaigns={whatsappCampaigns}
+          emailCampaigns={emailCampaigns}
+          adCampaigns={adCampaigns}
+          brandFiles={brandFiles || []}
+          socialPosts={socialPosts || []}
+        />
+      </Suspense>
     </PageContainer>
   );
 }

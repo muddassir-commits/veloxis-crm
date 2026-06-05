@@ -16,17 +16,17 @@ function getSupabaseAdmin() {
 }
 
 // ── Build OAuth2 client ────────────────────────────────────────────────────────
-export function buildOAuth2Client() {
+export function buildOAuth2Client(redirectUri?: string) {
   return new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID!,
     process.env.GOOGLE_CLIENT_SECRET!,
-    process.env.GOOGLE_REDIRECT_URI!
+    redirectUri || process.env.GOOGLE_REDIRECT_URI!
   );
 }
 
 // ── Build the Google OAuth URL for GSC + GA4 scopes ──────────────────────────
-export function getGoogleAuthUrl(clientId: string, service: 'gsc' | 'ga4' = 'gsc') {
-  const oauth2Client = buildOAuth2Client();
+export function getGoogleAuthUrl(clientId: string, service: 'gsc' | 'ga4' = 'gsc', redirectUri?: string) {
+  const oauth2Client = buildOAuth2Client(redirectUri);
 
   const scopes = [
     'https://www.googleapis.com/auth/webmasters.readonly', // GSC
@@ -38,7 +38,7 @@ export function getGoogleAuthUrl(clientId: string, service: 'gsc' | 'ga4' = 'gsc
   return oauth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: scopes,
-    prompt: 'consent', // always re-request to get refresh token
+    prompt: 'select_account consent', // always re-request to get refresh token
     state: JSON.stringify({ clientId, service }),
   });
 }
@@ -47,10 +47,11 @@ export function getGoogleAuthUrl(clientId: string, service: 'gsc' | 'ga4' = 'gsc
 export async function handleGoogleOAuthCallback(
   code: string,
   clientId: string,
-  service: 'gsc' | 'ga4'
+  service: 'gsc' | 'ga4',
+  redirectUri?: string
 ) {
   const supabase = getSupabaseAdmin();
-  const oauth2Client = buildOAuth2Client();
+  const oauth2Client = buildOAuth2Client(redirectUri);
 
   const { tokens } = await oauth2Client.getToken(code);
 
@@ -66,14 +67,33 @@ export async function handleGoogleOAuthCallback(
   const encryptedRefresh = encrypt(tokens.refresh_token);
 
   if (service === 'gsc') {
+    // Fetch the client's website to match the property url
+    const { data: client } = await supabase
+      .from('clients')
+      .select('website')
+      .eq('id', clientId)
+      .single();
+
     // Get the list of GSC properties to let user pick
     oauth2Client.setCredentials(tokens);
     const searchconsole = google.searchconsole({ version: 'v1', auth: oauth2Client });
     const sitesResponse = await searchconsole.sites.list();
     const sites = sitesResponse.data.siteEntry ?? [];
 
-    // Default: use first property, or Muddassir can update later
-    const propertyUrl = sites[0]?.siteUrl || '';
+    // Find the best matching property URL based on the client's website
+    let propertyUrl = '';
+    if (client?.website) {
+      const cleanDomain = client.website.toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/$/, '');
+      const match = sites.find((s) => (s.siteUrl || '').toLowerCase().includes(cleanDomain));
+      if (match) {
+        propertyUrl = match.siteUrl || '';
+      }
+    }
+
+    // Default fallback to first property
+    if (!propertyUrl && sites.length > 0) {
+      propertyUrl = sites[0]?.siteUrl || '';
+    }
 
     await supabase.from('gsc_connections').upsert(
       {
@@ -141,6 +161,7 @@ export async function syncGscData(clientId: string, monthYear?: string) {
     const updates: Record<string, string> = {};
     if (tokens.access_token) updates.access_token = encrypt(tokens.access_token);
     if (tokens.expiry_date) updates.token_expires = new Date(tokens.expiry_date).toISOString();
+    if (tokens.refresh_token) updates.refresh_token = encrypt(tokens.refresh_token);
     if (Object.keys(updates).length > 0) {
       await supabase.from('gsc_connections').update(updates).eq('client_id', clientId);
     }
@@ -323,4 +344,16 @@ export async function syncGscData(clientId: string, monthYear?: string) {
 function formatMonthYear(date: Date): string {
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   return `${months[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+// ── Update GSC Property URL for a client ──────────────────────────────────────
+export async function setGscPropertyUrl(clientId: string, propertyUrl: string) {
+  const supabase = getSupabaseAdmin();
+  const { error } = await supabase
+    .from('gsc_connections')
+    .update({ property_url: propertyUrl })
+    .eq('client_id', clientId);
+
+  if (error) throw error;
+  return { success: true };
 }

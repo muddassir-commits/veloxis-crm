@@ -394,6 +394,7 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
                 <option value="todo">Todo</option>
                 <option value="in_progress">In Progress</option>
                 <option value="review">Review</option>
+                <option value="approved">Approved</option>
                 <option value="done">Completed</option>
               </select>
             </div>

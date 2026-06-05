@@ -41,6 +41,7 @@ export async function syncGa4Data(clientId: string, monthYear?: string) {
     const updates: Record<string, string> = {};
     if (tokens.access_token) updates.access_token = encrypt(tokens.access_token);
     if (tokens.expiry_date) updates.token_expires = new Date(tokens.expiry_date).toISOString();
+    if (tokens.refresh_token) updates.refresh_token = encrypt(tokens.refresh_token);
     if (Object.keys(updates).length > 0) {
       await supabase.from('ga4_connections').update(updates).eq('client_id', clientId);
     }
@@ -77,18 +78,44 @@ export async function syncGa4Data(clientId: string, monthYear?: string) {
   let totalSessions = 0;
   let totalNewUsers = 0;
   let totalConversions = 0;
+  let organicTraffic = 0;
 
   for (const row of rows) {
-    totalSessions += parseInt(row.metricValues?.[0]?.value ?? '0');
-    totalNewUsers += parseInt(row.metricValues?.[1]?.value ?? '0');
-    totalConversions += parseInt(row.metricValues?.[3]?.value ?? '0');
+    const channel = row.dimensionValues?.[0]?.value || '';
+    const sessions = parseInt(row.metricValues?.[0]?.value ?? '0');
+    const newUsers = parseInt(row.metricValues?.[1]?.value ?? '0');
+    const conversions = parseInt(row.metricValues?.[3]?.value ?? '0');
+
+    totalSessions += sessions;
+    totalNewUsers += newUsers;
+    totalConversions += conversions;
+
+    if (channel.toLowerCase().includes('organic search') || channel.toLowerCase() === 'organic search') {
+      organicTraffic += sessions;
+    }
   }
+
+  // Fetch previous month's organic traffic to set organic_traffic_prev
+  const prevDate = new Date(Number(year), monthIndex - 1, 1);
+  const prevMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const prevMonthYear = `${prevMonths[prevDate.getMonth()]} ${prevDate.getFullYear()}`;
+
+  const { data: prevCampaign } = await supabase
+    .from('seo_campaigns')
+    .select('organic_traffic')
+    .eq('client_id', clientId)
+    .eq('month_year', prevMonthYear)
+    .maybeSingle();
+
+  const organicTrafficPrev = prevCampaign?.organic_traffic || 0;
 
   // 6. Upsert into seo_campaigns (GA4 fields)
   await supabase.from('seo_campaigns').upsert(
     {
       client_id: clientId,
       month_year: target,
+      organic_traffic: organicTraffic,
+      organic_traffic_prev: organicTrafficPrev,
       ga4_sessions: totalSessions,
       ga4_new_users: totalNewUsers,
       ga4_conversions: totalConversions,

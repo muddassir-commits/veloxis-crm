@@ -81,7 +81,7 @@ export async function GET(request: NextRequest) {
     csvLines.push('Invoice Number,Client Name,Amount,GST Rate %,GST Amount,Total Amount,Status,Issued Date,Due Date,Paid Date,Payment Method');
     if (invoices) {
       invoices.forEach((i) => {
-        const clientName = (i.clients as any)?.name || 'Unknown';
+        const clientName = (i.clients as unknown as { name: string } | null)?.name || 'Unknown';
         csvLines.push([
           i.invoice_number,
           `"${clientName.replace(/"/g, '""')}"`,
@@ -104,7 +104,7 @@ export async function GET(request: NextRequest) {
     csvLines.push('Employee ID,Full Name,Email,Designation,Stipend Amount,Payment Day,Skills,Status,Join Date');
     if (employees) {
       employees.forEach((e) => {
-        const prof = e.profiles as any;
+        const prof = e.profiles as unknown as { full_name: string; email: string; is_active: boolean } | null;
         const fullName = prof?.full_name || 'Unknown';
         const email = prof?.email || '';
         const isActive = prof?.is_active ? 'Active' : 'Inactive';
@@ -146,6 +146,7 @@ export async function GET(request: NextRequest) {
     });
 
     return response;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- cosmetic catch block error
   } catch (err: any) {
     console.error('Export All API error:', err);
     return NextResponse.json({ error: err.message || 'Failed to export master data' }, { status: 500 });

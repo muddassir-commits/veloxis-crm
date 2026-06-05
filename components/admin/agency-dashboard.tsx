@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+/* eslint-disable @next/next/no-img-element */
+
+import React, { useState, useEffect, useCallback } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { toast } from 'sonner';
 import {
@@ -40,12 +42,35 @@ import {
   AlertCircle,
   Award,
   DollarSign,
+  Link2,
+  Link2Off,
+  Loader2,
+  ChevronDown,
+  ChevronUp,
+  RefreshCw,
+  FileText,
+  FileImage,
+  FileSpreadsheet,
+  Archive,
+  Eye,
+  Trash2,
+  Upload,
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  Copy,
+  Settings,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { StatCard } from '@/components/shared/stat-card';
 import { StatusBadge } from '@/components/shared/status-badge';
 import { DataTable } from '@/components/shared/data-table';
-import { formatCurrency } from '@/lib/utils';
+import { formatCurrency, formatDate, formatBytes } from '@/lib/utils';
+import { FileUpload } from '@/components/shared/file-upload';
+import { SocialCalendar } from '@/components/admin/social/social-calendar';
+import { SchedulePostModal } from '@/components/admin/social/schedule-post-modal';
+import { ConfirmDialog } from '@/components/shared/confirm-dialog';
+import { SocialListView } from '@/components/admin/social/social-list-view';
 import {
   SeoCampaign,
   SeoKeyword,
@@ -53,13 +78,16 @@ import {
   AgencyWhatsappCampaign,
   AgencyEmailCampaign,
   AgencyOwnAdCampaign,
+  FileRecord,
 } from '@/types';
+import { PostWithClient } from '@/components/admin/social/social-dashboard';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
+  DialogDescription,
 } from '@/components/ui/dialog';
 
 // Color system configuration from DESIGN_SYSTEM.md
@@ -89,6 +117,8 @@ interface AgencyDashboardProps {
   whatsappCampaigns: AgencyWhatsappCampaign[] | null;
   emailCampaigns: AgencyEmailCampaign[] | null;
   adCampaigns: AgencyOwnAdCampaign[] | null;
+  brandFiles: FileRecord[];
+  socialPosts: PostWithClient[];
 }
 
 export function AgencyDashboard({
@@ -99,9 +129,280 @@ export function AgencyDashboard({
   whatsappCampaigns,
   emailCampaigns,
   adCampaigns,
+  brandFiles,
+  socialPosts,
 }: AgencyDashboardProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const supabase = createClient();
+
+  // Collapsible Integrations Panel
+  const [integrationsOpen, setIntegrationsOpen] = useState(false);
+  const [integrationStatus, setIntegrationStatus] = useState<{
+    gsc: { connected: boolean; propertyUrl?: string; lastSync?: string } | null;
+    ga4: { connected: boolean; propertyId?: string; lastSync?: string } | null;
+    meta: { connected: boolean; adAccountId?: string; lastSync?: string } | null;
+    google: { connected: boolean; customerId?: string; lastSync?: string } | null;
+  }>({ gsc: null, ga4: null, meta: null, google: null });
+  const [syncingService, setSyncingService] = useState<string | null>(null);
+  const [disconnectingService, setDisconnectingService] = useState<string | null>(null);
+  const [ga4PropertyModalOpen, setGa4PropertyModalOpen] = useState(false);
+  const [ga4PropertyId, setGa4PropertyId] = useState('');
+  const [gscPropertyModalOpen, setGscPropertyModalOpen] = useState(false);
+  const [gscPropertyUrl, setGscPropertyUrl] = useState('');
+  const [metaConnectOpen, setMetaConnectOpen] = useState(false);
+  const [googleConnectOpen, setGoogleConnectOpen] = useState(false);
+  const [adAccountIdInput, setAdAccountIdInput] = useState('');
+  const [customerIdInput, setCustomerIdInput] = useState('');
+  const [connecting, setConnecting] = useState(false);
+
+  const fetchIntegrationStatus = useCallback(async () => {
+    try {
+      let gscData = null;
+      let ga4Data = null;
+      let metaData = null;
+      let googleData = null;
+
+      try {
+        const { data } = await supabase.from('gsc_connections').select('*').eq('client_id', clientId).maybeSingle();
+        gscData = data;
+      } catch (e) {
+        console.warn('GSC table not available or error:', e);
+      }
+
+      try {
+        const { data } = await supabase.from('ga4_connections').select('*').eq('client_id', clientId).maybeSingle();
+        ga4Data = data;
+      } catch (e) {
+        console.warn('GA4 table not available or error:', e);
+      }
+
+      try {
+        const { data } = await supabase.from('meta_connections').select('*').eq('client_id', clientId).maybeSingle();
+        metaData = data;
+      } catch (e) {
+        console.warn('Meta connections table not available or error:', e);
+      }
+
+      try {
+        const { data } = await supabase.from('google_ads_connections').select('*').eq('client_id', clientId).maybeSingle();
+        googleData = data;
+      } catch (e) {
+        console.warn('Google Ads connections table not available or error:', e);
+      }
+
+      setIntegrationStatus({
+        gsc: gscData
+          ? { connected: gscData.is_active, propertyUrl: gscData.property_url, lastSync: gscData.last_sync }
+          : { connected: false },
+        ga4: ga4Data
+          ? { connected: ga4Data.is_active, propertyId: ga4Data.property_id, lastSync: ga4Data.last_sync }
+          : { connected: false },
+        meta: metaData
+          ? { connected: metaData.is_active, adAccountId: metaData.ad_account_id, lastSync: metaData.last_sync }
+          : { connected: false },
+        google: googleData
+          ? { connected: googleData.is_active, customerId: googleData.customer_id, lastSync: googleData.last_sync }
+          : { connected: false },
+      });
+    } catch (err) {
+      console.error('Failed to load agency integrations status.', err);
+    }
+  }, [clientId, supabase]);
+
+  const handleSync = useCallback(async (service: 'gsc' | 'ga4' | 'meta' | 'google') => {
+    setSyncingService(service);
+    try {
+      let endpoint = '';
+      if (service === 'ga4') endpoint = `/api/integrations/ga4/sync/${clientId}`;
+      else if (service === 'gsc') endpoint = `/api/integrations/gsc/sync/${clientId}`;
+      else if (service === 'meta') endpoint = `/api/integrations/meta/sync/${clientId}`;
+      else if (service === 'google') endpoint = `/api/integrations/google-ads/sync/${clientId}`;
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      toast.success(`${service === 'google' ? 'Google Ads' : service === 'meta' ? 'Meta Ads' : service.toUpperCase()} data synced successfully!`);
+      fetchIntegrationStatus();
+    } catch (err) {
+      const error = err as Error;
+      toast.error(`Sync failed: ${error.message}`);
+    } finally {
+      setSyncingService(null);
+    }
+  }, [clientId, fetchIntegrationStatus]);
+
+  const handleConnectGoogle = (service: 'gsc' | 'ga4') => {
+    window.location.href = `/api/integrations/gsc/auth?client_id=${clientId}&service=${service}`;
+  };
+
+  const handleConnectMeta = async () => {
+    if (!adAccountIdInput.trim()) {
+      toast.error('Ad Account ID is required');
+      return;
+    }
+    setConnecting(true);
+    const toastId = toast.loading('Connecting Meta Ad Account...');
+    try {
+      const res = await fetch('/api/integrations/meta', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId, adAccountId: adAccountIdInput.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || 'Failed to connect');
+
+      toast.success('Meta Ads connected!', { id: toastId });
+      setMetaConnectOpen(false);
+      setAdAccountIdInput('');
+      fetchIntegrationStatus();
+      handleSync('meta');
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Failed to connect', { id: toastId });
+    } finally {
+      setConnecting(false);
+    }
+  };
+
+  const handleConnectGoogleAds = async () => {
+    if (!customerIdInput.trim()) {
+      toast.error('Customer ID is required');
+      return;
+    }
+    setConnecting(true);
+    const toastId = toast.loading('Connecting Google Ads account...');
+    try {
+      const res = await fetch('/api/integrations/google-ads/connect', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId, customerId: customerIdInput.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || 'Failed to connect');
+
+      toast.success('Google Ads connected!', { id: toastId });
+      setGoogleConnectOpen(false);
+      setCustomerIdInput('');
+      fetchIntegrationStatus();
+      handleSync('google');
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Failed to connect', { id: toastId });
+    } finally {
+      setConnecting(false);
+    }
+  };
+
+  const handleSaveGa4Property = async () => {
+    if (!ga4PropertyId.trim()) {
+      toast.error('Please enter a GA4 Property ID.');
+      return;
+    }
+    setConnecting(true);
+    try {
+      const res = await fetch('/api/integrations/ga4', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId, propertyId: ga4PropertyId.trim() }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      toast.success('GA4 Property ID saved. Syncing data...');
+      setGa4PropertyModalOpen(false);
+      setGa4PropertyId('');
+      fetchIntegrationStatus();
+      handleSync('ga4');
+    } catch (err) {
+      const error = err as Error;
+      toast.error(error.message || 'Failed to save GA4 Property');
+    } finally {
+      setConnecting(false);
+    }
+  };
+
+  const handleSaveGscProperty = async () => {
+    if (!gscPropertyUrl.trim()) {
+      toast.error('Please enter a GSC Property URL.');
+      return;
+    }
+    setConnecting(true);
+    try {
+      const res = await fetch('/api/integrations/gsc/property', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId, propertyUrl: gscPropertyUrl.trim() }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      toast.success('GSC Property URL saved. Syncing data...');
+      setGscPropertyModalOpen(false);
+      setGscPropertyUrl('');
+      fetchIntegrationStatus();
+      handleSync('gsc');
+    } catch (err) {
+      const error = err as Error;
+      toast.error(error.message || 'Failed to save GSC Property');
+    } finally {
+      setConnecting(false);
+    }
+  };
+
+  const handleDisconnect = async (service: 'gsc' | 'ga4' | 'meta' | 'google') => {
+    setDisconnectingService(service);
+    try {
+      let table = '';
+      if (service === 'gsc') table = 'gsc_connections';
+      else if (service === 'ga4') table = 'ga4_connections';
+      else if (service === 'meta') table = 'meta_connections';
+      else if (service === 'google') table = 'google_ads_connections';
+
+      const { error } = await supabase
+        .from(table)
+        .update({ is_active: false })
+        .eq('client_id', clientId);
+      if (error) throw error;
+      toast.success(`${service === 'google' ? 'Google Ads' : service === 'meta' ? 'Meta Ads' : service.toUpperCase()} disconnected.`);
+      fetchIntegrationStatus();
+    } catch {
+      toast.error('Failed to disconnect.');
+    } finally {
+      setDisconnectingService(null);
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchIntegrationStatus();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [fetchIntegrationStatus]);
+
+  useEffect(() => {
+    const oauthSuccess = searchParams.get('oauth_success');
+    const oauthError = searchParams.get('oauth_error');
+    if (oauthSuccess) {
+      const timer = setTimeout(() => {
+        if (oauthSuccess === 'gsc') {
+          toast.success('GSC connected! Syncing...');
+          handleSync('gsc');
+        } else if (oauthSuccess === 'ga4') {
+          toast.success('Google Analytics connected! Enter GA4 Property ID.');
+          setGa4PropertyModalOpen(true);
+        }
+        router.replace('/dashboard/my-agency');
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+    if (oauthError) {
+      const timer = setTimeout(() => {
+        toast.error(`OAuth error: ${decodeURIComponent(oauthError)}`);
+        router.replace('/dashboard/my-agency');
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams, router, handleSync]);
 
   useEffect(() => {
     // Listen to SEO, social, WhatsApp, email, and own ads updates
@@ -158,6 +459,30 @@ export function AgencyDashboard({
   const [socialPlatform, setSocialPlatform] = useState('all');
   const [adsPlatform, setAdsPlatform] = useState('all');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Brand Assets states
+  const [assetCategory, setAssetCategory] = useState<'logos' | 'templates' | 'brand'>('logos');
+  const [assetUploadOpen, setAssetUploadOpen] = useState(false);
+  const [deleteBrandFile, setDeleteBrandFile] = useState<FileRecord | null>(null);
+
+  // Content Planner states
+  const [plannerDate, setPlannerDate] = useState<Date>(new Date(2026, 5, 1)); // June 2026 default
+  const [plannerScheduleOpen, setPlannerScheduleOpen] = useState(false);
+  const [plannerPrefilledDate, setPlannerPrefilledDate] = useState<Date | null>(null);
+  const [deletePostId, setDeletePostId] = useState<string | null>(null);
+  const [plannerView, setPlannerView] = useState<'calendar' | 'list'>('calendar');
+
+  // Mapped social posts for content planner
+  const socialPostsMapped: PostWithClient[] = (socialPosts || []).map((post) => ({
+    ...post,
+    clients: {
+      name: 'Veloxis Global',
+      is_agency_self: true,
+    },
+    profiles: post.profiles ? {
+      full_name: post.profiles.full_name,
+    } : undefined,
+  }));
 
   // Modal open states
   const [modalOpen, setModalOpen] = useState<{
@@ -359,6 +684,70 @@ export function AgencyDashboard({
     }
   };
 
+  // Copy Link Helper
+  const handleCopyLink = (url: string | null) => {
+    if (!url) {
+      toast.error('No public URL available for this file.');
+      return;
+    }
+    navigator.clipboard.writeText(url);
+    toast.success('Public URL copied to clipboard!');
+  };
+
+  // Delete Brand File Helper
+  const handleDeleteBrandFileConfirm = async () => {
+    if (!deleteBrandFile) return;
+    const toastId = toast.loading('Deleting asset...');
+    try {
+      const res = await fetch(`/api/files/delete/${deleteBrandFile.id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Deletion failed.');
+      toast.success('Brand asset deleted successfully.', { id: toastId });
+      setDeleteBrandFile(null);
+      router.refresh();
+    } catch {
+      toast.error('Failed to delete brand asset.', { id: toastId });
+    }
+  };
+
+  // Delete Planner Post Helper
+  const handleDeletePostConfirm = async () => {
+    if (!deletePostId) return;
+    const toastId = toast.loading('Removing post from planner...');
+    try {
+      const { error } = await supabase.from('social_posts').delete().eq('id', deletePostId);
+      if (error) throw error;
+      toast.success('Post removed from planner.', { id: toastId });
+      setDeletePostId(null);
+      router.refresh();
+    } catch {
+      toast.error('Failed to delete planner post.', { id: toastId });
+    }
+  };
+
+  // Brand Assets categories filtering
+  const filteredBrandFiles = brandFiles.filter((file) => {
+    const pathLower = file.storage_path.toLowerCase();
+    const tagsLower = file.tags?.map(t => t.toLowerCase()) || [];
+    if (assetCategory === 'logos') {
+      return pathLower.includes('/logos/') || tagsLower.includes('logos') || tagsLower.includes('logo');
+    }
+    if (assetCategory === 'templates') {
+      return pathLower.includes('/templates/') || tagsLower.includes('templates') || tagsLower.includes('template');
+    }
+    return !pathLower.includes('/logos/') && !pathLower.includes('/templates/') && !tagsLower.includes('logos') && !tagsLower.includes('templates') && !tagsLower.includes('logo') && !tagsLower.includes('template');
+  });
+
+  // Calendar month navigator helper
+  const navigatePlannerMonth = (direction: 'prev' | 'next') => {
+    const d = new Date(plannerDate);
+    if (direction === 'prev') {
+      d.setMonth(d.getMonth() - 1);
+    } else {
+      d.setMonth(d.getMonth() + 1);
+    }
+    setPlannerDate(d);
+  };
+
   // Setup overview channel score aggregates
   // SEO target: 500 visitors, Social target: 2000 followers, CPL target: 400 INR, Email open target: 40%, WhatsApp read target: 70%
   const seoScore = trafficVal > 0 ? Math.min(100, Math.round((trafficVal / 500) * 100)) : 0;
@@ -502,17 +891,26 @@ export function AgencyDashboard({
       <div className="space-y-4">
         {/* Navigation Tabs Header */}
         <div className="border-b border-[#1E3352] flex items-center gap-2 select-none overflow-x-auto">
-          {['overview', 'seo', 'social', 'ads', 'email', 'whatsapp'].map((tab) => (
+          {[
+            { id: 'overview', label: 'overview' },
+            { id: 'seo', label: 'seo' },
+            { id: 'social', label: 'social' },
+            { id: 'ads', label: 'lead-gen ads' },
+            { id: 'email', label: 'email' },
+            { id: 'whatsapp', label: 'whatsapp' },
+            { id: 'brand-assets', label: 'brand assets' },
+            { id: 'content-planner', label: 'content planner' },
+          ].map((tab) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
               className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider border-b-2 cursor-pointer transition-all ${
-                activeTab === tab
+                activeTab === tab.id
                   ? 'border-[#1B4FD8] text-[#F0F4FF]'
                   : 'border-transparent text-[#8BA3C7] hover:text-[#F0F4FF]'
               }`}
             >
-              {tab}
+              {tab.label}
             </button>
           ))}
         </div>
@@ -759,6 +1157,192 @@ export function AgencyDashboard({
                   description: 'Start adding targeted SEO search phrases to display client ranking positions.',
                 }}
               />
+            </div>
+
+            {/* ━━━ COLLAPSIBLE INTEGRATIONS PANEL ━━━ */}
+            <div className="border border-[#1E3352] rounded-[10px] bg-[#0D1829]/30">
+              <button
+                onClick={() => setIntegrationsOpen(!integrationsOpen)}
+                className="w-full flex items-center justify-between p-4 text-xs font-semibold text-[#F0F4FF] select-none hover:bg-[#0D1829]/50 transition-all rounded-[10px]"
+              >
+                <div className="flex items-center gap-2">
+                  <Link2 size={14} className="text-[#4D90FE]" />
+                  <span>Agency API Integrations (GSC, GA4, Meta & Google Ads)</span>
+                </div>
+                {integrationsOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+              </button>
+
+              {integrationsOpen && (
+                <div className="p-4 border-t border-[#1E3352]/40 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* GSC Card */}
+                  <div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-[#0D1829] border-[#22C55E]/30' : 'bg-[#0A1220] border-[#1E3352]'} flex flex-col justify-between h-40`}>
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-[#F0F4FF]">Google Search Console</span>
+                        {integrationStatus.gsc?.connected ? (
+                          <span className="text-[9px] font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/20">CONNECTED</span>
+                        ) : (
+                          <span className="text-[9px] font-bold text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full border border-[#1E3352]">NOT CONNECTED</span>
+                        )}
+                      </div>
+                      <p className="text-[10px] text-[#8BA3C7] mt-2 leading-relaxed">
+                        {integrationStatus.gsc?.connected
+                          ? `Property: ${integrationStatus.gsc.propertyUrl || 'Linked'}`
+                          : 'Connect search console accounts to pull keywords list.'}
+                      </p>
+                      {integrationStatus.gsc?.connected && integrationStatus.gsc.lastSync && (
+                        <p className="text-[9px] text-[#4A6480] mt-1">Last Synced: {formatDate(integrationStatus.gsc.lastSync)}</p>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      {!integrationStatus.gsc?.connected ? (
+                        <Button size="sm" onClick={() => handleConnectGoogle('gsc')} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-3 cursor-pointer">
+                          <Link2 size={11} className="mr-1" />
+                          Connect GSC
+                        </Button>
+                      ) : (
+                        <>
+                          <Button size="sm" onClick={() => handleSync('gsc')} disabled={syncingService === 'gsc'} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                            {syncingService === 'gsc' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
+                            Sync
+                          </Button>
+                          <Button size="sm" onClick={() => { setGscPropertyUrl(integrationStatus.gsc?.propertyUrl || ''); setGscPropertyModalOpen(true); }} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                            <Settings size={10} className="mr-1" />
+                            Configure
+                          </Button>
+                          <Button size="sm" onClick={() => handleDisconnect('gsc')} disabled={disconnectingService === 'gsc'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
+                            <Link2Off size={10} className="mr-1" />
+                            Disconnect
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* GA4 Card */}
+                  <div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-[#0D1829] border-[#22C55E]/30' : 'bg-[#0A1220] border-[#1E3352]'} flex flex-col justify-between h-40`}>
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-[#F0F4FF]">Google Analytics 4</span>
+                        {integrationStatus.ga4?.connected ? (
+                          <span className="text-[9px] font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/20">CONNECTED</span>
+                        ) : (
+                          <span className="text-[9px] font-bold text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full border border-[#1E3352]">NOT CONNECTED</span>
+                        )}
+                      </div>
+                      <p className="text-[10px] text-[#8BA3C7] mt-2 leading-relaxed">
+                        {integrationStatus.ga4?.connected
+                          ? `Property ID: ${integrationStatus.ga4.propertyId || 'Linked'}`
+                          : 'Connect analytics property to sync organic session statistics.'}
+                      </p>
+                      {integrationStatus.ga4?.connected && integrationStatus.ga4.lastSync && (
+                        <p className="text-[9px] text-[#4A6480] mt-1">Last Synced: {formatDate(integrationStatus.ga4.lastSync)}</p>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      {!integrationStatus.ga4?.connected ? (
+                        <Button size="sm" onClick={() => handleConnectGoogle('ga4')} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-3 cursor-pointer">
+                          <Link2 size={11} className="mr-1" />
+                          Connect GA4
+                        </Button>
+                      ) : (
+                        <>
+                          <Button size="sm" onClick={() => handleSync('ga4')} disabled={syncingService === 'ga4'} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                            {syncingService === 'ga4' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
+                            Sync
+                          </Button>
+                          <Button size="sm" onClick={() => handleDisconnect('ga4')} disabled={disconnectingService === 'ga4'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
+                            <Link2Off size={10} className="mr-1" />
+                            Disconnect
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Meta Ads Card */}
+                  <div className={`p-4 rounded-lg border ${integrationStatus.meta?.connected ? 'bg-[#0D1829] border-[#22C55E]/30' : 'bg-[#0A1220] border-[#1E3352]'} flex flex-col justify-between h-40`}>
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-[#F0F4FF]">Meta Ads Connection</span>
+                        {integrationStatus.meta?.connected ? (
+                          <span className="text-[9px] font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/20">CONNECTED</span>
+                        ) : (
+                          <span className="text-[9px] font-bold text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full border border-[#1E3352]">NOT CONNECTED</span>
+                        )}
+                      </div>
+                      <p className="text-[10px] text-[#8BA3C7] mt-2 leading-relaxed">
+                        {integrationStatus.meta?.connected
+                          ? `Ad Account ID: ${integrationStatus.meta.adAccountId || 'Linked'}`
+                          : 'Connect Meta Ad Account to sync advertising metrics.'}
+                      </p>
+                      {integrationStatus.meta?.connected && integrationStatus.meta.lastSync && (
+                        <p className="text-[9px] text-[#4A6480] mt-1">Last Synced: {formatDate(integrationStatus.meta.lastSync)}</p>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      {!integrationStatus.meta?.connected ? (
+                        <Button size="sm" onClick={() => setMetaConnectOpen(true)} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-3 cursor-pointer">
+                          <Link2 size={11} className="mr-1" />
+                          Connect ID
+                        </Button>
+                      ) : (
+                        <>
+                          <Button size="sm" onClick={() => handleSync('meta')} disabled={syncingService === 'meta'} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                            {syncingService === 'meta' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
+                            Sync
+                          </Button>
+                          <Button size="sm" onClick={() => handleDisconnect('meta')} disabled={disconnectingService === 'meta'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
+                            <Link2Off size={10} className="mr-1" />
+                            Disconnect
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Google Ads Card */}
+                  <div className={`p-4 rounded-lg border ${integrationStatus.google?.connected ? 'bg-[#0D1829] border-[#22C55E]/30' : 'bg-[#0A1220] border-[#1E3352]'} flex flex-col justify-between h-40`}>
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-[#F0F4FF]">Google Ads Connection</span>
+                        {integrationStatus.google?.connected ? (
+                          <span className="text-[9px] font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/20">CONNECTED</span>
+                        ) : (
+                          <span className="text-[9px] font-bold text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full border border-[#1E3352]">NOT CONNECTED</span>
+                        )}
+                      </div>
+                      <p className="text-[10px] text-[#8BA3C7] mt-2 leading-relaxed">
+                        {integrationStatus.google?.connected
+                          ? `Customer ID: ${integrationStatus.google.customerId || 'Linked'}`
+                          : 'Connect Google Ads Customer ID to sync campaign performance.'}
+                      </p>
+                      {integrationStatus.google?.connected && integrationStatus.google.lastSync && (
+                        <p className="text-[9px] text-[#4A6480] mt-1">Last Synced: {formatDate(integrationStatus.google.lastSync)}</p>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      {!integrationStatus.google?.connected ? (
+                        <Button size="sm" onClick={() => setGoogleConnectOpen(true)} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-3 cursor-pointer">
+                          <Link2 size={11} className="mr-1" />
+                          Connect ID
+                        </Button>
+                      ) : (
+                        <>
+                          <Button size="sm" onClick={() => handleSync('google')} disabled={syncingService === 'google'} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                            {syncingService === 'google' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
+                            Sync
+                          </Button>
+                          <Button size="sm" onClick={() => handleDisconnect('google')} disabled={disconnectingService === 'google'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
+                            <Link2Off size={10} className="mr-1" />
+                            Disconnect
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -1276,6 +1860,266 @@ export function AgencyDashboard({
                 }}
               />
             </div>
+          </div>
+        )}
+
+        {/* TAB 7: BRAND ASSETS LIBRARY */}
+        {activeTab === 'brand-assets' && (
+          <div className="space-y-6">
+            {/* Category Folders Selection */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[
+                { id: 'logos', label: 'Logos & Icons', count: brandFiles.filter(f => f.storage_path.toLowerCase().includes('/logos/') || f.tags?.map(t => t.toLowerCase()).includes('logos') || f.tags?.map(t => t.toLowerCase()).includes('logo') || f.storage_path.toLowerCase().startsWith('logos/')).length, desc: 'Official brand assets, marks, and favicon templates.' },
+                { id: 'templates', label: 'Proposal & Templates', count: brandFiles.filter(f => f.storage_path.toLowerCase().includes('/templates/') || f.tags?.map(t => t.toLowerCase()).includes('templates') || f.tags?.map(t => t.toLowerCase()).includes('template') || f.storage_path.toLowerCase().startsWith('templates/')).length, desc: 'Reusable slide decks, document headers, and PDF layouts.' },
+                { id: 'brand', label: 'General Brand Files', count: brandFiles.filter(f => !f.storage_path.toLowerCase().includes('/logos/') && !f.storage_path.toLowerCase().includes('/templates/') && !f.storage_path.toLowerCase().startsWith('logos/') && !f.storage_path.toLowerCase().startsWith('templates/') && !f.tags?.map(t => t.toLowerCase()).includes('logos') && !f.tags?.map(t => t.toLowerCase()).includes('templates') && !f.tags?.map(t => t.toLowerCase()).includes('logo') && !f.tags?.map(t => t.toLowerCase()).includes('template')).length, desc: 'Corporate brochures, fonts, typography guidelines, and background wallpapers.' },
+              ].map((folder) => (
+                <div
+                  key={folder.id}
+                  onClick={() => setAssetCategory(folder.id as 'logos' | 'templates' | 'brand')}
+                  className={`p-4 rounded-xl border cursor-pointer transition-all select-none flex flex-col justify-between h-[120px] ${
+                    assetCategory === folder.id
+                      ? 'bg-[#1B4FD8]/10 border-[#1B4FD8] shadow-lg shadow-[#1B4FD8]/5'
+                      : 'bg-[#0D1829] border-[#1E3352] hover:border-[#1B4FD8]/40 hover:bg-[#132035]/30'
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="p-2 rounded bg-[#060D1A] text-[#1B4FD8]">
+                      {folder.id === 'logos' && <FileImage size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-[#8BA3C7]'} />}
+                      {folder.id === 'templates' && <FileText size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-[#8BA3C7]'} />}
+                      {folder.id === 'brand' && <Archive size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-[#8BA3C7]'} />}
+                    </div>
+                    <span className="text-[10px] font-bold font-mono text-[#8BA3C7] bg-[#132035] border border-[#1E3352] px-2 py-0.5 rounded-full">
+                      {folder.count} files
+                    </span>
+                  </div>
+                  <div className="mt-2">
+                    <h4 className="text-xs font-bold text-[#F0F4FF]">{folder.label}</h4>
+                    <p className="text-[10px] text-[#8BA3C7] mt-0.5 truncate leading-relaxed">{folder.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Folder Header Actions */}
+            <div className="flex items-center justify-between border-b border-[#1E3352]/40 pb-2">
+              <div>
+                <h3 className="text-sm font-semibold text-[#F0F4FF] capitalize">
+                  {assetCategory === 'brand' ? 'General Brand Files' : `${assetCategory} Collection`}
+                </h3>
+                <p className="text-xs text-[#8BA3C7] mt-0.5">
+                  Browse, copy public link, or manage documents in this category.
+                </p>
+              </div>
+              <Button
+                onClick={() => setAssetUploadOpen(true)}
+                size="sm"
+                className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
+              >
+                <Upload size={13} />
+                <span>Upload to {assetCategory}</span>
+              </Button>
+            </div>
+
+            {/* Assets Grid */}
+            {filteredBrandFiles.length === 0 ? (
+              <div className="py-12 border border-[#1E3352] border-dashed rounded-lg text-center text-xs text-[#8BA3C7] space-y-2">
+                <p className="font-semibold text-slate-500">No brand files uploaded in this folder</p>
+                <p className="text-[10px] text-[#4A6480]">Upload agency assets like logos, proposal PDFs, or style guides.</p>
+                <Button
+                  onClick={() => setAssetUploadOpen(true)}
+                  size="sm"
+                  variant="outline"
+                  className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] text-xs h-8 cursor-pointer mt-2"
+                >
+                  <Upload size={12} className="mr-1" />
+                  Upload First Asset
+                </Button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {filteredBrandFiles.map((file) => {
+                  const isImage = file.mime_type?.startsWith('image/');
+                  return (
+                    <div
+                      key={file.id}
+                      className="bg-[#0D1829] border border-[#1E3352] rounded-lg overflow-hidden group hover:border-[#1B4FD8]/40 transition-all flex flex-col justify-between"
+                    >
+                      {/* Thumbnail / Icon area */}
+                      <div className="h-28 bg-[#060D1A] flex items-center justify-center border-b border-[#1E3352]/20 relative">
+                        {isImage && file.public_url ? (
+                          <img
+                            src={file.public_url}
+                            alt={file.name}
+                            className="object-contain w-full h-full p-2 group-hover:scale-[1.03] transition-transform duration-200"
+                          />
+                        ) : (
+                          <div className="p-4 rounded-full bg-[#132035] text-[#1B4FD8]">
+                            {file.mime_type?.includes('pdf') && <FileText size={24} />}
+                            {file.mime_type?.includes('spreadsheet') || file.mime_type?.includes('xlsx') || file.mime_type?.includes('csv') ? <FileSpreadsheet size={24} /> : null}
+                            {!file.mime_type?.includes('pdf') && !file.mime_type?.includes('spreadsheet') && !file.mime_type?.includes('xlsx') && !file.mime_type?.includes('csv') && <Archive size={24} />}
+                          </div>
+                        )}
+                        <span className="absolute top-2 left-2 text-[8px] font-bold font-mono px-1.5 py-0.5 rounded bg-[#0D1829] border border-[#1E3352]/50 text-[#8BA3C7] uppercase">
+                          {file.mime_type?.split('/')[1] || 'binary'}
+                        </span>
+                      </div>
+
+                      {/* File Details */}
+                      <div className="p-3 space-y-2 flex-1 flex flex-col justify-between">
+                        <div className="min-w-0">
+                          <h5
+                            className="text-xs font-bold text-[#F0F4FF] truncate"
+                            title={file.name}
+                          >
+                            {file.name}
+                          </h5>
+                          <div className="flex items-center justify-between text-[10px] text-[#8BA3C7] mt-1.5">
+                            <span>{formatBytes(file.size_bytes || 0)}</span>
+                            <span>{formatDate(file.created_at)}</span>
+                          </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex items-center gap-1.5 pt-2 border-t border-[#1E3352]/20">
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            onClick={() => handleCopyLink(file.public_url)}
+                            className="h-7 w-7 rounded hover:bg-[#1A2D47] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+                            title="Copy Public Link"
+                          >
+                            <Copy size={12} />
+                          </Button>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            onClick={() => window.open(file.public_url || '#', '_blank')}
+                            className="h-7 w-7 rounded hover:bg-[#1A2D47] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+                            title="View / Download"
+                          >
+                            <Eye size={12} />
+                          </Button>
+                          <div className="flex-1 flex justify-end">
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              onClick={() => setDeleteBrandFile(file)}
+                              className="h-7 w-7 rounded hover:bg-[#EF4444]/20 text-[#EF4444]/60 hover:text-[#EF4444] cursor-pointer"
+                              title="Delete Asset"
+                            >
+                              <Trash2 size={12} />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TAB 8: CONTENT PLANNER */}
+        {activeTab === 'content-planner' && (
+          <div className="space-y-6">
+            {/* Header / Toolbar Row */}
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0D1829] border border-[#1E3352] p-4 rounded-lg select-none">
+              <div className="flex items-center gap-3">
+                {/* Month Navigator */}
+                <div className="flex items-center gap-1.5 bg-[#060D1A] border border-[#1E3352] rounded-[7px] px-1.5 h-9">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => navigatePlannerMonth('prev')}
+                    className="h-6 w-6 text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#132035] rounded cursor-pointer"
+                  >
+                    <ChevronLeft size={14} />
+                  </Button>
+                  <span className="text-[11px] font-bold text-[#F0F4FF] min-w-[80px] text-center font-mono select-none">
+                    {plannerDate.toLocaleString('en-US', { month: 'short', year: 'numeric' })}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => navigatePlannerMonth('next')}
+                    className="h-6 w-6 text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#132035] rounded cursor-pointer"
+                  >
+                    <ChevronRight size={14} />
+                  </Button>
+                </div>
+
+                {/* View Switcher Button Group */}
+                <div className="flex items-center gap-1 bg-[#060D1A] border border-[#1E3352] p-0.5 rounded-[7px] h-9">
+                  <button
+                    onClick={() => setPlannerView('calendar')}
+                    className={`px-3 py-1 rounded text-[10px] font-semibold uppercase cursor-pointer transition-all flex items-center gap-1.5 ${
+                      plannerView === 'calendar'
+                        ? 'bg-[#1B4FD8] text-[#F0F4FF]'
+                        : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
+                    }`}
+                  >
+                    <Calendar size={12} />
+                    <span>Calendar</span>
+                  </button>
+                  <button
+                    onClick={() => setPlannerView('list')}
+                    className={`px-3 py-1 rounded text-[10px] font-semibold uppercase cursor-pointer transition-all flex items-center gap-1.5 ${
+                      plannerView === 'list'
+                        ? 'bg-[#1B4FD8] text-[#F0F4FF]'
+                        : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
+                    }`}
+                  >
+                    <FileText size={12} />
+                    <span>List View</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-3">
+                <Button
+                  onClick={() => {
+                    setPlannerPrefilledDate(null);
+                    setPlannerScheduleOpen(true);
+                  }}
+                  size="sm"
+                  className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 font-semibold cursor-pointer"
+                >
+                  <Plus size={13} />
+                  <span>Schedule Post</span>
+                </Button>
+              </div>
+            </div>
+
+            {/* Main Views */}
+            {plannerView === 'calendar' ? (
+              <SocialCalendar
+                currentDate={plannerDate}
+                posts={socialPostsMapped}
+                onSelectDate={(date) => {
+                  setPlannerPrefilledDate(date);
+                  setPlannerScheduleOpen(true);
+                }}
+                onSelectPost={(post) => {
+                  toast.info(`[${post.platform.toUpperCase()}] ${post.content_type || 'Post'} - Status: ${post.status.toUpperCase()}. Scheduled for ${new Date(post.scheduled_for || '').toLocaleString()}`);
+                }}
+              />
+            ) : (
+              <SocialListView
+                posts={socialPostsMapped}
+                onSelectPost={(post) => {
+                  toast.info(`[${post.platform.toUpperCase()}] ${post.content_type || 'Post'} - Status: ${post.status.toUpperCase()}. Scheduled for ${new Date(post.scheduled_for || '').toLocaleString()}`);
+                }}
+                onEditPost={(post) => {
+                  setPlannerPrefilledDate(new Date(post.scheduled_for || ''));
+                  setPlannerScheduleOpen(true);
+                }}
+                onDeletePost={(post) => {
+                  setDeletePostId(post.id);
+                }}
+              />
+            )}
           </div>
         )}
       </div>
@@ -1813,6 +2657,279 @@ export function AgencyDashboard({
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* ━━━ MODAL: CONFIGURE GSC PROPERTY URL ━━━ */}
+      <Dialog open={gscPropertyModalOpen} onOpenChange={setGscPropertyModalOpen}>
+        <DialogContent className="bg-[#0A1220] border border-[#1E3352] text-[#F0F4FF] max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-bold flex items-center gap-2">
+              <Globe size={16} className="text-[#1D4ED8]" />
+              <span>Configure GSC Property URL</span>
+            </DialogTitle>
+            <DialogDescription className="text-xs text-[#8BA3C7] mt-1">
+              Enter the exact Search Console property URL (e.g., sc-domain:veloxisglobal.com or https://veloxisglobal.com/) to sync SEO rankings.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-3 py-2">
+            <label className="block text-[10px] uppercase font-bold text-[#8BA3C7] tracking-wider select-none">
+              GSC Property URL *
+            </label>
+            <input
+              className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+              type="text"
+              placeholder="e.g. sc-domain:veloxisglobal.com"
+              value={gscPropertyUrl}
+              onChange={(e) => setGscPropertyUrl(e.target.value)}
+            />
+          </div>
+
+          <DialogFooter className="mt-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setGscPropertyModalOpen(false)}
+              className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSaveGscProperty}
+              disabled={connecting}
+              size="sm"
+              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer"
+            >
+              {connecting ? 'Saving...' : 'Save & Sync'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* ━━━ MODAL: CONFIGURE GA4 PROPERTY ID ━━━ */}
+      <Dialog open={ga4PropertyModalOpen} onOpenChange={setGa4PropertyModalOpen}>
+        <DialogContent className="bg-[#0A1220] border border-[#1E3352] text-[#F0F4FF] max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-bold flex items-center gap-2">
+              <Globe size={16} className="text-[#1D4ED8]" />
+              <span>Configure GA4 Property ID</span>
+            </DialogTitle>
+            <DialogDescription className="text-xs text-[#8BA3C7] mt-1">
+              Enter the numeric Property ID of your Google Analytics 4 property (e.g. 123456789) to sync traffic statistics.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-3 py-2">
+            <label className="block text-[10px] uppercase font-bold text-[#8BA3C7] tracking-wider select-none">
+              GA4 Numeric Property ID *
+            </label>
+            <input
+              className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+              type="text"
+              placeholder="e.g. 293821033"
+              value={ga4PropertyId}
+              onChange={(e) => setGa4PropertyId(e.target.value)}
+            />
+          </div>
+
+          <DialogFooter className="mt-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setGa4PropertyModalOpen(false)}
+              className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSaveGa4Property}
+              disabled={connecting}
+              size="sm"
+              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer"
+            >
+              {connecting ? 'Saving...' : 'Save & Sync'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* ━━━ MODAL: CONNECT META AD ACCOUNT ━━━ */}
+      <Dialog open={metaConnectOpen} onOpenChange={setMetaConnectOpen}>
+        <DialogContent className="bg-[#0A1220] border border-[#1E3352] text-[#F0F4FF] max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-bold flex items-center gap-2">
+              <Link2 size={16} className="text-[#1D4ED8]" />
+              <span>Connect Meta Ad Account</span>
+            </DialogTitle>
+            <DialogDescription className="text-xs text-[#8BA3C7] mt-1">
+              Provide the Meta Ad Account ID (format: act_XXXXXXXXX) to sync advertising metrics.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-3 py-2">
+            <label className="block text-[10px] uppercase font-bold text-[#8BA3C7] tracking-wider select-none">
+              Ad Account ID *
+            </label>
+            <input
+              className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+              type="text"
+              placeholder="e.g. act_1234567890"
+              value={adAccountIdInput}
+              onChange={(e) => setAdAccountIdInput(e.target.value)}
+            />
+          </div>
+
+          <DialogFooter className="mt-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setMetaConnectOpen(false)}
+              className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleConnectMeta}
+              disabled={connecting}
+              size="sm"
+              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer"
+            >
+              {connecting ? 'Connecting...' : 'Connect & Sync'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* ━━━ MODAL: CONNECT GOOGLE ADS CUSTOMER ID ━━━ */}
+      <Dialog open={googleConnectOpen} onOpenChange={setGoogleConnectOpen}>
+        <DialogContent className="bg-[#0A1220] border border-[#1E3352] text-[#F0F4FF] max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="text-sm font-bold flex items-center gap-2">
+              <Link2 size={16} className="text-[#1D4ED8]" />
+              <span>Connect Google Ads Account</span>
+            </DialogTitle>
+            <DialogDescription className="text-xs text-[#8BA3C7] mt-1">
+              Provide the Google Ads Customer ID (format: XXXXXXXXXX) to sync campaign performance.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-3 py-2">
+            <label className="block text-[10px] uppercase font-bold text-[#8BA3C7] tracking-wider select-none">
+              Customer ID *
+            </label>
+            <input
+              className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+              type="text"
+              placeholder="e.g. 1234567890"
+              value={customerIdInput}
+              onChange={(e) => setCustomerIdInput(e.target.value)}
+            />
+          </div>
+
+          <DialogFooter className="mt-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setGoogleConnectOpen(false)}
+              className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleConnectGoogleAds}
+              disabled={connecting}
+              size="sm"
+              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer"
+            >
+              {connecting ? 'Connecting...' : 'Connect & Sync'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* ━━━ MODAL: UPLOAD BRAND ASSET ━━━ */}
+      <Dialog open={assetUploadOpen} onOpenChange={setAssetUploadOpen}>
+        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+          <DialogHeader>
+            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Upload Brand Asset</DialogTitle>
+            <DialogDescription className="text-xs text-[#8BA3C7]">
+              Upload a logo creative, proposal template, or general brand guideline file to the agency cabinet.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 my-2 text-xs">
+            <div className="space-y-1.5">
+              <label className="block text-[11px] font-semibold text-[#8BA3C7]">Target Collection / Directory *</label>
+              <select
+                value={assetCategory}
+                onChange={(e) => setAssetCategory(e.target.value as 'logos' | 'templates' | 'brand')}
+                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+              >
+                <option value="logos">Logos & Icons (logos/ folder)</option>
+                <option value="templates">Proposal & Templates (templates/ folder)</option>
+                <option value="brand">General Brand Files (brand/ folder)</option>
+              </select>
+            </div>
+
+            <div className="space-y-1.5 pt-2">
+              <label className="block text-[11px] font-semibold text-[#8BA3C7]">Document Upload *</label>
+              <FileUpload
+                bucket="agency"
+                storagePath={assetCategory}
+                tags={[assetCategory]}
+                onUpload={() => {
+                  toast.success('Asset uploaded successfully!');
+                  setAssetUploadOpen(false);
+                  router.refresh();
+                }}
+              />
+            </div>
+          </div>
+
+          <DialogFooter className="mt-4 pt-2 border-t border-[#1E3352]/30">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setAssetUploadOpen(false)}
+              className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer"
+            >
+              Cancel
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* ━━━ SCHEDULE SOCIAL POST MODAL ━━━ */}
+      <SchedulePostModal
+        open={plannerScheduleOpen}
+        onOpenChange={setPlannerScheduleOpen}
+        onSuccess={() => {
+          router.refresh();
+        }}
+        prefilledDate={plannerPrefilledDate}
+        prefilledClientId={clientId}
+      />
+
+      {/* ━━━ CONFIRM DELETE BRAND FILE ━━━ */}
+      <ConfirmDialog
+        open={deleteBrandFile !== null}
+        onClose={() => setDeleteBrandFile(null)}
+        onConfirm={handleDeleteBrandFileConfirm}
+        title="Delete Brand Asset"
+        description={`Are you sure you want to permanently delete "${deleteBrandFile?.name || 'this asset'}"? This action cannot be undone.`}
+        confirmLabel="Delete"
+        variant="danger"
+      />
+
+      {/* ━━━ CONFIRM REMOVE PLANNED POST ━━━ */}
+      <ConfirmDialog
+        open={deletePostId !== null}
+        onClose={() => setDeletePostId(null)}
+        onConfirm={handleDeletePostConfirm}
+        title="Remove Planned Post"
+        description="Are you sure you want to remove this scheduled post from the content planner?"
+        confirmLabel="Remove"
+        variant="danger"
+      />
     </div>
   );
 }

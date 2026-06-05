@@ -26,6 +26,7 @@ export function useToast() {
         duration: 4000,
       });
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- toast options param is cosmetic library type override
     toast: (message: string, options?: any) => {
       toast(message, options);
     }

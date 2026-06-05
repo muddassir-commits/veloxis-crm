@@ -1,15 +1,6 @@
 import { createAdminClient } from '@/lib/supabase/admin';
 import { headers } from 'next/headers';
-
-interface AuditLogParams {
-  userId: string | null;
-  action: 'INSERT' | 'UPDATE' | 'DELETE' | 'LOGIN' | 'LOGOUT' | 'EXPORT';
-  tableName: string | null;
-  recordId: string | null;
-  oldValues?: Record<string, any> | null;
-  newValues?: Record<string, any> | null;
-  request?: Request | null;
-}
+import { AuditLogParams } from '@/types';
 
 export async function logAudit({
   userId,

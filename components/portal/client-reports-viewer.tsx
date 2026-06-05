@@ -6,6 +6,8 @@ import {
   TrendingDown,
   Globe,
   Megaphone,
+  FileText,
+  Download,
 } from 'lucide-react';
 
 interface SeoCampaign {
@@ -73,11 +75,23 @@ interface GoogleAdsCampaign {
   status: string;
 }
 
+interface GeneratedReport {
+  id: string;
+  month_year: string;
+  created_at: string;
+  files: {
+    name: string;
+    public_url: string | null;
+    size_bytes: number | null;
+  } | null;
+}
+
 interface ClientReportsViewerProps {
   seoCampaigns: SeoCampaign[];
   keywords: SeoKeyword[];
   metaCampaigns: MetaCampaign[];
   googleCampaigns: GoogleAdsCampaign[];
+  reports: GeneratedReport[];
 }
 
 export function ClientReportsViewer({
@@ -85,8 +99,9 @@ export function ClientReportsViewer({
   keywords,
   metaCampaigns,
   googleCampaigns,
+  reports,
 }: ClientReportsViewerProps) {
-  const [activeTab, setActiveTab] = useState<'seo' | 'ads'>('seo');
+  const [activeTab, setActiveTab] = useState<'seo' | 'ads' | 'archives'>('seo');
   
   // Resolve unique available months
   const availableMonths = seoCampaigns.map((c) => c.month_year);
@@ -119,6 +134,16 @@ export function ClientReportsViewer({
             }`}
           >
             Paid Ads
+          </button>
+          <button
+            onClick={() => setActiveTab('archives')}
+            className={`px-4 py-1.5 rounded-[6px] text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+              activeTab === 'archives'
+                ? 'bg-white text-[#0A1628] shadow-xs'
+                : 'text-[#475569] hover:text-[#0A1628]'
+            }`}
+          >
+            Report PDFs
           </button>
         </div>
 
@@ -390,6 +415,65 @@ export function ClientReportsViewer({
               </div>
             )}
           </div>
+        </div>
+      )}
+
+      {/* ─── TAB 3: REPORT ARCHIVES (PDFs) ─── */}
+      {activeTab === 'archives' && (
+        <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs space-y-4">
+          <div className="flex items-center justify-between border-b border-[#F1F5F9] pb-3">
+            <h3 className="text-sm font-bold text-[#0A1628] flex items-center gap-1.5">
+              <FileText size={14} className="text-[#1B4FD8]" />
+              Monthly Performance Reports
+            </h3>
+            <span className="text-[10px] text-[#475569] font-medium">Download PDF Snapshots</span>
+          </div>
+
+          {!reports || reports.length === 0 ? (
+            <div className="py-12 text-center text-xs text-[#94A3B8] space-y-2">
+              <FileText size={32} className="mx-auto text-[#94A3B8]/60" />
+              <p className="font-semibold text-[#0A1628]">No PDF Reports Released Yet</p>
+              <p className="text-[10px] text-gray-400">Reports are compiled and published here on the 1st of every month.</p>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider">
+                    <th className="p-3 pl-4">Month</th>
+                    <th className="p-3 text-center">Date Released</th>
+                    <th className="p-3 text-center">File Size</th>
+                    <th className="p-3 text-right pr-4">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#E2E8F4]/50 text-xs">
+                  {reports.map((report) => (
+                    <tr key={report.id} className="hover:bg-[#F8FAFF] text-[#475569]">
+                      <td className="p-3 pl-4 font-bold text-[#0A1628]">{report.month_year}</td>
+                      <td className="p-3 text-center font-mono">{new Date(report.created_at).toLocaleDateString()}</td>
+                      <td className="p-3 text-center font-mono">
+                        {report.files?.size_bytes ? `${(report.files.size_bytes / 1024).toFixed(1)} KB` : '—'}
+                      </td>
+                      <td className="p-3 text-right pr-4">
+                        {report.files?.public_url ? (
+                          <a
+                            href={report.files.public_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-blue-50 text-blue-700 hover:bg-blue-100 font-semibold text-[10px] transition-colors cursor-pointer"
+                          >
+                            <Download size={12} /> Download PDF
+                          </a>
+                        ) : (
+                          <span className="text-gray-400 text-[10px]">Processing</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       )}
     </div>

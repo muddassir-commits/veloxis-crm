@@ -61,7 +61,7 @@ export function Header({ userProfile }: HeaderProps) {
     if (path.startsWith('/dashboard/files')) return 'Files';
     if (path.startsWith('/dashboard/automations')) return 'Automations';
     if (path.startsWith('/dashboard/settings')) return 'Settings';
-    if (path.startsWith('/dashboard/my-agency')) return 'My Agency';
+    if (path.startsWith('/dashboard/my-agency')) return 'Marketing';
     return 'Dashboard';
   };
 

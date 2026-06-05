@@ -610,6 +610,7 @@ export interface AgencySocialAccount {
 
 export interface AgencyWhatsappCampaign {
   id: string; // uuid
+  client_id: string | null; // null for agency itself
   name: string;
   month_year: string;
   campaign_type: string; // 'broadcast' | 'sequence' | 'chatbot'
@@ -624,10 +625,14 @@ export interface AgencyWhatsappCampaign {
   status: string;
   notes: string | null;
   created_at: string;
+  clients?: { name: string } | null;
 }
+
+export type WhatsappCampaign = AgencyWhatsappCampaign;
 
 export interface AgencyEmailCampaign {
   id: string; // uuid
+  client_id: string | null; // null for agency itself
   name: string;
   subject: string | null;
   month_year: string;
@@ -646,6 +651,20 @@ export interface AgencyEmailCampaign {
   notes: string | null;
   sent_at: string | null;
   created_at: string;
+  clients?: { name: string } | null;
+}
+
+export type EmailCampaign = AgencyEmailCampaign;
+
+export interface MessageTemplate {
+  id: string;
+  name: string;
+  subject: string | null;
+  body: string;
+  type: 'email' | 'whatsapp';
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface AgencyOwnAdCampaign {
@@ -743,3 +762,77 @@ export interface WebProject {
   created_at: string;
   updated_at: string;
 }
+
+export interface GeneratedReport {
+  id: string;
+  client_id: string;
+  month_year: string;
+  status: 'draft' | 'sent';
+  file_id: string | null;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+  files?: {
+    name: string;
+    public_url: string | null;
+    storage_path: string;
+    size_bytes: number | null;
+  } | null;
+}
+
+export interface ClientCommunication {
+  id: string;
+  client_id: string;
+  type: 'call' | 'whatsapp' | 'email' | 'note';
+  direction: 'inbound' | 'outbound';
+  body: string;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+  profiles?: { full_name: string } | null;
+}
+
+export interface SupportTicket {
+  id: string;
+  client_id: string;
+  subject: string;
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  status: 'open' | 'in_progress' | 'resolved';
+  resolution: string | null;
+  created_by: string | null;
+  assigned_to: string | null;
+  created_at: string;
+  updated_at: string;
+  clients?: { name: string } | null;
+  profiles_created?: { full_name: string } | null;
+  profiles_assigned?: { full_name: string } | null;
+}
+
+export interface NpsResponse {
+  id: string;
+  client_id: string;
+  score: number;
+  feedback: string | null;
+  created_by: string | null;
+  created_at: string;
+  clients?: { name: string } | null;
+  profiles?: { full_name: string } | null;
+}
+
+export interface ClientHealthRelation {
+  name: string;
+  health_score: number;
+}
+
+export interface AuditLogParams {
+  userId: string | null;
+  action: 'INSERT' | 'UPDATE' | 'DELETE' | 'LOGIN' | 'LOGOUT' | 'EXPORT';
+  tableName: string | null;
+  recordId: string | null;
+  oldValues?: Record<string, unknown> | null;
+  newValues?: Record<string, unknown> | null;
+  request?: Request | null;
+}
+
+
+

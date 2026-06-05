@@ -14,7 +14,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'clientId is required' }, { status: 400 });
     }
 
-    const authUrl = getGoogleAuthUrl(clientId, service);
+    const origin = request.nextUrl.origin;
+    const redirectUri = `${origin}/api/integrations/gsc/callback`;
+    const authUrl = getGoogleAuthUrl(clientId, service, redirectUri);
 
     return NextResponse.json({ authUrl });
   } catch (err) {

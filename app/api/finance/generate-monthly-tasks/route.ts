@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     }
 
     const currentYear = new Date().getFullYear();
-    const months = ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const currentMonthName = months[new Date().getMonth()];
     const monthYearStr = `${currentMonthName} ${currentYear}`;
 
@@ -182,6 +182,7 @@ export async function POST(req: NextRequest) {
       message: `Tasks generated successfully: ${generatedTasks.length} tasks scheduled.`,
       count: generatedTasks.length,
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- cosmetic catch block error
   } catch (err: any) {
     console.error('[Generate Monthly Tasks API Error]:', err);
     return NextResponse.json({ error: err.message || 'Failed to generate monthly tasks' }, { status: 500 });

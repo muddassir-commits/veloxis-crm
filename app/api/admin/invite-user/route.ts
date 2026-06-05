@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { logAudit } from '@/lib/audit';
-import { Resend } from 'resend';
+import { sendEmail } from '@/lib/email';
 
 export async function POST(req: Request) {
   try {
@@ -140,10 +140,7 @@ export async function POST(req: Request) {
       description: `New user account created for ${full_name} (${email}) with role ${role}.`,
     });
 
-    // 9. Send invitation email via Resend
-    const resendKey = process.env.RESEND_API_KEY || '';
-    const isMockResend = !resendKey || resendKey.startsWith('re_your_');
-
+    // 9. Send invitation email via shared email utility
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://ops.veloxisglobal.com';
     const portalUrl = process.env.NEXT_PUBLIC_PORTAL_URL || 'https://portal.veloxisglobal.com';
     const teamUrl = process.env.NEXT_PUBLIC_TEAM_URL || 'https://team.veloxisglobal.com';
@@ -154,34 +151,24 @@ export async function POST(req: Request) {
 
     const emailSubject = `Welcome to Veloxis Global — Your ${role === 'client' ? 'Client Portal' : role === 'employee' ? 'Team Cabinet' : 'Admin Hub'}`;
 
-    if (isMockResend) {
-      console.log(`[MOCK EMAIL] To: ${email}, Subject: ${emailSubject}, Temporary Password: ${tempPassword}, Login URL: ${loginUrl}`);
-    } else {
-      const resend = new Resend(resendKey);
-      const { data, error: sendError } = await resend.emails.send({
-        from: `${process.env.RESEND_FROM_NAME || 'Veloxis Global'} <${process.env.RESEND_FROM_EMAIL || 'ops@veloxisglobal.com'}>`,
-        to: email,
-        subject: emailSubject,
-        html: `
-          <h2>Welcome to Veloxis Global CRM</h2>
-          <p>Hi ${full_name},</p>
-          <p>Your user profile has been created successfully. You can log in using the credentials below:</p>
-          <ul>
-            <li><strong>Email:</strong> ${email}</li>
-            <li><strong>Temporary Password:</strong> ${tempPassword}</li>
-            <li><strong>Login Portal:</strong> <a href="${loginUrl}">${loginUrl}</a></li>
-          </ul>
-          <p>For security purposes, please make sure to change your password immediately after your first sign in.</p>
-          <br />
-          <p>Best regards,</p>
-          <p>Veloxis Global Operations</p>
-        `,
-      });
-
-      if (sendError) {
-        throw new Error(`Resend Error: ${sendError.message}`);
-      }
-    }
+    await sendEmail({
+      to: email,
+      subject: emailSubject,
+      html: `
+        <h2>Welcome to Veloxis Global CRM</h2>
+        <p>Hi ${full_name},</p>
+        <p>Your user profile has been created successfully. You can log in using the credentials below:</p>
+        <ul>
+          <li><strong>Email:</strong> ${email}</li>
+          <li><strong>Temporary Password:</strong> ${tempPassword}</li>
+          <li><strong>Login Portal:</strong> <a href="${loginUrl}">${loginUrl}</a></li>
+        </ul>
+        <p>For security purposes, please make sure to change your password immediately after your first sign in.</p>
+        <br />
+        <p>Best regards,</p>
+        <p>Veloxis Global Operations</p>
+      `,
+    });
 
     return NextResponse.json({
       success: true,

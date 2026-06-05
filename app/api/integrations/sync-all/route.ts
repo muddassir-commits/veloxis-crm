@@ -14,8 +14,8 @@ export async function POST(request: NextRequest) {
   const supabase = await createClient();
   let isAuthorized = false;
 
-  // 1. Check CRON_SECRET header
-  const secret = request.headers.get('x-function-secret');
+  // 1. Check CRON_SECRET header (supports standardized x-cron-secret and backward-compatible x-function-secret)
+  const secret = request.headers.get('x-cron-secret') || request.headers.get('x-function-secret');
   if (secret && secret === process.env.CRON_SECRET) {
     isAuthorized = true;
   }

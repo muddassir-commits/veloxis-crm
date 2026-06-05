@@ -53,7 +53,6 @@ export async function POST(req: NextRequest) {
 
     const totalSent = campaign.messages_sent || 1;
     const totalDelivered = campaign.delivered || 1;
-    const totalRead = campaign.read_count || 1;
 
     switch (status) {
       case 'delivered': {
@@ -65,7 +64,6 @@ export async function POST(req: NextRequest) {
           .update({
             delivered: nextDelivered,
             delivery_rate: deliveryRate,
-            updated_at: new Date().toISOString(),
           })
           .eq('id', campaign.id);
         break;
@@ -80,7 +78,6 @@ export async function POST(req: NextRequest) {
           .update({
             read_count: nextRead,
             read_rate: readRate,
-            updated_at: new Date().toISOString(),
           })
           .eq('id', campaign.id);
         break;
@@ -96,8 +93,9 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('[WhatsApp Webhook Error]:', err);
-    return NextResponse.json({ error: err.message || 'Failed to process WhatsApp webhook' }, { status: 500 });
+    const message = err instanceof Error ? err.message : 'Failed to process WhatsApp webhook';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

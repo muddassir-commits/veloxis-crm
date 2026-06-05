@@ -40,7 +40,6 @@ export async function POST(req: NextRequest) {
           .update({
             opened: nextOpened,
             open_rate: openRate,
-            updated_at: new Date().toISOString(),
           })
           .eq('id', campaign.id);
         break;
@@ -55,7 +54,6 @@ export async function POST(req: NextRequest) {
           .update({
             clicked: nextClicked,
             click_rate: clickRate,
-            updated_at: new Date().toISOString(),
           })
           .eq('id', campaign.id);
         break;
@@ -66,7 +64,6 @@ export async function POST(req: NextRequest) {
           .from('agency_email_campaigns')
           .update({
             bounced: (campaign.bounced || 0) + 1,
-            updated_at: new Date().toISOString(),
           })
           .eq('id', campaign.id);
         break;
@@ -77,7 +74,6 @@ export async function POST(req: NextRequest) {
           .from('agency_email_campaigns')
           .update({
             unsubscribed: (campaign.unsubscribed || 0) + 1,
-            updated_at: new Date().toISOString(),
           })
           .eq('id', campaign.id);
         break;
@@ -89,8 +85,9 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('[Resend Webhook Error]:', err);
-    return NextResponse.json({ error: err.message || 'Failed to process Resend webhook' }, { status: 500 });
+    const message = err instanceof Error ? err.message : 'Failed to process Resend webhook';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

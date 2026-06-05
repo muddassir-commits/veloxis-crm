@@ -106,6 +106,10 @@ export async function syncMetaData(clientId: string, monthYear?: string) {
   const syncedCampaigns = [];
 
   for (const campaign of campaigns) {
+    const hasInsights = !!campaign.insights?.data?.[0];
+    if (!hasInsights) {
+      console.warn(`[Meta Integration Sync]: No insights found for campaign ${campaign.name} (${campaign.id}) in range ${startDate} to ${endDate}. Defaulting metrics to 0.`);
+    }
     const insights = campaign.insights?.data?.[0] || {};
 
     const spend = parseFloat(insights.spend ?? '0');

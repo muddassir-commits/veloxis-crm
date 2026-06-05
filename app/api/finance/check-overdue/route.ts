@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { ClientHealthRelation } from '@/types';
 
 export const revalidate = 0;
 
@@ -16,7 +17,7 @@ export async function POST(req: NextRequest) {
     // 2. Fetch pending invoices past their due dates
     const { data: invoices, error: fetchErr } = await supabase
       .from('invoices')
-      .select('*, clients(name)')
+      .select('*, clients(name, health_score)')
       .in('status', ['pending', 'sent'])
       .lt('due_date', new Date().toISOString().slice(0, 10));
 
@@ -46,6 +47,36 @@ export async function POST(req: NextRequest) {
       const inv = invoices[i];
       const formattedAmount = Number(inv.total_amount).toLocaleString('en-IN');
 
+      const clientRelation = inv.clients as unknown as ClientHealthRelation | null;
+      if (!clientRelation) {
+        console.warn(`[Check Overdue Invoices]: Invoice ${inv.invoice_number} has no associated client. Skipping.`);
+        const { data: job } = await supabase
+          .from('cron_jobs')
+          .select('id')
+          .ilike('name', '%overdue%')
+          .maybeSingle();
+        if (job) {
+          await supabase.from('cron_job_runs').insert({
+            job_id: job.id,
+            status: 'failed',
+            started_at: new Date().toISOString(),
+            ended_at: new Date().toISOString(),
+            error: `Invoice ${inv.invoice_number} has no associated client. Skipping.`,
+            output: { invoice_id: inv.id, invoice_number: inv.invoice_number }
+          });
+        }
+        continue;
+      }
+
+      // Drop health score by 20 points (floor of 0)
+      const currentHealth = clientRelation.health_score;
+      const newHealth = Math.max(0, currentHealth - 20);
+
+      await supabase
+        .from('clients')
+        .update({ health_score: newHealth })
+        .eq('id', inv.client_id);
+
       // Log activity
       await supabase.from('activity_log').insert({
         client_id: inv.client_id,
@@ -53,7 +84,7 @@ export async function POST(req: NextRequest) {
         entity_type: 'invoice',
         entity_id: inv.id,
         title: `Invoice ${inv.invoice_number} marked overdue`,
-        description: `Overdue invoice identified by daily scheduler for ${inv.clients?.name || 'Client'}: ₹${formattedAmount} past due date ${inv.due_date}`,
+        description: `Overdue invoice identified by daily scheduler for ${inv.clients?.name || 'Client'}: ₹${formattedAmount} past due date ${inv.due_date}. Health score dropped to ${newHealth}%.`,
       });
 
       // Broadcast notification
@@ -79,6 +110,7 @@ export async function POST(req: NextRequest) {
       message: `Checked overdue invoices: ${markedInvoices.length} marked as overdue.`,
       marked_invoices: markedInvoices,
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- cosmetic catch block error
   } catch (err: any) {
     console.error('[Check Overdue Invoices API Error]:', err);
     return NextResponse.json({ error: err.message || 'Failed to process overdue check' }, { status: 500 });

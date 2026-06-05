@@ -45,6 +45,7 @@ const STATUSES: { id: TaskStatus; label: string }[] = [
   { id: 'todo', label: 'Todo' },
   { id: 'in_progress', label: 'In Progress' },
   { id: 'review', label: 'Review' },
+  { id: 'approved', label: 'Approved' },
   { id: 'done', label: 'Completed' },
 ];
 

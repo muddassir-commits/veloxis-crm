@@ -39,12 +39,16 @@ interface OperationsDashboardProps {
   clients: Client[] | null;
   employees: Profile[] | null;
   initialSops: any[] | null;
+  initialMilestones?: any[] | null;
+  initialTemplates?: any[] | null;
 }
 
 export function OperationsDashboard({
   clients,
   employees,
   initialSops,
+  initialMilestones,
+  initialTemplates,
 }: OperationsDashboardProps) {
   const supabase = createClient();
   const [activeTab, setActiveTab] = useState<'sops' | 'timeline' | 'templates'>('sops');
@@ -55,23 +59,30 @@ export function OperationsDashboard({
   // SOP State
   const [uploadSopOpen, setUploadSopOpen] = useState(false);
 
-  // Timeline / Calendar State
-  const [customEvents, setCustomEvents] = useState([
-    { id: 1, day: 1, title: 'Invoice Auto-Generation', description: 'n8n fires invoice runs for all active retainers', type: 'system' },
-    { id: 2, day: 5, title: 'Intern Stipend Disbursements', description: 'Confirm student stipends HR review payroll tasks', type: 'hr' },
-    { id: 3, day: 15, title: 'Mid-Month Alignment Calls', description: 'Strategic progress calls with all key stakeholders', type: 'client' },
-    { id: 4, day: 25, title: 'Monthly Delivery Reporting', description: 'Compile GA4, GSC and Meta Ads deliverables', type: 'delivery' },
-  ]);
+  // Timeline / Calendar State (loaded from DB if available, else fallback)
+  const [customEvents, setCustomEvents] = useState<any[]>(
+    initialMilestones && initialMilestones.length > 0
+      ? initialMilestones
+      : [
+          { id: 1, day: 1, title: 'Invoice Auto-Generation', description: 'n8n fires invoice runs for all active retainers', type: 'system' },
+          { id: 2, day: 5, title: 'Intern Stipend Disbursements', description: 'Confirm student stipends HR review payroll tasks', type: 'hr' },
+          { id: 3, day: 15, title: 'Mid-Month Alignment Calls', description: 'Strategic progress calls with all key stakeholders', type: 'client' },
+          { id: 4, day: 25, title: 'Monthly Delivery Reporting', description: 'Compile GA4, GSC and Meta Ads deliverables', type: 'delivery' },
+        ]
+  );
   const [addEventOpen, setAddEventOpen] = useState(false);
   const [newEvent, setNewEvent] = useState({ day: '', title: '', description: '', type: 'delivery' });
 
   // Process Templates State
+  const [templates, setTemplates] = useState<any[]>(initialTemplates || []);
   const [selectedClient, setSelectedClient] = useState('');
-  const [selectedPreset, setSelectedPreset] = useState('onboarding');
+  const [selectedPreset, setSelectedPreset] = useState(
+    initialTemplates && initialTemplates.length > 0 ? initialTemplates[0].id : 'onboarding'
+  );
   const [selectedAssignee, setSelectedAssignee] = useState('');
   const [isApplyingTemplate, setIsApplyingTemplate] = useState(false);
 
-  // Presets definition
+  // Presets definition (for fallback)
   const presets = {
     onboarding: {
       name: 'New Client SEO & Social Onboarding',
@@ -191,28 +202,101 @@ export function OperationsDashboard({
     }
   };
 
+  const getActiveTemplate = () => {
+    const dbTemplate = templates.find((t) => t.id === selectedPreset);
+    if (dbTemplate) {
+      return {
+        name: dbTemplate.name,
+        description: dbTemplate.description,
+        tasks: dbTemplate.tasks || [],
+      };
+    }
+
+    const fallback = presets[selectedPreset as keyof typeof presets];
+    if (fallback) return fallback;
+
+    if (templates && templates.length > 0) {
+      return {
+        name: templates[0].name,
+        description: templates[0].description,
+        tasks: templates[0].tasks || [],
+      };
+    }
+
+    return presets.onboarding;
+  };
+
   // Calendar Event Functions
-  const handleAddEvent = () => {
+  const handleAddEvent = async () => {
     const dayNum = parseInt(newEvent.day);
     if (!newEvent.title.trim() || isNaN(dayNum) || dayNum < 1 || dayNum > 31) {
       toast.error('Provide a valid event title and day (1-31).');
       return;
     }
 
-    setCustomEvents((prev) => [
-      ...prev,
-      {
-        id: Date.now(),
-        day: dayNum,
-        title: newEvent.title,
-        description: newEvent.description,
-        type: newEvent.type
-      }
-    ].sort((a, b) => a.day - b.day));
+    try {
+      const { data, error } = await supabase
+        .from('operations_milestones')
+        .insert({
+          day: dayNum,
+          title: newEvent.title.trim(),
+          description: newEvent.description.trim() || null,
+          type: newEvent.type
+        })
+        .select()
+        .single();
 
-    setNewEvent({ day: '', title: '', description: '', type: 'delivery' });
-    setAddEventOpen(false);
-    toast.success('Milestone event added to calendar.');
+      if (error) throw error;
+
+      setCustomEvents((prev) => [
+        ...prev,
+        data
+      ].sort((a, b) => a.day - b.day));
+
+      setNewEvent({ day: '', title: '', description: '', type: 'delivery' });
+      setAddEventOpen(false);
+      toast.success('Milestone event saved to database.');
+    } catch (err) {
+      console.error('Failed to save to DB, adding locally:', err);
+      setCustomEvents((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          day: dayNum,
+          title: newEvent.title.trim(),
+          description: newEvent.description.trim(),
+          type: newEvent.type
+        }
+      ].sort((a, b) => a.day - b.day));
+
+      setNewEvent({ day: '', title: '', description: '', type: 'delivery' });
+      setAddEventOpen(false);
+      toast.success('Milestone event added locally.');
+    }
+  };
+
+  const handleDeleteEvent = async (id: any) => {
+    if (!confirm('Are you sure you want to delete this operational milestone?')) return;
+
+    if (typeof id === 'number') {
+      setCustomEvents((prev) => prev.filter((e) => e.id !== id));
+      toast.success('Milestone removed.');
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('operations_milestones')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+
+      setCustomEvents((prev) => prev.filter((e) => e.id !== id));
+      toast.success('Milestone deleted from database.');
+    } catch (err) {
+      toast.error('Failed to delete milestone.');
+    }
   };
 
   // Preset Template application
@@ -230,7 +314,7 @@ export function OperationsDashboard({
     const toastId = toast.loading('Applying template and adding deliverables...');
 
     try {
-      const presetData = presets[selectedPreset as keyof typeof presets];
+      const activeTemplate = getActiveTemplate();
       const monthYear = new Date().toLocaleString('default', { month: 'short', year: 'numeric' }); // e.g. "Jun 2026"
 
       // Check if client has projects, if not, we can default project_id to null.
@@ -242,19 +326,19 @@ export function OperationsDashboard({
 
       const projectId = clientProjects && clientProjects.length > 0 ? clientProjects[0].id : null;
 
-      const tasksToInsert = presetData.tasks.map((task) => ({
+      const tasksToInsert = activeTemplate.tasks.map((task: any) => ({
         client_id: selectedClient,
         project_id: projectId,
         title: task.title,
         description: task.description,
-        instructions: `Apply standard processes outlined in operations SOPs. Reevaluate results as required by deliverables pipeline. Estimate hours: ${task.hours}.`,
+        instructions: `Apply standard processes outlined in operations SOPs. Reevaluate results as required by deliverables pipeline. Estimate hours: ${task.hours || task.estimated_hours}.`,
         status: 'todo',
         priority: 'medium',
         due_date: new Date(Date.now() + 7 * 24 * 3600 * 1000).toISOString().split('T')[0], // 7 days from now
         month_year: monthYear,
         assigned_to: selectedAssignee,
-        estimated_hours: task.hours,
-        department: task.dept,
+        estimated_hours: task.hours || task.estimated_hours,
+        department: task.dept || task.department,
       }));
 
       const { error } = await supabase
@@ -430,9 +514,18 @@ export function OperationsDashboard({
                   <div className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 space-y-1 hover:border-[#1E3352] transition-all">
                     <div className="flex items-center justify-between">
                       <h3 className="font-semibold text-xs sm:text-sm text-[#F0F4FF]">{evt.title}</h3>
-                      <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold border uppercase tracking-wider ${typeColor}`}>
-                        {evt.type}
-                      </span>
+                      <div className="flex items-center gap-2 select-none">
+                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold border uppercase tracking-wider ${typeColor}`}>
+                          {evt.type}
+                        </span>
+                        <button
+                          onClick={() => handleDeleteEvent(evt.id)}
+                          className="text-[#EF4444] hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity p-1 cursor-pointer"
+                          title="Delete Milestone"
+                        >
+                          <Trash2 size={12} />
+                        </button>
+                      </div>
                     </div>
                     <p className="text-xs text-[#8BA3C7] mt-1 leading-relaxed">{evt.description}</p>
                   </div>
@@ -477,9 +570,19 @@ export function OperationsDashboard({
                   onChange={(e) => setSelectedPreset(e.target.value)}
                   className="input h-9"
                 >
-                  <option value="onboarding">Client Onboarding Checklist</option>
-                  <option value="seo_audit">Monthly SEO Execution Audit</option>
-                  <option value="social_setup">Social Media Production setup</option>
+                  {templates && templates.length > 0 ? (
+                    templates.map((t) => (
+                      <option key={t.id} value={t.id}>
+                        {t.name}
+                      </option>
+                    ))
+                  ) : (
+                    <>
+                      <option value="onboarding">Client Onboarding Checklist</option>
+                      <option value="seo_audit">Monthly SEO Execution Audit</option>
+                      <option value="social_setup">Social Media Production setup</option>
+                    </>
+                  )}
                 </select>
               </div>
 
@@ -516,15 +619,15 @@ export function OperationsDashboard({
               <div>
                 <span className="text-[10px] text-[#F97316] uppercase font-bold tracking-wider">Template Preview</span>
                 <h2 className="text-base font-semibold text-[#F0F4FF] mt-0.5">
-                  {presets[selectedPreset as keyof typeof presets].name}
+                  {getActiveTemplate().name}
                 </h2>
                 <p className="text-xs text-[#8BA3C7] mt-1 leading-relaxed">
-                  {presets[selectedPreset as keyof typeof presets].description}
+                  {getActiveTemplate().description}
                 </p>
               </div>
 
               <div className="border-t border-[#1E3352]/30 pt-3 space-y-3">
-                {presets[selectedPreset as keyof typeof presets].tasks.map((task, index) => (
+                {getActiveTemplate().tasks.map((task: any, index: number) => (
                   <div key={index} className="flex items-start gap-3 bg-[#060D1A]/40 border border-[#1E3352]/30 rounded-lg p-3">
                     <span className="flex items-center justify-center w-5 h-5 rounded bg-[#1B4FD810] text-[#1B4FD8] text-[10px] font-bold shrink-0 border border-[#1B4FD820]">
                       {index + 1}
@@ -533,7 +636,7 @@ export function OperationsDashboard({
                       <div className="flex items-center justify-between">
                         <h4 className="font-semibold text-[#F0F4FF]">{task.title}</h4>
                         <span className="text-[10px] font-mono text-[#F97316] font-semibold bg-[#F9731610] px-1.5 rounded uppercase border border-[#F9731620]">
-                          {task.dept.toUpperCase()} ({task.hours}h)
+                          {(task.dept || task.department || '').toUpperCase()} ({task.hours || task.estimated_hours}h)
                         </span>
                       </div>
                       <p className="text-xs text-[#8BA3C7] leading-relaxed mt-1">{task.description}</p>

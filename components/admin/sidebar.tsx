@@ -157,11 +157,11 @@ export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCo
 
       {/* Navigation Content */}
       <div className="flex-1 overflow-y-auto px-2 py-4 space-y-5 scrollbar-thin">
-        {/* MY AGENCY */}
+        {/* MARKETING */}
         <div className="space-y-1">
           {!isCollapsed && (
             <div className="px-3 text-[10px] font-semibold text-[#4A6480] uppercase tracking-wider mb-2 select-none">
-              My Agency
+              Marketing
             </div>
           )}
           <nav className="flex flex-col gap-0.5">
@@ -185,13 +185,13 @@ export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCo
               />
               {!isCollapsed && (
                 <div className="flex items-center justify-between w-full min-w-0">
-                  <span className="truncate">Veloxis Global</span>
+                  <span className="truncate">Agency Marketing</span>
                   <span className="h-1.5 w-1.5 rounded-full bg-[#F97316] shrink-0" />
                 </div>
               )}
               {isCollapsed && (
                 <div className="absolute left-16 bg-[#1A2D47] border border-[#1E3352] text-xs font-semibold px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap shadow-xl">
-                  Veloxis Global (My Agency)
+                  Agency Marketing (Veloxis Global)
                 </div>
               )}
             </Link>

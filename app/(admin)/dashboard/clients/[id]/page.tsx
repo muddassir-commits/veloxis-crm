@@ -7,10 +7,12 @@ export const revalidate = 0;
 
 interface ClientDetailPageProps {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export default async function ClientDetailPage({ params }: ClientDetailPageProps) {
+export default async function ClientDetailPage({ params, searchParams }: ClientDetailPageProps) {
   const { id } = await params;
+  const sParams = await searchParams;
   const supabase = await createClient();
 
   // Fetch the specific client
@@ -26,7 +28,8 @@ export default async function ClientDetailPage({ params }: ClientDetailPageProps
 
   // Redirect if it is the agency's own client profile
   if (client.is_agency_self) {
-    redirect('/dashboard/my-agency');
+    const qStr = new URLSearchParams(sParams as Record<string, string>).toString();
+    redirect(`/dashboard/my-agency${qStr ? '?' + qStr : ''}`);
   }
 
   // Fetch active team profiles for account manager dropdown

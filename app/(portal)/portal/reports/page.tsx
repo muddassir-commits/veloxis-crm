@@ -2,6 +2,7 @@ import React from 'react';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { ClientReportsViewer } from '@/components/portal/client-reports-viewer';
+import { GeneratedReport } from '@/types';
 
 export const revalidate = 0;
 
@@ -51,6 +52,29 @@ export default async function ReportsPage() {
     .eq('client_id', client.id)
     .order('created_at', { ascending: false });
 
+  // Fetch Sent Generated Reports joined with files
+  const { data: reports } = await supabase
+    .from('generated_reports')
+    .select(`
+      id,
+      month_year,
+      created_at,
+      files:file_id (
+        name,
+        public_url,
+        size_bytes
+      )
+    `)
+    .eq('client_id', client.id)
+    .eq('status', 'sent')
+    .order('created_at', { ascending: false });
+
+  const reportsRaw = (reports || []) as unknown as GeneratedReport[];
+  const formattedReports = reportsRaw.map(r => ({
+    ...r,
+    files: Array.isArray(r.files) ? r.files[0] : r.files
+  }));
+
   return (
     <div className="space-y-4">
       <div>
@@ -65,6 +89,7 @@ export default async function ReportsPage() {
         keywords={keywords || []}
         metaCampaigns={metaCampaigns || []}
         googleCampaigns={googleCampaigns || []}
+        reports={formattedReports as unknown as Parameters<typeof ClientReportsViewer>[0]['reports']}
       />
     </div>
   );

@@ -33,7 +33,7 @@ export async function GET(req: Request) {
     }
 
     // 4. Map settings rows to key-value dictionary
-    const settingsMap: Record<string, any> = {};
+    const settingsMap: Record<string, unknown> = {};
     if (settings) {
       settings.forEach((item) => {
         settingsMap[item.key] = item.value;
@@ -79,7 +79,7 @@ export async function POST(req: Request) {
       .from('agency_settings')
       .select('*');
 
-    const existingMap: Record<string, any> = {};
+    const existingMap: Record<string, unknown> = {};
     if (existingSettings) {
       existingSettings.forEach((item) => {
         existingMap[item.key] = item.value;

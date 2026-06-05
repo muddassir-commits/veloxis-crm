@@ -21,7 +21,7 @@ import {
   DialogFooter,
   DialogDescription,
 } from '@/components/ui/dialog';
-import { Lead, Profile, LeadStatus } from '@/types';
+import { Lead, Profile, LeadStatus, Project, ProjectType } from '@/types';
 
 interface PipelineKanbanProps {
   leads: Lead[];
@@ -271,6 +271,114 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
         .single();
 
       if (clientErr) throw clientErr;
+
+      // 1.5. Create projects for the client per selected service
+      const SERVICE_PROJECT_MAP: Record<string, { name: string; type: ProjectType }> = {
+        seo: { name: 'SEO Onboarding', type: 'seo' },
+        meta_ads: { name: 'Meta Ads Onboarding', type: 'meta_ads' },
+        google_ads: { name: 'Google Ads Onboarding', type: 'google_ads' },
+        smm: { name: 'Social Media Onboarding', type: 'smm' },
+        website: { name: 'Web Design Onboarding', type: 'website' },
+        content: { name: 'Content Onboarding', type: 'content' },
+        email: { name: 'Email Onboarding', type: 'email' },
+        whatsapp: { name: 'WhatsApp Onboarding', type: 'whatsapp' },
+        gbp: { name: 'GBP Management Onboarding', type: 'gbp' },
+        other: { name: 'Onboarding Project', type: 'other' },
+      };
+
+      const createdProjects: Pick<Project, 'id' | 'type'>[] = [];
+      if (convertForm.services && convertForm.services.length > 0) {
+        const valuePerProject = Math.round(Number(convertForm.monthly_retainer || 0) / convertForm.services.length);
+        const projectsToInsert = convertForm.services.map((serviceKey) => {
+          const mapping = SERVICE_PROJECT_MAP[serviceKey] || { name: `${serviceKey.toUpperCase()} Onboarding`, type: serviceKey };
+          return {
+            client_id: client.id,
+            name: mapping.name,
+            type: mapping.type,
+            status: 'active',
+            monthly_value: valuePerProject,
+            start_date: new Date().toISOString().split('T')[0],
+            description: `Auto-created onboarding project for ${mapping.name}.`,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          };
+        });
+
+        const { data: insertedProjects, error: projectsErr } = await supabase
+          .from('projects')
+          .insert(projectsToInsert)
+          .select('id, type');
+
+        if (projectsErr) throw projectsErr;
+        if (insertedProjects) {
+          createdProjects.push(...insertedProjects);
+        }
+      }
+
+      // 1.6. Create default onboarding tasks
+      const defaultOnboardingTasks = [
+        {
+          title: 'Send Welcome Kit & Client Questionnaire',
+          description: 'Email client questionnaire and capture branding info.',
+          department: 'marketing',
+          estimated_hours: 1,
+        },
+        {
+          title: 'Set up Client Slack Channel & Google Drive Folders',
+          description: 'Configure communications hubs and structure asset folders.',
+          department: 'web',
+          estimated_hours: 0.5,
+        },
+        {
+          title: 'Create Client Portal User Profile & Credentials',
+          description: 'Configure auth login, role permission, and invite client.',
+          department: 'web',
+          estimated_hours: 1,
+        },
+        {
+          title: 'Perform Competitor SEO & Organic Keyword Audit',
+          description: 'Audit competitor rankings and keywords targeting Kanpur/region.',
+          department: 'seo',
+          estimated_hours: 3,
+        },
+      ];
+
+      const monthYear = new Date().toLocaleString('default', { month: 'short', year: 'numeric' }); // e.g. "Jun 2026"
+      const tasksToInsert = defaultOnboardingTasks.map((t) => {
+        // Find matching project
+        let projectId: string | null = null;
+        if (createdProjects.length > 0) {
+          let matchedProj = null;
+          if (t.department === 'seo') {
+            matchedProj = createdProjects.find((p) => p.type === 'seo');
+          } else if (t.department === 'web') {
+            matchedProj = createdProjects.find((p) => p.type === 'website');
+          } else {
+            matchedProj = createdProjects.find((p) => p.type === t.department);
+          }
+          projectId = matchedProj ? matchedProj.id : createdProjects[0].id;
+        }
+
+        return {
+          client_id: client.id,
+          project_id: projectId,
+          title: t.title,
+          description: t.description,
+          instructions: `Apply standard processes outlined in operations SOPs. Reevaluate results as required by deliverables pipeline. Estimate hours: ${t.estimated_hours}.`,
+          status: 'todo',
+          priority: 'medium',
+          due_date: new Date(Date.now() + 7 * 24 * 3600 * 1000).toISOString().split('T')[0], // 7 days from now
+          month_year: monthYear,
+          assigned_to: selectedLead.assigned_to || null,
+          estimated_hours: t.estimated_hours,
+          department: t.department,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        };
+      });
+
+      const { error: tasksErr } = await supabase.from('tasks').insert(tasksToInsert);
+      if (tasksErr) throw tasksErr;
 
       // 2. Update lead to won
       const { error: leadErr } = await supabase

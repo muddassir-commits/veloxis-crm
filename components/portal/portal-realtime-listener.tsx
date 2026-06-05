@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { toast } from 'sonner';
+import { Invoice, FileRecord } from '@/types';
 
 interface PortalRealtimeListenerProps {
   clientId: string;
@@ -29,7 +30,7 @@ export function PortalRealtimeListener({ clientId }: PortalRealtimeListenerProps
               duration: 5000,
             });
           } else if (payload.eventType === 'UPDATE') {
-            const status = (payload.new as any).status;
+            const status = (payload.new as Invoice).status;
             if (status === 'paid') {
               toast.success('💰 Payment Received!', {
                 description: 'Thank you! Your payment has been processed and marked as paid.',
@@ -73,10 +74,10 @@ export function PortalRealtimeListener({ clientId }: PortalRealtimeListenerProps
         { event: '*', schema: 'public', table: 'files', filter: `client_id=eq.${clientId}` },
         (payload) => {
           if (payload.eventType === 'INSERT') {
-            const isShared = (payload.new as any).is_shared_with_client;
+            const isShared = (payload.new as FileRecord).is_shared_with_client;
             if (isShared) {
               toast.success('📁 New Document Shared!', {
-                description: `A new file has been shared in your Vault: ${(payload.new as any).name}`,
+                description: `A new file has been shared in your Vault: ${(payload.new as FileRecord).name}`,
                 duration: 5000,
               });
             }
