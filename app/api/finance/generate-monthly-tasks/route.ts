@@ -4,6 +4,10 @@ import { createAdminClient } from '@/lib/supabase/admin';
 export const revalidate = 0;
 
 export async function POST(req: NextRequest) {
+  const startedAt = new Date().toISOString();
+  let jobId: string | null = null;
+  let supabase: any = null;
+
   try {
     // 1. Verify CRON_SECRET or shared secret
     const secret = req.headers.get('x-cron-secret');
@@ -11,7 +15,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const supabase = createAdminClient();
+    supabase = createAdminClient();
+
+    // Look up the cron job ID
+    const { data: job } = await supabase
+      .from('cron_jobs')
+      .select('id')
+      .eq('name', 'Monthly Task Creator')
+      .maybeSingle();
+
+    if (job) {
+      jobId = job.id;
+    }
 
     // 2. Fetch active clients
     const { data: clients, error: clientsErr } = await supabase
@@ -22,7 +37,25 @@ export async function POST(req: NextRequest) {
     if (clientsErr) throw clientsErr;
 
     if (!clients || clients.length === 0) {
-      return NextResponse.json({ success: true, message: 'No active clients found.' });
+      const message = 'No active clients found.';
+      if (jobId) {
+        await supabase.from('cron_job_runs').insert({
+          job_id: jobId,
+          started_at: startedAt,
+          ended_at: new Date().toISOString(),
+          status: 'success',
+          output: { count: 0, skippedCount: 0, skipped: [], message }
+        });
+        await supabase
+          .from('cron_jobs')
+          .update({
+            last_run: startedAt,
+            last_status: 'success',
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', jobId);
+      }
+      return NextResponse.json({ success: true, message });
     }
 
     const currentYear = new Date().getFullYear();
@@ -39,10 +72,28 @@ export async function POST(req: NextRequest) {
 
     const firstOfMonth = new Date(currentYear, new Date().getMonth(), 1);
     const generatedTasks = [];
+    const skippedClients: string[] = [];
 
     // 3. For each active client, analyze services and insert standard tasks
     for (let i = 0; i < clients.length; i++) {
       const client = clients[i];
+
+      // DUPLICATE-GUARD: Skip task generation if tasks already exist for this client and month
+      const { data: existingTasks, error: checkErr } = await supabase
+        .from('tasks')
+        .select('id')
+        .eq('client_id', client.id)
+        .eq('month_year', monthYearStr)
+        .limit(1);
+
+      if (checkErr) throw checkErr;
+
+      if (existingTasks && existingTasks.length > 0) {
+        console.log(`Skipping task generation for client ${client.name}: tasks already exist for ${monthYearStr}`);
+        skippedClients.push(client.name);
+        continue;
+      }
+
       const services = client.services || [];
       const tasksToCreate = [];
 
@@ -165,7 +216,7 @@ export async function POST(req: NextRequest) {
     // 4. Broadcast notification to admins
     const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
     if (admins && admins.length > 0 && generatedTasks.length > 0) {
-      const notifs = admins.map((a) => ({
+      const notifs = admins.map((a: any) => ({
         user_id: a.id,
         type: 'task_submitted',
         title: '📋 Monthly Deliverables Scheduled',
@@ -177,15 +228,66 @@ export async function POST(req: NextRequest) {
       await supabase.from('notifications').insert(notifs);
     }
 
+    // 5. Update runs log with result
+    if (jobId) {
+      await supabase.from('cron_job_runs').insert({
+        job_id: jobId,
+        started_at: startedAt,
+        ended_at: new Date().toISOString(),
+        status: 'success',
+        output: {
+          count: generatedTasks.length,
+          skippedCount: skippedClients.length,
+          skipped: skippedClients,
+          message: `Tasks generated successfully: ${generatedTasks.length} tasks scheduled, ${skippedClients.length} skipped.`
+        }
+      });
+      await supabase
+        .from('cron_jobs')
+        .update({
+          last_run: startedAt,
+          last_status: 'success',
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', jobId);
+    }
+
     return NextResponse.json({
       success: true,
-      message: `Tasks generated successfully: ${generatedTasks.length} tasks scheduled.`,
+      message: `Tasks generated successfully: ${generatedTasks.length} tasks scheduled, ${skippedClients.length} skipped.`,
       count: generatedTasks.length,
+      skipped: skippedClients
     });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- cosmetic catch block error
   } catch (err: any) {
     console.error('[Generate Monthly Tasks API Error]:', err);
-    return NextResponse.json({ error: err.message || 'Failed to generate monthly tasks' }, { status: 500 });
+    
+    const endedAt = new Date().toISOString();
+    const errMsg = err instanceof Error ? err.message : 'Failed to generate monthly tasks';
+
+    if (supabase && jobId) {
+      try {
+        await supabase.from('cron_job_runs').insert({
+          job_id: jobId,
+          started_at: startedAt,
+          ended_at: endedAt,
+          status: 'failed',
+          error: errMsg,
+          output: { error: errMsg }
+        });
+        await supabase
+          .from('cron_jobs')
+          .update({
+            last_run: startedAt,
+            last_status: 'failed',
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', jobId);
+      } catch (logErr) {
+        console.error('Failed to log cron error to DB:', logErr);
+      }
+    }
+
+    return NextResponse.json({ error: errMsg }, { status: 500 });
   }
 }
 
