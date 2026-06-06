@@ -3,6 +3,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { syncGscData } from '@/lib/integrations/gsc';
 import { syncGa4Data } from '@/lib/integrations/ga4';
 import { syncMetaData } from '@/lib/integrations/meta';
@@ -11,7 +12,7 @@ import { syncGoogleAdsData } from '@/lib/integrations/google-ads';
 export const revalidate = 0;
 
 export async function POST(request: NextRequest) {
-  const supabase = await createClient();
+  let supabase = await createClient();
   let isAuthorized = false;
 
   // 1. Check CRON_SECRET header (supports standardized x-cron-secret and backward-compatible x-function-secret)
@@ -39,11 +40,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  // 3. Optional: Log to cron_job_runs if job exists
+  // Swap to admin client for database operations to ensure service-role privilege (bypasses RLS)
+  supabase = createAdminClient();
+
+  // 3. Log to cron_job_runs if job exists
   const { data: job } = await supabase
     .from('cron_jobs')
     .select('id')
-    .eq('name', 'sync_all')
+    .eq('name', 'Daily Data Sync')
     .maybeSingle();
 
   let runId = null;
@@ -267,15 +271,32 @@ export async function POST(request: NextRequest) {
     });
   } catch (err: unknown) {
     const errMsg = err instanceof Error ? err.message : String(err);
+    const endedAt = new Date().toISOString();
+
     if (runId) {
-      await supabase
-        .from('cron_job_runs')
-        .update({
-          status: 'failed',
-          ended_at: new Date().toISOString(),
-          error: errMsg,
-        })
-        .eq('id', runId);
+      try {
+        await supabase
+          .from('cron_job_runs')
+          .update({
+            status: 'failed',
+            ended_at: endedAt,
+            error: errMsg,
+          })
+          .eq('id', runId);
+
+        if (job) {
+          await supabase
+            .from('cron_jobs')
+            .update({
+              last_run: endedAt,
+              last_status: 'failed',
+              updated_at: new Date().toISOString(),
+            })
+            .eq('id', job.id);
+        }
+      } catch (logErr) {
+        console.error('Failed to log sync error to DB:', logErr);
+      }
     }
 
     return NextResponse.json({ error: errMsg }, { status: 500 });
