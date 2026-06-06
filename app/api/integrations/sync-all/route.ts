@@ -302,3 +302,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: errMsg }, { status: 500 });
   }
 }
+
+// Support GET for testing convenience
+export async function GET(req: NextRequest) {
+  return POST(req);
+}
+

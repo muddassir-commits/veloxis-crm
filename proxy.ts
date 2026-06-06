@@ -7,8 +7,41 @@ import { checkRateLimit } from '@/lib/rate-limit';
 export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
+  // 1. Detect if request is a valid cron/automation call using shared secret on restricted routes
+  const secret = request.headers.get('x-cron-secret') || request.headers.get('x-function-secret');
+  const isCronSecretValid = !!(secret && secret === process.env.CRON_SECRET);
+  const isCronRoute = 
+    path.startsWith('/api/cron/') ||
+    path.startsWith('/api/finance/generate-monthly-tasks') ||
+    path.startsWith('/api/finance/generate-monthly-invoices') ||
+    path.startsWith('/api/finance/check-overdue') ||
+    path.startsWith('/api/integrations/sync-all');
+    
+  const isBypassedCron = isCronSecretValid && isCronRoute;
+
+  // 2. Log audit entry for bypassed requests
+  if (isBypassedCron) {
+    try {
+      const adminSupabase = createAdminClient();
+      const ip = request.headers.get('x-forwarded-for') || 'unknown';
+      const userAgent = request.headers.get('user-agent') || null;
+      
+      await adminSupabase.from('audit_logs').insert({
+        user_id: null,
+        action: 'CRON_BYPASS',
+        table_name: 'middleware',
+        record_id: null,
+        new_values: { path },
+        ip_address: ip,
+        user_agent: userAgent,
+      });
+    } catch (e) {
+      console.error('Failed to log cron bypass audit:', e);
+    }
+  }
+
   // ── RATE LIMITING ──────────────────────────────────────────
-  if (path.startsWith('/api/')) {
+  if (path.startsWith('/api/') && !isBypassedCron) {
     const ip = (request as NextRequest & { ip?: string }).ip || request.headers.get('x-forwarded-for') || 'unknown';
     
     // Check if it's the login route
@@ -133,17 +166,36 @@ export async function proxy(request: NextRequest) {
     }
 
     // Protect integrations API
-    if (path.startsWith('/api/integrations') && role !== 'admin') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (path.startsWith('/api/integrations') && !isBypassedCron && role !== 'admin') {
+      return new NextResponse(
+        JSON.stringify({ error: 'Unauthorized Access' }),
+        {
+          status: 401,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
     }
   } else {
-    // Unauthenticated user trying to access protected routes redirect to login
+    // Unauthenticated user trying to access protected routes
     if (
-      path.startsWith('/dashboard') ||
-      path.startsWith('/team') ||
-      path.startsWith('/portal') ||
-      path.startsWith('/api/integrations')
+      !isBypassedCron && (
+        path.startsWith('/dashboard') ||
+        path.startsWith('/team') ||
+        path.startsWith('/portal') ||
+        path.startsWith('/api/integrations')
+      )
     ) {
+      // Return JSON 401 for unauthorized API access
+      if (path.startsWith('/api/')) {
+        return new NextResponse(
+          JSON.stringify({ error: 'Unauthorized Access' }),
+          {
+            status: 401,
+            headers: { 'Content-Type': 'application/json' },
+          }
+        );
+      }
+
       if (isProduction) {
         if (path.startsWith('/dashboard') && !host.includes('ops.veloxisglobal.com')) {
           return NextResponse.redirect(new URL('https://ops.veloxisglobal.com/login', request.url));
@@ -164,13 +216,7 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public assets
-     */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };
+

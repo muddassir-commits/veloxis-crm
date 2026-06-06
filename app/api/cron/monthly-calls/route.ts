@@ -6,7 +6,7 @@ export const revalidate = 0;
 export async function POST(req: NextRequest) {
   const startedAt = new Date().toISOString();
   let jobId: string | null = null;
-  let supabase: any = null;
+  let supabase: ReturnType<typeof createAdminClient> | null = null;
 
   try {
     // 1. Verify CRON_SECRET or shared secret
@@ -139,7 +139,7 @@ export async function POST(req: NextRequest) {
     // 4. Broadcast notification to admins
     const { data: admins } = await supabase.from('profiles').select('id').eq('role', 'admin');
     if (admins && admins.length > 0 && generatedTasks.length > 0) {
-      const notifs = admins.map((a: any) => ({
+      const notifs = admins.map((a: { id: string }) => ({
         user_id: a.id,
         type: 'task_submitted',
         title: '📞 Monthly Alignment Calls Scheduled',
@@ -181,7 +181,7 @@ export async function POST(req: NextRequest) {
       count: generatedTasks.length,
       skipped: skippedClients
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     const endedAt = new Date().toISOString();
     const errorMsg = err instanceof Error ? err.message : 'Failed to generate monthly call tasks';
     console.error('[Generate Monthly Calls API Error]:', err);
