@@ -22,6 +22,9 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Lead, Profile, LeadStatus, Project, ProjectType } from '@/types';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 
 interface PipelineKanbanProps {
   leads: Lead[];
@@ -54,16 +57,17 @@ function DroppableColumn({ id, label, count, children }: DroppableColumnProps) {
   return (
     <div
       ref={setNodeRef}
-      className={`rounded-[10px] bg-[#0D1829] border border-[#1E3352] p-3 flex flex-col min-h-[400px] w-[280px] shrink-0 transition-all ${
-        isOver ? 'border-[#1B4FD8] bg-[#132035]/50' : ''
-      }`}
+      className={cn(
+        "rounded-[10px] bg-bg-card/60 backdrop-blur-md border border-border/20 p-3 flex flex-col min-h-[400px] w-[280px] shrink-0 transition-all shadow-subtle",
+        isOver && "border-primary/50 bg-bg-card-hover/20"
+      )}
     >
       {/* Column Header */}
-      <div className="flex items-center justify-between mb-3 border-b border-[#1E3352]/30 pb-2">
-        <span className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none">
+      <div className="flex items-center justify-between mb-3 border-b border-border/10 pb-2">
+        <span className="text-xs font-bold uppercase tracking-wider text-text-secondary select-none">
           {label}
         </span>
-        <span className="text-[10px] font-mono bg-[#1E3352]/30 text-[#8BA3C7] px-2 py-0.5 rounded-full select-none font-bold">
+        <span className="text-[10px] font-mono bg-bg-card-hover/20 text-text-secondary px-2 py-0.5 rounded-full select-none font-bold border border-border/10">
           {count}
         </span>
       </div>
@@ -484,7 +488,7 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
     <div className="space-y-6">
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         {/* Kanban Board columns wrapper */}
-        <div className="flex gap-4 items-start select-none overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-[#1E3352] scrollbar-track-transparent">
+        <div className="flex gap-4 items-start select-none overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-border/20 scrollbar-track-transparent">
           {COLUMNS.map((col) => {
             const colLeads = localLeads.filter((l) => col.status.includes(l.status));
 
@@ -524,7 +528,7 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
                 })}
 
                 {colLeads.length === 0 && (
-                  <div className="flex-1 flex items-center justify-center border border-dashed border-[#1E3352]/20 rounded-[8px] p-6 text-center text-[10px] text-[#4A6480] select-none min-h-[120px]">
+                  <div className="flex-1 flex items-center justify-center border border-dashed border-border/20 rounded-[8px] p-6 text-center text-[10px] text-text-tertiary select-none min-h-[120px]">
                     No leads in stage
                   </div>
                 )}
@@ -539,12 +543,12 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
         open={modalOpen.activity}
         onOpenChange={(open) => setModalOpen((prev) => ({ ...prev, activity: open }))}
       >
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[500px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">
+            <DialogTitle>
               Log Activity — {selectedLead?.name}
             </DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogDescription>
               Log outreach notes, phone calls, WhatsApp messages, or meetings for this lead.
             </DialogDescription>
           </DialogHeader>
@@ -552,11 +556,11 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
           <div className="space-y-4 my-2 text-xs">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="label">Activity Type</label>
+                <label className="text-text-secondary font-semibold">Activity Type</label>
                 <select
                   value={activityForm.type}
                   onChange={(e) => setActivityForm((p) => ({ ...p, type: e.target.value }))}
-                  className="input h-9"
+                  className="flex h-10 w-full rounded-lg border border-border/30 bg-bg-card/50 backdrop-blur-[8px] px-3 py-2 text-sm text-text-primary outline-none hover:border-border/60 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all duration-200"
                 >
                   <option value="call">Phone Call</option>
                   <option value="whatsapp">WhatsApp Message</option>
@@ -567,36 +571,36 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
               </div>
 
               <div className="space-y-1">
-                <label className="label">Duration (minutes)</label>
-                <input
+                <label className="text-text-secondary font-semibold">Duration (minutes)</label>
+                <Input
                   type="number"
                   placeholder="e.g. 15"
                   value={activityForm.duration_min}
                   onChange={(e) => setActivityForm((p) => ({ ...p, duration_min: e.target.value }))}
-                  className="input h-9"
+                  className="h-10"
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <label className="label">Observation / Description *</label>
-              <textarea
+              <label className="text-text-secondary font-semibold">Observation / Description *</label>
+              <Textarea
                 placeholder="Log exactly what was discussed..."
                 value={activityForm.description}
                 onChange={(e) => setActivityForm((p) => ({ ...p, description: e.target.value }))}
                 rows={3}
-                className="input resize-none"
+                className="resize-none"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Outcome / Response</label>
-              <input
+              <label className="text-text-secondary font-semibold">Outcome / Response</label>
+              <Input
                 type="text"
                 placeholder="e.g. positive, no response, requested proposal"
                 value={activityForm.outcome}
                 onChange={(e) => setActivityForm((p) => ({ ...p, outcome: e.target.value }))}
-                className="input h-9"
+                className="h-10"
               />
             </div>
           </div>
@@ -605,13 +609,13 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
             <Button
               variant="outline"
               onClick={() => setModalOpen((prev) => ({ ...prev, activity: false }))}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="text-text-secondary hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleLogActivity}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              className="cursor-pointer"
             >
               Log Activity
             </Button>
@@ -624,33 +628,33 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
         open={modalOpen.convert}
         onOpenChange={(open) => setModalOpen((prev) => ({ ...prev, convert: open }))}
       >
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[500px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">
+            <DialogTitle>
               Convert to Client — {selectedLead?.name}
             </DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogDescription>
               Mark this lead as won and create a paying client profile in the database.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4 my-2 text-xs">
             <div className="space-y-1">
-              <label className="label">Monthly Retainer (₹) *</label>
-              <input
+              <label className="text-text-secondary font-semibold">Monthly Retainer (₹) *</label>
+              <Input
                 type="number"
                 placeholder="Enter monthly retainer amount"
                 value={convertForm.monthly_retainer}
                 onChange={(e) => setConvertForm((p) => ({ ...p, monthly_retainer: e.target.value }))}
-                className="input h-9"
+                className="h-10"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Services Subscribed</label>
-              <div className="grid grid-cols-2 gap-2 border border-[#1E3352] rounded-[7px] bg-[#060D1A] p-2.5 max-h-[140px] overflow-y-auto">
+              <label className="text-text-secondary font-semibold">Services Subscribed</label>
+              <div className="grid grid-cols-2 gap-2 border border-border/20 rounded-[7px] bg-bg-card/50 p-2.5 max-h-[140px] overflow-y-auto">
                 {SERVICE_OPTIONS.map((opt) => (
-                  <label key={opt.id} className="flex items-center gap-2 cursor-pointer text-[11px] text-[#8BA3C7] hover:text-[#F0F4FF] select-none">
+                  <label key={opt.id} className="flex items-center gap-2 cursor-pointer text-[11px] text-text-secondary hover:text-text-primary select-none">
                     <input
                       type="checkbox"
                       checked={convertForm.services.includes(opt.id)}
@@ -663,7 +667,7 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
                             : p.services.filter((s) => s !== opt.id),
                         }));
                       }}
-                      className="rounded border-[#1E3352] bg-[#060D1A] text-[#1B4FD8] focus:ring-0 shrink-0"
+                      className="rounded border-border/30 bg-bg-card/50 text-primary focus:ring-0 shrink-0"
                     />
                     <span>{opt.label}</span>
                   </label>
@@ -672,13 +676,13 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
             </div>
 
             <div className="space-y-1">
-              <label className="label">Integration & Retainer Notes</label>
-              <textarea
+              <label className="text-text-secondary font-semibold">Integration & Retainer Notes</label>
+              <Textarea
                 placeholder="e.g. retainer starts next Monday, Google Search Console pre-auth pending"
                 value={convertForm.notes}
                 onChange={(e) => setConvertForm((p) => ({ ...p, notes: e.target.value }))}
                 rows={2}
-                className="input resize-none"
+                className="resize-none"
               />
             </div>
           </div>
@@ -687,13 +691,13 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
             <Button
               variant="outline"
               onClick={() => setModalOpen((prev) => ({ ...prev, convert: false }))}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="text-text-secondary hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleConvertLead}
-              className="bg-[#22C55E] hover:bg-[#22C55E]/90 text-white cursor-pointer"
+              className="bg-success hover:bg-success/90 text-white cursor-pointer"
             >
               Convert to Client
             </Button>
@@ -706,25 +710,25 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
         open={modalOpen.lost}
         onOpenChange={(open) => setModalOpen((prev) => ({ ...prev, lost: open }))}
       >
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">
+            <DialogTitle>
               Mark Lead as Lost
             </DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogDescription>
               Mark {selectedLead?.name} as lost. Please enter the reason for future analytics.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-3 my-2 text-xs">
             <div className="space-y-1">
-              <label className="label">Reason Lost *</label>
-              <textarea
+              <label className="text-text-secondary font-semibold">Reason Lost *</label>
+              <Textarea
                 placeholder="e.g. Budget too low, chose competitor, unresponsive..."
                 value={lostForm.lost_reason}
                 onChange={(e) => setLostForm((p) => ({ ...p, lost_reason: e.target.value }))}
                 rows={3}
-                className="input resize-none"
+                className="resize-none"
               />
             </div>
           </div>
@@ -733,13 +737,13 @@ export function PipelineKanban({ leads, profiles, onLeadUpdated }: PipelineKanba
             <Button
               variant="outline"
               onClick={() => setModalOpen((prev) => ({ ...prev, lost: false }))}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="text-text-secondary hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleMarkLost}
-              className="bg-[#EF4444] hover:bg-[#EF4444]/90 text-white cursor-pointer"
+              className="bg-error hover:bg-error/90 text-white cursor-pointer"
             >
               Mark Lost
             </Button>

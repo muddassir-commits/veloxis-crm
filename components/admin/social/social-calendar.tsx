@@ -85,25 +85,25 @@ export function SocialCalendar({
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
       case 'published':
-        return 'bg-[#22C55E]';
+        return 'bg-online';
       case 'approved':
       case 'scheduled':
-        return 'bg-[#1B4FD8]';
+        return 'bg-primary';
       case 'review':
-        return 'bg-[#F59E0B]';
+        return 'bg-warning';
       default: // draft
-        return 'bg-[#64748B]';
+        return 'bg-offline';
     }
   };
 
   return (
-    <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg overflow-hidden select-none">
+    <div className="bg-bg-card border border-border/30 rounded-lg overflow-hidden select-none">
       {/* Calendar Header Weekdays */}
-      <div className="grid grid-cols-7 border-b border-[#1E3352] bg-[#060D1A]/50">
+      <div className="grid grid-cols-7 border-b border-border/30 bg-bg-dark/50">
         {weekdays.map((day) => (
           <div
             key={day}
-            className="py-2.5 text-center text-[10px] font-bold text-[#4A6480] uppercase tracking-wider border-r border-[#1E3352] last:border-r-0"
+            className="py-2.5 text-center text-[10px] font-bold text-text-tertiary uppercase tracking-wider border-r border-border/30 last:border-r-0"
           >
             {day}
           </div>
@@ -125,10 +125,10 @@ export function SocialCalendar({
             <div
               key={idx}
               className={cn(
-                "p-2 border-r border-b border-[#1E3352] relative flex flex-col justify-between group transition-colors",
-                !date && "bg-[#060D1A]/10 cursor-not-allowed",
-                date && "hover:bg-[#132035]/30 cursor-pointer",
-                isToday && "bg-[#1B4FD8]/5 border-[#1B4FD8]/40"
+                "p-2 border-r border-b border-border/30 relative flex flex-col justify-between group transition-colors",
+                !date && "bg-bg-dark/10 cursor-not-allowed",
+                date && "hover:bg-bg-card-hover/20/30 cursor-pointer",
+                isToday && "bg-primary/5 border-primary/40"
               )}
               onClick={() => date && onSelectDate(date)}
             >
@@ -138,10 +138,10 @@ export function SocialCalendar({
                   className={cn(
                     "text-[11px] font-bold font-mono",
                     isToday
-                      ? "bg-[#1B4FD8] text-white w-5 h-5 flex items-center justify-center rounded-full"
+                      ? "bg-primary text-white w-5 h-5 flex items-center justify-center rounded-full"
                       : date
-                        ? "text-[#8BA3C7]"
-                        : "text-[#4A6480]/30"
+                        ? "text-text-secondary"
+                        : "text-text-tertiary/30"
                   )}
                 >
                   {date ? date.getDate() : ''}
@@ -155,7 +155,7 @@ export function SocialCalendar({
                       e.stopPropagation();
                       onSelectDate(date);
                     }}
-                    className="opacity-0 group-hover:opacity-100 h-5 w-5 rounded bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352]/50 text-[#8BA3C7] hover:text-[#F0F4FF] transition-opacity"
+                    className="opacity-0 group-hover:opacity-100 h-5 w-5 rounded bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30/50 text-text-secondary hover:text-text-primary transition-opacity"
                   >
                     <Plus size={10} />
                   </Button>
@@ -171,7 +171,7 @@ export function SocialCalendar({
                       e.stopPropagation();
                       onSelectPost(post);
                     }}
-                    className="flex items-center gap-1.5 p-1 rounded bg-[#060D1A] hover:bg-[#1A2D47] border border-[#1E3352]/70 text-[9px] font-medium text-[#8BA3C7] hover:text-[#F0F4FF] transition-colors"
+                    className="flex items-center gap-1.5 p-1 rounded bg-bg-dark hover:bg-bg-card-hover/40 border border-border/30/70 text-[9px] font-medium text-text-secondary hover:text-text-primary transition-colors"
                   >
                     {/* Status dot */}
                     <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", getStatusColor(post.status))} />
@@ -180,14 +180,14 @@ export function SocialCalendar({
                     <span className="shrink-0">{getPlatformIcon(post.platform)}</span>
 
                     {/* Client Chip (initials or prefix) */}
-                    <span className="font-semibold text-[#F97316] uppercase truncate shrink-0 max-w-[40px]">
+                    <span className="font-semibold text-accent uppercase truncate shrink-0 max-w-[40px]">
                       {post.clients?.name
                         ? post.clients.name.split(' ').map((n) => n[0]).join('').substring(0, 2)
                         : 'CL'}
                     </span>
 
                     {/* Content type or caption snippet */}
-                    <span className="truncate flex-1 text-[#8BA3C7] opacity-80">
+                    <span className="truncate flex-1 text-text-secondary opacity-80">
                       {post.caption || post.content_type || 'post'}
                     </span>
                   </div>

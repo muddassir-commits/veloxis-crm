@@ -30,16 +30,16 @@ import { AddTaskModal } from '@/components/deliverables/add-task-modal';
 
 // Custom priority badge helper
 const PriorityBadge = ({ priority }: { priority: string }) => {
-  let badgeStyle = "bg-[#1E335215] text-[#64748B]";
+  let badgeStyle = "bg-border-subtle/15 text-text-tertiary border-border-subtle/20";
   if (priority === 'high' || priority === 'urgent') {
-    badgeStyle = "bg-[#EF444415] text-[#EF4444]";
+    badgeStyle = "bg-error/15 text-error border-error/20";
   } else if (priority === 'medium') {
-    badgeStyle = "bg-[#F59E0B15] text-[#F59E0B]";
+    badgeStyle = "bg-warning/15 text-warning border-warning/20";
   } else if (priority === 'low') {
-    badgeStyle = "bg-[#22C55E15] text-[#22C55E]";
+    badgeStyle = "bg-online/15 text-online border-online/20";
   }
   return (
-    <span className={cn("inline-flex items-center rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider select-none shrink-0 border border-transparent", badgeStyle)}>
+    <span className={cn("inline-flex items-center rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider select-none shrink-0 border", badgeStyle)}>
       {priority}
     </span>
   );
@@ -378,30 +378,30 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
   // Avatar color generator based on initials
   const getAvatarColor = (initials: string) => {
     const colors: Record<string, string> = {
-      'MA': 'bg-[#1B4FD8] text-white border-[#1B4FD8]', // blue
-      'S1': 'bg-[#F97316] text-white border-[#F97316]', // orange
-      'S2': 'bg-[#8B5CF6] text-white border-[#8B5CF6]', // purple
+      'MA': 'bg-primary text-text-primary border-primary/30',
+      'S1': 'bg-accent text-text-primary border-accent/30',
+      'S2': 'bg-indigo-500 text-text-primary border-indigo-500/30',
     };
-    return colors[initials] || 'bg-[#0D1829] text-[#8BA3C7] border-[#1E3352]';
+    return colors[initials] || 'bg-bg-card text-text-secondary border-border/20';
   };
 
   return (
     <div className="space-y-6">
       {/* Month & Control bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 select-none bg-[#0D1829] border border-[#1E3352] p-4 rounded-lg">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 select-none bg-bg-card/70 backdrop-blur-[12px] border border-border/30 p-4 rounded-xl shadow-elevated">
         <div className="flex items-center gap-3">
           <button
             onClick={handlePrevMonth}
-            className="p-1.5 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#1E3352] cursor-pointer transition-colors"
+            className="p-1.5 rounded bg-bg-card-hover/20 border border-border/20 text-text-secondary hover:text-text-primary hover:bg-bg-card-hover/40 cursor-pointer transition-colors"
           >
             <ChevronLeft size={16} />
           </button>
-          <span className="text-sm font-semibold text-[#F0F4FF] min-w-[110px] text-center font-mono">
+          <span className="text-sm font-semibold text-text-primary min-w-[110px] text-center font-mono">
             {monthYearString}
           </span>
           <button
             onClick={handleNextMonth}
-            className="p-1.5 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#1E3352] cursor-pointer transition-colors"
+            className="p-1.5 rounded bg-bg-card-hover/20 border border-border/20 text-text-secondary hover:text-text-primary hover:bg-bg-card-hover/40 cursor-pointer transition-colors"
           >
             <ChevronRight size={16} />
           </button>
@@ -414,7 +414,6 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
               setPreFilledClientId(null);
               setTaskModalOpen(true);
             }}
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 font-semibold cursor-pointer"
           >
             <Plus size={15} />
             <span>Add Task</span>
@@ -423,8 +422,8 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
           <Button
             onClick={fetchTasks}
             disabled={isLoading}
-            variant="outline"
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-9 gap-1.5 cursor-pointer"
+            variant="secondary"
+            size="sm"
           >
             <RefreshCw size={14} className={isLoading ? 'animate-spin' : ''} />
             <span>Refresh</span>
@@ -440,21 +439,21 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
           value={doneCount}
           loading={isLoading}
           icon={CheckCircle2}
-          valueClassName="text-[#22C55E]"
+          valueClassName="text-online"
         />
         <StatCard
           title="In Progress"
           value={inProgressCount}
           loading={isLoading}
           icon={Clock}
-          valueClassName="text-[#F59E0B]"
+          valueClassName="text-warning"
         />
         <StatCard
           title="Overdue Tasks"
           value={overdueCount}
           loading={isLoading}
           icon={AlertTriangle}
-          valueClassName={overdueCount > 0 ? 'text-[#EF4444]' : 'text-[#8BA3C7]'}
+          valueClassName={overdueCount > 0 ? 'text-error font-bold' : 'text-text-secondary'}
         />
       </div>
 
@@ -462,12 +461,12 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
       {isLoading ? (
         <div className="space-y-6">
           {[1, 2, 3].map((idx) => (
-            <div key={idx} className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-6 space-y-4 animate-pulse">
-              <div className="h-6 w-48 bg-[#132035] rounded" />
-              <div className="h-2 w-full bg-[#132035] rounded" />
+            <div key={idx} className="bg-bg-card/70 backdrop-blur-[12px] border border-border/30 rounded-xl p-6 space-y-4 shadow-elevated animate-pulse">
+              <div className="h-6 w-48 bg-bg-card-hover/20 rounded" />
+              <div className="h-2 w-full bg-bg-card-hover/20 rounded" />
               <div className="space-y-2 pt-2">
                 {[1, 2].map((i) => (
-                  <div key={i} className="h-10 bg-[#132035] rounded" />
+                  <div key={i} className="h-10 bg-bg-card-hover/20 rounded" />
                 ))}
               </div>
             </div>
@@ -500,7 +499,7 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
             return (
               <div
                 key={client.id}
-                className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] overflow-hidden transition-all duration-200 relative"
+                className="bg-bg-card/70 backdrop-blur-[12px] border border-border/30 rounded-xl overflow-hidden transition-all duration-200 relative shadow-elevated"
               >
                 {/* Confetti container (local to client group) */}
                 {confettiClientId === client.id && <Confetti />}
@@ -508,19 +507,19 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
                 {/* Client Group Header */}
                 <div
                   onClick={() => toggleClientExpand(client.id)}
-                  className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer hover:bg-[#132035]/40 select-none border-b border-[#1E3352]/30"
+                  className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer hover:bg-bg-card-hover/20 select-none border-b border-border/20"
                 >
                   <div className="flex items-center gap-3">
-                    <button className="text-[#8BA3C7] p-0.5 hover:text-[#F0F4FF] transition-transform">
+                    <button className="text-text-secondary p-0.5 hover:text-text-primary transition-transform">
                       <ChevronDown
                         size={18}
                         className={cn('transition-transform duration-200', !isExpanded && '-rotate-90')}
                       />
                     </button>
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-[15px] font-bold text-[#F0F4FF]">{client.name}</h3>
+                      <h3 className="text-[15px] font-bold text-text-primary">{client.name}</h3>
                       {isAllComplete && (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-[#22C55E15] text-[#22C55E] px-2 py-0.5 rounded-full uppercase border border-[#22C55E]/10">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-online/10 text-online px-2 py-0.5 rounded-full uppercase border border-online/20">
                           <Check size={10} className="stroke-[2.5]" />
                           ✓ All Complete
                         </span>
@@ -531,16 +530,16 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
                   {/* Progress details */}
                   <div className="flex items-center gap-4 min-w-[240px]">
                     <div className="flex-1 space-y-1">
-                      <div className="flex justify-between text-[11px] font-mono text-[#8BA3C7]">
-                        <span className="text-[#8BA3C7]/60">Progress</span>
+                      <div className="flex justify-between text-[11px] font-mono text-text-secondary">
+                        <span className="text-text-secondary/60">Progress</span>
                         <span>
                           {cDone}/{cTotal} complete
                         </span>
                       </div>
-                      <div className="h-1 w-full bg-[#132035] rounded-full overflow-hidden border border-[#1E3352]/30">
+                      <div className="h-1 w-full bg-border/20 rounded-full overflow-hidden border border-border/10">
                         <div
                           style={{ width: `${progressPct}%` }}
-                          className="h-full rounded-full transition-all duration-300 bg-[#22C55E]"
+                          className="h-full rounded-full transition-all duration-300 bg-online"
                         />
                       </div>
                     </div>
@@ -549,7 +548,7 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
 
                 {/* Task rows inside group */}
                 {isExpanded && (
-                  <div className="bg-[#0A111F]/30 divide-y divide-[#1E3352]/20">
+                  <div className="bg-bg-dark/20 divide-y divide-border/10">
                     {clientTasks.length > 0 ? (
                       clientTasks.map((task) => {
                         const isDone = task.status === 'done';
@@ -561,7 +560,7 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
                         return (
                           <div
                             key={task.id}
-                            className="group flex items-center justify-between gap-4 px-4 h-12 hover:bg-[#132035] transition-all duration-150 relative"
+                            className="group flex items-center justify-between gap-4 px-4 h-12 hover:bg-bg-card-hover/20 transition-all duration-150 relative"
                           >
                             <div className="flex items-center gap-3 min-w-0">
                               {/* Checkbox */}
@@ -569,14 +568,14 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
                                 type="checkbox"
                                 checked={isDone}
                                 onChange={(e) => handleToggleComplete(task, e.target.checked)}
-                                className="rounded border-[#1E3352] bg-[#060D1A] text-[#1B4FD8] focus:ring-0 cursor-pointer h-4 w-4 shrink-0 transition-colors"
+                                className="rounded border-border/30 bg-bg-dark/50 text-primary focus:ring-0 cursor-pointer h-4 w-4 shrink-0 transition-colors"
                               />
 
                               {/* Task Title */}
                               <span
                                 className={cn(
-                                  'text-xs font-semibold text-[#F0F4FF] transition-all truncate max-w-xs sm:max-w-md md:max-w-lg',
-                                  isDone && 'opacity-40 line-through text-[#8BA3C7]'
+                                  'text-xs font-semibold text-text-primary transition-all truncate max-w-xs sm:max-w-md md:max-w-lg',
+                                  isDone && 'opacity-40 line-through text-text-secondary'
                                 )}
                               >
                                 {task.title}
@@ -586,7 +585,7 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
                             {/* Task Attributes & Action menu */}
                             <div className="flex items-center gap-3 shrink-0">
                               {task.department && (
-                                <span className="text-[9px] bg-[#132035] border border-[#1E3352] text-[#8BA3C7] px-1.5 py-0.5 rounded font-mono uppercase font-bold tracking-wider select-none">
+                                <span className="text-[9px] bg-bg-card border border-border/20 text-text-secondary px-1.5 py-0.5 rounded font-mono uppercase font-bold tracking-wider select-none">
                                   {task.department}
                                 </span>
                               )}
@@ -597,14 +596,14 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
                                 <span
                                   className={cn(
                                     'font-mono text-[10px] select-none',
-                                    isOverdue ? 'text-[#EF4444] font-semibold' : 'text-[#8BA3C7]',
-                                    isDone && 'text-[#4A6480]'
+                                    isOverdue ? 'text-error font-semibold' : 'text-text-secondary',
+                                    isDone && 'text-text-tertiary'
                                   )}
                                 >
                                   {formatDate(task.due_date)}
                                 </span>
                               ) : (
-                                <span className="text-[#4A6480] text-[10px] font-mono">-</span>
+                                <span className="text-text-tertiary text-[10px] font-mono">-</span>
                               )}
 
                               {initials ? (
@@ -620,7 +619,7 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
                               ) : (
                                 <div
                                   title="Unassigned"
-                                  className="h-6 w-6 rounded-full border border-dashed border-[#1E3352] flex items-center justify-center text-[#4A6480] shrink-0"
+                                  className="h-6 w-6 rounded-full border border-dashed border-border/30 flex items-center justify-center text-text-tertiary shrink-0"
                                 >
                                   <User size={11} />
                                 </div>
@@ -633,21 +632,21 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
                                     e.stopPropagation();
                                     setActiveMenuTaskId(activeMenuTaskId === task.id ? null : task.id);
                                   }}
-                                  className="p-1 rounded hover:bg-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] transition-colors cursor-pointer"
+                                  className="p-1 rounded hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
                                 >
                                   <MoreHorizontal size={14} />
                                 </button>
                                 {activeMenuTaskId === task.id && (
                                   <>
                                     <div className="fixed inset-0 z-20 cursor-default" onClick={() => setActiveMenuTaskId(null)} />
-                                    <div className="absolute right-0 top-6 bg-[#0D1829] border border-[#1E3352] rounded-md shadow-2xl py-1 w-24 z-30 text-[10px]">
+                                    <div className="absolute right-0 top-6 bg-bg-card border border-border/30 rounded-lg shadow-elevated py-1 w-24 z-30 text-[10px] backdrop-blur-[12px]">
                                       <button
                                         onClick={() => {
                                           setActiveMenuTaskId(null);
                                           setEditingTask(task);
                                           setTaskModalOpen(true);
                                         }}
-                                        className="w-full text-left px-3 py-1.5 hover:bg-[#132035] text-[#F0F4FF] transition-colors flex items-center gap-1.5 cursor-pointer"
+                                        className="w-full text-left px-3 py-1.5 hover:bg-bg-card-hover/20 text-text-primary transition-colors flex items-center gap-1.5 cursor-pointer"
                                       >
                                         <Edit3 size={11} />
                                         <span>Edit</span>
@@ -658,7 +657,7 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
                                           setTaskToDelete(task);
                                           setDeleteDialogOpen(true);
                                         }}
-                                        className="w-full text-left px-3 py-1.5 hover:bg-[#132035] text-[#EF4444] hover:bg-[#EF444410] transition-colors flex items-center gap-1.5 cursor-pointer"
+                                        className="w-full text-left px-3 py-1.5 hover:bg-error/10 text-error transition-colors flex items-center gap-1.5 cursor-pointer"
                                       >
                                         <Trash2 size={11} />
                                         <span>Delete</span>
@@ -672,20 +671,20 @@ export function DeliverablesDashboard({ initialClients, profiles }: Deliverables
                         );
                       })
                     ) : (
-                      <div className="p-4 text-center text-xs text-[#8BA3C7]/60">
+                      <div className="p-4 text-center text-xs text-text-secondary/60">
                         No tasks scheduled for this client in {monthYearString}.
                       </div>
                     )}
 
                     {/* Small link to add task for client */}
-                    <div className="p-3 bg-[#0A111F]/10 flex justify-start">
+                    <div className="p-3 bg-bg-dark/10 flex justify-start">
                       <button
                         onClick={() => {
                           setEditingTask(null);
                           setPreFilledClientId(client.id);
                           setTaskModalOpen(true);
                         }}
-                        className="text-xs font-semibold text-[#1B4FD8] hover:text-[#2563EB] flex items-center gap-1 hover:underline cursor-pointer"
+                        className="text-xs font-semibold text-primary hover:text-primary-light flex items-center gap-1 hover:underline cursor-pointer"
                       >
                         <Plus size={13} />
                         <span>Add task for {client.name}</span>

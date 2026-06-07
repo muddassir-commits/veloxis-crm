@@ -339,7 +339,7 @@ export function GoogleAdsDashboard({
       render: (_value: unknown, row: Record<string, unknown>) => {
         const r = row as unknown as GoogleAdsNegativeKeyword;
         return (
-          <span className="font-mono text-[#F0F4FF] font-semibold">{r.keyword}</span>
+          <span className="font-mono text-text-primary font-semibold">{r.keyword}</span>
         );
       },
     },
@@ -358,7 +358,7 @@ export function GoogleAdsDashboard({
       render: (_value: unknown, row: Record<string, unknown>) => {
         const r = row as unknown as GoogleAdsNegativeKeyword;
         return (
-          <span className="capitalize text-xs font-semibold px-2 py-0.5 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7]">
+          <span className="capitalize text-xs font-semibold px-2 py-0.5 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary">
             {r.match_type || 'exact'}
           </span>
         );
@@ -370,7 +370,7 @@ export function GoogleAdsDashboard({
       render: (_value: unknown, row: Record<string, unknown>) => {
         const r = row as unknown as GoogleAdsNegativeKeyword;
         return (
-          <span className="text-xs text-[#8BA3C7] font-mono">{r.campaign || 'All Campaigns'}</span>
+          <span className="text-xs text-text-secondary font-mono">{r.campaign || 'All Campaigns'}</span>
         );
       },
     },
@@ -388,7 +388,7 @@ export function GoogleAdsDashboard({
       render: (_value: unknown, row: Record<string, unknown>) => {
         const r = row as unknown as GoogleAdsNegativeKeyword;
         return (
-          <span className="text-xs text-[#8BA3C7] line-clamp-1 max-w-[200px]" title={r.reason || ''}>
+          <span className="text-xs text-text-secondary line-clamp-1 max-w-[200px]" title={r.reason || ''}>
             {r.reason || '—'}
           </span>
         );
@@ -404,7 +404,7 @@ export function GoogleAdsDashboard({
             size="sm"
             variant="ghost"
             onClick={() => handleDeleteNegKeyword(r.id)}
-            className="text-[#EF4444] hover:text-[#FF6B6B] hover:bg-[#EF444415] h-7 w-7 p-0 cursor-pointer"
+            className="text-error hover:text-error/80 hover:bg-error/15 h-7 w-7 p-0 cursor-pointer"
           >
             <Trash2 size={12} />
           </Button>
@@ -422,17 +422,17 @@ export function GoogleAdsDashboard({
           <button
             onClick={() => handleMonthChange(-1)}
             disabled={isPending}
-            className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] disabled:opacity-50 cursor-pointer"
+            className="p-1 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary disabled:opacity-50 cursor-pointer"
           >
             <ChevronLeft size={16} />
           </button>
-          <span className="text-sm font-semibold text-[#F0F4FF] min-w-[100px] text-center font-mono">
+          <span className="text-sm font-semibold text-text-primary min-w-[100px] text-center font-mono">
             {selectedMonth}
           </span>
           <button
             onClick={() => handleMonthChange(1)}
             disabled={isPending}
-            className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] disabled:opacity-50 cursor-pointer"
+            className="p-1 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary disabled:opacity-50 cursor-pointer"
           >
             <ChevronRight size={16} />
           </button>
@@ -443,7 +443,7 @@ export function GoogleAdsDashboard({
           <Button
             onClick={() => setConnectModalOpen(true)}
             variant="outline"
-            className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#132035] text-xs h-9 cursor-pointer"
+            className="border-border/30 text-text-secondary hover:text-text-primary hover:bg-bg-card-hover/20 text-xs h-9 cursor-pointer"
           >
             <Link2 size={14} className="mr-1.5" />
             <span>Connect ID</span>
@@ -451,7 +451,7 @@ export function GoogleAdsDashboard({
 
           <Button
             onClick={() => setLogReportOpen(true)}
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 cursor-pointer font-semibold"
+            className="bg-primary hover:bg-primary-light text-white text-xs h-9 gap-1.5 cursor-pointer font-semibold"
           >
             <Plus size={14} />
             <span>Log Campaign</span>
@@ -460,7 +460,7 @@ export function GoogleAdsDashboard({
           <Button
             onClick={handleSyncAll}
             disabled={syncingAll}
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-9 gap-1.5 cursor-pointer"
+            className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-9 gap-1.5 cursor-pointer"
           >
             <RefreshCw size={14} className={syncingAll ? 'animate-spin' : ''} />
             <span>Sync All</span>
@@ -473,14 +473,14 @@ export function GoogleAdsDashboard({
         <StatCard
           title="Cost Per Conv. (Google)"
           value={formatCurrency(cplGlobal)}
-          valueClassName="text-[#EF4444] font-mono"
+          valueClassName="text-error font-mono"
           icon={TrendingUp}
           loading={isPending}
         />
         <StatCard
           title="Total Google Spend"
           value={formatCurrency(totalSpend)}
-          valueClassName="text-[#F97316] font-mono"
+          valueClassName="text-accent font-mono"
           icon={DollarSign}
           loading={isPending}
         />
@@ -500,7 +500,7 @@ export function GoogleAdsDashboard({
 
       {/* Client List Section */}
       <div className="space-y-4">
-        <h2 className="text-sm font-bold uppercase tracking-wider text-[#4A6480] select-none">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-text-tertiary select-none">
           Client Ad Accounts ({sortedClients.length})
         </h2>
 
@@ -523,25 +523,25 @@ export function GoogleAdsDashboard({
             return (
               <div
                 key={client.id}
-                className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4 hover:border-[#1A2D47] transition-all flex flex-col justify-between"
+                className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4 hover:border-border/50 transition-all flex flex-col justify-between"
               >
                 {/* Header */}
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-sm text-[#F0F4FF]">{client.name}</span>
+                      <span className="font-bold text-sm text-text-primary">{client.name}</span>
                       {client.is_agency_self && (
                         <span className="badge badge-orange py-0.5 px-2 text-[9px] rounded-full uppercase font-bold">
                           My Agency
                         </span>
                       )}
                     </div>
-                    <span className="text-xs text-[#8BA3C7]">{client.company || 'No Company'}</span>
+                    <span className="text-xs text-text-secondary">{client.company || 'No Company'}</span>
                   </div>
 
                   {connection ? (
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] text-[#22C55E] bg-[#22C55E15] px-2 py-0.5 rounded-full font-medium">
+                      <span className="text-[10px] text-online bg-online/15 px-2 py-0.5 rounded-full font-medium">
                         API Connected
                       </span>
                       <Button
@@ -549,7 +549,7 @@ export function GoogleAdsDashboard({
                         variant="ghost"
                         onClick={() => handleSyncClient(client.id)}
                         disabled={syncingClientId === client.id}
-                        className="h-7 w-7 p-0 hover:bg-[#132035] cursor-pointer"
+                        className="h-7 w-7 p-0 hover:bg-bg-card-hover/20 cursor-pointer"
                       >
                         <RefreshCw
                           size={12}
@@ -558,46 +558,46 @@ export function GoogleAdsDashboard({
                       </Button>
                     </div>
                   ) : (
-                    <span className="text-[10px] text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full font-medium">
+                    <span className="text-[10px] text-text-tertiary bg-bg-card-hover/20 px-2 py-0.5 rounded-full font-medium">
                       Not Connected
                     </span>
                   )}
                 </div>
 
                 {/* Sub KPI Stats Grid */}
-                <div className="grid grid-cols-4 gap-2 pt-2 border-t border-[#1E3352]/40">
+                <div className="grid grid-cols-4 gap-2 pt-2 border-t border-border/30/40">
                   <div>
-                    <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">Spend</span>
-                    <span className="font-semibold text-xs text-[#F97316] font-mono">{formatCurrency(clientSpend)}</span>
+                    <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">Spend</span>
+                    <span className="font-semibold text-xs text-accent font-mono">{formatCurrency(clientSpend)}</span>
                   </div>
                   <div>
-                    <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">Convs</span>
-                    <span className="font-semibold text-xs text-[#F0F4FF] font-mono">{clientConvs}</span>
+                    <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">Convs</span>
+                    <span className="font-semibold text-xs text-text-primary font-mono">{clientConvs}</span>
                   </div>
                   <div>
-                    <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">Cost/Conv</span>
-                    <span className="font-semibold text-xs text-[#EF4444] font-mono">{formatCurrency(clientCpl)}</span>
+                    <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">Cost/Conv</span>
+                    <span className="font-semibold text-xs text-error font-mono">{formatCurrency(clientCpl)}</span>
                   </div>
                   <div>
-                    <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">CTR</span>
-                    <span className="font-semibold text-xs text-[#8BA3C7] font-mono">{clientCtr.toFixed(2)}%</span>
+                    <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">CTR</span>
+                    <span className="font-semibold text-xs text-text-secondary font-mono">{clientCtr.toFixed(2)}%</span>
                   </div>
                 </div>
 
                 {/* Campaign Progress details */}
-                <div className="space-y-1.5 select-none pt-2 border-t border-[#1E3352]/40">
+                <div className="space-y-1.5 select-none pt-2 border-t border-border/30/40">
                   <div className="flex items-center justify-between text-[10px]">
-                    <span className="text-[#8BA3C7]">Monthly Budget consumption</span>
-                    <span className="font-semibold text-[#F0F4FF] font-mono">
+                    <span className="text-text-secondary">Monthly Budget consumption</span>
+                    <span className="font-semibold text-text-primary font-mono">
                       {formatCurrency(clientSpend)} / {formatCurrency(clientAllocated)} ({progressPct.toFixed(0)}%)
                     </span>
                   </div>
-                  <Progress value={progressPct} className="h-1.5 bg-[#060D1A]" />
+                  <Progress value={progressPct} className="h-1.5 bg-bg-dark" />
                 </div>
 
                 {/* Campaigns List or Empty details */}
                 <div className="pt-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#4A6480] mb-2 block">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-text-tertiary mb-2 block">
                     Campaigns Logged ({clientCampaigns.length})
                   </span>
                   {clientCampaigns.length > 0 ? (
@@ -605,19 +605,19 @@ export function GoogleAdsDashboard({
                       {clientCampaigns.map((c) => (
                         <div
                           key={c.id}
-                          className="flex items-center justify-between text-xs p-2 rounded bg-[#060D1A] border border-[#1E3352]/60"
+                          className="flex items-center justify-between text-xs p-2 rounded bg-bg-dark border border-border/30/60"
                         >
-                          <span className="text-[#F0F4FF] font-medium truncate max-w-[150px]">{c.campaign_name}</span>
+                          <span className="text-text-primary font-medium truncate max-w-[150px]">{c.campaign_name}</span>
                           <div className="flex items-center gap-2 font-mono">
-                            <span className="text-[#F97316]">{formatCurrency(c.budget_spent || 0)}</span>
-                            <span className="text-[#8BA3C7] text-[10px]">({c.conversions} C)</span>
+                            <span className="text-accent">{formatCurrency(c.budget_spent || 0)}</span>
+                            <span className="text-text-secondary text-[10px]">({c.conversions} C)</span>
                             <StatusBadge status={c.status} />
                           </div>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className="text-center py-4 border border-dashed border-[#1E3352]/60 rounded text-[#4A6480] text-xs">
+                    <div className="text-center py-4 border border-dashed border-border/30/60 rounded text-text-tertiary text-xs">
                       No campaigns logged for {selectedMonth}.
                     </div>
                   )}
@@ -625,11 +625,11 @@ export function GoogleAdsDashboard({
 
                 {/* Account Details footer */}
                 {connection && (
-                  <div className="flex items-center gap-1.5 text-[9px] text-[#8BA3C7] pt-2 border-t border-[#1E3352]/40 font-mono">
-                    <AlertCircle size={10} className="text-[#4A6480]" />
+                  <div className="flex items-center gap-1.5 text-[9px] text-text-secondary pt-2 border-t border-border/30/40 font-mono">
+                    <AlertCircle size={10} className="text-text-tertiary" />
                     <span>Customer ID: {connection.customer_id}</span>
                     {connection.last_sync && (
-                      <span className="text-[#4A6480] ml-auto">
+                      <span className="text-text-tertiary ml-auto">
                         Synced: {new Date(connection.last_sync).toLocaleTimeString()}
                       </span>
                     )}
@@ -642,15 +642,15 @@ export function GoogleAdsDashboard({
       </div>
 
       {/* Negative Keywords Section */}
-      <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-6 space-y-4">
+      <div className="bg-bg-card border border-border/30 rounded-[10px] p-6 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 select-none">
           <div>
-            <h3 className="text-base font-semibold text-[#F0F4FF]">Negative Keywords Manager</h3>
-            <p className="text-xs text-[#8BA3C7]">Exclude queries that trigger irrelevant search queries.</p>
+            <h3 className="text-base font-semibold text-text-primary">Negative Keywords Manager</h3>
+            <p className="text-xs text-text-secondary">Exclude queries that trigger irrelevant search queries.</p>
           </div>
           <Button
             onClick={() => setAddNegKeywordOpen(true)}
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 cursor-pointer font-semibold"
+            className="bg-primary hover:bg-primary-light text-white text-xs h-9 gap-1.5 cursor-pointer font-semibold"
           >
             <Plus size={14} />
             <span>Add Negative Keyword</span>
@@ -661,7 +661,7 @@ export function GoogleAdsDashboard({
         <div className="flex flex-wrap items-center gap-3 select-none">
           {/* Search bar */}
           <div className="relative flex-1 min-w-[200px] max-w-sm">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-[#4A6480]" />
+            <Search className="absolute left-3 top-2.5 h-4 w-4 text-text-tertiary" />
             <input
               type="text"
               placeholder="Search negative keywords..."
@@ -672,13 +672,13 @@ export function GoogleAdsDashboard({
           </div>
 
           {/* Client Filter */}
-          <div className="flex items-center gap-1.5 bg-[#132035] border border-[#1E3352] px-3 py-1.5 rounded-[7px] text-xs">
-            <Filter size={12} className="text-[#8BA3C7]" />
-            <span className="text-[#8BA3C7] mr-1">Client:</span>
+          <div className="flex items-center gap-1.5 bg-bg-card-hover/20 border border-border/30 px-3 py-1.5 rounded-[7px] text-xs">
+            <Filter size={12} className="text-text-secondary" />
+            <span className="text-text-secondary mr-1">Client:</span>
             <select
               value={negClientFilter}
               onChange={(e) => setNegClientFilter(e.target.value)}
-              className="bg-transparent text-[#F0F4FF] outline-none font-semibold border-none cursor-pointer p-0"
+              className="bg-transparent text-text-primary outline-none font-semibold border-none cursor-pointer p-0"
             >
               <option value="all">All Clients</option>
               {initialClients.map((c) => (
@@ -704,11 +704,11 @@ export function GoogleAdsDashboard({
 
       {/* ── MODAL: CONNECT GOOGLE CUSTOMER ID ── */}
       <Dialog open={connectModalOpen} onOpenChange={setConnectModalOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <form onSubmit={handleConnectSubmit}>
             <DialogHeader>
-              <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Connect Google Ads account</DialogTitle>
-              <DialogDescription className="text-xs text-[#8BA3C7]">
+              <DialogTitle className="text-base font-semibold text-text-primary">Connect Google Ads account</DialogTitle>
+              <DialogDescription className="text-xs text-text-secondary">
                 Provide client&apos;s Google Ads Customer ID (format: XXXXXXXXXX).
               </DialogDescription>
             </DialogHeader>
@@ -750,14 +750,14 @@ export function GoogleAdsDashboard({
                 type="button"
                 variant="outline"
                 onClick={() => setConnectModalOpen(false)}
-                className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+                className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={connecting}
-                className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+                className="bg-primary hover:bg-primary-light text-white cursor-pointer"
               >
                 {connecting ? 'Verifying...' : 'Connect Account'}
               </Button>
@@ -768,11 +768,11 @@ export function GoogleAdsDashboard({
 
       {/* ── MODAL: LOG CAMPAIGN MANUALLY ── */}
       <Dialog open={logReportOpen} onOpenChange={setLogReportOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
           <form onSubmit={handleLogSubmit}>
             <DialogHeader>
-              <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Log Google Ads Campaign</DialogTitle>
-              <DialogDescription className="text-xs text-[#8BA3C7]">
+              <DialogTitle className="text-base font-semibold text-text-primary">Log Google Ads Campaign</DialogTitle>
+              <DialogDescription className="text-xs text-text-secondary">
                 Manually log campaign metrics for {selectedMonth}.
               </DialogDescription>
             </DialogHeader>
@@ -906,11 +906,11 @@ export function GoogleAdsDashboard({
                 type="button"
                 variant="outline"
                 onClick={() => setLogReportOpen(false)}
-                className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+                className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
               >
                 Cancel
               </Button>
-              <Button type="submit" className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer">
+              <Button type="submit" className="bg-primary hover:bg-primary-light text-white cursor-pointer">
                 Log Campaign
               </Button>
             </DialogFooter>
@@ -920,11 +920,11 @@ export function GoogleAdsDashboard({
 
       {/* ── MODAL: ADD NEGATIVE KEYWORD ── */}
       <Dialog open={addNegKeywordOpen} onOpenChange={setAddNegKeywordOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <form onSubmit={handleAddNegKeywordSubmit}>
             <DialogHeader>
-              <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Add Negative Keyword</DialogTitle>
-              <DialogDescription className="text-xs text-[#8BA3C7]">
+              <DialogTitle className="text-base font-semibold text-text-primary">Add Negative Keyword</DialogTitle>
+              <DialogDescription className="text-xs text-text-secondary">
                 Add queries that you want to exclude from triggering client ads.
               </DialogDescription>
             </DialogHeader>
@@ -1000,11 +1000,11 @@ export function GoogleAdsDashboard({
                 type="button"
                 variant="outline"
                 onClick={() => setAddNegKeywordOpen(false)}
-                className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+                className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
               >
                 Cancel
               </Button>
-              <Button type="submit" className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer">
+              <Button type="submit" className="bg-primary hover:bg-primary-light text-white cursor-pointer">
                 Add Keyword
               </Button>
             </DialogFooter>

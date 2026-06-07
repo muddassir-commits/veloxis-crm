@@ -19,6 +19,8 @@ import {
   DialogFooter,
   DialogDescription,
 } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Lead, OutreachLog as OutreachLogType, Profile } from '@/types';
 
 interface SalesDashboardProps {
@@ -201,7 +203,7 @@ export function SalesDashboard({
   return (
     <div className="space-y-6">
       {/* Tab Navigation header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#1E3352] select-none gap-4 pb-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-border/20 select-none gap-4 pb-2">
         <div className="flex items-center gap-2 overflow-x-auto">
           {(['pipeline', 'outreach', 'analytics'] as const).map((tab) => (
             <button
@@ -209,8 +211,8 @@ export function SalesDashboard({
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider border-b-2 cursor-pointer transition-all ${
                 activeTab === tab
-                  ? 'border-[#1B4FD8] text-[#F0F4FF]'
-                  : 'border-transparent text-[#8BA3C7] hover:text-[#F0F4FF]'
+                  ? 'border-primary text-text-primary'
+                  : 'border-transparent text-text-secondary hover:text-text-primary'
               }`}
             >
               {tab === 'pipeline' ? 'Pipeline' : tab === 'outreach' ? 'Outreach Log' : 'Analytics'}
@@ -224,7 +226,7 @@ export function SalesDashboard({
             <Button
               onClick={() => setAddLeadOpen(true)}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+              className="text-xs h-8 gap-1.5 cursor-pointer font-semibold"
             >
               <Plus size={13} />
               <span>Add Lead</span>
@@ -235,7 +237,8 @@ export function SalesDashboard({
             onClick={refreshData}
             disabled={isRefreshing}
             size="sm"
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer"
+            variant="outline"
+            className="text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer"
           >
             <RefreshCw size={13} className={`stroke-[1.5] ${isRefreshing ? 'animate-spin' : ''}`} />
             <span>{isRefreshing ? 'Refreshing...' : 'Refresh'}</span>
@@ -263,109 +266,109 @@ export function SalesDashboard({
 
       {/* ━━━ MODAL: ADD LEAD ━━━ */}
       <Dialog open={addLeadOpen} onOpenChange={setAddLeadOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-lg select-none">
+        <DialogContent className="sm:max-w-[600px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Add New Lead</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle>Add New Lead</DialogTitle>
+            <DialogDescription>
               Enter the client details to add a new lead. Leads will be automatically scored based on industry, value, and source.
             </DialogDescription>
           </DialogHeader>
 
           <div className="grid grid-cols-2 gap-4 my-2 text-xs">
             <div className="space-y-1">
-              <label className="label">Full Name *</label>
-              <input
+              <label className="text-text-secondary font-semibold">Full Name *</label>
+              <Input
                 type="text"
                 placeholder="e.g. John Doe"
                 value={leadForm.name}
                 onChange={(e) => setLeadForm((p) => ({ ...p, name: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Company / Business Name</label>
-              <input
+              <label className="text-text-secondary font-semibold">Company / Business Name</label>
+              <Input
                 type="text"
                 placeholder="e.g. Acme Corp"
                 value={leadForm.company}
                 onChange={(e) => setLeadForm((p) => ({ ...p, company: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Email Address</label>
-              <input
+              <label className="text-text-secondary font-semibold">Email Address</label>
+              <Input
                 type="email"
                 placeholder="john@example.com"
                 value={leadForm.email}
                 onChange={(e) => setLeadForm((p) => ({ ...p, email: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Phone Number</label>
-              <input
+              <label className="text-text-secondary font-semibold">Phone Number</label>
+              <Input
                 type="text"
                 placeholder="e.g. +91 9999999999"
                 value={leadForm.phone}
                 onChange={(e) => setLeadForm((p) => ({ ...p, phone: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">WhatsApp Number</label>
-              <input
+              <label className="text-text-secondary font-semibold">WhatsApp Number</label>
+              <Input
                 type="text"
                 placeholder="e.g. 919999999999"
                 value={leadForm.whatsapp}
                 onChange={(e) => setLeadForm((p) => ({ ...p, whatsapp: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Website Domain</label>
-              <input
+              <label className="text-text-secondary font-semibold">Website Domain</label>
+              <Input
                 type="text"
                 placeholder="e.g. example.com"
                 value={leadForm.website}
                 onChange={(e) => setLeadForm((p) => ({ ...p, website: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Industry Type</label>
-              <input
+              <label className="text-text-secondary font-semibold">Industry Type</label>
+              <Input
                 type="text"
                 placeholder="e.g. E-commerce, Real Estate"
                 value={leadForm.industry}
                 onChange={(e) => setLeadForm((p) => ({ ...p, industry: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">City / Region</label>
-              <input
+              <label className="text-text-secondary font-semibold">City / Region</label>
+              <Input
                 type="text"
                 placeholder="e.g. Kanpur, Lucknow"
                 value={leadForm.city}
                 onChange={(e) => setLeadForm((p) => ({ ...p, city: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Lead Source</label>
+              <label className="text-text-secondary font-semibold">Lead Source</label>
               <select
                 value={leadForm.source}
                 onChange={(e) => setLeadForm((p) => ({ ...p, source: e.target.value }))}
-                className="input h-9"
+                className="flex h-9 w-full rounded-lg border border-border/30 bg-bg-card/50 backdrop-blur-[8px] px-3 py-1 text-xs text-text-primary outline-none hover:border-border/60 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all duration-200"
               >
                 <option value="website">Website Audit Form</option>
                 <option value="linkedin">LinkedIn Outreach</option>
@@ -377,22 +380,22 @@ export function SalesDashboard({
             </div>
 
             <div className="space-y-1">
-              <label className="label">Estimated Deal Value (₹)</label>
-              <input
+              <label className="text-text-secondary font-semibold">Estimated Deal Value (₹)</label>
+              <Input
                 type="number"
                 placeholder="e.g. 25000"
                 value={leadForm.estimated_value}
                 onChange={(e) => setLeadForm((p) => ({ ...p, estimated_value: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Assign To Agent</label>
+              <label className="text-text-secondary font-semibold">Assign To Agent</label>
               <select
                 value={leadForm.assigned_to}
                 onChange={(e) => setLeadForm((p) => ({ ...p, assigned_to: e.target.value }))}
-                className="input h-9"
+                className="flex h-9 w-full rounded-lg border border-border/30 bg-bg-card/50 backdrop-blur-[8px] px-3 py-1 text-xs text-text-primary outline-none hover:border-border/60 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all duration-200"
               >
                 <option value="">Unassigned</option>
                 {profiles?.map((p) => (
@@ -404,23 +407,23 @@ export function SalesDashboard({
             </div>
 
             <div className="space-y-1">
-              <label className="label">Next Follow-Up Date</label>
-              <input
+              <label className="text-text-secondary font-semibold">Next Follow-Up Date</label>
+              <Input
                 type="date"
                 value={leadForm.follow_up_date}
                 onChange={(e) => setLeadForm((p) => ({ ...p, follow_up_date: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="col-span-2 space-y-1">
-              <label className="label">Lead Notes / Requirements</label>
-              <textarea
+              <label className="text-text-secondary font-semibold">Lead Notes / Requirements</label>
+              <Textarea
                 placeholder="Describe client specific requirements..."
                 value={leadForm.notes}
                 onChange={(e) => setLeadForm((p) => ({ ...p, notes: e.target.value }))}
                 rows={2}
-                className="input resize-none"
+                className="resize-none"
               />
             </div>
           </div>
@@ -429,13 +432,13 @@ export function SalesDashboard({
             <Button
               variant="outline"
               onClick={() => setAddLeadOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="text-text-secondary hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleAddLead}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              className="cursor-pointer"
             >
               Create Lead
             </Button>

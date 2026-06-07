@@ -18,24 +18,36 @@ interface AdminLayoutShellProps {
 
 export function AdminLayoutShell({ userProfile, children }: AdminLayoutShellProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#060D1A] text-[#F0F4FF] flex">
+    <div className="min-h-screen bg-bg-dark text-text-primary flex relative">
+      {/* Backdrop overlay for mobile */}
+      {isMobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 lg:hidden transition-opacity duration-300"
+          onClick={() => setIsMobileOpen(false)}
+        />
+      )}
+
       {/* Sidebar component */}
       <Sidebar
         userProfile={userProfile}
         isCollapsed={isCollapsed}
         setIsCollapsed={setIsCollapsed}
+        isMobileOpen={isMobileOpen}
+        setIsMobileOpen={setIsMobileOpen}
       />
 
       {/* Main Content Area with Dynamic Padding-Left matching Sidebar state */}
       <div
         className={cn(
           "flex-1 flex flex-col min-w-0 min-h-screen transition-all duration-200",
-          isCollapsed ? "pl-[60px]" : "pl-[220px]"
+          "pl-0 lg:pl-[220px]",
+          isCollapsed && "lg:pl-[60px]"
         )}
       >
-        <Header userProfile={userProfile} />
+        <Header userProfile={userProfile} onMenuClick={() => setIsMobileOpen(true)} />
         <main className="flex-1 overflow-y-auto">
           {children}
         </main>
@@ -47,9 +59,9 @@ export function AdminLayoutShell({ userProfile, children }: AdminLayoutShellProp
         theme="dark"
         toastOptions={{
           style: {
-            background: '#0D1829',
-            border: '1px solid #1E3352',
-            color: '#F0F4FF',
+            background: 'var(--color-bg-card)',
+            border: '1px solid var(--color-border-subtle)',
+            color: 'var(--color-text-primary)',
             fontSize: '13px',
             fontFamily: 'var(--font-dm-sans, DM Sans, sans-serif)',
           },

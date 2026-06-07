@@ -168,8 +168,8 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
       header: 'Workflow Name',
       render: (val: any, row: any) => (
         <div className="flex flex-col select-none">
-          <span className="font-semibold text-[#F0F4FF] text-xs sm:text-sm">{row.name}</span>
-          <span className="text-[11px] text-[#8BA3C7]/80 line-clamp-1 max-w-xs">{row.description || 'No description provided'}</span>
+          <span className="font-semibold text-text-primary text-xs sm:text-sm">{row.name}</span>
+          <span className="text-[11px] text-text-secondary/80 line-clamp-1 max-w-xs">{row.description || 'No description provided'}</span>
         </div>
       )
     },
@@ -177,7 +177,7 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
       key: 'cron_expression',
       header: 'Schedule / Express',
       render: (val: any) => (
-        <code className="text-[11px] font-mono text-[#F97316] bg-[#F9731610] px-1.5 py-0.5 rounded border border-[#F9731620]">
+        <code className="text-[11px] font-mono text-accent bg-[#F9731610] px-1.5 py-0.5 rounded border border-[#F9731620]">
           {val}
         </code>
       )
@@ -197,13 +197,13 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
       header: 'Last Execution Status',
       render: (val: any) => {
         const status = val || 'never';
-        let badgeColor = 'bg-[#1E335220] text-[#8BA3C7] border-[#1E335230]';
+        let badgeColor = 'bg-[#1E335220] text-text-secondary border-[#1E335230]';
         let statusLabel = 'Never Run';
         if (status === 'success') {
-          badgeColor = 'bg-[#22C55E15] text-[#22C55E] border-[#22C55E30]';
+          badgeColor = 'bg-online/15 text-online border-[#22C55E30]';
           statusLabel = 'Success';
         } else if (status === 'failed') {
-          badgeColor = 'bg-[#EF444415] text-[#EF4444] border-[#EF444430]';
+          badgeColor = 'bg-error/15 text-error border-[#EF444430]';
           statusLabel = 'Failed';
         } else if (status === 'running') {
           badgeColor = 'bg-[#3B82F615] text-[#3B82F6] border-[#3B82F630]';
@@ -224,7 +224,7 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
           onClick={(e) => handleTriggerJob(row, e)}
           disabled={triggeringJobId === row.id}
           size="sm"
-          className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[11px] h-7 px-2.5 gap-1 select-none cursor-pointer"
+          className="bg-primary hover:bg-primary-light text-white text-[11px] h-7 px-2.5 gap-1 select-none cursor-pointer"
         >
           <Play size={10} className="fill-current" />
           <span>{triggeringJobId === row.id ? 'Running...' : 'Run Now'}</span>
@@ -264,19 +264,19 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
       </div>
 
       {/* ━━━ MAIN AUTOMATION LISTS ━━━ */}
-      <div className="border-b border-[#1E3352] pb-2 flex items-center justify-between">
+      <div className="border-b border-border/30 pb-2 flex items-center justify-between">
         <div>
-          <h2 className="text-base font-semibold text-[#F0F4FF] flex items-center gap-2">
+          <h2 className="text-base font-semibold text-text-primary flex items-center gap-2">
             <Database size={16} className="text-[#3B82F6]" />
             <span>Scheduled Workflows (n8n Sync)</span>
           </h2>
-          <p className="text-xs text-[#8BA3C7] mt-0.5">Click any scheduled row to inspect execution runs history.</p>
+          <p className="text-xs text-text-secondary mt-0.5">Click any scheduled row to inspect execution runs history.</p>
         </div>
         <Button
           onClick={refreshData}
           disabled={isRefreshing}
           size="sm"
-          className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+          className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer font-semibold"
         >
           <RefreshCw size={13} className={isRefreshing ? 'animate-spin' : ''} />
           <span>Sync Status</span>
@@ -298,24 +298,24 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
       {/* ━━━ EVENT TRIGGERS SECTION ━━━ */}
       <div className="mt-8 space-y-4">
         <div>
-          <h2 className="text-base font-semibold text-[#F0F4FF] flex items-center gap-2">
-            <Workflow size={16} className="text-[#F97316]" />
+          <h2 className="text-base font-semibold text-text-primary flex items-center gap-2">
+            <Workflow size={16} className="text-accent" />
             <span>Real-time Event Triggers</span>
           </h2>
-          <p className="text-xs text-[#8BA3C7] mt-0.5">Real-time webhooks fired on specific events inside Veloxis CRM.</p>
+          <p className="text-xs text-text-secondary mt-0.5">Real-time webhooks fired on specific events inside Veloxis CRM.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {eventWorkflows.map((flow) => (
             <div 
               key={flow.id} 
-              className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 flex flex-col justify-between hover:border-[#1E3352] transition-colors"
+              className="rounded-lg border border-border/30/60 bg-bg-card p-4 flex flex-col justify-between hover:border-border/30 transition-colors"
             >
               <div>
                 <div className="flex items-start justify-between">
                   <div className="space-y-0.5">
-                    <h3 className="font-semibold text-xs sm:text-sm text-[#F0F4FF]">{flow.name}</h3>
-                    <code className="text-[10px] font-mono text-[#F97316] bg-[#F973160c] px-1.5 py-0.5 rounded border border-[#F973161c]">
+                    <h3 className="font-semibold text-xs sm:text-sm text-text-primary">{flow.name}</h3>
+                    <code className="text-[10px] font-mono text-accent bg-[#F973160c] px-1.5 py-0.5 rounded border border-[#F973161c]">
                       {flow.triggerEvent}
                     </code>
                   </div>
@@ -324,12 +324,12 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
                     onCheckedChange={() => handleToggleEventWorkflow(flow.id, flow.name)}
                   />
                 </div>
-                <p className="text-xs text-[#8BA3C7]/90 mt-3 leading-relaxed">{flow.description}</p>
+                <p className="text-xs text-text-secondary/90 mt-3 leading-relaxed">{flow.description}</p>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-[#1E3352]/20 flex items-center justify-between text-[11px] text-[#8BA3C7]">
+              <div className="mt-4 pt-3 border-t border-border/30/20 flex items-center justify-between text-[11px] text-text-secondary">
                 <span className="flex items-center gap-1 font-semibold">
-                  <span className={`w-2 h-2 rounded-full ${flow.isActive ? 'bg-[#22C55E] animate-pulse' : 'bg-gray-500'}`} />
+                  <span className={`w-2 h-2 rounded-full ${flow.isActive ? 'bg-online animate-pulse' : 'bg-gray-500'}`} />
                   <span>{flow.isActive ? 'LISTENING' : 'DISABLED'}</span>
                 </span>
                 <span>Last Fired: {flow.lastTriggered ? new Date(flow.lastTriggered).toLocaleTimeString() : 'Never'}</span>
@@ -341,42 +341,42 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
 
       {/* ━━━ DRAWER SHEET: JOB HISTORY RUNS ━━━ */}
       <Sheet open={selectedJob !== null} onOpenChange={(open) => !open && setSelectedJob(null)}>
-        <SheetContent side="right" className="bg-[#0D1829] border-l border-[#1E3352] text-[#F0F4FF] sm:max-w-md select-none overflow-y-auto p-0">
-          <SheetHeader className="p-6 border-b border-[#1E3352]/40">
-            <SheetTitle className="text-[#F0F4FF] text-base font-semibold">{selectedJob?.name}</SheetTitle>
-            <SheetDescription className="text-[#8BA3C7] text-xs">
+        <SheetContent side="right" className="bg-bg-card border-l border-border/30 text-text-primary sm:max-w-md select-none overflow-y-auto p-0">
+          <SheetHeader className="p-6 border-b border-border/30/40">
+            <SheetTitle className="text-text-primary text-base font-semibold">{selectedJob?.name}</SheetTitle>
+            <SheetDescription className="text-text-secondary text-xs">
               Workflow schedule runs and execution logs.
             </SheetDescription>
           </SheetHeader>
 
           <div className="p-6 space-y-6 text-xs">
             <div>
-              <h4 className="font-semibold text-[#F0F4FF] mb-1">Schedule Details</h4>
-              <div className="grid grid-cols-2 gap-2 bg-[#060D1A] border border-[#1E3352]/40 rounded-lg p-3 text-[11px]">
+              <h4 className="font-semibold text-text-primary mb-1">Schedule Details</h4>
+              <div className="grid grid-cols-2 gap-2 bg-bg-dark border border-border/30/40 rounded-lg p-3 text-[11px]">
                 <div>
-                  <span className="text-[#8BA3C7] block">Cron Expression</span>
-                  <code className="text-[#F97316] font-mono">{selectedJob?.cron_expression}</code>
+                  <span className="text-text-secondary block">Cron Expression</span>
+                  <code className="text-accent font-mono">{selectedJob?.cron_expression}</code>
                 </div>
                 <div>
-                  <span className="text-[#8BA3C7] block">n8n ID</span>
+                  <span className="text-text-secondary block">n8n ID</span>
                   <code className="text-[#3B82F6] font-mono">{selectedJob?.n8n_workflow_id || 'n/a'}</code>
                 </div>
               </div>
             </div>
 
             <div>
-              <h4 className="font-semibold text-[#F0F4FF] mb-3 flex items-center gap-1.5">
-                <Clock size={13} className="text-[#8BA3C7]" />
+              <h4 className="font-semibold text-text-primary mb-3 flex items-center gap-1.5">
+                <Clock size={13} className="text-text-secondary" />
                 <span>Last 10 Execution Runs</span>
               </h4>
 
               {isHistoryLoading ? (
-                <div className="space-y-3 py-4 text-center text-[#8BA3C7]">
+                <div className="space-y-3 py-4 text-center text-text-secondary">
                   <RefreshCw size={20} className="animate-spin mx-auto text-[#1B4FD8]" />
                   <span>Loading history...</span>
                 </div>
               ) : runHistory.length === 0 ? (
-                <div className="border border-dashed border-[#1E3352]/40 rounded-lg p-6 text-center text-[#8BA3C7] my-2">
+                <div className="border border-dashed border-border/30/40 rounded-lg p-6 text-center text-text-secondary my-2">
                   No execution runs found. Click "Run Now" to trigger a run.
                 </div>
               ) : (
@@ -390,33 +390,33 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
                     return (
                       <div 
                         key={run.id} 
-                        className="rounded-lg border border-[#1E3352]/50 bg-[#060D1A]/50 p-3 space-y-2 hover:border-[#1E3352] transition-colors"
+                        className="rounded-lg border border-border/30/50 bg-bg-dark/50 p-3 space-y-2 hover:border-border/30 transition-colors"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-[11px] text-[#F0F4FF] font-medium">
+                          <span className="text-[11px] text-text-primary font-medium">
                             {new Date(run.started_at).toLocaleString()}
                           </span>
                           <span className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-bold ${
                             isSuccess 
-                              ? 'bg-[#22C55E10] text-[#22C55E]' 
-                              : 'bg-[#EF444410] text-[#EF4444]'
+                              ? 'bg-[#22C55E10] text-online' 
+                              : 'bg-[#EF444410] text-error'
                           }`}>
                             {isSuccess ? <CheckCircle2 size={9} /> : <XCircle size={9} />}
                             <span>{run.status?.toUpperCase() || 'RUNNING'}</span>
                           </span>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-2 text-[10px] text-[#8BA3C7]">
+                        <div className="grid grid-cols-2 gap-2 text-[10px] text-text-secondary">
                           <div>
                             <span>Duration:</span>{' '}
-                            <span className="text-[#F0F4FF]">
+                            <span className="text-text-primary">
                               {runDuration !== null ? `${runDuration}ms` : 'n/a'}
                             </span>
                           </div>
                         </div>
 
                         {run.error && (
-                          <div className="bg-[#EF44440c] border border-[#EF444420] text-[#EF4444] text-[10px] p-2 rounded font-mono break-all whitespace-pre-wrap max-h-24 overflow-y-auto">
+                          <div className="bg-[#EF44440c] border border-[#EF444420] text-error text-[10px] p-2 rounded font-mono break-all whitespace-pre-wrap max-h-24 overflow-y-auto">
                             {run.error}
                           </div>
                         )}
@@ -426,7 +426,7 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
                               <ChevronRight size={10} className="group-open:rotate-90 transition-transform" />
                               <span>View Payload / Result</span>
                             </summary>
-                            <pre className="mt-2 bg-[#060D1A] text-[#8BA3C7] text-[9px] p-2 rounded border border-[#1E3352]/30 font-mono overflow-x-auto max-h-36 overflow-y-auto">
+                            <pre className="mt-2 bg-bg-dark text-text-secondary text-[9px] p-2 rounded border border-border/30/30 font-mono overflow-x-auto max-h-36 overflow-y-auto">
                               {JSON.stringify(run.output, null, 2)}
                             </pre>
                           </details>

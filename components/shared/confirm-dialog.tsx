@@ -35,13 +35,13 @@ export function ConfirmDialog({
   return (
     <AlertDialog open={open} onOpenChange={(isOpen) => { if (!isOpen && !loading) onClose(); }}>
       <AlertDialogContent 
-        className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] rounded-xl max-w-sm p-6 shadow-2xl backdrop-blur-md z-50"
+        className="bg-bg-card border border-border/30 text-text-primary rounded-xl max-w-sm p-6 shadow-2xl backdrop-blur-md z-50"
       >
         <AlertDialogHeader className="text-left">
-          <AlertDialogTitle className="text-base font-semibold text-[#F0F4FF] tracking-tight">
+          <AlertDialogTitle className="text-base font-semibold text-text-primary tracking-tight">
             {title}
           </AlertDialogTitle>
-          <AlertDialogDescription className="text-xs text-[#8BA3C7] mt-1.5 leading-relaxed">
+          <AlertDialogDescription className="text-xs text-text-secondary mt-1.5 leading-relaxed">
             {description}
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -51,7 +51,7 @@ export function ConfirmDialog({
             variant="outline"
             disabled={loading}
             onClick={onClose}
-            className="border-[#1E3352] bg-transparent hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold px-4 h-9 cursor-pointer transition-colors"
+            className="border-border/30 bg-transparent hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary text-xs font-semibold px-4 h-9 cursor-pointer transition-colors"
           >
             Cancel
           </Button>
@@ -62,8 +62,8 @@ export function ConfirmDialog({
             className={cn(
               "text-xs font-semibold text-white px-4 h-9 rounded-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer min-w-[70px]",
               variant === 'danger'
-                ? "bg-[#EF4444] hover:bg-[#DC2626]"
-                : "bg-[#1B4FD8] hover:bg-[#2563EB]"
+                ? "bg-error hover:bg-error-light"
+                : "bg-primary hover:bg-primary-light"
             )}
           >
             {loading && <Loader2 className="h-3 w-3 animate-spin shrink-0" />}

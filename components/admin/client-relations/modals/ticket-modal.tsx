@@ -209,12 +209,12 @@ export function TicketModal({
 
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) onClose(); }}>
-      <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+      <DialogContent className="bg-bg-card border border-border/30 text-text-primary max-w-md select-none">
         <DialogHeader>
-          <DialogTitle className="text-base font-semibold text-[#F0F4FF]">
+          <DialogTitle className="text-base font-semibold text-text-primary">
             {ticket ? 'Edit Support Ticket' : 'Raise Support Ticket'}
           </DialogTitle>
-          <DialogDescription className="text-xs text-[#8BA3C7]">
+          <DialogDescription className="text-xs text-text-secondary">
             {ticket
               ? 'Update ticket progress, priority, assignee, or log a resolution.'
               : 'Create a support ticket to track client issues, bug reports, or service inquiries.'}
@@ -322,14 +322,14 @@ export function TicketModal({
               type="button"
               variant="outline"
               onClick={onClose}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={loading}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white cursor-pointer"
             >
               {loading ? 'Saving...' : ticket ? 'Save Changes' : 'Raise Ticket'}
             </Button>

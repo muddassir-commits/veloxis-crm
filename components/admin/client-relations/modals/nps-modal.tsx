@@ -113,10 +113,10 @@ export function NpsModal({ open, onClose, clients, onSuccess }: NpsModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) onClose(); }}>
-      <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+      <DialogContent className="bg-bg-card border border-border/30 text-text-primary max-w-md select-none">
         <DialogHeader>
-          <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Record NPS Response</DialogTitle>
-          <DialogDescription className="text-xs text-[#8BA3C7]">
+          <DialogTitle className="text-base font-semibold text-text-primary">Record NPS Response</DialogTitle>
+          <DialogDescription className="text-xs text-text-secondary">
             Log Net Promoter Score (NPS) gathered from recent calls or surveys.
           </DialogDescription>
         </DialogHeader>
@@ -145,8 +145,8 @@ export function NpsModal({ open, onClose, clients, onSuccess }: NpsModalProps) {
             <div className="flex justify-between items-center">
               <label className="label">NPS Score (0 - 10) *</label>
               <span className={`text-base font-bold font-mono px-2 py-0.5 rounded ${
-                form.score >= 9 ? 'bg-[#22C55E]/10 text-[#22C55E]' :
-                form.score >= 7 ? 'bg-[#F59E0B]/10 text-[#F59E0B]' : 'bg-[#EF4444]/10 text-[#EF4444]'
+                form.score >= 9 ? 'bg-online/10 text-online' :
+                form.score >= 7 ? 'bg-warning/10 text-warning' : 'bg-error/10 text-error'
               }`}>
                 {form.score}
               </span>
@@ -158,9 +158,9 @@ export function NpsModal({ open, onClose, clients, onSuccess }: NpsModalProps) {
               step="1"
               value={form.score}
               onChange={(e) => setForm((p) => ({ ...p, score: Number(e.target.value) }))}
-              className="w-full h-1.5 bg-[#132035] rounded-lg appearance-none cursor-pointer accent-[#1B4FD8]"
+              className="w-full h-1.5 bg-bg-card-hover/20 rounded-lg appearance-none cursor-pointer accent-[#1B4FD8]"
             />
-            <div className="flex justify-between text-[9px] text-[#4A6480] font-semibold px-0.5">
+            <div className="flex justify-between text-[9px] text-text-tertiary font-semibold px-0.5">
               <span>0 (Detractor)</span>
               <span>7 (Passive)</span>
               <span>10 (Promoter)</span>
@@ -184,14 +184,14 @@ export function NpsModal({ open, onClose, clients, onSuccess }: NpsModalProps) {
               type="button"
               variant="outline"
               onClick={onClose}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={loading}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white cursor-pointer"
             >
               {loading ? 'Logging...' : 'Log NPS Response'}
             </Button>

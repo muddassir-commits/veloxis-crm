@@ -289,15 +289,15 @@ export function ReportsDashboard({
   return (
     <PageContainer title="Reports & Analytics" description="Compile, review, generate and distribute monthly client performance reports.">
       {/* Upper Control Bar */}
-      <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center bg-[#0D1829] border border-[#1E3352] p-4 rounded-xl mb-6 shadow-md">
+      <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center bg-bg-card border border-border/30 p-4 rounded-xl mb-6 shadow-md">
         <div className="flex flex-wrap gap-3 items-center w-full md:w-auto">
           {/* Client Selector */}
           <div className="flex flex-col gap-1 min-w-[200px]">
-            <label className="text-[10px] font-semibold text-[#8BA3C7] uppercase tracking-wider">Select Client</label>
+            <label className="text-[10px] font-semibold text-text-secondary uppercase tracking-wider">Select Client</label>
             <select
               value={selectedClientId}
               onChange={(e) => handleClientChange(e.target.value)}
-              className="bg-[#0A1628] border border-[#1E3352] text-[#F0F4FF] rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-blue-500 w-full"
+              className="bg-[#0A1628] border border-border/30 text-text-primary rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-blue-500 w-full"
               disabled={isPending || generating}
             >
               <option value="">-- Choose Client --</option>
@@ -311,11 +311,11 @@ export function ReportsDashboard({
 
           {/* Month Selector */}
           <div className="flex flex-col gap-1 min-w-[150px]">
-            <label className="text-[10px] font-semibold text-[#8BA3C7] uppercase tracking-wider">Select Month</label>
+            <label className="text-[10px] font-semibold text-text-secondary uppercase tracking-wider">Select Month</label>
             <select
               value={selectedMonth}
               onChange={(e) => handleMonthChange(e.target.value)}
-              className="bg-[#0A1628] border border-[#1E3352] text-[#F0F4FF] rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-blue-500 w-full"
+              className="bg-[#0A1628] border border-border/30 text-text-primary rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-blue-500 w-full"
               disabled={isPending || generating}
             >
               {monthOptions.map((opt) => (
@@ -332,14 +332,14 @@ export function ReportsDashboard({
             <Button
               variant={activeTab === 'dashboard' ? 'secondary' : 'ghost'}
               onClick={() => setActiveTab('dashboard')}
-              className={`text-xs ${activeTab === 'dashboard' ? 'bg-[#1E3352] text-[#F0F4FF] hover:bg-[#1E3352]/80' : 'text-[#8BA3C7]'}`}
+              className={`text-xs ${activeTab === 'dashboard' ? 'bg-[#1E3352] text-text-primary hover:bg-[#1E3352]/80' : 'text-text-secondary'}`}
             >
               <Grid className="w-4.5 h-4.5 mr-1.5" /> Dashboard View
             </Button>
             <Button
               variant={activeTab === 'preview' ? 'secondary' : 'ghost'}
               onClick={() => setActiveTab('preview')}
-              className={`text-xs ${activeTab === 'preview' ? 'bg-[#1E3352] text-[#F0F4FF] hover:bg-[#1E3352]/80' : 'text-[#8BA3C7]'}`}
+              className={`text-xs ${activeTab === 'preview' ? 'bg-[#1E3352] text-text-primary hover:bg-[#1E3352]/80' : 'text-text-secondary'}`}
             >
               <Eye className="w-4.5 h-4.5 mr-1.5" /> Portal Preview
             </Button>
@@ -348,35 +348,35 @@ export function ReportsDashboard({
       </div>
 
       {isPending ? (
-        <div className="flex flex-col items-center justify-center p-20 bg-[#0D1829] border border-[#1E3352] rounded-xl text-[#8BA3C7] gap-3">
+        <div className="flex flex-col items-center justify-center p-20 bg-bg-card border border-border/30 rounded-xl text-text-secondary gap-3">
           <Loader2 className="w-8 h-8 text-blue-400 animate-spin" />
           <span className="text-sm font-medium">Fetching monthly report metrics...</span>
         </div>
       ) : !selectedClientId ? (
-        <div className="rounded-xl border border-[#1E3352] bg-[#0D1829] p-16 text-center text-[#8BA3C7] flex flex-col items-center justify-center gap-4 shadow-md">
+        <div className="rounded-xl border border-border/30 bg-bg-card p-16 text-center text-text-secondary flex flex-col items-center justify-center gap-4 shadow-md">
           <div className="p-4 bg-[#1E3352]/40 rounded-full text-blue-400">
             <Layers className="w-8 h-8" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-[#F0F4FF] mb-1">No Client Selected</h3>
-            <p className="text-sm text-[#8BA3C7] max-w-md mx-auto">
+            <h3 className="text-lg font-semibold text-text-primary mb-1">No Client Selected</h3>
+            <p className="text-sm text-text-secondary max-w-md mx-auto">
               Please choose a client from the dropdown at the top to compile performance metrics, view historical reports, and generate deliverables.
             </p>
           </div>
         </div>
       ) : activeTab === 'preview' ? (
         /* Portal Preview View */
-        <div className="bg-[#0B132B] border border-[#1E3352] rounded-xl p-4 md:p-8 shadow-inner overflow-hidden">
-          <div className="flex justify-between items-center mb-6 border-b border-[#1E3352] pb-4">
+        <div className="bg-[#0B132B] border border-border/30 rounded-xl p-4 md:p-8 shadow-inner overflow-hidden">
+          <div className="flex justify-between items-center mb-6 border-b border-border/30 pb-4">
             <div>
-              <h3 className="text-md font-semibold text-[#F0F4FF]">Client Portal Preview</h3>
-              <p className="text-xs text-[#8BA3C7]">Light-themed preview matching what the client views in their portal dashboard.</p>
+              <h3 className="text-md font-semibold text-text-primary">Client Portal Preview</h3>
+              <p className="text-xs text-text-secondary">Light-themed preview matching what the client views in their portal dashboard.</p>
             </div>
             <Button
               variant="outline"
               size="sm"
               onClick={() => setActiveTab('dashboard')}
-              className="text-xs border-[#1E3352] text-[#8BA3C7] hover:bg-[#1E3352]/40"
+              className="text-xs border-border/30 text-text-secondary hover:bg-[#1E3352]/40"
             >
               Back to Dashboard
             </Button>
@@ -397,15 +397,15 @@ export function ReportsDashboard({
           {/* Integration Status & Actions Panel */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Action Card */}
-            <Card className="lg:col-span-2 bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
-              <CardHeader className="pb-3 border-b border-[#1E3352]/50">
+            <Card className="lg:col-span-2 bg-bg-card border-border/30 text-text-primary">
+              <CardHeader className="pb-3 border-b border-border/30/50">
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-lg font-semibold text-[#F0F4FF] flex items-center gap-2">
+                    <CardTitle className="text-lg font-semibold text-text-primary flex items-center gap-2">
                       <Sparkles className="w-5 h-5 text-blue-400" />
                       Report Compiler
                     </CardTitle>
-                    <CardDescription className="text-[#8BA3C7] text-xs">
+                    <CardDescription className="text-text-secondary text-xs">
                       Compile current month metrics into a client-ready snapshot.
                     </CardDescription>
                   </div>
@@ -420,8 +420,8 @@ export function ReportsDashboard({
                 </div>
               </CardHeader>
               <CardContent className="pt-5 space-y-4">
-                <div className="text-sm text-[#8BA3C7] leading-relaxed">
-                  Compiling gathers GSC traffic, GA4 conversions, Meta ads performance, Google Ads leads, and SMM metrics for <span className="font-semibold text-[#F0F4FF]">{selectedClientData?.name}</span> during <span className="font-semibold text-[#F0F4FF]">{selectedMonth}</span>.
+                <div className="text-sm text-text-secondary leading-relaxed">
+                  Compiling gathers GSC traffic, GA4 conversions, Meta ads performance, Google Ads leads, and SMM metrics for <span className="font-semibold text-text-primary">{selectedClientData?.name}</span> during <span className="font-semibold text-text-primary">{selectedMonth}</span>.
                 </div>
 
                 <div className="flex flex-wrap gap-3 pt-2">
@@ -468,7 +468,7 @@ export function ReportsDashboard({
                           href={currentReport.files.public_url} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="inline-flex shrink-0 items-center justify-center rounded-lg border border-[#1E3352] bg-transparent text-sm font-medium whitespace-nowrap transition-all outline-none select-none text-[#8BA3C7] hover:bg-[#1E3352]/40 px-2.5 h-8 text-xs"
+                          className="inline-flex shrink-0 items-center justify-center rounded-lg border border-border/30 bg-transparent text-sm font-medium whitespace-nowrap transition-all outline-none select-none text-text-secondary hover:bg-[#1E3352]/40 px-2.5 h-8 text-xs"
                         >
                           <Download className="w-4 h-4 mr-2" /> Download PDF
                         </a>
@@ -479,7 +479,7 @@ export function ReportsDashboard({
                   <Button
                     variant="outline"
                     onClick={handleExportCSV}
-                    className="border-[#1E3352] text-[#8BA3C7] hover:bg-[#1E3352]/40 text-xs"
+                    className="border-border/30 text-text-secondary hover:bg-[#1E3352]/40 text-xs"
                   >
                     <Download className="w-4 h-4 mr-2" /> Export CSV
                   </Button>
@@ -488,42 +488,42 @@ export function ReportsDashboard({
             </Card>
 
             {/* Integrations Health Card */}
-            <Card className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
-              <CardHeader className="pb-3 border-b border-[#1E3352]/50">
-                <CardTitle className="text-lg font-semibold text-[#F0F4FF] flex items-center gap-2">
+            <Card className="bg-bg-card border-border/30 text-text-primary">
+              <CardHeader className="pb-3 border-b border-border/30/50">
+                <CardTitle className="text-lg font-semibold text-text-primary flex items-center gap-2">
                   <Globe className="w-5 h-5 text-blue-400" />
                   Integration Health
                 </CardTitle>
-                <CardDescription className="text-[#8BA3C7] text-xs">
+                <CardDescription className="text-text-secondary text-xs">
                   OAuth connections needed for auto-compiling data.
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-5 space-y-4">
                 <div className="space-y-3.5">
-                  <div className="flex justify-between items-center bg-[#0A1628] border border-[#1E3352]/40 p-2.5 rounded-lg">
-                    <span className="text-xs font-semibold text-[#F0F4FF]">Google Search Console</span>
-                    <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isGscConnected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-[#1E3352]/60'}`}>
+                  <div className="flex justify-between items-center bg-[#0A1628] border border-border/30/40 p-2.5 rounded-lg">
+                    <span className="text-xs font-semibold text-text-primary">Google Search Console</span>
+                    <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isGscConnected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-border/30/60'}`}>
                       {isGscConnected ? 'Connected' : 'Not Connected'}
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center bg-[#0A1628] border border-[#1E3352]/40 p-2.5 rounded-lg">
-                    <span className="text-xs font-semibold text-[#F0F4FF]">Google Analytics 4</span>
-                    <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isGa4Connected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-[#1E3352]/60'}`}>
+                  <div className="flex justify-between items-center bg-[#0A1628] border border-border/30/40 p-2.5 rounded-lg">
+                    <span className="text-xs font-semibold text-text-primary">Google Analytics 4</span>
+                    <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isGa4Connected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-border/30/60'}`}>
                       {isGa4Connected ? 'Connected' : 'Not Connected'}
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center bg-[#0A1628] border border-[#1E3352]/40 p-2.5 rounded-lg">
-                    <span className="text-xs font-semibold text-[#F0F4FF]">Meta Ads Insights</span>
-                    <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isMetaConnected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-[#1E3352]/60'}`}>
+                  <div className="flex justify-between items-center bg-[#0A1628] border border-border/30/40 p-2.5 rounded-lg">
+                    <span className="text-xs font-semibold text-text-primary">Meta Ads Insights</span>
+                    <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isMetaConnected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-border/30/60'}`}>
                       {isMetaConnected ? 'Connected' : 'Not Connected'}
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center bg-[#0A1628] border border-[#1E3352]/40 p-2.5 rounded-lg">
-                    <span className="text-xs font-semibold text-[#F0F4FF]">Google Ads API</span>
-                    <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isGoogleAdsConnected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-[#1E3352]/60'}`}>
+                  <div className="flex justify-between items-center bg-[#0A1628] border border-border/30/40 p-2.5 rounded-lg">
+                    <span className="text-xs font-semibold text-text-primary">Google Ads API</span>
+                    <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isGoogleAdsConnected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-border/30/60'}`}>
                       {isGoogleAdsConnected ? 'Connected' : 'Not Connected'}
                     </span>
                   </div>
@@ -535,10 +535,10 @@ export function ReportsDashboard({
           {/* MoM Performance Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Card 1: Organic Traffic */}
-            <Card className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] hover:border-blue-900 transition-colors">
+            <Card className="bg-bg-card border-border/30 text-text-primary hover:border-blue-900 transition-colors">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-xs text-[#8BA3C7] font-semibold uppercase tracking-wider">Organic Traffic</span>
+                  <span className="text-xs text-text-secondary font-semibold uppercase tracking-wider">Organic Traffic</span>
                   <div className="p-1.5 bg-blue-900/30 rounded-lg text-blue-400">
                     <Globe className="w-4 h-4" />
                   </div>
@@ -549,10 +549,10 @@ export function ReportsDashboard({
             </Card>
 
             {/* Card 2: Organic Clicks */}
-            <Card className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] hover:border-blue-900 transition-colors">
+            <Card className="bg-bg-card border-border/30 text-text-primary hover:border-blue-900 transition-colors">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-xs text-[#8BA3C7] font-semibold uppercase tracking-wider">Search Clicks</span>
+                  <span className="text-xs text-text-secondary font-semibold uppercase tracking-wider">Search Clicks</span>
                   <div className="p-1.5 bg-blue-900/30 rounded-lg text-blue-400">
                     <FileText className="w-4 h-4" />
                   </div>
@@ -563,10 +563,10 @@ export function ReportsDashboard({
             </Card>
 
             {/* Card 3: Ad Spend */}
-            <Card className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] hover:border-blue-900 transition-colors">
+            <Card className="bg-bg-card border-border/30 text-text-primary hover:border-blue-900 transition-colors">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-xs text-[#8BA3C7] font-semibold uppercase tracking-wider">Total Ad Spend</span>
+                  <span className="text-xs text-text-secondary font-semibold uppercase tracking-wider">Total Ad Spend</span>
                   <div className="p-1.5 bg-blue-900/30 rounded-lg text-blue-400">
                     <Share2 className="w-4 h-4" />
                   </div>
@@ -574,17 +574,17 @@ export function ReportsDashboard({
                 <div className="text-2xl font-bold mb-1.5">
                   ₹{totalAdSpend.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
                 </div>
-                <div className="text-xs text-[#8BA3C7] flex items-center font-normal">
+                <div className="text-xs text-text-secondary flex items-center font-normal">
                   Meta + Google Ads combined
                 </div>
               </CardContent>
             </Card>
 
             {/* Card 4: Leads / Conversions */}
-            <Card className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] hover:border-blue-900 transition-colors">
+            <Card className="bg-bg-card border-border/30 text-text-primary hover:border-blue-900 transition-colors">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-xs text-[#8BA3C7] font-semibold uppercase tracking-wider">Leads & Conversions</span>
+                  <span className="text-xs text-text-secondary font-semibold uppercase tracking-wider">Leads & Conversions</span>
                   <div className="p-1.5 bg-blue-900/30 rounded-lg text-blue-400">
                     <CheckCircle className="w-4 h-4" />
                   </div>
@@ -598,34 +598,34 @@ export function ReportsDashboard({
           {/* Compiled Channels Review */}
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             {/* SEO & Keywords Summary */}
-            <Card className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
-              <CardHeader className="pb-3 border-b border-[#1E3352]/50">
-                <CardTitle className="text-md font-semibold text-[#F0F4FF]">SEO & Search Console Data</CardTitle>
-                <CardDescription className="text-[#8BA3C7] text-xs">Keywords tracked and monthly averages.</CardDescription>
+            <Card className="bg-bg-card border-border/30 text-text-primary">
+              <CardHeader className="pb-3 border-b border-border/30/50">
+                <CardTitle className="text-md font-semibold text-text-primary">SEO & Search Console Data</CardTitle>
+                <CardDescription className="text-text-secondary text-xs">Keywords tracked and monthly averages.</CardDescription>
               </CardHeader>
               <CardContent className="pt-4 space-y-4">
                 {seoData ? (
                   <div className="space-y-4">
-                    <div className="grid grid-cols-3 gap-2 bg-[#0A1628] border border-[#1E3352]/40 p-3 rounded-lg text-center">
+                    <div className="grid grid-cols-3 gap-2 bg-[#0A1628] border border-border/30/40 p-3 rounded-lg text-center">
                       <div>
-                        <div className="text-xs text-[#8BA3C7]">GSC Impressions</div>
-                        <div className="text-md font-bold text-[#F0F4FF] mt-0.5">{(seoData.gsc_impressions ?? 0).toLocaleString()}</div>
+                        <div className="text-xs text-text-secondary">GSC Impressions</div>
+                        <div className="text-md font-bold text-text-primary mt-0.5">{(seoData.gsc_impressions ?? 0).toLocaleString()}</div>
                       </div>
                       <div>
-                        <div className="text-xs text-[#8BA3C7]">Average Position</div>
-                        <div className="text-md font-bold text-[#F0F4FF] mt-0.5">{seoData.gsc_avg_position ?? 'N/A'}</div>
+                        <div className="text-xs text-text-secondary">Average Position</div>
+                        <div className="text-md font-bold text-text-primary mt-0.5">{seoData.gsc_avg_position ?? 'N/A'}</div>
                       </div>
                       <div>
-                        <div className="text-xs text-[#8BA3C7]">CTR %</div>
-                        <div className="text-md font-bold text-[#F0F4FF] mt-0.5">{seoData.gsc_ctr ? `${seoData.gsc_ctr}%` : 'N/A'}</div>
+                        <div className="text-xs text-text-secondary">CTR %</div>
+                        <div className="text-md font-bold text-text-primary mt-0.5">{seoData.gsc_ctr ? `${seoData.gsc_ctr}%` : 'N/A'}</div>
                       </div>
                     </div>
 
-                    <div className="text-xs font-semibold text-[#8BA3C7] uppercase tracking-wider mb-2">Tracked Keywords Summary</div>
+                    <div className="text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">Tracked Keywords Summary</div>
                     {keywordsData.length > 0 ? (
-                      <div className="max-h-[160px] overflow-y-auto border border-[#1E3352]/50 rounded-lg">
-                        <table className="w-full text-xs text-[#8BA3C7] text-left">
-                          <thead className="bg-[#0A1628] text-[#F0F4FF] uppercase text-[10px] border-b border-[#1E3352]/50 sticky top-0">
+                      <div className="max-h-[160px] overflow-y-auto border border-border/30/50 rounded-lg">
+                        <table className="w-full text-xs text-text-secondary text-left">
+                          <thead className="bg-[#0A1628] text-text-primary uppercase text-[10px] border-b border-border/30/50 sticky top-0">
                             <tr>
                               <th className="px-3 py-2">Keyword</th>
                               <th className="px-3 py-2 text-center">Current Pos</th>
@@ -634,8 +634,8 @@ export function ReportsDashboard({
                           </thead>
                           <tbody>
                             {keywordsData.slice(0, 5).map((kw, i) => (
-                              <tr key={i} className="border-b border-[#1E3352]/30 hover:bg-[#1E3352]/20">
-                                <td className="px-3 py-2 text-[#F0F4FF]">{kw.keyword}</td>
+                              <tr key={i} className="border-b border-border/30/30 hover:bg-[#1E3352]/20">
+                                <td className="px-3 py-2 text-text-primary">{kw.keyword}</td>
                                 <td className="px-3 py-2 text-center font-semibold text-blue-400">{kw.current_position ?? 'N/A'}</td>
                                 <td className="px-3 py-2 text-center">{kw.keyword_difficulty ?? 'N/A'}</td>
                               </tr>
@@ -644,13 +644,13 @@ export function ReportsDashboard({
                         </table>
                       </div>
                     ) : (
-                      <div className="text-center text-xs text-gray-500 py-6 bg-[#0A1628] rounded-lg border border-dashed border-[#1E3352]">
+                      <div className="text-center text-xs text-gray-500 py-6 bg-[#0A1628] rounded-lg border border-dashed border-border/30">
                         No tracked keywords for this month
                       </div>
                     )}
                   </div>
                 ) : (
-                  <div className="text-center text-xs text-[#8BA3C7] py-12">
+                  <div className="text-center text-xs text-text-secondary py-12">
                     No SEO Campaign records found for this month.
                   </div>
                 )}
@@ -658,23 +658,23 @@ export function ReportsDashboard({
             </Card>
 
             {/* Ads Summary */}
-            <Card className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
-              <CardHeader className="pb-3 border-b border-[#1E3352]/50">
-                <CardTitle className="text-md font-semibold text-[#F0F4FF]">Paid Campaigns Performance</CardTitle>
-                <CardDescription className="text-[#8BA3C7] text-xs">Meta Ads and Google Ads performance details.</CardDescription>
+            <Card className="bg-bg-card border-border/30 text-text-primary">
+              <CardHeader className="pb-3 border-b border-border/30/50">
+                <CardTitle className="text-md font-semibold text-text-primary">Paid Campaigns Performance</CardTitle>
+                <CardDescription className="text-text-secondary text-xs">Meta Ads and Google Ads performance details.</CardDescription>
               </CardHeader>
               <CardContent className="pt-4 space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   {/* Meta Ads Box */}
-                  <div className="bg-[#0A1628] border border-[#1E3352]/40 p-4 rounded-lg">
-                    <div className="flex items-center gap-1.5 text-xs font-semibold text-[#F0F4FF] mb-2 border-b border-[#1E3352]/50 pb-1.5">
+                  <div className="bg-[#0A1628] border border-border/30/40 p-4 rounded-lg">
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-text-primary mb-2 border-b border-border/30/50 pb-1.5">
                       <Facebook className="w-3.5 h-3.5 text-blue-500" /> Meta Campaigns ({metaData.length})
                     </div>
                     {metaData.length > 0 ? (
-                      <div className="space-y-1 text-xs text-[#8BA3C7]">
+                      <div className="space-y-1 text-xs text-text-secondary">
                         <div className="flex justify-between">
                           <span>Spend:</span>
-                          <span className="font-semibold text-[#F0F4FF]">₹{metaSpend.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
+                          <span className="font-semibold text-text-primary">₹{metaSpend.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Leads:</span>
@@ -693,15 +693,15 @@ export function ReportsDashboard({
                   </div>
 
                   {/* Google Ads Box */}
-                  <div className="bg-[#0A1628] border border-[#1E3352]/40 p-4 rounded-lg">
-                    <div className="flex items-center gap-1.5 text-xs font-semibold text-[#F0F4FF] mb-2 border-b border-[#1E3352]/50 pb-1.5">
+                  <div className="bg-[#0A1628] border border-border/30/40 p-4 rounded-lg">
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-text-primary mb-2 border-b border-border/30/50 pb-1.5">
                       <Calendar className="w-3.5 h-3.5 text-yellow-500" /> Google Campaigns ({googleAdsData.length})
                     </div>
                     {googleAdsData.length > 0 ? (
-                      <div className="space-y-1 text-xs text-[#8BA3C7]">
+                      <div className="space-y-1 text-xs text-text-secondary">
                         <div className="flex justify-between">
                           <span>Spend:</span>
-                          <span className="font-semibold text-[#F0F4FF]">₹{gadsSpend.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
+                          <span className="font-semibold text-text-primary">₹{gadsSpend.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Conversions:</span>
@@ -721,15 +721,15 @@ export function ReportsDashboard({
                 </div>
 
                 {/* Social media details */}
-                <div className="bg-[#0A1628] border border-[#1E3352]/40 p-4 rounded-lg">
-                  <div className="text-xs font-semibold text-[#F0F4FF] mb-2">Social Media Organic Metrics</div>
+                <div className="bg-[#0A1628] border border-border/30/40 p-4 rounded-lg">
+                  <div className="text-xs font-semibold text-text-primary mb-2">Social Media Organic Metrics</div>
                   {socialData.length > 0 ? (
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-[#8BA3C7] text-center">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-text-secondary text-center">
                       {socialData.map((s, idx) => (
-                        <div key={idx} className="p-2 border border-[#1E3352]/30 rounded bg-[#0D1829]/60">
+                        <div key={idx} className="p-2 border border-border/30/30 rounded bg-bg-card/60">
                           <div className="font-semibold capitalize text-blue-400">{s.platform}</div>
                           <div className="text-[10px] text-gray-400 mt-0.5">Reach: {s.reach?.toLocaleString()}</div>
-                          <div className="text-[10px] font-bold text-[#F0F4FF] mt-0.5">Followers: {s.followers?.toLocaleString()}</div>
+                          <div className="text-[10px] font-bold text-text-primary mt-0.5">Followers: {s.followers?.toLocaleString()}</div>
                         </div>
                       ))}
                     </div>
@@ -744,18 +744,18 @@ export function ReportsDashboard({
           </div>
 
           {/* Client Specific Report History Table */}
-          <Card className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
-            <CardHeader className="pb-3 border-b border-[#1E3352]/50">
-              <CardTitle className="text-md font-semibold text-[#F0F4FF]">Report Archives</CardTitle>
-              <CardDescription className="text-[#8BA3C7] text-xs">
+          <Card className="bg-bg-card border-border/30 text-text-primary">
+            <CardHeader className="pb-3 border-b border-border/30/50">
+              <CardTitle className="text-md font-semibold text-text-primary">Report Archives</CardTitle>
+              <CardDescription className="text-text-secondary text-xs">
                 Generated PDF deliverables for {selectedClientData?.name}.
               </CardDescription>
             </CardHeader>
             <CardContent className="pt-4">
               {initialReports.filter(r => r.client_id === selectedClientId).length > 0 ? (
-                <div className="overflow-x-auto border border-[#1E3352]/50 rounded-lg">
-                  <table className="w-full text-xs text-[#8BA3C7] text-left">
-                    <thead className="bg-[#0A1628] text-[#F0F4FF] uppercase text-[10px] border-b border-[#1E3352]/50">
+                <div className="overflow-x-auto border border-border/30/50 rounded-lg">
+                  <table className="w-full text-xs text-text-secondary text-left">
+                    <thead className="bg-[#0A1628] text-text-primary uppercase text-[10px] border-b border-border/30/50">
                       <tr>
                         <th className="px-4 py-3">Month</th>
                         <th className="px-4 py-3 text-center">Status</th>
@@ -766,8 +766,8 @@ export function ReportsDashboard({
                     </thead>
                     <tbody>
                       {initialReports.filter(r => r.client_id === selectedClientId).map((r, i) => (
-                        <tr key={i} className="border-b border-[#1E3352]/30 hover:bg-[#1E3352]/20">
-                          <td className="px-4 py-3 font-semibold text-[#F0F4FF]">{r.month_year}</td>
+                        <tr key={i} className="border-b border-border/30/30 hover:bg-[#1E3352]/20">
+                          <td className="px-4 py-3 font-semibold text-text-primary">{r.month_year}</td>
                           <td className="px-4 py-3 text-center">
                             <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider border ${
                               r.status === 'sent' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-amber-500/20 text-amber-400 border-amber-500/30'
@@ -797,7 +797,7 @@ export function ReportsDashboard({
                                   href={r.files.public_url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center justify-center rounded-lg border border-transparent text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#1E3352]/40 h-7 w-7 p-0 transition-colors"
+                                  className="inline-flex items-center justify-center rounded-lg border border-transparent text-text-secondary hover:text-text-primary hover:bg-[#1E3352]/40 h-7 w-7 p-0 transition-colors"
                                   title="Download PDF"
                                 >
                                   <Download className="w-3.5 h-3.5" />
@@ -826,7 +826,7 @@ export function ReportsDashboard({
                   </table>
                 </div>
               ) : (
-                <div className="text-center text-xs text-gray-500 py-10 bg-[#0A1628]/40 border border-dashed border-[#1E3352] rounded-lg">
+                <div className="text-center text-xs text-gray-500 py-10 bg-[#0A1628]/40 border border-dashed border-border/30 rounded-lg">
                   No historical reports generated for this client yet. Use the Report Compiler panel to create one.
                 </div>
               )}

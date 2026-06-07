@@ -56,7 +56,7 @@ export function PortalHeader({ profile, client }: PortalHeaderProps) {
       {/* Left side: Logo & Client Badge */}
       <div className="flex items-center gap-3">
         <Link href="/portal" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-md bg-[#1B4FD8] flex items-center justify-center">
+          <div className="w-7 h-7 rounded-md bg-primary flex items-center justify-center">
             <span className="text-white font-black text-xs">V</span>
           </div>
           <div className="leading-tight hidden sm:block">
@@ -64,7 +64,7 @@ export function PortalHeader({ profile, client }: PortalHeaderProps) {
             <span className="text-[#1B4FD8] font-bold text-sm ml-1">Global</span>
           </div>
         </Link>
-        <span className="text-[#4A6480] font-light hidden sm:inline">|</span>
+        <span className="text-text-tertiary font-light hidden sm:inline">|</span>
         <span className="text-[10px] text-[#475569] bg-[#F1F5F9] border border-[#E2E8F4] px-2.5 py-0.5 rounded-full font-bold uppercase truncate max-w-[140px] md:max-w-[200px]">
           {client.name || client.company || 'Client'}
         </span>
@@ -126,7 +126,7 @@ export function PortalHeader({ profile, client }: PortalHeaderProps) {
             <DropdownMenuSeparator className="bg-[#E2E8F4]" />
             <DropdownMenuItem
               onClick={handleLogout}
-              className="gap-2 text-xs text-[#EF4444] hover:text-[#DC2626] hover:bg-[#EF444410] cursor-pointer"
+              className="gap-2 text-xs text-error hover:text-[#DC2626] hover:bg-[#EF444410] cursor-pointer"
             >
               <LogOut size={13} /> Sign Out
             </DropdownMenuItem>

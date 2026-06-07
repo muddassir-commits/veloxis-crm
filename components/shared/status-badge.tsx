@@ -14,12 +14,12 @@ export function StatusBadge({ status, className, ...props }: StatusBadgeProps) {
 
   switch (normalizedStatus) {
     case 'active':
-      badgeStyle = "bg-[#22C55E15] text-[#22C55E]";
+      badgeStyle = "bg-online/15 text-online";
       label = "Active";
       showDot = true;
       break;
     case 'paused':
-      badgeStyle = "bg-[#F59E0B15] text-[#F59E0B]";
+      badgeStyle = "bg-warning/15 text-warning";
       label = "Paused";
       break;
     case 'churned':
@@ -39,31 +39,31 @@ export function StatusBadge({ status, className, ...props }: StatusBadgeProps) {
       label = "New";
       break;
     case 'paid':
-      badgeStyle = "bg-[#22C55E15] text-[#22C55E]";
+      badgeStyle = "bg-online/15 text-online";
       label = "Paid";
       break;
     case 'done':
-      badgeStyle = "bg-[#22C55E15] text-[#22C55E]";
+      badgeStyle = "bg-online/15 text-online";
       label = "Done";
       break;
     case 'approved':
-      badgeStyle = "bg-[#22C55E15] text-[#22C55E]";
+      badgeStyle = "bg-online/15 text-online";
       label = "Approved";
       break;
     case 'pending':
-      badgeStyle = "bg-[#F59E0B15] text-[#F59E0B]";
+      badgeStyle = "bg-warning/15 text-warning";
       label = "Pending";
       break;
     case 'in_progress':
-      badgeStyle = "bg-[#F59E0B15] text-[#F59E0B]";
+      badgeStyle = "bg-warning/15 text-warning";
       label = "In Progress";
       break;
     case 'overdue':
-      badgeStyle = "bg-[#EF444415] text-[#EF4444]";
+      badgeStyle = "bg-error/15 text-error";
       label = "Overdue";
       break;
     case 'urgent':
-      badgeStyle = "bg-[#EF444415] text-[#EF4444]";
+      badgeStyle = "bg-error/15 text-error";
       label = "Urgent";
       break;
     case 'todo':
@@ -79,15 +79,15 @@ export function StatusBadge({ status, className, ...props }: StatusBadgeProps) {
       label = "In Review";
       break;
     case 'won':
-      badgeStyle = "bg-[#22C55E15] text-[#22C55E]";
+      badgeStyle = "bg-online/15 text-online";
       label = "★ Won";
       break;
     case 'completed':
-      badgeStyle = "bg-[#22C55E15] text-[#22C55E]";
+      badgeStyle = "bg-online/15 text-online";
       label = "Completed";
       break;
     case 'agency_self':
-      badgeStyle = "bg-[#F9731615] text-[#F97316]";
+      badgeStyle = "bg-[#F9731615] text-accent";
       label = "My Agency";
       break;
     default:

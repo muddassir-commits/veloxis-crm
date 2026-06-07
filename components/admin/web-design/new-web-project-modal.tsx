@@ -103,20 +103,20 @@ export function NewWebProjectModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-md font-bold text-[#F0F4FF]">Track New Web Project</DialogTitle>
+          <DialogTitle className="text-md font-bold text-text-primary">Track New Web Project</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 py-2 text-xs">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Select Client *</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Select Client *</Label>
               <Select value={clientId} onValueChange={(val) => setClientId(val || '')}>
-                <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                   <SelectValue placeholder="Select client" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                   {clients.map((c) => (
                     <SelectItem key={c.id} value={c.id} className="text-xs">
                       {c.name}
@@ -127,26 +127,26 @@ export function NewWebProjectModal({
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Project Name *</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Project Name *</Label>
               <Input
                 type="text"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. E-Commerce Redesign"
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Project Type</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Project Type</Label>
               <Select value={projectType} onValueChange={(val) => setProjectType(val || 'landing_page')}>
-                <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                   <SelectValue placeholder="Select type" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                   <SelectItem value="landing_page" className="text-xs">Landing Page</SelectItem>
                   <SelectItem value="ecommerce" className="text-xs">E-Commerce Website</SelectItem>
                   <SelectItem value="corporate" className="text-xs">Corporate Website</SelectItem>
@@ -157,82 +157,82 @@ export function NewWebProjectModal({
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Budget (₹ INR)</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Budget (₹ INR)</Label>
               <Input
                 type="number"
                 value={budget}
                 onChange={(e) => setBudget(Number(e.target.value))}
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Start Date</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Start Date</Label>
               <Input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Deadline</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Deadline</Label>
               <Input
                 type="date"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-[#8BA3C7] text-[11px] font-medium">Key Client Contacts</Label>
+            <Label className="text-text-secondary text-[11px] font-medium">Key Client Contacts</Label>
             <Input
               type="text"
               value={keyContacts}
               onChange={(e) => setKeyContacts(e.target.value)}
               placeholder="e.g. John Doe (CEO - john@company.com)"
-              className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+              className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
             />
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-[#8BA3C7] text-[11px] font-medium">Project Scope & Deliverables</Label>
+            <Label className="text-text-secondary text-[11px] font-medium">Project Scope & Deliverables</Label>
             <Textarea
               value={scope}
               onChange={(e) => setScope(e.target.value)}
               placeholder="Outline custom pages, styling themes, required integrations..."
-              className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs min-h-[80px]"
+              className="bg-bg-dark border-border/30 text-text-primary text-xs min-h-[80px]"
             />
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-[#8BA3C7] text-[11px] font-medium">Internal Notes</Label>
+            <Label className="text-text-secondary text-[11px] font-medium">Internal Notes</Label>
             <Textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Hosting credentials, student assignees, specific technical constraints..."
-              className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs min-h-[80px]"
+              className="bg-bg-dark border-border/30 text-text-primary text-xs min-h-[80px]"
             />
           </div>
 
-          <DialogFooter className="mt-4 pt-2 border-t border-[#1E3352]/30">
+          <DialogFooter className="mt-4 pt-2 border-t border-border/30/30">
             <Button
               type="button"
               variant="outline"
               onClick={() => onOpenChange(false)}
-              className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] text-xs h-9"
+              className="border-border/30 hover:bg-bg-card-hover/20 text-text-secondary text-xs h-9"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={loading}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9"
+              className="bg-primary hover:bg-primary-light text-white text-xs h-9"
             >
               {loading ? 'Creating...' : 'Create Web Project'}
             </Button>

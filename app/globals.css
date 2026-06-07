@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
+@import "../styles/tokens.css";
+@import "../styles/animations.css";
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -25,29 +28,76 @@
   --color-bg-overlay: #1A2D47;
   --color-bg-border: #1E3352;
 
-  --color-text-primary: #F0F4FF;
-  --color-text-secondary: #8BA3C7;
-  --color-text-muted: #4A6480;
-  --color-text-link: #4D90FE;
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-tertiary);
+  --color-text-link: var(--color-primary-light);
 
-  --color-status-active: #22C55E;
+  --color-status-active: var(--color-online);
   --color-status-active-bg: rgba(34, 197, 94, 0.09);
-  --color-status-paused: #F59E0B;
+  --color-status-paused: var(--color-warning);
   --color-status-paused-bg: rgba(245, 158, 11, 0.09);
-  --color-status-churned: #EF4444;
+  --color-status-churned: var(--color-error);
   --color-status-churned-bg: rgba(239, 68, 68, 0.09);
-  --color-status-lead: #8B5CF6;
-  --color-status-lead-bg: rgba(139, 92, 246, 0.09);
+  --color-status-lead: var(--color-primary);
+  --color-status-lead-bg: rgba(37, 99, 235, 0.09);
 
   --font-sans: 'DM Sans', sans-serif;
   --font-mono: 'DM Mono', monospace;
 
-  --radius-DEFAULT: 7px;
-  --radius-lg: 10px;
-  --radius-xl: 12px;
+  --radius-DEFAULT: var(--radius-sm);
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
 
   --animate-shimmer: shimmer 1.5s infinite;
   --animate-fade-in-up: fadeInUp 0.2s ease forwards;
+
+  /* Design System Tokens */
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-subtle: var(--color-primary-subtle);
+  
+  --color-success: var(--color-success);
+  --color-success-light: var(--color-success-light);
+  
+  --color-warning: var(--color-warning);
+  --color-warning-light: var(--color-warning-light);
+  
+  --color-error: var(--color-error);
+  --color-error-light: var(--color-error-light);
+
+  --color-bg-dark: var(--color-bg-dark);
+  --color-bg-card: var(--color-bg-card);
+  --color-bg-card-hover: var(--color-bg-card-hover);
+  --color-border: var(--color-border);
+  --color-border-subtle: var(--color-border-subtle);
+
+  --color-online: var(--color-online);
+  --color-offline: var(--color-offline);
+  --color-accent: var(--color-accent);
+
+  /* Spacing Scale */
+  --spacing-xs: var(--spacing-xs);
+  --spacing-sm: var(--spacing-sm);
+  --spacing-md: var(--spacing-md);
+  --spacing-lg: var(--spacing-lg);
+  --spacing-xl: var(--spacing-xl);
+  --spacing-2xl: var(--spacing-2xl);
+  --spacing-3xl: var(--spacing-3xl);
+  --spacing-4xl: var(--spacing-4xl);
+  --spacing-5xl: var(--spacing-5xl);
+
+  /* Shadows */
+  --shadow-elevated: var(--shadow-elevated);
+  --shadow-modal: var(--shadow-modal);
+  --shadow-hover: var(--shadow-hover);
+  --shadow-subtle: var(--shadow-subtle);
+  --shadow-glow: var(--shadow-glow);
 
   /* shadcn mappings to Tailwind utility classes */
   --color-background: var(--background);
@@ -56,17 +106,14 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-fg: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-fg: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
   

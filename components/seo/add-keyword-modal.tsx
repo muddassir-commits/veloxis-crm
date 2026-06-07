@@ -12,6 +12,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Client } from '@/types';
 import { Loader2 } from 'lucide-react';
 
@@ -107,10 +108,10 @@ export function AddKeywordModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md">
+      <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-base font-semibold">Add Keyword Target</DialogTitle>
-          <DialogDescription className="text-xs text-[#8BA3C7]">
+          <DialogTitle className="text-base font-bold">Add Keyword Target</DialogTitle>
+          <DialogDescription className="text-xs">
             Manually add a keyword target to track for {monthYear}.
           </DialogDescription>
         </DialogHeader>
@@ -118,15 +119,15 @@ export function AddKeywordModal({
         <form onSubmit={handleSubmit} className="space-y-4 my-2 text-xs">
           {/* Client Select */}
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7]">Client</label>
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Client *</label>
             <select
               value={selectedClientId}
               onChange={(e) => setSelectedClientId(e.target.value)}
-              className="w-full h-9 bg-[#132035] border border-[#1E3352] rounded px-3 text-[#F0F4FF] focus:outline-none focus:border-[#1B4FD8]"
+              className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
               required
             >
               {clients.map((c) => (
-                <option key={c.id} value={c.id}>
+                <option key={c.id} value={c.id} className="bg-bg-card text-text-primary">
                   {c.name} {c.is_agency_self ? '(My Agency)' : ''}
                 </option>
               ))}
@@ -135,51 +136,51 @@ export function AddKeywordModal({
 
           {/* Keyword Target */}
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7]">Keyword Target</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Keyword Target *</label>
+            <Input
               type="text"
               value={form.keyword}
               onChange={(e) => handleInputChange('keyword', e.target.value)}
               placeholder="e.g. digital marketing agency kanpur"
-              className="w-full h-9 bg-[#132035] border border-[#1E3352] rounded px-3 text-[#F0F4FF] focus:outline-none focus:border-[#1B4FD8]"
+              className="h-9"
               required
             />
           </div>
 
           {/* Target URL */}
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7]">Target URL / Landing Page</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Target URL / Landing Page</label>
+            <Input
               type="text"
               value={form.target_url}
               onChange={(e) => handleInputChange('target_url', e.target.value)}
               placeholder="e.g. veloxisglobal.com/services"
-              className="w-full h-9 bg-[#132035] border border-[#1E3352] rounded px-3 text-[#F0F4FF] focus:outline-none focus:border-[#1B4FD8]"
+              className="h-9"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             {/* Current Position */}
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-[#8BA3C7]">Current Position</label>
-              <input
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Current Position</label>
+              <Input
                 type="number"
                 value={form.current_position}
                 onChange={(e) => handleInputChange('current_position', e.target.value)}
                 placeholder="e.g. 15 (leave empty for unranked)"
-                className="w-full h-9 bg-[#132035] border border-[#1E3352] rounded px-3 text-[#F0F4FF] focus:outline-none focus:border-[#1B4FD8]"
+                className="h-9"
               />
             </div>
 
             {/* Previous Position */}
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-[#8BA3C7]">Previous Position</label>
-              <input
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Previous Position</label>
+              <Input
                 type="number"
                 value={form.previous_position}
                 onChange={(e) => handleInputChange('previous_position', e.target.value)}
                 placeholder="e.g. 18"
-                className="w-full h-9 bg-[#132035] border border-[#1E3352] rounded px-3 text-[#F0F4FF] focus:outline-none focus:border-[#1B4FD8]"
+                className="h-9"
               />
             </div>
           </div>
@@ -187,69 +188,70 @@ export function AddKeywordModal({
           <div className="grid grid-cols-3 gap-3">
             {/* Volume */}
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-[#8BA3C7]">Search Volume</label>
-              <input
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Search Volume</label>
+              <Input
                 type="number"
                 value={form.search_volume}
                 onChange={(e) => handleInputChange('search_volume', e.target.value)}
                 placeholder="320"
-                className="w-full h-9 bg-[#132035] border border-[#1E3352] rounded px-2.5 text-[#F0F4FF] focus:outline-none focus:border-[#1B4FD8]"
+                className="h-9"
               />
             </div>
 
             {/* Difficulty */}
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-[#8BA3C7]">Difficulty (KD)</label>
-              <input
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Difficulty (KD)</label>
+              <Input
                 type="number"
                 value={form.keyword_difficulty}
                 onChange={(e) => handleInputChange('keyword_difficulty', e.target.value)}
                 placeholder="22"
-                className="w-full h-9 bg-[#132035] border border-[#1E3352] rounded px-2.5 text-[#F0F4FF] focus:outline-none focus:border-[#1B4FD8]"
+                className="h-9"
               />
             </div>
 
             {/* Intent */}
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-[#8BA3C7]">Search Intent</label>
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Search Intent</label>
               <select
                 value={form.intent}
                 onChange={(e) => handleInputChange('intent', e.target.value)}
-                className="w-full h-9 bg-[#132035] border border-[#1E3352] rounded px-2 text-[#F0F4FF] focus:outline-none focus:border-[#1B4FD8]"
+                className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-2.5 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
               >
-                <option value="commercial">Commercial</option>
-                <option value="transactional">Transactional</option>
-                <option value="informational">Informational</option>
-                <option value="navigational">Navigational</option>
+                <option value="commercial" className="bg-bg-card text-text-primary">Commercial</option>
+                <option value="transactional" className="bg-bg-card text-text-primary">Transactional</option>
+                <option value="informational" className="bg-bg-card text-text-primary">Informational</option>
+                <option value="navigational" className="bg-bg-card text-text-primary">Navigational</option>
               </select>
             </div>
           </div>
 
           {/* Notes */}
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7]">Notes</label>
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Notes</label>
             <textarea
               value={form.notes}
               onChange={(e) => handleInputChange('notes', e.target.value)}
               placeholder="e.g. targeting local services map pack"
               rows={2}
-              className="w-full bg-[#132035] border border-[#1E3352] rounded p-2.5 text-[#F0F4FF] focus:outline-none focus:border-[#1B4FD8] resize-none"
+              className="w-full bg-bg-card/50 border border-border/30 text-text-primary rounded p-2 resize-none hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none"
             />
           </div>
 
           <DialogFooter className="pt-2">
             <Button
               type="button"
-              variant="outline"
+              variant="secondary"
               onClick={onClose}
-              className="h-8 text-xs border border-[#1E3352] hover:bg-[#132035] cursor-pointer"
+              className="cursor-pointer font-semibold"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={loading}
-              className="h-8 text-xs bg-[#1B4FD8] hover:bg-[#2563EB] text-white font-semibold cursor-pointer"
+              variant="default"
+              className="cursor-pointer font-semibold"
             >
               {loading ? (
                 <>

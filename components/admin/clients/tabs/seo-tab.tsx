@@ -448,13 +448,13 @@ function SeoTabContent({ client }: SeoTabProps) {
       width: '35%',
       render: (val: unknown, row: Record<string, unknown>) => (
         <div className="flex flex-col gap-0.5">
-          <span className="font-semibold text-xs text-[#F0F4FF]">{String(val)}</span>
+          <span className="font-semibold text-xs text-text-primary">{String(val)}</span>
           {Boolean(row.target_url) && (
             <a
               href={String(row.target_url).startsWith('http') ? String(row.target_url) : `https://${String(row.target_url)}`}
               target="_blank"
               rel="noreferrer"
-              className="text-[9px] text-[#4D90FE] hover:underline truncate max-w-[200px]"
+              className="text-[9px] text-primary-light hover:underline truncate max-w-[200px]"
             >
               {String(row.target_url)}
             </a>
@@ -468,12 +468,12 @@ function SeoTabContent({ client }: SeoTabProps) {
       width: '12%',
       render: (val: unknown) => {
         const pos = Number(val);
-        if (val === null || isNaN(pos)) return <span className="text-[#4A6480] font-mono">-</span>;
+        if (val === null || isNaN(pos)) return <span className="text-text-tertiary font-mono">-</span>;
 
-        let colorClass = 'text-[#EF4444]'; // > 20
-        if (pos <= 3) colorClass = 'text-[#22C55E] font-bold';
+        let colorClass = 'text-error'; // > 20
+        if (pos <= 3) colorClass = 'text-online font-bold';
         else if (pos <= 10) colorClass = 'text-[#1B4FD8] font-bold';
-        else if (pos <= 20) colorClass = 'text-[#F59E0B]';
+        else if (pos <= 20) colorClass = 'text-warning';
 
         return <span className={`font-mono text-xs ${colorClass}`}>#{pos}</span>;
       },
@@ -486,12 +486,12 @@ function SeoTabContent({ client }: SeoTabProps) {
         const curr = row.current_position !== null ? Number(row.current_position) : null;
         const prev = row.previous_position !== null ? Number(row.previous_position) : null;
 
-        if (curr === null || prev === null) return <span className="text-[#4A6480] font-mono">-</span>;
+        if (curr === null || prev === null) return <span className="text-text-tertiary font-mono">-</span>;
 
         const diff = prev - curr; // positive is positive shift closer to #1
-        if (diff > 0) return <span className="text-[#22C55E] text-xs font-mono">↑{diff}</span>;
-        if (diff < 0) return <span className="text-[#EF4444] text-xs font-mono">↓{Math.abs(diff)}</span>;
-        return <span className="text-[#4A6480] text-xs font-mono">-</span>;
+        if (diff > 0) return <span className="text-online text-xs font-mono">↑{diff}</span>;
+        if (diff < 0) return <span className="text-error text-xs font-mono">↓{Math.abs(diff)}</span>;
+        return <span className="text-text-tertiary text-xs font-mono">-</span>;
       },
     },
     {
@@ -499,7 +499,7 @@ function SeoTabContent({ client }: SeoTabProps) {
       header: 'Volume',
       width: '13%',
       render: (val: unknown) => (
-        <span className="font-mono text-xs text-[#8BA3C7]">
+        <span className="font-mono text-xs text-text-secondary">
           {val ? Number(val).toLocaleString() : '-'}
         </span>
       ),
@@ -509,7 +509,7 @@ function SeoTabContent({ client }: SeoTabProps) {
       header: 'Intent',
       width: '15%',
       render: (val: unknown) => (
-        <span className="text-[10px] bg-[#132035] border border-[#1E3352] text-[#8BA3C7] px-1.5 py-0.5 rounded uppercase font-medium select-none">
+        <span className="text-[10px] bg-bg-card-hover/20 border border-border/30 text-text-secondary px-1.5 py-0.5 rounded uppercase font-medium select-none">
           {String(val || '')}
         </span>
       ),
@@ -524,16 +524,16 @@ function SeoTabContent({ client }: SeoTabProps) {
         <div className="flex items-center gap-2">
           <button
             onClick={handlePrevMonth}
-            className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+            className="p-1 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary cursor-pointer"
           >
             <ChevronLeft size={14} />
           </button>
-          <span className="text-xs font-semibold text-[#F0F4FF] min-w-[80px] text-center font-mono">
+          <span className="text-xs font-semibold text-text-primary min-w-[80px] text-center font-mono">
             {monthYearString}
           </span>
           <button
             onClick={handleNextMonth}
-            className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+            className="p-1 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary cursor-pointer"
           >
             <ChevronRight size={14} />
           </button>
@@ -599,7 +599,7 @@ function SeoTabContent({ client }: SeoTabProps) {
               setLogReportOpen(true);
             }}
             size="sm"
-            className="bg-[#1B4FD8]/20 text-[#4D90FE] border border-[#1E3352] hover:bg-[#1B4FD8] hover:text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+            className="bg-primary/20 text-primary-light border border-border/30 hover:bg-primary hover:text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
           >
             <span>Log SEO Report</span>
           </Button>
@@ -607,7 +607,7 @@ function SeoTabContent({ client }: SeoTabProps) {
           <Button
             onClick={() => setAddKeywordOpen(true)}
             size="sm"
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+            className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
           >
             <Plus size={13} />
             <span>Add Keyword</span>
@@ -617,7 +617,7 @@ function SeoTabContent({ client }: SeoTabProps) {
             onClick={fetchSeoData}
             disabled={isLoading}
             size="sm"
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer"
+            className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer"
           >
             <RefreshCw size={13} className={`stroke-[1.5] ${isLoading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
@@ -660,7 +660,7 @@ function SeoTabContent({ client }: SeoTabProps) {
         <StatCard
           title="Avg Position"
           value={seoCampaign?.gsc_avg_position !== undefined && seoCampaign?.gsc_avg_position !== null ? `#${seoCampaign.gsc_avg_position}` : '-'}
-          valueClassName="text-[#EF4444]"
+          valueClassName="text-error"
           icon={Award}
           loading={isLoading}
         />
@@ -668,7 +668,7 @@ function SeoTabContent({ client }: SeoTabProps) {
 
       {/* Keywords Table Header */}
       <div className="space-y-3">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-[#4A6480]">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-text-tertiary">
           SEO Keyword Rankings Tracker
         </h3>
         <DataTable
@@ -686,57 +686,57 @@ function SeoTabContent({ client }: SeoTabProps) {
       </div>
 
       {/* ━━━ COLLAPSIBLE INTEGRATIONS PANEL ━━━ */}
-      <div className="border border-[#1E3352] rounded-[10px] bg-[#0D1829]/30">
+      <div className="border border-border/30 rounded-[10px] bg-bg-card/30">
         <button
           onClick={() => setIntegrationsOpen(!integrationsOpen)}
-          className="w-full flex items-center justify-between p-4 text-xs font-semibold text-[#F0F4FF] select-none hover:bg-[#0D1829]/50 transition-all rounded-[10px]"
+          className="w-full flex items-center justify-between p-4 text-xs font-semibold text-text-primary select-none hover:bg-bg-card/50 transition-all rounded-[10px]"
         >
           <div className="flex items-center gap-2">
-            <Link2 size={14} className="text-[#4D90FE]" />
+            <Link2 size={14} className="text-primary-light" />
             <span>Google API Integrations (GSC & GA4)</span>
           </div>
           {integrationsOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
         </button>
 
         {integrationsOpen && (
-          <div className="p-4 border-t border-[#1E3352]/40 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 border-t border-border/30/40 grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* GSC Card */}
-            <div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-[#0D1829] border-[#22C55E]/30' : 'bg-[#0A1220] border-[#1E3352]'} flex flex-col justify-between h-40`}>
+            <div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#F0F4FF]">Google Search Console</span>
+                  <span className="text-xs font-bold text-text-primary">Google Search Console</span>
                   {integrationStatus.gsc?.connected ? (
-                    <span className="text-[9px] font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/20">CONNECTED</span>
+                    <span className="text-[9px] font-bold text-online bg-online/10 px-2 py-0.5 rounded-full border border-online/20">CONNECTED</span>
                   ) : (
-                    <span className="text-[9px] font-bold text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full border border-[#1E3352]">NOT CONNECTED</span>
+                    <span className="text-[9px] font-bold text-text-tertiary bg-bg-card-hover/20 px-2 py-0.5 rounded-full border border-border/30">NOT CONNECTED</span>
                   )}
                 </div>
-                <p className="text-[10px] text-[#8BA3C7] mt-2 leading-relaxed">
+                <p className="text-[10px] text-text-secondary mt-2 leading-relaxed">
                   {integrationStatus.gsc?.connected
                     ? `Property: ${integrationStatus.gsc.propertyUrl || 'Linked'}`
                     : 'Connect search console accounts to pull keywords list.'}
                 </p>
                 {integrationStatus.gsc?.connected && integrationStatus.gsc.lastSync && (
-                  <p className="text-[9px] text-[#4A6480] mt-1">Last Synced: {formatDate(integrationStatus.gsc.lastSync)}</p>
+                  <p className="text-[9px] text-text-tertiary mt-1">Last Synced: {formatDate(integrationStatus.gsc.lastSync)}</p>
                 )}
               </div>
               <div className="flex gap-2">
                 {!integrationStatus.gsc?.connected ? (
-                  <Button size="sm" onClick={() => handleConnectGoogle('gsc')} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-3 cursor-pointer">
+                  <Button size="sm" onClick={() => handleConnectGoogle('gsc')} className="bg-primary hover:bg-primary-light text-white text-[10px] h-7 px-3 cursor-pointer">
                     <Link2 size={11} className="mr-1" />
                     Connect GSC
                   </Button>
                 ) : (
                   <>
-                    <Button size="sm" onClick={() => handleSync('gsc')} disabled={syncingService === 'gsc'} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                    <Button size="sm" onClick={() => handleSync('gsc')} disabled={syncingService === 'gsc'} className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary text-[10px] h-7 px-3 cursor-pointer">
                       {syncingService === 'gsc' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
                       Sync
                     </Button>
-                    <Button size="sm" onClick={() => { setGscPropertyUrl(integrationStatus.gsc?.propertyUrl || ''); setGscPropertyModalOpen(true); }} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                    <Button size="sm" onClick={() => { setGscPropertyUrl(integrationStatus.gsc?.propertyUrl || ''); setGscPropertyModalOpen(true); }} className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary text-[10px] h-7 px-3 cursor-pointer">
                       <Settings size={10} className="mr-1" />
                       Configure
                     </Button>
-                    <Button size="sm" onClick={() => handleDisconnect('gsc')} disabled={disconnectingService === 'gsc'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
+                    <Button size="sm" onClick={() => handleDisconnect('gsc')} disabled={disconnectingService === 'gsc'} className="bg-transparent border border-error/30 text-error/70 hover:bg-error/10 text-[10px] h-7 px-3 cursor-pointer">
                       <Link2Off size={10} className="mr-1" />
                       Disconnect
                     </Button>
@@ -746,38 +746,38 @@ function SeoTabContent({ client }: SeoTabProps) {
             </div>
 
             {/* GA4 Card */}
-            <div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-[#0D1829] border-[#22C55E]/30' : 'bg-[#0A1220] border-[#1E3352]'} flex flex-col justify-between h-40`}>
+            <div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#F0F4FF]">Google Analytics 4</span>
+                  <span className="text-xs font-bold text-text-primary">Google Analytics 4</span>
                   {integrationStatus.ga4?.connected ? (
-                    <span className="text-[9px] font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/20">CONNECTED</span>
+                    <span className="text-[9px] font-bold text-online bg-online/10 px-2 py-0.5 rounded-full border border-online/20">CONNECTED</span>
                   ) : (
-                    <span className="text-[9px] font-bold text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full border border-[#1E3352]">NOT CONNECTED</span>
+                    <span className="text-[9px] font-bold text-text-tertiary bg-bg-card-hover/20 px-2 py-0.5 rounded-full border border-border/30">NOT CONNECTED</span>
                   )}
                 </div>
-                <p className="text-[10px] text-[#8BA3C7] mt-2 leading-relaxed">
+                <p className="text-[10px] text-text-secondary mt-2 leading-relaxed">
                   {integrationStatus.ga4?.connected
                     ? `Property ID: ${integrationStatus.ga4.propertyId || 'Linked'}`
                     : 'Connect analytics property to sync organic session statistics.'}
                 </p>
                 {integrationStatus.ga4?.connected && integrationStatus.ga4.lastSync && (
-                  <p className="text-[9px] text-[#4A6480] mt-1">Last Synced: {formatDate(integrationStatus.ga4.lastSync)}</p>
+                  <p className="text-[9px] text-text-tertiary mt-1">Last Synced: {formatDate(integrationStatus.ga4.lastSync)}</p>
                 )}
               </div>
               <div className="flex gap-2">
                 {!integrationStatus.ga4?.connected ? (
-                  <Button size="sm" onClick={() => handleConnectGoogle('ga4')} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-3 cursor-pointer">
+                  <Button size="sm" onClick={() => handleConnectGoogle('ga4')} className="bg-primary hover:bg-primary-light text-white text-[10px] h-7 px-3 cursor-pointer">
                     <Link2 size={11} className="mr-1" />
                     Connect GA4
                   </Button>
                 ) : (
                   <>
-                    <Button size="sm" onClick={() => handleSync('ga4')} disabled={syncingService === 'ga4'} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                    <Button size="sm" onClick={() => handleSync('ga4')} disabled={syncingService === 'ga4'} className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary text-[10px] h-7 px-3 cursor-pointer">
                       {syncingService === 'ga4' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
                       Sync
                     </Button>
-                    <Button size="sm" onClick={() => handleDisconnect('ga4')} disabled={disconnectingService === 'ga4'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
+                    <Button size="sm" onClick={() => handleDisconnect('ga4')} disabled={disconnectingService === 'ga4'} className="bg-transparent border border-error/30 text-error/70 hover:bg-error/10 text-[10px] h-7 px-3 cursor-pointer">
                       <Link2Off size={10} className="mr-1" />
                       Disconnect
                     </Button>
@@ -791,10 +791,10 @@ function SeoTabContent({ client }: SeoTabProps) {
 
       {/* ━━━ MODAL: LOG SEO MONTHLY REPORT ━━━ */}
       <Dialog open={logReportOpen} onOpenChange={setLogReportOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-lg select-none max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[700px] select-none max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Log SEO Analytics Report</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Log SEO Analytics Report</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Enter monthly analytics audit data for {monthYearString}.
             </DialogDescription>
           </DialogHeader>
@@ -1060,11 +1060,11 @@ function SeoTabContent({ client }: SeoTabProps) {
             <Button
               variant="outline"
               onClick={() => setLogReportOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
-            <Button onClick={handleLogReport} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer">
+            <Button onClick={handleLogReport} className="bg-primary hover:bg-primary-light text-white cursor-pointer">
               Save Report
             </Button>
           </DialogFooter>
@@ -1073,10 +1073,10 @@ function SeoTabContent({ client }: SeoTabProps) {
 
       {/* ━━━ MODAL: ADD KEYWORD ━━━ */}
       <Dialog open={addKeywordOpen} onOpenChange={setAddKeywordOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Add Keyword for Tracking</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Add Keyword for Tracking</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Configure target keywords and search intents for {monthYearString}.
             </DialogDescription>
           </DialogHeader>
@@ -1189,11 +1189,11 @@ function SeoTabContent({ client }: SeoTabProps) {
             <Button
               variant="outline"
               onClick={() => setAddKeywordOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
-            <Button onClick={handleAddKeyword} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer">
+            <Button onClick={handleAddKeyword} className="bg-primary hover:bg-primary-light text-white cursor-pointer">
               Track Keyword
             </Button>
           </DialogFooter>
@@ -1202,10 +1202,10 @@ function SeoTabContent({ client }: SeoTabProps) {
 
       {/* GSC Property URL Dialog */}
       <Dialog open={gscPropertyModalOpen} onOpenChange={setGscPropertyModalOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
             <DialogTitle className="text-base font-semibold">Set GSC Property URL</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogDescription className="text-xs text-text-secondary">
               Google OAuth is connected. Enter GSC property URL (e.g. sc-domain:example.com) to finish setup.
             </DialogDescription>
           </DialogHeader>
@@ -1220,8 +1220,8 @@ function SeoTabContent({ client }: SeoTabProps) {
             />
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setGscPropertyModalOpen(false)} className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] cursor-pointer">Skip</Button>
-            <Button onClick={handleSaveGscProperty} disabled={connecting} className="bg-[#F59E0B] hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold">
+            <Button variant="outline" onClick={() => setGscPropertyModalOpen(false)} className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 cursor-pointer">Skip</Button>
+            <Button onClick={handleSaveGscProperty} disabled={connecting} className="bg-warning hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold">
               {connecting ? 'Saving...' : 'Save & Sync'}
             </Button>
           </DialogFooter>
@@ -1230,10 +1230,10 @@ function SeoTabContent({ client }: SeoTabProps) {
 
       {/* GA4 Property ID Dialog */}
       <Dialog open={ga4PropertyModalOpen} onOpenChange={setGa4PropertyModalOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
             <DialogTitle className="text-base font-semibold">Set GA4 Property ID</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogDescription className="text-xs text-text-secondary">
               Google OAuth is connected. Enter GA4 property code to finish setup.
             </DialogDescription>
           </DialogHeader>
@@ -1248,8 +1248,8 @@ function SeoTabContent({ client }: SeoTabProps) {
             />
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setGa4PropertyModalOpen(false)} className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] cursor-pointer">Skip</Button>
-            <Button onClick={handleSaveGa4Property} disabled={connecting} className="bg-[#F59E0B] hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold">
+            <Button variant="outline" onClick={() => setGa4PropertyModalOpen(false)} className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 cursor-pointer">Skip</Button>
+            <Button onClick={handleSaveGa4Property} disabled={connecting} className="bg-warning hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold">
               {connecting ? 'Saving...' : 'Save & Sync'}
             </Button>
           </DialogFooter>
@@ -1262,7 +1262,7 @@ function SeoTabContent({ client }: SeoTabProps) {
 export function SeoTab({ client }: SeoTabProps) {
   return (
     <Suspense fallback={
-      <div className="flex items-center justify-center h-40 text-[#4A6480] text-xs gap-2">
+      <div className="flex items-center justify-center h-40 text-text-tertiary text-xs gap-2">
         <Loader2 className="animate-spin" size={14} />
         <span>Loading SEO tab content...</span>
       </div>

@@ -14,6 +14,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { getMonthYear } from '@/lib/utils';
 
 interface LogExpenseModalProps {
@@ -119,24 +120,24 @@ export function LogExpenseModal({ open, onOpenChange, onSuccess }: LogExpenseMod
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+      <DialogContent className="max-w-sm select-none">
         <DialogHeader>
-          <DialogTitle className="text-base font-bold text-[#F0F4FF]">Log Business Expense</DialogTitle>
-          <DialogDescription className="text-xs text-[#8BA3C7]">
+          <DialogTitle className="text-base font-bold">Log Business Expense</DialogTitle>
+          <DialogDescription className="text-xs">
             Log an operational or stipend expense to compute profit margins.
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-3 my-2 text-xs">
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Category</label>
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Category</label>
             <select
               value={form.category}
               onChange={(e) => setForm((p) => ({ ...p, category: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9 w-full bg-bg-card/50 border border-border/30 text-text-primary rounded px-3 hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none"
             >
               {CATEGORIES.map((cat) => (
-                <option key={cat.id} value={cat.id} className="bg-[#0D1829]">
+                <option key={cat.id} value={cat.id} className="bg-bg-card text-text-primary">
                   {cat.label}
                 </option>
               ))}
@@ -144,61 +145,62 @@ export function LogExpenseModal({ open, onOpenChange, onSuccess }: LogExpenseMod
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Description *</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Description *</label>
+            <Input
               type="text"
               placeholder="e.g. n8n hosting bill or Vercel Pro subscription"
               value={form.description}
               onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9"
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Amount (₹) *</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Amount (₹) *</label>
+            <Input
               type="number"
               placeholder="e.g. 1500"
               value={form.amount}
               onChange={(e) => setForm((p) => ({ ...p, amount: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3 font-mono"
+              className="h-9 font-mono"
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Date</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Date</label>
+            <Input
               type="date"
               value={form.date}
               onChange={(e) => setForm((p) => ({ ...p, date: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3 font-mono"
+              className="h-9 font-mono"
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Notes</label>
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Notes</label>
             <textarea
               placeholder="Receipt details or references..."
               value={form.notes}
               onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))}
               rows={2}
-              className="input w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded p-2 resize-none"
+              className="w-full bg-bg-card/50 border border-border/30 text-text-primary rounded p-2 resize-none hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none"
             />
           </div>
         </div>
 
         <DialogFooter className="mt-4 gap-2 sm:gap-0">
           <Button
-            variant="outline"
+            variant="secondary"
             onClick={() => onOpenChange(false)}
-            className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+            className="cursor-pointer"
             disabled={isSubmitting}
           >
             Cancel
           </Button>
           <Button
             onClick={handleSubmit}
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+            variant="default"
+            className="cursor-pointer"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Logging...' : 'Log Expense'}

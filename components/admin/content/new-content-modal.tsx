@@ -145,20 +145,20 @@ export function NewContentModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-md font-bold text-[#F0F4FF]">Add New Pipeline Content</DialogTitle>
+          <DialogTitle className="text-md font-bold text-text-primary">Add New Pipeline Content</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 py-2 text-xs">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Select Client *</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Select Client *</Label>
               <Select value={clientId} onValueChange={(val) => setClientId(val || '')}>
-                <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                   <SelectValue placeholder="Select client" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                   {clients.map((c) => (
                     <SelectItem key={c.id} value={c.id} className="text-xs">
                       {c.name}
@@ -169,37 +169,37 @@ export function NewContentModal({
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Target Keyword *</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Target Keyword *</Label>
               <Input
                 type="text"
                 required
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 placeholder="e.g. Kanpur SEO agency"
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-[#8BA3C7] text-[11px] font-medium">Suggested Title</Label>
+            <Label className="text-text-secondary text-[11px] font-medium">Suggested Title</Label>
             <Input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Suggested post title"
-              className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+              className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Content Type</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Content Type</Label>
               <Select value={contentType} onValueChange={(val) => setContentType(val || 'blog')}>
-                <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                   <SelectValue placeholder="Select type" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                   <SelectItem value="blog" className="text-xs">Blog Article</SelectItem>
                   <SelectItem value="landing_page" className="text-xs">Landing Page</SelectItem>
                   <SelectItem value="case_study" className="text-xs">Case Study</SelectItem>
@@ -209,24 +209,24 @@ export function NewContentModal({
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Word Count Target</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Word Count Target</Label>
               <Input
                 type="number"
                 value={wordCountTarget}
                 onChange={(e) => setWordCountTarget(Number(e.target.value))}
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Assignee (Intern)</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Assignee (Intern)</Label>
               <Select value={assignedTo} onValueChange={(val) => setAssignedTo(val || '')}>
-                <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                   <SelectValue placeholder="Unassigned" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                   {employees.map((emp) => (
                     <SelectItem key={emp.id} value={emp.id} className="text-xs">
                       {emp.full_name}
@@ -237,25 +237,25 @@ export function NewContentModal({
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Due Date</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Due Date</Label>
               <Input
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
             <div className="flex justify-between items-center">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Content Brief Outline</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Content Brief Outline</Label>
               <Button
                 type="button"
                 variant="ghost"
                 onClick={handleGenerateBrief}
                 disabled={generatingBrief}
-                className="h-6 text-[10px] text-[#4D90FE] hover:text-[#F0F4FF] hover:bg-[#1B4FD8]/15 px-2 rounded flex items-center gap-1 font-bold border border-[#1B4FD8]/20 bg-[#1B4FD8]/5"
+                className="h-6 text-[10px] text-primary-light hover:text-text-primary hover:bg-primary/15 px-2 rounded flex items-center gap-1 font-bold border border-primary/20 bg-primary/5"
               >
                 {generatingBrief ? (
                   <>
@@ -272,23 +272,23 @@ export function NewContentModal({
               value={brief}
               onChange={(e) => setBrief(e.target.value)}
               placeholder="Outline target audience, key sections, reference links, and key points..."
-              className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs min-h-[140px]"
+              className="bg-bg-dark border-border/30 text-text-primary text-xs min-h-[140px]"
             />
           </div>
 
-          <DialogFooter className="mt-4 pt-2 border-t border-[#1E3352]/30">
+          <DialogFooter className="mt-4 pt-2 border-t border-border/30/30">
             <Button
               type="button"
               variant="outline"
               onClick={() => onOpenChange(false)}
-              className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] text-xs h-9"
+              className="border-border/30 hover:bg-bg-card-hover/20 text-text-secondary text-xs h-9"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={loading}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9"
+              className="bg-primary hover:bg-primary-light text-white text-xs h-9"
             >
               {loading ? 'Adding...' : 'Add to Pipeline'}
             </Button>

@@ -14,6 +14,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 interface MarkPaidModalProps {
   open: boolean;
@@ -89,61 +90,61 @@ export function MarkPaidModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+      <DialogContent className="max-w-sm select-none">
         <DialogHeader>
-          <DialogTitle className="text-base font-bold text-[#F0F4FF]">Record Payment</DialogTitle>
-          <DialogDescription className="text-xs text-[#8BA3C7]">
+          <DialogTitle className="text-base font-bold">Record Payment</DialogTitle>
+          <DialogDescription className="text-xs">
             Record payment details for invoice {invoice?.invoice_number}.
           </DialogDescription>
         </DialogHeader>
 
         {invoice && (
           <div className="space-y-4 my-2 text-xs">
-            <div className="bg-[#132035]/50 border border-[#1E3352]/50 rounded p-3 space-y-1">
+            <div className="bg-bg-card-hover/20 border border-border/20 rounded p-3 space-y-1">
               <div className="flex justify-between">
-                <span className="text-[#8BA3C7]">Client:</span>
-                <span className="font-bold text-[#F0F4FF]">{clientName}</span>
+                <span className="text-text-secondary">Client:</span>
+                <span className="font-bold text-text-primary">{clientName}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#8BA3C7]">Invoice Total:</span>
-                <span className="font-mono font-bold text-[#F97316]">
+                <span className="text-text-secondary">Invoice Total:</span>
+                <span className="font-mono font-bold text-accent">
                   ₹ {Number(invoice.total_amount || invoice.amount).toLocaleString('en-IN')}
                 </span>
               </div>
             </div>
 
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Payment Date</label>
-              <input
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Payment Date</label>
+              <Input
                 type="date"
                 value={form.paid_date}
                 onChange={(e) => setForm((p) => ({ ...p, paid_date: e.target.value }))}
-                className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3 font-mono"
+                className="h-9 font-mono"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Payment Method</label>
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Payment Method</label>
               <select
                 value={form.payment_method}
                 onChange={(e) => setForm((p) => ({ ...p, payment_method: e.target.value }))}
-                className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+                className="h-9 w-full bg-bg-card/50 border border-border/30 text-text-primary rounded px-3 hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none"
               >
-                <option value="Bank Transfer" className="bg-[#0D1829]">Bank Transfer (IMPS/NEFT)</option>
-                <option value="UPI" className="bg-[#0D1829]">UPI (GPay/PhonePe)</option>
-                <option value="Credit Card" className="bg-[#0D1829]">Credit Card</option>
-                <option value="Cash" className="bg-[#0D1829]">Cash</option>
-                <option value="Other" className="bg-[#0D1829]">Other / Cheque</option>
+                <option value="Bank Transfer" className="bg-bg-card text-text-primary">Bank Transfer (IMPS/NEFT)</option>
+                <option value="UPI" className="bg-bg-card text-text-primary">UPI (GPay/PhonePe)</option>
+                <option value="Credit Card" className="bg-bg-card text-text-primary">Credit Card</option>
+                <option value="Cash" className="bg-bg-card text-text-primary">Cash</option>
+                <option value="Other" className="bg-bg-card text-text-primary">Other / Cheque</option>
               </select>
             </div>
 
             <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Amount Received (₹)</label>
-              <input
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Amount Received (₹)</label>
+              <Input
                 type="number"
                 value={form.amount_received}
                 onChange={(e) => setForm((p) => ({ ...p, amount_received: e.target.value }))}
-                className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3 font-mono"
+                className="h-9 font-mono"
               />
             </div>
           </div>
@@ -151,16 +152,16 @@ export function MarkPaidModal({
 
         <DialogFooter className="mt-4 gap-2 sm:gap-0">
           <Button
-            variant="outline"
+            variant="secondary"
             onClick={() => onOpenChange(false)}
-            className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+            className="cursor-pointer"
             disabled={isSubmitting}
           >
             Cancel
           </Button>
           <Button
             onClick={handleSubmit}
-            className="bg-[#22C55E] hover:bg-[#16A34A] text-white cursor-pointer"
+            className="bg-success text-white border border-success/30 hover:bg-success/80 shadow-[0_4px_12px_rgba(16,185,129,0.25)] hover:shadow-[0_8px_20px_rgba(16,185,129,0.35)] cursor-pointer"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Recording...' : 'Record Payment'}

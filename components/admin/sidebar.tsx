@@ -31,6 +31,7 @@ import {
   Building2,
   ListTodo,
   History,
+  X,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -42,9 +43,17 @@ interface SidebarProps {
   } | null;
   isCollapsed?: boolean;
   setIsCollapsed?: (collapsed: boolean) => void;
+  isMobileOpen?: boolean;
+  setIsMobileOpen?: (open: boolean) => void;
 }
 
-export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCollapsed: setControlledCollapsed }: SidebarProps) {
+export function Sidebar({
+  userProfile,
+  isCollapsed: controlledCollapsed,
+  setIsCollapsed: setControlledCollapsed,
+  isMobileOpen = false,
+  setIsMobileOpen,
+}: SidebarProps) {
   const pathname = usePathname();
   const [localCollapsed, setLocalCollapsed] = useState(false);
 
@@ -97,14 +106,14 @@ export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCo
           className={cn(
             "group flex items-center gap-3 px-3 py-2 rounded-md font-medium text-[13px] transition-all duration-150 relative cursor-pointer",
             isActive
-              ? "bg-[#1B4FD815] text-[#4D90FE] border-l-2 border-[#1B4FD8]"
-              : "text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF]"
+              ? "bg-primary/20 text-primary-light border-l-[3px] border-primary pl-[9px]"
+              : "text-text-secondary hover:bg-primary/10 hover:text-text-primary"
           )}
         >
-          <Icon size={16} className={cn("stroke-[1.5]", isActive ? "text-[#4D90FE]" : "text-[#8BA3C7] group-hover:text-[#F0F4FF]")} />
+          <Icon size={16} className={cn("stroke-[1.5]", isActive ? "text-primary-light" : "text-text-secondary group-hover:text-text-primary")} />
           {!isCollapsed && <span className="truncate">{item.name}</span>}
           {isCollapsed && (
-            <div className="absolute left-16 bg-[#1A2D47] border border-[#1E3352] text-xs font-semibold px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap shadow-xl">
+            <div className="absolute left-16 bg-bg-card-hover/40 border border-border/30 text-xs font-semibold px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap shadow-xl">
               {item.name}
             </div>
           )}
@@ -116,39 +125,54 @@ export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCo
   return (
     <aside
       className={cn(
-        "fixed inset-y-0 left-0 bg-[#0D1829] border-r border-[#1E3352] flex flex-col transition-all duration-200 z-30",
-        isCollapsed ? "w-[60px]" : "w-[220px]"
+        "fixed inset-y-0 left-0 bg-bg-card/75 backdrop-blur-[12px] border-r border-border/30 flex flex-col transition-all duration-200 shadow-elevated z-30",
+        // Desktop layouts
+        "lg:translate-x-0",
+        isCollapsed ? "lg:w-[60px]" : "lg:w-[220px]",
+        // Mobile drawer transition & layouts
+        "z-40 w-[240px]",
+        isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
       )}
     >
       {/* Sidebar Header / Logo */}
-      <div className="h-14 px-4 flex items-center justify-between border-b border-[#1E3352] shrink-0">
-        {!isCollapsed ? (
+      <div className="h-14 px-4 flex items-center justify-between border-b border-border/30 shrink-0">
+        {!isCollapsed || isMobileOpen ? (
           <div className="flex items-center text-base font-bold tracking-tight select-none">
-            <span className="text-[#1B4FD8]">Veloxis</span>
-            <span className="text-[#F97316]">Global</span>
+            <span className="text-primary font-bold">Veloxis</span>
+            <span className="text-accent font-bold">Global</span>
           </div>
         ) : (
-          <div className="w-full flex justify-center text-lg font-bold text-[#1B4FD8] select-none">
+          <div className="w-full flex justify-center text-lg font-bold text-primary select-none">
             V
           </div>
         )}
         
-        {/* Toggle Collapse Button */}
+        {/* Toggle Collapse Button (desktop only) */}
         {!isCollapsed && (
           <button
             onClick={() => setIsCollapsed(true)}
-            className="text-[#8BA3C7] hover:text-[#F0F4FF] p-1 rounded hover:bg-[#132035] transition-colors"
+            className="hidden lg:block text-text-secondary hover:text-text-primary p-1 rounded hover:bg-bg-card-hover/20 transition-colors"
           >
             <ChevronLeft size={16} />
+          </button>
+        )}
+
+        {/* Close Button (mobile only) */}
+        {isMobileOpen && (
+          <button
+            onClick={() => setIsMobileOpen?.(false)}
+            className="lg:hidden text-text-secondary hover:text-text-primary p-1.5 rounded-md hover:bg-bg-card-hover/20 transition-colors cursor-pointer"
+          >
+            <X size={16} className="stroke-[1.5]" />
           </button>
         )}
       </div>
 
       {isCollapsed && (
-        <div className="flex justify-center py-2 border-b border-[#1E3352]">
+        <div className="hidden lg:flex justify-center py-2 border-b border-border/30">
           <button
             onClick={() => setIsCollapsed(false)}
-            className="text-[#8BA3C7] hover:text-[#F0F4FF] p-1 rounded hover:bg-[#132035] transition-colors"
+            className="text-text-secondary hover:text-text-primary p-1 rounded hover:bg-bg-card-hover/20 transition-colors"
           >
             <ChevronRight size={16} />
           </button>
@@ -160,7 +184,7 @@ export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCo
         {/* MARKETING */}
         <div className="space-y-1">
           {!isCollapsed && (
-            <div className="px-3 text-[10px] font-semibold text-[#4A6480] uppercase tracking-wider mb-2 select-none">
+            <div className="px-3 text-[10px] font-semibold text-text-tertiary uppercase tracking-wider mb-2 select-none">
               Marketing
             </div>
           )}
@@ -170,8 +194,8 @@ export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCo
               className={cn(
                 "group flex items-center gap-3 px-3 py-2 rounded-md font-medium text-[13px] transition-all duration-150 relative cursor-pointer",
                 pathname === '/dashboard/my-agency' || pathname.startsWith('/dashboard/my-agency/')
-                  ? "bg-[#F9731615] text-[#F97316] border-l-2 border-[#F97316]"
-                  : "text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF]"
+                  ? "bg-accent/15 text-accent border-l-[3px] border-accent pl-[9px]"
+                  : "text-text-secondary hover:bg-primary/10 hover:text-text-primary"
               )}
             >
               <Building2
@@ -179,32 +203,32 @@ export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCo
                 className={cn(
                   "stroke-[1.5]",
                   pathname === '/dashboard/my-agency' || pathname.startsWith('/dashboard/my-agency/')
-                    ? "text-[#F97316]"
-                    : "text-[#8BA3C7] group-hover:text-[#F0F4FF]"
+                    ? "text-accent"
+                    : "text-text-secondary group-hover:text-text-primary"
                 )}
               />
               {!isCollapsed && (
                 <div className="flex items-center justify-between w-full min-w-0">
                   <span className="truncate">Agency Marketing</span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#F97316] shrink-0" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
                 </div>
               )}
               {isCollapsed && (
-                <div className="absolute left-16 bg-[#1A2D47] border border-[#1E3352] text-xs font-semibold px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap shadow-xl">
+                <div className="absolute left-16 bg-bg-card-hover/40 border border-border/30 text-xs font-semibold px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap shadow-xl">
                   Agency Marketing (Veloxis Global)
                 </div>
               )}
             </Link>
           </nav>
           {!isCollapsed && (
-            <div className="border-b border-[#1E3352]/20 my-2 mx-3" />
+            <div className="border-b border-border/30/20 my-2 mx-3" />
           )}
         </div>
 
         {/* INTERNAL */}
         <div className="space-y-1">
           {!isCollapsed && (
-            <div className="px-3 text-[10px] font-semibold text-[#4A6480] uppercase tracking-wider mb-2 select-none">
+            <div className="px-3 text-[10px] font-semibold text-text-tertiary uppercase tracking-wider mb-2 select-none">
               Internal
             </div>
           )}
@@ -216,7 +240,7 @@ export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCo
         {/* CLIENT DELIVERY */}
         <div className="space-y-1">
           {!isCollapsed && (
-            <div className="px-3 text-[10px] font-semibold text-[#4A6480] uppercase tracking-wider mb-2 select-none">
+            <div className="px-3 text-[10px] font-semibold text-text-tertiary uppercase tracking-wider mb-2 select-none">
               Client Delivery
             </div>
           )}
@@ -227,36 +251,39 @@ export function Sidebar({ userProfile, isCollapsed: controlledCollapsed, setIsCo
       </div>
 
       {/* Bottom Actions */}
-      <div className="p-2 border-t border-[#1E3352] flex flex-col gap-0.5 shrink-0">
+      <div className="p-2 border-t border-border/30 flex flex-col gap-0.5 shrink-0">
         <nav className="flex flex-col gap-0.5">
           {renderNavItems(bottomRoutes)}
         </nav>
 
         {/* User profile & Logout */}
-        <div className={cn("mt-2 rounded-lg bg-[#132035]/40 p-2 border border-[#1E3352]/30 flex items-center justify-between gap-2 overflow-hidden", isCollapsed && "justify-center")}>
+        <div className={cn(
+          "mt-2 rounded-lg bg-bg-card-hover/30 p-2 border border-border/20 flex items-center justify-between gap-2 overflow-hidden",
+          isCollapsed ? "lg:justify-center" : ""
+        )}>
           <div className="flex items-center gap-2.5 overflow-hidden">
-            <Avatar className="h-7 w-7 border border-[#1E3352]">
+            <Avatar className="h-7 w-7 border border-border/30">
               <AvatarImage src={userProfile?.avatar_url || undefined} />
-              <AvatarFallback className="bg-[#1B4FD8] text-[10px] text-white uppercase font-bold select-none">
+              <AvatarFallback className="bg-primary text-[10px] text-white uppercase font-bold select-none">
                 {userProfile?.full_name?.substring(0, 2) || 'AD'}
               </AvatarFallback>
             </Avatar>
-            {!isCollapsed && (
-              <div className="flex flex-col text-left overflow-hidden min-w-0">
-                <span className="text-xs font-semibold text-[#F0F4FF] truncate select-none">
+            {(!isCollapsed || isMobileOpen) && (
+              <div className={cn("flex flex-col text-left overflow-hidden min-w-0", isCollapsed && "lg:hidden")}>
+                <span className="text-xs font-semibold text-text-primary truncate select-none">
                   {userProfile?.full_name || 'Admin User'}
                 </span>
-                <span className="text-[10px] text-[#8BA3C7] truncate select-none">
+                <span className="text-[10px] text-text-secondary truncate select-none">
                   {userProfile?.email || 'admin@veloxisglobal.com'}
                 </span>
               </div>
             )}
           </div>
           
-          {!isCollapsed && (
+          {(!isCollapsed || isMobileOpen) && (
             <button
               onClick={handleLogout}
-              className="text-[#8BA3C7] hover:text-[#EF4444] p-1.5 rounded hover:bg-[#EF444415] transition-colors shrink-0"
+              className={cn("text-text-secondary hover:text-error p-1.5 rounded hover:bg-error/15 transition-colors shrink-0", isCollapsed && "lg:hidden")}
               title="Sign Out"
             >
               <LogOut size={14} className="stroke-[1.5]" />

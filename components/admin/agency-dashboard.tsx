@@ -781,17 +781,17 @@ export function AgencyDashboard({
       {/* ━━━ SECTION 1: TOP KPI STRIP ━━━ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
         {/* KPI 1 — Organic Traffic */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-[#1A2D47] transition-all">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-border/50 transition-all">
           <div>
-            <div className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider select-none">
+            <div className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider select-none">
               Organic Traffic
             </div>
-            <div className="text-xl font-bold font-mono text-[#F0F4FF] mt-1 select-all">
+            <div className="text-xl font-bold font-mono text-text-primary mt-1 select-all">
               {trafficVal.toLocaleString()}
             </div>
           </div>
           <div className="flex items-center justify-between mt-1">
-            <span className="text-[10px] text-[#22C55E] font-semibold select-none">
+            <span className="text-[10px] text-online font-semibold select-none">
               {latestSeo && latestSeo.organic_traffic_prev
                 ? `${latestSeo.organic_traffic >= latestSeo.organic_traffic_prev ? '↑' : '↓'} ${Math.round(
                     ((latestSeo.organic_traffic - latestSeo.organic_traffic_prev) /
@@ -805,28 +805,28 @@ export function AgencyDashboard({
         </div>
 
         {/* KPI 2 — Keywords Top 10 */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-[#1A2D47] transition-all">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-border/50 transition-all">
           <div>
-            <div className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider select-none">
+            <div className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider select-none">
               Keywords Top 10
             </div>
-            <div className="text-xl font-bold font-mono text-[#F0F4FF] mt-1 select-all">
+            <div className="text-xl font-bold font-mono text-text-primary mt-1 select-all">
               {keywordsVal}
             </div>
           </div>
           <div className="flex items-center justify-between mt-1">
-            <span className="text-[10px] text-[#8BA3C7]/60 select-none">Tracked Search Term</span>
+            <span className="text-[10px] text-text-secondary/60 select-none">Tracked Search Term</span>
             {renderSparkline(keywordsSparkline, CHART_COLORS.success)}
           </div>
         </div>
 
         {/* KPI 3 — Instagram Followers */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-[#1A2D47] transition-all">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-border/50 transition-all">
           <div>
-            <div className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider select-none">
+            <div className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider select-none">
               Insta Followers
             </div>
-            <div className="text-xl font-bold font-mono text-[#F0F4FF] mt-1 select-all">
+            <div className="text-xl font-bold font-mono text-text-primary mt-1 select-all">
               {followersVal.toLocaleString()}
             </div>
           </div>
@@ -837,17 +837,17 @@ export function AgencyDashboard({
         </div>
 
         {/* KPI 4 — Total Ad Leads */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-[#1A2D47] transition-all">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-border/50 transition-all">
           <div>
-            <div className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider select-none">
+            <div className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider select-none">
               Ad Leads (Mo)
             </div>
-            <div className="text-xl font-bold font-mono text-[#F0F4FF] mt-1 select-all">
+            <div className="text-xl font-bold font-mono text-text-primary mt-1 select-all">
               {totalLeads}
             </div>
           </div>
           <div className="flex items-center justify-between mt-1">
-            <span className="text-[10px] text-[#F97316] font-mono font-semibold select-none">
+            <span className="text-[10px] text-accent font-mono font-semibold select-none">
               {avgCplVal > 0 ? `₹${avgCplVal} CPL` : 'No spend'}
             </span>
             {renderSparkline(adLeadsSparkline, CHART_COLORS.secondary)}
@@ -855,33 +855,33 @@ export function AgencyDashboard({
         </div>
 
         {/* KPI 5 — Email Open Rate */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-[#1A2D47] transition-all">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-border/50 transition-all">
           <div>
-            <div className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider select-none">
+            <div className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider select-none">
               Email Open Rate
             </div>
-            <div className="text-xl font-bold font-mono text-[#F0F4FF] mt-1 select-all">
+            <div className="text-xl font-bold font-mono text-text-primary mt-1 select-all">
               {emailOpenRateVal}%
             </div>
           </div>
           <div className="flex items-center justify-between mt-1">
-            <span className="text-[10px] text-[#8BA3C7]/60 select-none">Resend Campaigns</span>
+            <span className="text-[10px] text-text-secondary/60 select-none">Resend Campaigns</span>
             {renderSparkline(emailOpenSparkline, CHART_COLORS.cyan)}
           </div>
         </div>
 
         {/* KPI 6 — WA Messages Sent */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-[#1A2D47] transition-all">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col justify-between h-[100px] hover:border-border/50 transition-all">
           <div>
-            <div className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider select-none">
+            <div className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider select-none">
               WA Messages Sent
             </div>
-            <div className="text-xl font-bold font-mono text-[#F0F4FF] mt-1 select-all">
+            <div className="text-xl font-bold font-mono text-text-primary mt-1 select-all">
               {waSentVal.toLocaleString()}
             </div>
           </div>
           <div className="flex items-center justify-between mt-1">
-            <span className="text-[10px] text-[#22C55E] font-semibold select-none">WhatsApp Bot</span>
+            <span className="text-[10px] text-online font-semibold select-none">WhatsApp Bot</span>
             {renderSparkline(whatsappSentSparkline, CHART_COLORS.success)}
           </div>
         </div>
@@ -890,7 +890,7 @@ export function AgencyDashboard({
       {/* ━━━ SECTION 2: TABBED DEPARTMENT VIEW ━━━ */}
       <div className="space-y-4">
         {/* Navigation Tabs Header */}
-        <div className="border-b border-[#1E3352] flex items-center gap-2 select-none overflow-x-auto">
+        <div className="border-b border-border/30 flex items-center gap-2 select-none overflow-x-auto">
           {[
             { id: 'overview', label: 'overview' },
             { id: 'seo', label: 'seo' },
@@ -906,8 +906,8 @@ export function AgencyDashboard({
               onClick={() => setActiveTab(tab.id)}
               className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider border-b-2 cursor-pointer transition-all ${
                 activeTab === tab.id
-                  ? 'border-[#1B4FD8] text-[#F0F4FF]'
-                  : 'border-transparent text-[#8BA3C7] hover:text-[#F0F4FF]'
+                  ? 'border-primary text-text-primary'
+                  : 'border-transparent text-text-secondary hover:text-text-primary'
               }`}
             >
               {tab.label}
@@ -919,20 +919,20 @@ export function AgencyDashboard({
         {activeTab === 'overview' && (
           <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
             {/* Left 65% Column — Radar Chart */}
-            <div className="lg:col-span-6 bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 flex flex-col justify-between h-[380px]">
+            <div className="lg:col-span-6 bg-bg-card border border-border/30 rounded-[10px] p-5 flex flex-col justify-between h-[380px]">
               <div>
-                <h3 className="text-sm font-semibold text-[#F0F4FF] select-none flex items-center gap-2">
+                <h3 className="text-sm font-semibold text-text-primary select-none flex items-center gap-2">
                   <Award size={15} className="text-[#1B4FD8]" />
                   <span>All Channels Performance (Scores)</span>
                 </h3>
-                <p className="text-[10px] text-[#4A6480] mt-0.5 select-none uppercase tracking-wide">
+                <p className="text-[10px] text-text-tertiary mt-0.5 select-none uppercase tracking-wide">
                   Target vs Actual Performance Scores
                 </p>
               </div>
               <div className="flex-1 flex justify-center items-center">
                 <ResponsiveContainer width="100%" height={260}>
                   <RadarChart cx="50%" cy="50%" outerRadius={85} data={radarData}>
-                    <PolarGrid stroke="#1E3352" />
+                    <PolarGrid stroke="var(--color-border-subtle)" />
                     <PolarAngleAxis dataKey="subject" stroke="#4A6480" fontSize={10} />
                     <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="#4A6480" fontSize={9} />
                     <Radar
@@ -950,33 +950,33 @@ export function AgencyDashboard({
             {/* Right 35% Column — KPIs and Traffic Pie */}
             <div className="lg:col-span-4 space-y-6">
               {/* Target KPIs */}
-              <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none">
+              <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none">
                   Monthly Growth Target KPIs
                 </h3>
                 <div className="space-y-3 text-xs">
-                  <div className="flex items-center justify-between border-b border-[#1E3352]/20 pb-2">
-                    <span className="text-[#8BA3C7]">New Leads</span>
-                    <span className="text-[#F0F4FF] font-semibold select-all">8 / 20 leads (🟡)</span>
+                  <div className="flex items-center justify-between border-b border-border/30/20 pb-2">
+                    <span className="text-text-secondary">New Leads</span>
+                    <span className="text-text-primary font-semibold select-all">8 / 20 leads (🟡)</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#1E3352]/20 pb-2">
-                    <span className="text-[#8BA3C7]">Website Traffic</span>
-                    <span className="text-[#F0F4FF] font-semibold select-all">{trafficVal} / 500 visits (🟡)</span>
+                  <div className="flex items-center justify-between border-b border-border/30/20 pb-2">
+                    <span className="text-text-secondary">Website Traffic</span>
+                    <span className="text-text-primary font-semibold select-all">{trafficVal} / 500 visits (🟡)</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#1E3352]/20 pb-2">
-                    <span className="text-[#8BA3C7]">Insta Followers</span>
-                    <span className="text-[#F0F4FF] font-semibold select-all">+{socialMetrics?.length ? socialMetrics[0].new_followers : 0} / +100 (🟡)</span>
+                  <div className="flex items-center justify-between border-b border-border/30/20 pb-2">
+                    <span className="text-text-secondary">Insta Followers</span>
+                    <span className="text-text-primary font-semibold select-all">+{socialMetrics?.length ? socialMetrics[0].new_followers : 0} / +100 (🟡)</span>
                   </div>
                   <div className="flex items-center justify-between pb-1">
-                    <span className="text-[#8BA3C7]">Clients Won</span>
-                    <span className="text-[#EF4444] font-semibold select-all">0 / 2 clients (🔴)</span>
+                    <span className="text-text-secondary">Clients Won</span>
+                    <span className="text-error font-semibold select-all">0 / 2 clients (🔴)</span>
                   </div>
                 </div>
               </div>
 
               {/* Traffic Sources Pie */}
-              <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 flex flex-col justify-between h-[210px]">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none">
+              <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 flex flex-col justify-between h-[210px]">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none">
                   Organic vs Referral Traffic Sources
                 </h3>
                 <div className="flex-1 flex items-center justify-between select-none">
@@ -1002,7 +1002,7 @@ export function AgencyDashboard({
                   </div>
                   <div className="flex flex-col gap-1 text-[10px]">
                     {trafficSourcesData.map((entry, index) => (
-                      <div key={entry.name} className="flex items-center gap-1.5 text-[#8BA3C7]">
+                      <div key={entry.name} className="flex items-center gap-1.5 text-text-secondary">
                         <span
                           className="h-2 w-2 rounded-full shrink-0"
                           style={{ backgroundColor: PIE_COLORS[index % PIE_COLORS.length] }}
@@ -1031,8 +1031,8 @@ export function AgencyDashboard({
             {/* Charts Row */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Traffic Area Chart */}
-              <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 h-[280px]">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none mb-4">
+              <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 h-[280px]">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none mb-4">
                   Organic Traffic (Last 6 Months)
                 </h4>
                 <div className="h-[200px]">
@@ -1044,7 +1044,7 @@ export function AgencyDashboard({
                           <stop offset="95%" stopColor={CHART_COLORS.primary} stopOpacity={0} />
                         </linearGradient>
                       </defs>
-                      <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} opacity={0.3} />
+                      <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} opacity={0.3} />
                       <XAxis dataKey="month_year" stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <YAxis stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <Tooltip />
@@ -1062,8 +1062,8 @@ export function AgencyDashboard({
               </div>
 
               {/* Keyword Position Distribution */}
-              <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 h-[280px]">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none mb-4">
+              <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 h-[280px]">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none mb-4">
                   Keyword Position Distribution
                 </h4>
                 <div className="h-[200px]">
@@ -1099,7 +1099,7 @@ export function AgencyDashboard({
                       ]}
                       margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
                     >
-                      <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} opacity={0.3} />
+                      <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} opacity={0.3} />
                       <XAxis dataKey="name" stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <YAxis stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <Tooltip />
@@ -1117,7 +1117,7 @@ export function AgencyDashboard({
 
             {/* Keyword Rankings Table */}
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none">
                 SEO Targeted Keywords Rankings
               </h4>
               <DataTable
@@ -1131,11 +1131,11 @@ export function AgencyDashboard({
                     render: (val, row) => {
                       const curr = Number(row.current_position || 0);
                       const prev = Number(row.previous_position || 0);
-                      if (!prev) return <span className="text-[#8BA3C7]">-</span>;
+                      if (!prev) return <span className="text-text-secondary">-</span>;
                       const diff = prev - curr; // position decrease is positive (e.g. 5 to 3 is improvement of 2)
-                      if (diff > 0) return <span className="text-[#22C55E] font-semibold">↑ {diff}</span>;
-                      if (diff < 0) return <span className="text-[#EF4444] font-semibold">↓ {Math.abs(diff)}</span>;
-                      return <span className="text-[#8BA3C7]">No change</span>;
+                      if (diff > 0) return <span className="text-online font-semibold">↑ {diff}</span>;
+                      if (diff < 0) return <span className="text-error font-semibold">↓ {Math.abs(diff)}</span>;
+                      return <span className="text-text-secondary">No change</span>;
                     },
                   },
                   { key: 'search_volume', header: 'Search Volume', width: '15%' },
@@ -1160,57 +1160,57 @@ export function AgencyDashboard({
             </div>
 
             {/* ━━━ COLLAPSIBLE INTEGRATIONS PANEL ━━━ */}
-            <div className="border border-[#1E3352] rounded-[10px] bg-[#0D1829]/30">
+            <div className="border border-border/30 rounded-[10px] bg-bg-card/30">
               <button
                 onClick={() => setIntegrationsOpen(!integrationsOpen)}
-                className="w-full flex items-center justify-between p-4 text-xs font-semibold text-[#F0F4FF] select-none hover:bg-[#0D1829]/50 transition-all rounded-[10px]"
+                className="w-full flex items-center justify-between p-4 text-xs font-semibold text-text-primary select-none hover:bg-bg-card/50 transition-all rounded-[10px]"
               >
                 <div className="flex items-center gap-2">
-                  <Link2 size={14} className="text-[#4D90FE]" />
+                  <Link2 size={14} className="text-primary-light" />
                   <span>Agency API Integrations (GSC, GA4, Meta & Google Ads)</span>
                 </div>
                 {integrationsOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
               </button>
 
               {integrationsOpen && (
-                <div className="p-4 border-t border-[#1E3352]/40 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 border-t border-border/30/40 grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* GSC Card */}
-                  <div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-[#0D1829] border-[#22C55E]/30' : 'bg-[#0A1220] border-[#1E3352]'} flex flex-col justify-between h-40`}>
+                  <div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-[#F0F4FF]">Google Search Console</span>
+                        <span className="text-xs font-bold text-text-primary">Google Search Console</span>
                         {integrationStatus.gsc?.connected ? (
-                          <span className="text-[9px] font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/20">CONNECTED</span>
+                          <span className="text-[9px] font-bold text-online bg-online/10 px-2 py-0.5 rounded-full border border-online/20">CONNECTED</span>
                         ) : (
-                          <span className="text-[9px] font-bold text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full border border-[#1E3352]">NOT CONNECTED</span>
+                          <span className="text-[9px] font-bold text-text-tertiary bg-bg-card-hover/20 px-2 py-0.5 rounded-full border border-border/30">NOT CONNECTED</span>
                         )}
                       </div>
-                      <p className="text-[10px] text-[#8BA3C7] mt-2 leading-relaxed">
+                      <p className="text-[10px] text-text-secondary mt-2 leading-relaxed">
                         {integrationStatus.gsc?.connected
                           ? `Property: ${integrationStatus.gsc.propertyUrl || 'Linked'}`
                           : 'Connect search console accounts to pull keywords list.'}
                       </p>
                       {integrationStatus.gsc?.connected && integrationStatus.gsc.lastSync && (
-                        <p className="text-[9px] text-[#4A6480] mt-1">Last Synced: {formatDate(integrationStatus.gsc.lastSync)}</p>
+                        <p className="text-[9px] text-text-tertiary mt-1">Last Synced: {formatDate(integrationStatus.gsc.lastSync)}</p>
                       )}
                     </div>
                     <div className="flex gap-2">
                       {!integrationStatus.gsc?.connected ? (
-                        <Button size="sm" onClick={() => handleConnectGoogle('gsc')} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-3 cursor-pointer">
+                        <Button size="sm" onClick={() => handleConnectGoogle('gsc')} className="bg-primary hover:bg-primary-light text-white text-[10px] h-7 px-3 cursor-pointer">
                           <Link2 size={11} className="mr-1" />
                           Connect GSC
                         </Button>
                       ) : (
                         <>
-                          <Button size="sm" onClick={() => handleSync('gsc')} disabled={syncingService === 'gsc'} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                          <Button size="sm" onClick={() => handleSync('gsc')} disabled={syncingService === 'gsc'} className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary text-[10px] h-7 px-3 cursor-pointer">
                             {syncingService === 'gsc' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
                             Sync
                           </Button>
-                          <Button size="sm" onClick={() => { setGscPropertyUrl(integrationStatus.gsc?.propertyUrl || ''); setGscPropertyModalOpen(true); }} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                          <Button size="sm" onClick={() => { setGscPropertyUrl(integrationStatus.gsc?.propertyUrl || ''); setGscPropertyModalOpen(true); }} className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary text-[10px] h-7 px-3 cursor-pointer">
                             <Settings size={10} className="mr-1" />
                             Configure
                           </Button>
-                          <Button size="sm" onClick={() => handleDisconnect('gsc')} disabled={disconnectingService === 'gsc'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
+                          <Button size="sm" onClick={() => handleDisconnect('gsc')} disabled={disconnectingService === 'gsc'} className="bg-transparent border border-error/30 text-error/70 hover:bg-error/10 text-[10px] h-7 px-3 cursor-pointer">
                             <Link2Off size={10} className="mr-1" />
                             Disconnect
                           </Button>
@@ -1220,38 +1220,38 @@ export function AgencyDashboard({
                   </div>
 
                   {/* GA4 Card */}
-                  <div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-[#0D1829] border-[#22C55E]/30' : 'bg-[#0A1220] border-[#1E3352]'} flex flex-col justify-between h-40`}>
+                  <div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-[#F0F4FF]">Google Analytics 4</span>
+                        <span className="text-xs font-bold text-text-primary">Google Analytics 4</span>
                         {integrationStatus.ga4?.connected ? (
-                          <span className="text-[9px] font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/20">CONNECTED</span>
+                          <span className="text-[9px] font-bold text-online bg-online/10 px-2 py-0.5 rounded-full border border-online/20">CONNECTED</span>
                         ) : (
-                          <span className="text-[9px] font-bold text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full border border-[#1E3352]">NOT CONNECTED</span>
+                          <span className="text-[9px] font-bold text-text-tertiary bg-bg-card-hover/20 px-2 py-0.5 rounded-full border border-border/30">NOT CONNECTED</span>
                         )}
                       </div>
-                      <p className="text-[10px] text-[#8BA3C7] mt-2 leading-relaxed">
+                      <p className="text-[10px] text-text-secondary mt-2 leading-relaxed">
                         {integrationStatus.ga4?.connected
                           ? `Property ID: ${integrationStatus.ga4.propertyId || 'Linked'}`
                           : 'Connect analytics property to sync organic session statistics.'}
                       </p>
                       {integrationStatus.ga4?.connected && integrationStatus.ga4.lastSync && (
-                        <p className="text-[9px] text-[#4A6480] mt-1">Last Synced: {formatDate(integrationStatus.ga4.lastSync)}</p>
+                        <p className="text-[9px] text-text-tertiary mt-1">Last Synced: {formatDate(integrationStatus.ga4.lastSync)}</p>
                       )}
                     </div>
                     <div className="flex gap-2">
                       {!integrationStatus.ga4?.connected ? (
-                        <Button size="sm" onClick={() => handleConnectGoogle('ga4')} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-3 cursor-pointer">
+                        <Button size="sm" onClick={() => handleConnectGoogle('ga4')} className="bg-primary hover:bg-primary-light text-white text-[10px] h-7 px-3 cursor-pointer">
                           <Link2 size={11} className="mr-1" />
                           Connect GA4
                         </Button>
                       ) : (
                         <>
-                          <Button size="sm" onClick={() => handleSync('ga4')} disabled={syncingService === 'ga4'} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                          <Button size="sm" onClick={() => handleSync('ga4')} disabled={syncingService === 'ga4'} className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary text-[10px] h-7 px-3 cursor-pointer">
                             {syncingService === 'ga4' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
                             Sync
                           </Button>
-                          <Button size="sm" onClick={() => handleDisconnect('ga4')} disabled={disconnectingService === 'ga4'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
+                          <Button size="sm" onClick={() => handleDisconnect('ga4')} disabled={disconnectingService === 'ga4'} className="bg-transparent border border-error/30 text-error/70 hover:bg-error/10 text-[10px] h-7 px-3 cursor-pointer">
                             <Link2Off size={10} className="mr-1" />
                             Disconnect
                           </Button>
@@ -1261,38 +1261,38 @@ export function AgencyDashboard({
                   </div>
 
                   {/* Meta Ads Card */}
-                  <div className={`p-4 rounded-lg border ${integrationStatus.meta?.connected ? 'bg-[#0D1829] border-[#22C55E]/30' : 'bg-[#0A1220] border-[#1E3352]'} flex flex-col justify-between h-40`}>
+                  <div className={`p-4 rounded-lg border ${integrationStatus.meta?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-[#F0F4FF]">Meta Ads Connection</span>
+                        <span className="text-xs font-bold text-text-primary">Meta Ads Connection</span>
                         {integrationStatus.meta?.connected ? (
-                          <span className="text-[9px] font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/20">CONNECTED</span>
+                          <span className="text-[9px] font-bold text-online bg-online/10 px-2 py-0.5 rounded-full border border-online/20">CONNECTED</span>
                         ) : (
-                          <span className="text-[9px] font-bold text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full border border-[#1E3352]">NOT CONNECTED</span>
+                          <span className="text-[9px] font-bold text-text-tertiary bg-bg-card-hover/20 px-2 py-0.5 rounded-full border border-border/30">NOT CONNECTED</span>
                         )}
                       </div>
-                      <p className="text-[10px] text-[#8BA3C7] mt-2 leading-relaxed">
+                      <p className="text-[10px] text-text-secondary mt-2 leading-relaxed">
                         {integrationStatus.meta?.connected
                           ? `Ad Account ID: ${integrationStatus.meta.adAccountId || 'Linked'}`
                           : 'Connect Meta Ad Account to sync advertising metrics.'}
                       </p>
                       {integrationStatus.meta?.connected && integrationStatus.meta.lastSync && (
-                        <p className="text-[9px] text-[#4A6480] mt-1">Last Synced: {formatDate(integrationStatus.meta.lastSync)}</p>
+                        <p className="text-[9px] text-text-tertiary mt-1">Last Synced: {formatDate(integrationStatus.meta.lastSync)}</p>
                       )}
                     </div>
                     <div className="flex gap-2">
                       {!integrationStatus.meta?.connected ? (
-                        <Button size="sm" onClick={() => setMetaConnectOpen(true)} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-3 cursor-pointer">
+                        <Button size="sm" onClick={() => setMetaConnectOpen(true)} className="bg-primary hover:bg-primary-light text-white text-[10px] h-7 px-3 cursor-pointer">
                           <Link2 size={11} className="mr-1" />
                           Connect ID
                         </Button>
                       ) : (
                         <>
-                          <Button size="sm" onClick={() => handleSync('meta')} disabled={syncingService === 'meta'} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                          <Button size="sm" onClick={() => handleSync('meta')} disabled={syncingService === 'meta'} className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary text-[10px] h-7 px-3 cursor-pointer">
                             {syncingService === 'meta' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
                             Sync
                           </Button>
-                          <Button size="sm" onClick={() => handleDisconnect('meta')} disabled={disconnectingService === 'meta'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
+                          <Button size="sm" onClick={() => handleDisconnect('meta')} disabled={disconnectingService === 'meta'} className="bg-transparent border border-error/30 text-error/70 hover:bg-error/10 text-[10px] h-7 px-3 cursor-pointer">
                             <Link2Off size={10} className="mr-1" />
                             Disconnect
                           </Button>
@@ -1302,38 +1302,38 @@ export function AgencyDashboard({
                   </div>
 
                   {/* Google Ads Card */}
-                  <div className={`p-4 rounded-lg border ${integrationStatus.google?.connected ? 'bg-[#0D1829] border-[#22C55E]/30' : 'bg-[#0A1220] border-[#1E3352]'} flex flex-col justify-between h-40`}>
+                  <div className={`p-4 rounded-lg border ${integrationStatus.google?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
                     <div>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-[#F0F4FF]">Google Ads Connection</span>
+                        <span className="text-xs font-bold text-text-primary">Google Ads Connection</span>
                         {integrationStatus.google?.connected ? (
-                          <span className="text-[9px] font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/20">CONNECTED</span>
+                          <span className="text-[9px] font-bold text-online bg-online/10 px-2 py-0.5 rounded-full border border-online/20">CONNECTED</span>
                         ) : (
-                          <span className="text-[9px] font-bold text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full border border-[#1E3352]">NOT CONNECTED</span>
+                          <span className="text-[9px] font-bold text-text-tertiary bg-bg-card-hover/20 px-2 py-0.5 rounded-full border border-border/30">NOT CONNECTED</span>
                         )}
                       </div>
-                      <p className="text-[10px] text-[#8BA3C7] mt-2 leading-relaxed">
+                      <p className="text-[10px] text-text-secondary mt-2 leading-relaxed">
                         {integrationStatus.google?.connected
                           ? `Customer ID: ${integrationStatus.google.customerId || 'Linked'}`
                           : 'Connect Google Ads Customer ID to sync campaign performance.'}
                       </p>
                       {integrationStatus.google?.connected && integrationStatus.google.lastSync && (
-                        <p className="text-[9px] text-[#4A6480] mt-1">Last Synced: {formatDate(integrationStatus.google.lastSync)}</p>
+                        <p className="text-[9px] text-text-tertiary mt-1">Last Synced: {formatDate(integrationStatus.google.lastSync)}</p>
                       )}
                     </div>
                     <div className="flex gap-2">
                       {!integrationStatus.google?.connected ? (
-                        <Button size="sm" onClick={() => setGoogleConnectOpen(true)} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-3 cursor-pointer">
+                        <Button size="sm" onClick={() => setGoogleConnectOpen(true)} className="bg-primary hover:bg-primary-light text-white text-[10px] h-7 px-3 cursor-pointer">
                           <Link2 size={11} className="mr-1" />
                           Connect ID
                         </Button>
                       ) : (
                         <>
-                          <Button size="sm" onClick={() => handleSync('google')} disabled={syncingService === 'google'} className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-[10px] h-7 px-3 cursor-pointer">
+                          <Button size="sm" onClick={() => handleSync('google')} disabled={syncingService === 'google'} className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary text-[10px] h-7 px-3 cursor-pointer">
                             {syncingService === 'google' ? <Loader2 size={10} className="animate-spin mr-1" /> : <RefreshCw size={10} className="mr-1" />}
                             Sync
                           </Button>
-                          <Button size="sm" onClick={() => handleDisconnect('google')} disabled={disconnectingService === 'google'} className="bg-transparent border border-[#EF4444]/30 text-[#EF4444]/70 hover:bg-[#EF4444]/10 text-[10px] h-7 px-3 cursor-pointer">
+                          <Button size="sm" onClick={() => handleDisconnect('google')} disabled={disconnectingService === 'google'} className="bg-transparent border border-error/30 text-error/70 hover:bg-error/10 text-[10px] h-7 px-3 cursor-pointer">
                             <Link2Off size={10} className="mr-1" />
                             Disconnect
                           </Button>
@@ -1351,15 +1351,15 @@ export function AgencyDashboard({
         {activeTab === 'social' && (
           <div className="space-y-6">
             <div className="flex items-center justify-between select-none">
-              <div className="flex items-center gap-1 bg-[#132035] border border-[#1E3352] p-0.5 rounded">
+              <div className="flex items-center gap-1 bg-bg-card-hover/20 border border-border/30 p-0.5 rounded">
                 {['all', 'instagram', 'facebook', 'linkedin'].map((plat) => (
                   <button
                     key={plat}
                     onClick={() => setSocialPlatform(plat)}
                     className={`px-3 py-1 rounded text-[10px] font-semibold uppercase cursor-pointer transition-all ${
                       socialPlatform === plat
-                        ? 'bg-[#1B4FD8] text-[#F0F4FF]'
-                        : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
+                        ? 'bg-primary text-text-primary'
+                        : 'text-text-secondary hover:text-text-primary'
                     }`}
                   >
                     {plat}
@@ -1370,7 +1370,7 @@ export function AgencyDashboard({
               <Button
                 onClick={() => setModalOpen((prev) => ({ ...prev, social: true }))}
                 size="sm"
-                className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
+                className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
               >
                 <Plus size={13} />
                 <span>Log Social Data</span>
@@ -1378,8 +1378,8 @@ export function AgencyDashboard({
             </div>
 
             {/* Followers Trend Chart */}
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 h-[280px]">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none mb-4">
+            <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 h-[280px]">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none mb-4">
                 Follower Growth Metrics ({socialPlatform.toUpperCase()})
               </h4>
               <div className="h-[200px]">
@@ -1392,7 +1392,7 @@ export function AgencyDashboard({
                     }
                     margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
                   >
-                    <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} opacity={0.3} />
+                    <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} opacity={0.3} />
                     <XAxis dataKey="month_year" stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                     <YAxis stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                     <Tooltip />
@@ -1433,7 +1433,7 @@ export function AgencyDashboard({
 
             {/* Metrics List */}
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none">
                 Logged Platform Follower Logs
               </h4>
               <DataTable
@@ -1459,15 +1459,15 @@ export function AgencyDashboard({
         {activeTab === 'ads' && (
           <div className="space-y-6">
             <div className="flex items-center justify-between select-none">
-              <div className="flex items-center gap-1 bg-[#132035] border border-[#1E3352] p-0.5 rounded">
+              <div className="flex items-center gap-1 bg-bg-card-hover/20 border border-border/30 p-0.5 rounded">
                 {['all', 'meta', 'google'].map((plat) => (
                   <button
                     key={plat}
                     onClick={() => setAdsPlatform(plat)}
                     className={`px-3 py-1 rounded text-[10px] font-semibold uppercase cursor-pointer transition-all ${
                       adsPlatform === plat
-                        ? 'bg-[#1B4FD8] text-[#F0F4FF]'
-                        : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
+                        ? 'bg-primary text-text-primary'
+                        : 'text-text-secondary hover:text-text-primary'
                     }`}
                   >
                     {plat}
@@ -1478,7 +1478,7 @@ export function AgencyDashboard({
               <Button
                 onClick={() => setModalOpen((prev) => ({ ...prev, ad: true }))}
                 size="sm"
-                className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
+                className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
               >
                 <Plus size={13} />
                 <span>Log Ad Campaign</span>
@@ -1518,7 +1518,7 @@ export function AgencyDashboard({
                     return sumLeads > 0 ? Math.round(sumSpent / sumLeads) : 0;
                   })()
                 )}
-                valueClassName="text-[#F97316]"
+                valueClassName="text-accent"
                 icon={TrendingUp}
               />
               <StatCard
@@ -1536,8 +1536,8 @@ export function AgencyDashboard({
 
             {/* spend vs leads composed chart */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 h-[280px]">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none mb-4">
+              <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 h-[280px]">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none mb-4">
                   Ad Spend vs Leads volume
                 </h4>
                 <div className="h-[200px]">
@@ -1550,7 +1550,7 @@ export function AgencyDashboard({
                       }
                       margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
                     >
-                      <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} opacity={0.3} />
+                      <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} opacity={0.3} />
                       <XAxis dataKey="month_year" stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <YAxis yAxisId="left" stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <YAxis yAxisId="right" orientation="right" stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
@@ -1563,8 +1563,8 @@ export function AgencyDashboard({
               </div>
 
               {/* CPL Trend Line */}
-              <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 h-[280px]">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none mb-4">
+              <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 h-[280px]">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none mb-4">
                   CPL Performance Trend
                 </h4>
                 <div className="h-[200px]">
@@ -1577,7 +1577,7 @@ export function AgencyDashboard({
                       }
                       margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
                     >
-                      <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} opacity={0.3} />
+                      <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} opacity={0.3} />
                       <XAxis dataKey="month_year" stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <YAxis stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <Tooltip />
@@ -1591,7 +1591,7 @@ export function AgencyDashboard({
 
             {/* Campaign Table */}
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none">
                 Ad Campaigns Summary Table
               </h4>
               <DataTable
@@ -1636,7 +1636,7 @@ export function AgencyDashboard({
               <Button
                 onClick={() => setModalOpen((prev) => ({ ...prev, email: true }))}
                 size="sm"
-                className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
+                className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
               >
                 <Plus size={13} />
                 <span>Log Email Campaign</span>
@@ -1674,14 +1674,14 @@ export function AgencyDashboard({
             </div>
 
             {/* Email Performance Trend Chart */}
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 h-[280px]">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none mb-4">
+            <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 h-[280px]">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none mb-4">
                 Email Open & Click Rate Performance (12 Months)
               </h4>
               <div className="h-[200px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={emailCampaigns || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                    <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} opacity={0.3} />
+                    <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} opacity={0.3} />
                     <XAxis dataKey="month_year" stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                     <YAxis stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
                     <Tooltip />
@@ -1695,7 +1695,7 @@ export function AgencyDashboard({
 
             {/* Campaigns Table */}
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none">
                 Logged Email Campaigns
               </h4>
               <DataTable
@@ -1740,7 +1740,7 @@ export function AgencyDashboard({
               <Button
                 onClick={() => setModalOpen((prev) => ({ ...prev, whatsapp: true }))}
                 size="sm"
-                className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
+                className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
               >
                 <Plus size={13} />
                 <span>Log WhatsApp Campaign</span>
@@ -1783,14 +1783,14 @@ export function AgencyDashboard({
             {/* Charts Row */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* WhatsApp Campaign Volume Stacked Bar */}
-              <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 h-[280px]">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none mb-4">
+              <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 h-[280px]">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none mb-4">
                   WhatsApp Campaign Message Volume (Sent/Read/Replied)
                 </h4>
                 <div className="h-[200px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={whatsappCampaigns || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                      <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} opacity={0.3} />
+                      <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} opacity={0.3} />
                       <XAxis dataKey="month_year" stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <YAxis stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <Tooltip />
@@ -1804,18 +1804,18 @@ export function AgencyDashboard({
               </div>
 
               {/* Read Rate Trend */}
-              <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 h-[280px]">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none mb-4">
+              <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 h-[280px]">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none mb-4">
                   Read Rate Trend Line
                 </h4>
                 <div className="h-[200px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={whatsappCampaigns || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                      <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} opacity={0.3} />
+                      <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} opacity={0.3} />
                       <XAxis dataKey="month_year" stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} />
                       <YAxis stroke="#4A6480" fontSize={10} axisLine={false} tickLine={false} domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
                       <Tooltip />
-                      <ReferenceLine y={65} stroke="#4A6480" strokeDasharray="4 4" label={{ value: 'Industry Avg (65%)', fill: '#4A6480', fontSize: 10 }} />
+                      <ReferenceLine y={65} stroke="#4A6480" strokeDasharray="4 4" label={{ value: 'Industry Avg (65%)', fill: 'var(--color-text-tertiary)', fontSize: 10 }} />
                       <Line type="monotone" dataKey="read_rate" name="Read Rate" stroke={CHART_COLORS.success} strokeWidth={2} />
                     </LineChart>
                   </ResponsiveContainer>
@@ -1825,7 +1825,7 @@ export function AgencyDashboard({
 
             {/* Campaigns Table */}
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none">
                 WhatsApp Campaigns Details
               </h4>
               <DataTable
@@ -1878,42 +1878,42 @@ export function AgencyDashboard({
                   onClick={() => setAssetCategory(folder.id as 'logos' | 'templates' | 'brand')}
                   className={`p-4 rounded-xl border cursor-pointer transition-all select-none flex flex-col justify-between h-[120px] ${
                     assetCategory === folder.id
-                      ? 'bg-[#1B4FD8]/10 border-[#1B4FD8] shadow-lg shadow-[#1B4FD8]/5'
-                      : 'bg-[#0D1829] border-[#1E3352] hover:border-[#1B4FD8]/40 hover:bg-[#132035]/30'
+                      ? 'bg-primary/10 border-primary shadow-lg shadow-[#1B4FD8]/5'
+                      : 'bg-bg-card border-border/30 hover:border-primary/40 hover:bg-bg-card-hover/20/30'
                   }`}
                 >
                   <div className="flex items-start justify-between">
-                    <div className="p-2 rounded bg-[#060D1A] text-[#1B4FD8]">
-                      {folder.id === 'logos' && <FileImage size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-[#8BA3C7]'} />}
-                      {folder.id === 'templates' && <FileText size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-[#8BA3C7]'} />}
-                      {folder.id === 'brand' && <Archive size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-[#8BA3C7]'} />}
+                    <div className="p-2 rounded bg-bg-dark text-[#1B4FD8]">
+                      {folder.id === 'logos' && <FileImage size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-text-secondary'} />}
+                      {folder.id === 'templates' && <FileText size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-text-secondary'} />}
+                      {folder.id === 'brand' && <Archive size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-text-secondary'} />}
                     </div>
-                    <span className="text-[10px] font-bold font-mono text-[#8BA3C7] bg-[#132035] border border-[#1E3352] px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-bold font-mono text-text-secondary bg-bg-card-hover/20 border border-border/30 px-2 py-0.5 rounded-full">
                       {folder.count} files
                     </span>
                   </div>
                   <div className="mt-2">
-                    <h4 className="text-xs font-bold text-[#F0F4FF]">{folder.label}</h4>
-                    <p className="text-[10px] text-[#8BA3C7] mt-0.5 truncate leading-relaxed">{folder.desc}</p>
+                    <h4 className="text-xs font-bold text-text-primary">{folder.label}</h4>
+                    <p className="text-[10px] text-text-secondary mt-0.5 truncate leading-relaxed">{folder.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Folder Header Actions */}
-            <div className="flex items-center justify-between border-b border-[#1E3352]/40 pb-2">
+            <div className="flex items-center justify-between border-b border-border/30/40 pb-2">
               <div>
-                <h3 className="text-sm font-semibold text-[#F0F4FF] capitalize">
+                <h3 className="text-sm font-semibold text-text-primary capitalize">
                   {assetCategory === 'brand' ? 'General Brand Files' : `${assetCategory} Collection`}
                 </h3>
-                <p className="text-xs text-[#8BA3C7] mt-0.5">
+                <p className="text-xs text-text-secondary mt-0.5">
                   Browse, copy public link, or manage documents in this category.
                 </p>
               </div>
               <Button
                 onClick={() => setAssetUploadOpen(true)}
                 size="sm"
-                className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
+                className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1 cursor-pointer font-semibold"
               >
                 <Upload size={13} />
                 <span>Upload to {assetCategory}</span>
@@ -1922,14 +1922,14 @@ export function AgencyDashboard({
 
             {/* Assets Grid */}
             {filteredBrandFiles.length === 0 ? (
-              <div className="py-12 border border-[#1E3352] border-dashed rounded-lg text-center text-xs text-[#8BA3C7] space-y-2">
+              <div className="py-12 border border-border/30 border-dashed rounded-lg text-center text-xs text-text-secondary space-y-2">
                 <p className="font-semibold text-slate-500">No brand files uploaded in this folder</p>
-                <p className="text-[10px] text-[#4A6480]">Upload agency assets like logos, proposal PDFs, or style guides.</p>
+                <p className="text-[10px] text-text-tertiary">Upload agency assets like logos, proposal PDFs, or style guides.</p>
                 <Button
                   onClick={() => setAssetUploadOpen(true)}
                   size="sm"
                   variant="outline"
-                  className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] text-xs h-8 cursor-pointer mt-2"
+                  className="border-border/30 hover:bg-bg-card-hover/20 text-text-secondary text-xs h-8 cursor-pointer mt-2"
                 >
                   <Upload size={12} className="mr-1" />
                   Upload First Asset
@@ -1942,10 +1942,10 @@ export function AgencyDashboard({
                   return (
                     <div
                       key={file.id}
-                      className="bg-[#0D1829] border border-[#1E3352] rounded-lg overflow-hidden group hover:border-[#1B4FD8]/40 transition-all flex flex-col justify-between"
+                      className="bg-bg-card border border-border/30 rounded-lg overflow-hidden group hover:border-primary/40 transition-all flex flex-col justify-between"
                     >
                       {/* Thumbnail / Icon area */}
-                      <div className="h-28 bg-[#060D1A] flex items-center justify-center border-b border-[#1E3352]/20 relative">
+                      <div className="h-28 bg-bg-dark flex items-center justify-center border-b border-border/30/20 relative">
                         {isImage && file.public_url ? (
                           <img
                             src={file.public_url}
@@ -1953,13 +1953,13 @@ export function AgencyDashboard({
                             className="object-contain w-full h-full p-2 group-hover:scale-[1.03] transition-transform duration-200"
                           />
                         ) : (
-                          <div className="p-4 rounded-full bg-[#132035] text-[#1B4FD8]">
+                          <div className="p-4 rounded-full bg-bg-card-hover/20 text-[#1B4FD8]">
                             {file.mime_type?.includes('pdf') && <FileText size={24} />}
                             {file.mime_type?.includes('spreadsheet') || file.mime_type?.includes('xlsx') || file.mime_type?.includes('csv') ? <FileSpreadsheet size={24} /> : null}
                             {!file.mime_type?.includes('pdf') && !file.mime_type?.includes('spreadsheet') && !file.mime_type?.includes('xlsx') && !file.mime_type?.includes('csv') && <Archive size={24} />}
                           </div>
                         )}
-                        <span className="absolute top-2 left-2 text-[8px] font-bold font-mono px-1.5 py-0.5 rounded bg-[#0D1829] border border-[#1E3352]/50 text-[#8BA3C7] uppercase">
+                        <span className="absolute top-2 left-2 text-[8px] font-bold font-mono px-1.5 py-0.5 rounded bg-bg-card border border-border/30/50 text-text-secondary uppercase">
                           {file.mime_type?.split('/')[1] || 'binary'}
                         </span>
                       </div>
@@ -1968,24 +1968,24 @@ export function AgencyDashboard({
                       <div className="p-3 space-y-2 flex-1 flex flex-col justify-between">
                         <div className="min-w-0">
                           <h5
-                            className="text-xs font-bold text-[#F0F4FF] truncate"
+                            className="text-xs font-bold text-text-primary truncate"
                             title={file.name}
                           >
                             {file.name}
                           </h5>
-                          <div className="flex items-center justify-between text-[10px] text-[#8BA3C7] mt-1.5">
+                          <div className="flex items-center justify-between text-[10px] text-text-secondary mt-1.5">
                             <span>{formatBytes(file.size_bytes || 0)}</span>
                             <span>{formatDate(file.created_at)}</span>
                           </div>
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex items-center gap-1.5 pt-2 border-t border-[#1E3352]/20">
+                        <div className="flex items-center gap-1.5 pt-2 border-t border-border/30/20">
                           <Button
                             size="icon"
                             variant="ghost"
                             onClick={() => handleCopyLink(file.public_url)}
-                            className="h-7 w-7 rounded hover:bg-[#1A2D47] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+                            className="h-7 w-7 rounded hover:bg-bg-card-hover/40 text-text-secondary hover:text-text-primary cursor-pointer"
                             title="Copy Public Link"
                           >
                             <Copy size={12} />
@@ -1994,7 +1994,7 @@ export function AgencyDashboard({
                             size="icon"
                             variant="ghost"
                             onClick={() => window.open(file.public_url || '#', '_blank')}
-                            className="h-7 w-7 rounded hover:bg-[#1A2D47] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+                            className="h-7 w-7 rounded hover:bg-bg-card-hover/40 text-text-secondary hover:text-text-primary cursor-pointer"
                             title="View / Download"
                           >
                             <Eye size={12} />
@@ -2004,7 +2004,7 @@ export function AgencyDashboard({
                               size="icon"
                               variant="ghost"
                               onClick={() => setDeleteBrandFile(file)}
-                              className="h-7 w-7 rounded hover:bg-[#EF4444]/20 text-[#EF4444]/60 hover:text-[#EF4444] cursor-pointer"
+                              className="h-7 w-7 rounded hover:bg-error/20 text-error/60 hover:text-error cursor-pointer"
                               title="Delete Asset"
                             >
                               <Trash2 size={12} />
@@ -2024,39 +2024,39 @@ export function AgencyDashboard({
         {activeTab === 'content-planner' && (
           <div className="space-y-6">
             {/* Header / Toolbar Row */}
-            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0D1829] border border-[#1E3352] p-4 rounded-lg select-none">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-bg-card border border-border/30 p-4 rounded-lg select-none">
               <div className="flex items-center gap-3">
                 {/* Month Navigator */}
-                <div className="flex items-center gap-1.5 bg-[#060D1A] border border-[#1E3352] rounded-[7px] px-1.5 h-9">
+                <div className="flex items-center gap-1.5 bg-bg-dark border border-border/30 rounded-[7px] px-1.5 h-9">
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => navigatePlannerMonth('prev')}
-                    className="h-6 w-6 text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#132035] rounded cursor-pointer"
+                    className="h-6 w-6 text-text-secondary hover:text-text-primary hover:bg-bg-card-hover/20 rounded cursor-pointer"
                   >
                     <ChevronLeft size={14} />
                   </Button>
-                  <span className="text-[11px] font-bold text-[#F0F4FF] min-w-[80px] text-center font-mono select-none">
+                  <span className="text-[11px] font-bold text-text-primary min-w-[80px] text-center font-mono select-none">
                     {plannerDate.toLocaleString('en-US', { month: 'short', year: 'numeric' })}
                   </span>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => navigatePlannerMonth('next')}
-                    className="h-6 w-6 text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#132035] rounded cursor-pointer"
+                    className="h-6 w-6 text-text-secondary hover:text-text-primary hover:bg-bg-card-hover/20 rounded cursor-pointer"
                   >
                     <ChevronRight size={14} />
                   </Button>
                 </div>
 
                 {/* View Switcher Button Group */}
-                <div className="flex items-center gap-1 bg-[#060D1A] border border-[#1E3352] p-0.5 rounded-[7px] h-9">
+                <div className="flex items-center gap-1 bg-bg-dark border border-border/30 p-0.5 rounded-[7px] h-9">
                   <button
                     onClick={() => setPlannerView('calendar')}
                     className={`px-3 py-1 rounded text-[10px] font-semibold uppercase cursor-pointer transition-all flex items-center gap-1.5 ${
                       plannerView === 'calendar'
-                        ? 'bg-[#1B4FD8] text-[#F0F4FF]'
-                        : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
+                        ? 'bg-primary text-text-primary'
+                        : 'text-text-secondary hover:text-text-primary'
                     }`}
                   >
                     <Calendar size={12} />
@@ -2066,8 +2066,8 @@ export function AgencyDashboard({
                     onClick={() => setPlannerView('list')}
                     className={`px-3 py-1 rounded text-[10px] font-semibold uppercase cursor-pointer transition-all flex items-center gap-1.5 ${
                       plannerView === 'list'
-                        ? 'bg-[#1B4FD8] text-[#F0F4FF]'
-                        : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
+                        ? 'bg-primary text-text-primary'
+                        : 'text-text-secondary hover:text-text-primary'
                     }`}
                   >
                     <FileText size={12} />
@@ -2084,7 +2084,7 @@ export function AgencyDashboard({
                     setPlannerScheduleOpen(true);
                   }}
                   size="sm"
-                  className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 font-semibold cursor-pointer"
+                  className="bg-primary hover:bg-primary-light text-white text-xs h-9 gap-1.5 font-semibold cursor-pointer"
                 >
                   <Plus size={13} />
                   <span>Schedule Post</span>
@@ -2126,15 +2126,15 @@ export function AgencyDashboard({
 
       {/* ━━━ MODAL: LOG SOCIAL MEDIA DATA ━━━ */}
       <Dialog open={modalOpen.social} onOpenChange={(open) => setModalOpen((prev) => ({ ...prev, social: open }))}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[600px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Log Social Media Metrics</DialogTitle>
+            <DialogTitle className="text-base font-semibold text-text-primary">Log Social Media Metrics</DialogTitle>
           </DialogHeader>
           <div className="grid grid-cols-2 gap-4 my-2 text-xs">
             <div className="col-span-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Social Platform *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Social Platform *</label>
               <select
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none"
                 value={socialForm.platform}
                 onChange={(e) => setSocialForm((prev) => ({ ...prev, platform: e.target.value }))}
               >
@@ -2145,9 +2145,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Month-Year *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Month-Year *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="text"
                 placeholder="Jun 2026"
                 value={socialForm.month_year}
@@ -2156,9 +2156,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Followers Count *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Followers Count *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="1000"
                 value={socialForm.followers}
@@ -2167,9 +2167,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">New Followers</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">New Followers</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="50"
                 value={socialForm.new_followers}
@@ -2178,9 +2178,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Reach Volume</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Reach Volume</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="2500"
                 value={socialForm.reach}
@@ -2189,9 +2189,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Impressions</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Impressions</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="5000"
                 value={socialForm.impressions}
@@ -2200,9 +2200,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Engagements</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Engagements</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="150"
                 value={socialForm.engagements}
@@ -2211,9 +2211,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Posts Published</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Posts Published</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="8"
                 value={socialForm.posts_published}
@@ -2222,9 +2222,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Profile Visits</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Profile Visits</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="120"
                 value={socialForm.profile_visits}
@@ -2233,9 +2233,9 @@ export function AgencyDashboard({
             </div>
 
             <div className="col-span-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Website Click Redirects</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Website Click Redirects</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="40"
                 value={socialForm.website_clicks}
@@ -2245,10 +2245,10 @@ export function AgencyDashboard({
           </div>
 
           <DialogFooter className="mt-4">
-            <Button variant="outline" size="sm" onClick={() => setModalOpen((prev) => ({ ...prev, social: false }))} className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer">
+            <Button variant="outline" size="sm" onClick={() => setModalOpen((prev) => ({ ...prev, social: false }))} className="border-border/30 text-text-secondary hover:text-text-primary text-xs font-semibold cursor-pointer">
               Cancel
             </Button>
-            <Button onClick={() => handleLogSubmit('social')} disabled={isSubmitting} size="sm" className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer">
+            <Button onClick={() => handleLogSubmit('social')} disabled={isSubmitting} size="sm" className="bg-primary hover:bg-primary-light text-white text-xs font-semibold cursor-pointer">
               {isSubmitting ? 'Saving...' : 'Save Metrics'}
             </Button>
           </DialogFooter>
@@ -2257,15 +2257,15 @@ export function AgencyDashboard({
 
       {/* ━━━ MODAL: LOG AD CAMPAIGN ━━━ */}
       <Dialog open={modalOpen.ad} onOpenChange={(open) => setModalOpen((prev) => ({ ...prev, ad: open }))}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[600px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Log Ad Campaign Details</DialogTitle>
+            <DialogTitle className="text-base font-semibold text-text-primary">Log Ad Campaign Details</DialogTitle>
           </DialogHeader>
           <div className="grid grid-cols-2 gap-4 my-2 text-xs">
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Platform *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Platform *</label>
               <select
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none"
                 value={adForm.platform}
                 onChange={(e) => setAdForm((prev) => ({ ...prev, platform: e.target.value }))}
               >
@@ -2275,9 +2275,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Month-Year *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Month-Year *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="text"
                 placeholder="Jun 2026"
                 value={adForm.month_year}
@@ -2286,9 +2286,9 @@ export function AgencyDashboard({
             </div>
 
             <div className="col-span-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Campaign Name *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Campaign Name *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none"
                 type="text"
                 placeholder="Veloxis Kanpur Agency Leads Campaign"
                 value={adForm.campaign_name}
@@ -2297,9 +2297,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Campaign platform ID</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Campaign platform ID</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="text"
                 placeholder="c_8928372"
                 value={adForm.campaign_id}
@@ -2308,9 +2308,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Budget Allocated (₹) *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Budget Allocated (₹) *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="10000"
                 value={adForm.budget_allocated}
@@ -2319,9 +2319,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Budget Spent (₹) *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Budget Spent (₹) *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="8400"
                 value={adForm.budget_spent}
@@ -2330,9 +2330,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Leads Generated *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Leads Generated *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="24"
                 value={adForm.leads}
@@ -2341,9 +2341,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Clicks Count</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Clicks Count</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="320"
                 value={adForm.clicks}
@@ -2352,9 +2352,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Impressions</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Impressions</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="15000"
                 value={adForm.impressions}
@@ -2363,9 +2363,9 @@ export function AgencyDashboard({
             </div>
 
             <div className="col-span-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Campaign status</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Campaign status</label>
               <select
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none"
                 value={adForm.status}
                 onChange={(e) => setAdForm((prev) => ({ ...prev, status: e.target.value }))}
               >
@@ -2376,9 +2376,9 @@ export function AgencyDashboard({
             </div>
 
             <div className="col-span-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Notes</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Notes</label>
               <textarea
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none h-16 resize-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none h-16 resize-none"
                 placeholder="Targeting Kanpur digital marketing businesses"
                 value={adForm.notes}
                 onChange={(e) => setAdForm((prev) => ({ ...prev, notes: e.target.value }))}
@@ -2387,10 +2387,10 @@ export function AgencyDashboard({
           </div>
 
           <DialogFooter className="mt-4">
-            <Button variant="outline" size="sm" onClick={() => setModalOpen((prev) => ({ ...prev, ad: false }))} className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer">
+            <Button variant="outline" size="sm" onClick={() => setModalOpen((prev) => ({ ...prev, ad: false }))} className="border-border/30 text-text-secondary hover:text-text-primary text-xs font-semibold cursor-pointer">
               Cancel
             </Button>
-            <Button onClick={() => handleLogSubmit('ad')} disabled={isSubmitting} size="sm" className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer">
+            <Button onClick={() => handleLogSubmit('ad')} disabled={isSubmitting} size="sm" className="bg-primary hover:bg-primary-light text-white text-xs font-semibold cursor-pointer">
               {isSubmitting ? 'Saving...' : 'Save Campaign'}
             </Button>
           </DialogFooter>
@@ -2399,15 +2399,15 @@ export function AgencyDashboard({
 
       {/* ━━━ MODAL: LOG EMAIL CAMPAIGN ━━━ */}
       <Dialog open={modalOpen.email} onOpenChange={(open) => setModalOpen((prev) => ({ ...prev, email: open }))}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[600px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Log Email Campaign Details</DialogTitle>
+            <DialogTitle className="text-base font-semibold text-text-primary">Log Email Campaign Details</DialogTitle>
           </DialogHeader>
           <div className="grid grid-cols-2 gap-4 my-2 text-xs">
             <div className="col-span-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Campaign Name *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Campaign Name *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none"
                 type="text"
                 placeholder="Veloxis June Newsletter"
                 value={emailForm.name}
@@ -2416,9 +2416,9 @@ export function AgencyDashboard({
             </div>
 
             <div className="col-span-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Subject Line</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Subject Line</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none"
                 type="text"
                 placeholder="5 SEO Secrets for Kanpur Local Businesses"
                 value={emailForm.subject}
@@ -2427,9 +2427,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Month-Year *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Month-Year *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="text"
                 placeholder="Jun 2026"
                 value={emailForm.month_year}
@@ -2438,9 +2438,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Campaign Type</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Campaign Type</label>
               <select
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none"
                 value={emailForm.campaign_type}
                 onChange={(e) => setEmailForm((prev) => ({ ...prev, campaign_type: e.target.value }))}
               >
@@ -2452,9 +2452,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Emails Sent *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Emails Sent *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="1200"
                 value={emailForm.emails_sent}
@@ -2463,9 +2463,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Emails Delivered *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Emails Delivered *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="1180"
                 value={emailForm.delivered}
@@ -2474,9 +2474,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Opened count *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Opened count *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="420"
                 value={emailForm.opened}
@@ -2485,9 +2485,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Clicked count *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Clicked count *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="85"
                 value={emailForm.clicked}
@@ -2496,9 +2496,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Unsubscribed</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Unsubscribed</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="6"
                 value={emailForm.unsubscribed}
@@ -2507,9 +2507,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Bounced</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Bounced</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="20"
                 value={emailForm.bounced}
@@ -2518,9 +2518,9 @@ export function AgencyDashboard({
             </div>
 
             <div className="col-span-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Notes</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Notes</label>
               <textarea
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none h-16 resize-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none h-16 resize-none"
                 placeholder="Sent via Resend API"
                 value={emailForm.notes}
                 onChange={(e) => setEmailForm((prev) => ({ ...prev, notes: e.target.value }))}
@@ -2529,10 +2529,10 @@ export function AgencyDashboard({
           </div>
 
           <DialogFooter className="mt-4">
-            <Button variant="outline" size="sm" onClick={() => setModalOpen((prev) => ({ ...prev, email: false }))} className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer">
+            <Button variant="outline" size="sm" onClick={() => setModalOpen((prev) => ({ ...prev, email: false }))} className="border-border/30 text-text-secondary hover:text-text-primary text-xs font-semibold cursor-pointer">
               Cancel
             </Button>
-            <Button onClick={() => handleLogSubmit('email')} disabled={isSubmitting} size="sm" className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer">
+            <Button onClick={() => handleLogSubmit('email')} disabled={isSubmitting} size="sm" className="bg-primary hover:bg-primary-light text-white text-xs font-semibold cursor-pointer">
               {isSubmitting ? 'Saving...' : 'Save Campaign'}
             </Button>
           </DialogFooter>
@@ -2541,15 +2541,15 @@ export function AgencyDashboard({
 
       {/* ━━━ MODAL: LOG WHATSAPP CAMPAIGN ━━━ */}
       <Dialog open={modalOpen.whatsapp} onOpenChange={(open) => setModalOpen((prev) => ({ ...prev, whatsapp: open }))}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[600px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Log WhatsApp Campaign Details</DialogTitle>
+            <DialogTitle className="text-base font-semibold text-text-primary">Log WhatsApp Campaign Details</DialogTitle>
           </DialogHeader>
           <div className="grid grid-cols-2 gap-4 my-2 text-xs">
             <div className="col-span-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Campaign Name *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Campaign Name *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none"
                 type="text"
                 placeholder="June Broadcast to Cold Kanpur Leads"
                 value={whatsappForm.name}
@@ -2558,9 +2558,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Template Name</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Template Name</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="text"
                 placeholder="vg_agency_intro_v1"
                 value={whatsappForm.template_name}
@@ -2569,9 +2569,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Month-Year *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Month-Year *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="text"
                 placeholder="Jun 2026"
                 value={whatsappForm.month_year}
@@ -2580,9 +2580,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Campaign Type</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Campaign Type</label>
               <select
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none"
                 value={whatsappForm.campaign_type}
                 onChange={(e) => setWhatsappForm((prev) => ({ ...prev, campaign_type: e.target.value }))}
               >
@@ -2593,9 +2593,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Messages Sent *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Messages Sent *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="200"
                 value={whatsappForm.messages_sent}
@@ -2604,9 +2604,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Delivered Messages *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Delivered Messages *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="196"
                 value={whatsappForm.delivered}
@@ -2615,9 +2615,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Read Count *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Read Count *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="150"
                 value={whatsappForm.read_count}
@@ -2626,9 +2626,9 @@ export function AgencyDashboard({
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Replied Messages *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Replied Messages *</label>
               <input
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
                 type="number"
                 placeholder="40"
                 value={whatsappForm.replied}
@@ -2637,9 +2637,9 @@ export function AgencyDashboard({
             </div>
 
             <div className="col-span-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7] mb-1">Notes</label>
+              <label className="block text-[11px] font-semibold text-text-secondary mb-1">Notes</label>
               <textarea
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none h-16 resize-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none h-16 resize-none"
                 placeholder="Logged broadcast sequence"
                 value={whatsappForm.notes}
                 onChange={(e) => setWhatsappForm((prev) => ({ ...prev, notes: e.target.value }))}
@@ -2648,10 +2648,10 @@ export function AgencyDashboard({
           </div>
 
           <DialogFooter className="mt-4">
-            <Button variant="outline" size="sm" onClick={() => setModalOpen((prev) => ({ ...prev, whatsapp: false }))} className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer">
+            <Button variant="outline" size="sm" onClick={() => setModalOpen((prev) => ({ ...prev, whatsapp: false }))} className="border-border/30 text-text-secondary hover:text-text-primary text-xs font-semibold cursor-pointer">
               Cancel
             </Button>
-            <Button onClick={() => handleLogSubmit('whatsapp')} disabled={isSubmitting} size="sm" className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer">
+            <Button onClick={() => handleLogSubmit('whatsapp')} disabled={isSubmitting} size="sm" className="bg-primary hover:bg-primary-light text-white text-xs font-semibold cursor-pointer">
               {isSubmitting ? 'Saving...' : 'Save Campaign'}
             </Button>
           </DialogFooter>
@@ -2660,23 +2660,23 @@ export function AgencyDashboard({
 
       {/* ━━━ MODAL: CONFIGURE GSC PROPERTY URL ━━━ */}
       <Dialog open={gscPropertyModalOpen} onOpenChange={setGscPropertyModalOpen}>
-        <DialogContent className="bg-[#0A1220] border border-[#1E3352] text-[#F0F4FF] max-w-sm">
+        <DialogContent className="sm:max-w-[400px] bg-bg-card border border-border/30 text-text-primary select-none">
           <DialogHeader>
             <DialogTitle className="text-sm font-bold flex items-center gap-2">
               <Globe size={16} className="text-[#1D4ED8]" />
               <span>Configure GSC Property URL</span>
             </DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7] mt-1">
+            <DialogDescription className="text-xs text-text-secondary mt-1">
               Enter the exact Search Console property URL (e.g., sc-domain:veloxisglobal.com or https://veloxisglobal.com/) to sync SEO rankings.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-3 py-2">
-            <label className="block text-[10px] uppercase font-bold text-[#8BA3C7] tracking-wider select-none">
+            <label className="block text-[10px] uppercase font-bold text-text-secondary tracking-wider select-none">
               GSC Property URL *
             </label>
             <input
-              className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+              className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
               type="text"
               placeholder="e.g. sc-domain:veloxisglobal.com"
               value={gscPropertyUrl}
@@ -2689,7 +2689,7 @@ export function AgencyDashboard({
               variant="outline"
               size="sm"
               onClick={() => setGscPropertyModalOpen(false)}
-              className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer"
+              className="border-border/30 text-text-secondary hover:text-text-primary text-xs font-semibold cursor-pointer"
             >
               Cancel
             </Button>
@@ -2697,7 +2697,7 @@ export function AgencyDashboard({
               onClick={handleSaveGscProperty}
               disabled={connecting}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white text-xs font-semibold cursor-pointer"
             >
               {connecting ? 'Saving...' : 'Save & Sync'}
             </Button>
@@ -2707,23 +2707,23 @@ export function AgencyDashboard({
 
       {/* ━━━ MODAL: CONFIGURE GA4 PROPERTY ID ━━━ */}
       <Dialog open={ga4PropertyModalOpen} onOpenChange={setGa4PropertyModalOpen}>
-        <DialogContent className="bg-[#0A1220] border border-[#1E3352] text-[#F0F4FF] max-w-sm">
+        <DialogContent className="sm:max-w-[400px] bg-bg-card border border-border/30 text-text-primary select-none">
           <DialogHeader>
             <DialogTitle className="text-sm font-bold flex items-center gap-2">
               <Globe size={16} className="text-[#1D4ED8]" />
               <span>Configure GA4 Property ID</span>
             </DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7] mt-1">
+            <DialogDescription className="text-xs text-text-secondary mt-1">
               Enter the numeric Property ID of your Google Analytics 4 property (e.g. 123456789) to sync traffic statistics.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-3 py-2">
-            <label className="block text-[10px] uppercase font-bold text-[#8BA3C7] tracking-wider select-none">
+            <label className="block text-[10px] uppercase font-bold text-text-secondary tracking-wider select-none">
               GA4 Numeric Property ID *
             </label>
             <input
-              className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+              className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
               type="text"
               placeholder="e.g. 293821033"
               value={ga4PropertyId}
@@ -2736,7 +2736,7 @@ export function AgencyDashboard({
               variant="outline"
               size="sm"
               onClick={() => setGa4PropertyModalOpen(false)}
-              className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer"
+              className="border-border/30 text-text-secondary hover:text-text-primary text-xs font-semibold cursor-pointer"
             >
               Cancel
             </Button>
@@ -2744,7 +2744,7 @@ export function AgencyDashboard({
               onClick={handleSaveGa4Property}
               disabled={connecting}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white text-xs font-semibold cursor-pointer"
             >
               {connecting ? 'Saving...' : 'Save & Sync'}
             </Button>
@@ -2754,23 +2754,23 @@ export function AgencyDashboard({
 
       {/* ━━━ MODAL: CONNECT META AD ACCOUNT ━━━ */}
       <Dialog open={metaConnectOpen} onOpenChange={setMetaConnectOpen}>
-        <DialogContent className="bg-[#0A1220] border border-[#1E3352] text-[#F0F4FF] max-w-sm">
+        <DialogContent className="sm:max-w-[400px] bg-bg-card border border-border/30 text-text-primary select-none">
           <DialogHeader>
             <DialogTitle className="text-sm font-bold flex items-center gap-2">
               <Link2 size={16} className="text-[#1D4ED8]" />
               <span>Connect Meta Ad Account</span>
             </DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7] mt-1">
+            <DialogDescription className="text-xs text-text-secondary mt-1">
               Provide the Meta Ad Account ID (format: act_XXXXXXXXX) to sync advertising metrics.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-3 py-2">
-            <label className="block text-[10px] uppercase font-bold text-[#8BA3C7] tracking-wider select-none">
+            <label className="block text-[10px] uppercase font-bold text-text-secondary tracking-wider select-none">
               Ad Account ID *
             </label>
             <input
-              className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+              className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
               type="text"
               placeholder="e.g. act_1234567890"
               value={adAccountIdInput}
@@ -2783,7 +2783,7 @@ export function AgencyDashboard({
               variant="outline"
               size="sm"
               onClick={() => setMetaConnectOpen(false)}
-              className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer"
+              className="border-border/30 text-text-secondary hover:text-text-primary text-xs font-semibold cursor-pointer"
             >
               Cancel
             </Button>
@@ -2791,7 +2791,7 @@ export function AgencyDashboard({
               onClick={handleConnectMeta}
               disabled={connecting}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white text-xs font-semibold cursor-pointer"
             >
               {connecting ? 'Connecting...' : 'Connect & Sync'}
             </Button>
@@ -2801,23 +2801,23 @@ export function AgencyDashboard({
 
       {/* ━━━ MODAL: CONNECT GOOGLE ADS CUSTOMER ID ━━━ */}
       <Dialog open={googleConnectOpen} onOpenChange={setGoogleConnectOpen}>
-        <DialogContent className="bg-[#0A1220] border border-[#1E3352] text-[#F0F4FF] max-w-sm">
+        <DialogContent className="sm:max-w-[400px] bg-bg-card border border-border/30 text-text-primary select-none">
           <DialogHeader>
             <DialogTitle className="text-sm font-bold flex items-center gap-2">
               <Link2 size={16} className="text-[#1D4ED8]" />
               <span>Connect Google Ads Account</span>
             </DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7] mt-1">
+            <DialogDescription className="text-xs text-text-secondary mt-1">
               Provide the Google Ads Customer ID (format: XXXXXXXXXX) to sync campaign performance.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-3 py-2">
-            <label className="block text-[10px] uppercase font-bold text-[#8BA3C7] tracking-wider select-none">
+            <label className="block text-[10px] uppercase font-bold text-text-secondary tracking-wider select-none">
               Customer ID *
             </label>
             <input
-              className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none font-mono"
+              className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none font-mono"
               type="text"
               placeholder="e.g. 1234567890"
               value={customerIdInput}
@@ -2830,7 +2830,7 @@ export function AgencyDashboard({
               variant="outline"
               size="sm"
               onClick={() => setGoogleConnectOpen(false)}
-              className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer"
+              className="border-border/30 text-text-secondary hover:text-text-primary text-xs font-semibold cursor-pointer"
             >
               Cancel
             </Button>
@@ -2838,7 +2838,7 @@ export function AgencyDashboard({
               onClick={handleConnectGoogleAds}
               disabled={connecting}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white text-xs font-semibold cursor-pointer"
             >
               {connecting ? 'Connecting...' : 'Connect & Sync'}
             </Button>
@@ -2848,21 +2848,21 @@ export function AgencyDashboard({
 
       {/* ━━━ MODAL: UPLOAD BRAND ASSET ━━━ */}
       <Dialog open={assetUploadOpen} onOpenChange={setAssetUploadOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[500px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Upload Brand Asset</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Upload Brand Asset</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Upload a logo creative, proposal template, or general brand guideline file to the agency cabinet.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4 my-2 text-xs">
             <div className="space-y-1.5">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7]">Target Collection / Directory *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary">Target Collection / Directory *</label>
               <select
                 value={assetCategory}
                 onChange={(e) => setAssetCategory(e.target.value as 'logos' | 'templates' | 'brand')}
-                className="w-full bg-[#060D1A] border border-[#1E3352] rounded p-2 text-xs text-[#F0F4FF] outline-none"
+                className="w-full bg-bg-dark border border-border/30 rounded p-2 text-xs text-text-primary outline-none"
               >
                 <option value="logos">Logos & Icons (logos/ folder)</option>
                 <option value="templates">Proposal & Templates (templates/ folder)</option>
@@ -2871,7 +2871,7 @@ export function AgencyDashboard({
             </div>
 
             <div className="space-y-1.5 pt-2">
-              <label className="block text-[11px] font-semibold text-[#8BA3C7]">Document Upload *</label>
+              <label className="block text-[11px] font-semibold text-text-secondary">Document Upload *</label>
               <FileUpload
                 bucket="agency"
                 storagePath={assetCategory}
@@ -2885,12 +2885,12 @@ export function AgencyDashboard({
             </div>
           </div>
 
-          <DialogFooter className="mt-4 pt-2 border-t border-[#1E3352]/30">
+          <DialogFooter className="mt-4 pt-2 border-t border-border/30/30">
             <Button
               variant="outline"
               size="sm"
               onClick={() => setAssetUploadOpen(false)}
-              className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold cursor-pointer"
+              className="border-border/30 text-text-secondary hover:text-text-primary text-xs font-semibold cursor-pointer"
             >
               Cancel
             </Button>

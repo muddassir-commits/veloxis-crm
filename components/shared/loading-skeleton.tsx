@@ -20,19 +20,19 @@ export function LoadingSkeleton({
     return (
       <div
         className={cn(
-          "bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-[20px] md:p-[24px] space-y-4 shadow-sm",
+          "bg-bg-card border border-border/30 rounded-[10px] p-[20px] md:p-[24px] space-y-4 shadow-sm",
           className
         )}
         {...props}
       >
         {/* Title skeleton */}
-        <div className="skeleton h-[11px] w-[35%] bg-[#132035]" />
+        <div className="skeleton h-[11px] w-[35%] bg-bg-card-hover/20" />
         
         {/* Value skeleton */}
-        <div className="skeleton h-[28px] w-[60%] bg-[#132035]" />
+        <div className="skeleton h-[28px] w-[60%] bg-bg-card-hover/20" />
         
         {/* Subtext/Change skeleton */}
-        <div className="skeleton h-[14px] w-[25%] bg-[#132035]" />
+        <div className="skeleton h-[14px] w-[25%] bg-bg-card-hover/20" />
       </div>
     );
   }
@@ -45,7 +45,7 @@ export function LoadingSkeleton({
       {Array.from({ length: rows }).map((_, rIndex) => (
         <div
           key={rIndex}
-          className="flex items-center gap-4 py-2 border-b border-[#1E3352]/20 last:border-0"
+          className="flex items-center gap-4 py-2 border-b border-border/30/20 last:border-0"
         >
           {Array.from({ length: columns }).map((_, cIndex) => {
             const widthClass = widths[(rIndex + cIndex) % widths.length];
@@ -56,7 +56,7 @@ export function LoadingSkeleton({
               >
                 <div
                   className={cn(
-                    "skeleton bg-[#132035]",
+                    "skeleton bg-bg-card-hover/20",
                     widthClass
                   )}
                   style={{ height: typeof height === 'number' ? `${height}px` : height }}

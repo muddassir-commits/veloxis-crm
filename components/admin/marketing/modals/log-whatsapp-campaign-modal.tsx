@@ -122,28 +122,28 @@ export function LogWhatsAppCampaignModal({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="sm:max-w-[600px] bg-[#0D1829] text-white border border-[#1E3352] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-white">Log WhatsApp Campaign</DialogTitle>
-          <DialogDescription className="text-sm text-[#8BA3C7]">
+          <DialogTitle className="text-lg font-bold text-text-primary">Log WhatsApp Campaign</DialogTitle>
+          <DialogDescription className="text-xs text-text-secondary">
             Record details and performance metrics for WhatsApp campaigns.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4 py-2">
+        <form onSubmit={handleSubmit} className="space-y-4 py-2 text-xs">
           <div className="grid grid-cols-2 gap-4">
             {/* Target Client */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Owner/Client</label>
+              <label className="text-xs font-semibold text-text-secondary">Owner/Client</label>
               <select
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                 value={form.clientId}
                 onChange={(e) => setForm((prev) => ({ ...prev, clientId: e.target.value }))}
                 disabled={loading}
               >
-                <option value="agency">Veloxis Global (Own Agency)</option>
+                <option value="agency" className="bg-bg-card">Veloxis Global (Own Agency)</option>
                 {clients.filter(c => !c.is_agency_self).map((c) => (
-                  <option key={c.id} value={c.id}>
+                  <option key={c.id} value={c.id} className="bg-bg-card">
                     {c.name} ({c.company})
                   </option>
                 ))}
@@ -152,11 +152,11 @@ export function LogWhatsAppCampaignModal({
 
             {/* Month/Year */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Month & Year</label>
+              <label className="text-xs font-semibold text-text-secondary">Month & Year</label>
               <input
                 type="text"
                 placeholder="e.g. Jun 2026"
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
                 value={form.monthYear}
                 onChange={(e) => setForm((prev) => ({ ...prev, monthYear: e.target.value }))}
                 disabled={loading}
@@ -166,11 +166,11 @@ export function LogWhatsAppCampaignModal({
 
             {/* Campaign Name */}
             <div className="col-span-2 space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Campaign Name</label>
+              <label className="text-xs font-semibold text-text-secondary">Campaign Name</label>
               <input
                 type="text"
                 placeholder="e.g. Broadcast Promo Alerts, Payment Reminders Sequence"
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
                 value={form.name}
                 onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
                 disabled={loading}
@@ -180,11 +180,11 @@ export function LogWhatsAppCampaignModal({
 
             {/* Template Name */}
             <div className="col-span-2 space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">WhatsApp Template Name (Optional)</label>
+              <label className="text-xs font-semibold text-text-secondary">WhatsApp Template Name (Optional)</label>
               <input
                 type="text"
                 placeholder="e.g. payment_reminder_v1, promo_broadcast"
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
                 value={form.templateName}
                 onChange={(e) => setForm((prev) => ({ ...prev, templateName: e.target.value }))}
                 disabled={loading}
@@ -193,44 +193,44 @@ export function LogWhatsAppCampaignModal({
 
             {/* Campaign Type */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Campaign Type</label>
+              <label className="text-xs font-semibold text-text-secondary">Campaign Type</label>
               <select
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                 value={form.campaignType}
                 onChange={(e) => setForm((prev) => ({ ...prev, campaignType: e.target.value as 'broadcast' | 'sequence' | 'chatbot' }))}
                 disabled={loading}
               >
-                <option value="broadcast">Broadcast</option>
-                <option value="sequence">Sequence</option>
-                <option value="chatbot">Chatbot Auto</option>
+                <option value="broadcast" className="bg-bg-card">Broadcast</option>
+                <option value="sequence" className="bg-bg-card">Sequence</option>
+                <option value="chatbot" className="bg-bg-card">Chatbot Auto</option>
               </select>
             </div>
 
             {/* Status */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Status</label>
+              <label className="text-xs font-semibold text-text-secondary">Status</label>
               <select
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                 value={form.status}
                 onChange={(e) => setForm((prev) => ({ ...prev, status: e.target.value as 'active' | 'completed' | 'paused' }))}
                 disabled={loading}
               >
-                <option value="active">Active</option>
-                <option value="completed">Completed</option>
-                <option value="paused">Paused</option>
+                <option value="active" className="bg-bg-card">Active</option>
+                <option value="completed" className="bg-bg-card">Completed</option>
+                <option value="paused" className="bg-bg-card">Paused</option>
               </select>
             </div>
           </div>
 
-          <div className="border-t border-[#1E3352] my-4 pt-4">
-            <h4 className="text-sm font-semibold text-[#8BA3C7] mb-3">Metrics (Message Counts)</h4>
+          <div className="border-t border-border/30 my-4 pt-4">
+            <h4 className="text-sm font-semibold text-text-secondary mb-3">Metrics (Message Counts)</h4>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-[#8BA3C7]">Messages Sent</label>
+                <label className="text-xs font-semibold text-text-secondary">Messages Sent</label>
                 <input
                   type="number"
                   min="0"
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                   value={form.messagesSent}
                   onChange={(e) => setForm((prev) => ({ ...prev, messagesSent: Math.max(0, parseInt(e.target.value) || 0) }))}
                   disabled={loading}
@@ -238,11 +238,11 @@ export function LogWhatsAppCampaignModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-[#8BA3C7]">Delivered</label>
+                <label className="text-xs font-semibold text-text-secondary">Delivered</label>
                 <input
                   type="number"
                   min="0"
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                   value={form.delivered}
                   onChange={(e) => setForm((prev) => ({ ...prev, delivered: Math.max(0, parseInt(e.target.value) || 0) }))}
                   disabled={loading}
@@ -250,11 +250,11 @@ export function LogWhatsAppCampaignModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-[#8BA3C7]">Read Count</label>
+                <label className="text-xs font-semibold text-text-secondary">Read Count</label>
                 <input
                   type="number"
                   min="0"
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                   value={form.readCount}
                   onChange={(e) => setForm((prev) => ({ ...prev, readCount: Math.max(0, parseInt(e.target.value) || 0) }))}
                   disabled={loading}
@@ -262,11 +262,11 @@ export function LogWhatsAppCampaignModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-[#8BA3C7]">Replied</label>
+                <label className="text-xs font-semibold text-text-secondary">Replied</label>
                 <input
                   type="number"
                   min="0"
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                   value={form.replied}
                   onChange={(e) => setForm((prev) => ({ ...prev, replied: Math.max(0, parseInt(e.target.value) || 0) }))}
                   disabled={loading}
@@ -277,31 +277,31 @@ export function LogWhatsAppCampaignModal({
 
           {/* Notes */}
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-[#8BA3C7]">Campaign Notes</label>
+            <label className="text-xs font-semibold text-text-secondary">Campaign Notes</label>
             <textarea
               placeholder="Record any target segments, link CTR, or remarks..."
               rows={3}
-              className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+              className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
               value={form.notes}
               onChange={(e) => setForm((prev) => ({ ...prev, notes: e.target.value }))}
               disabled={loading}
             />
           </div>
 
-          <DialogFooter className="pt-4 border-t border-[#1E3352]">
+          <DialogFooter className="pt-4 border-t border-border/30">
             <Button
               type="button"
               variant="outline"
               onClick={onClose}
               disabled={loading}
-              className="border-[#1E3352] text-[#8BA3C7] hover:bg-[#132237] hover:text-white"
+              className="border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={loading}
-              className="bg-blue-600 hover:bg-blue-500 text-white"
+              className="bg-primary hover:bg-primary-light text-white font-semibold"
             >
               {loading ? 'Logging...' : 'Log Campaign'}
             </Button>

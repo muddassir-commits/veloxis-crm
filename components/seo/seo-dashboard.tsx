@@ -259,7 +259,7 @@ export function SeoDashboard({
       header: (
         <button
           onClick={() => handleSort('keyword')}
-          className="flex items-center gap-1 hover:text-[#F0F4FF] cursor-pointer"
+          className="flex items-center gap-1 hover:text-text-primary cursor-pointer"
         >
           <span>Keyword Target</span>
           {sortField === 'keyword' && (sortAsc ? ' ▲' : ' ▼')}
@@ -268,13 +268,13 @@ export function SeoDashboard({
       width: '28%',
       render: (val: unknown, row: Record<string, unknown>) => (
         <div className="flex flex-col gap-0.5">
-          <span className="font-semibold text-xs text-[#F0F4FF]">{String(val)}</span>
+          <span className="font-semibold text-xs text-text-primary">{String(val)}</span>
           {Boolean(row.target_url) && (
             <a
               href={String(row.target_url).startsWith('http') ? String(row.target_url) : `https://${String(row.target_url)}`}
               target="_blank"
               rel="noreferrer"
-              className="text-[9px] text-[#4D90FE] hover:underline truncate max-w-[220px]"
+              className="text-[9px] text-primary-light hover:underline truncate max-w-[220px]"
             >
               {String(row.target_url)}
             </a>
@@ -287,21 +287,21 @@ export function SeoDashboard({
       header: (
         <button
           onClick={() => handleSort('client')}
-          className="flex items-center gap-1 hover:text-[#F0F4FF] cursor-pointer"
+          className="flex items-center gap-1 hover:text-text-primary cursor-pointer"
         >
           <span>Client</span>
           {sortField === 'client' && (sortAsc ? ' ▲' : ' ▼')}
         </button>
       ),
       width: '16%',
-      render: (val: unknown) => <span className="font-semibold text-xs text-[#8BA3C7]">{String(val)}</span>,
+      render: (val: unknown) => <span className="font-semibold text-xs text-text-secondary">{String(val)}</span>,
     },
     {
       key: 'current_position',
       header: (
         <button
           onClick={() => handleSort('current_position')}
-          className="flex items-center gap-1 hover:text-[#F0F4FF] cursor-pointer"
+          className="flex items-center gap-1 hover:text-text-primary cursor-pointer"
         >
           <span>Current Pos</span>
           {sortField === 'current_position' && (sortAsc ? ' ▲' : ' ▼')}
@@ -310,12 +310,12 @@ export function SeoDashboard({
       width: '12%',
       render: (val: unknown) => {
         const pos = Number(val);
-        if (val === null || isNaN(pos)) return <span className="text-[#4A6480] font-mono">-</span>;
+        if (val === null || isNaN(pos)) return <span className="text-text-tertiary font-mono">-</span>;
 
-        let colorClass = 'text-[#EF4444]'; // 20+
-        if (pos <= 3) colorClass = 'text-[#22C55E] font-bold';
-        else if (pos <= 10) colorClass = 'text-[#1B4FD8] font-bold';
-        else if (pos <= 20) colorClass = 'text-[#F59E0B]';
+        let colorClass = 'text-error'; // 20+
+        if (pos <= 3) colorClass = 'text-online font-bold';
+        else if (pos <= 10) colorClass = 'text-primary font-bold';
+        else if (pos <= 20) colorClass = 'text-warning';
 
         return <span className={`font-mono text-xs ${colorClass}`}>#{pos}</span>;
       },
@@ -326,8 +326,8 @@ export function SeoDashboard({
       width: '10%',
       render: (val: unknown) => {
         const pos = Number(val);
-        if (val === null || isNaN(pos)) return <span className="text-[#4A6480] font-mono">-</span>;
-        return <span className="text-[#4A6480] font-mono text-xs">#{pos}</span>;
+        if (val === null || isNaN(pos)) return <span className="text-text-tertiary font-mono">-</span>;
+        return <span className="text-text-tertiary font-mono text-xs">#{pos}</span>;
       },
     },
     {
@@ -338,12 +338,12 @@ export function SeoDashboard({
         const curr = row.current_position !== null ? Number(row.current_position) : null;
         const prev = row.previous_position !== null ? Number(row.previous_position) : null;
 
-        if (curr === null || prev === null) return <span className="text-[#4A6480] font-mono">-</span>;
+        if (curr === null || prev === null) return <span className="text-text-tertiary font-mono">-</span>;
 
         const diff = prev - curr; // positive = moved up in rankings (nearer to #1)
-        if (diff > 0) return <span className="text-[#22C55E] text-xs font-mono">↑{diff}</span>;
-        if (diff < 0) return <span className="text-[#EF4444] text-xs font-mono">↓{Math.abs(diff)}</span>;
-        return <span className="text-[#4A6480] text-xs font-mono">→</span>;
+        if (diff > 0) return <span className="text-online text-xs font-mono">↑{diff}</span>;
+        if (diff < 0) return <span className="text-error text-xs font-mono">↓{Math.abs(diff)}</span>;
+        return <span className="text-text-tertiary text-xs font-mono">→</span>;
       },
     },
     {
@@ -351,7 +351,7 @@ export function SeoDashboard({
       header: 'Volume',
       width: '10%',
       render: (val: unknown) => (
-        <span className="font-mono text-xs text-[#8BA3C7]">
+        <span className="font-mono text-xs text-text-secondary">
           {val ? Number(val).toLocaleString() : '-'}
         </span>
       ),
@@ -361,7 +361,7 @@ export function SeoDashboard({
       header: 'Intent',
       width: '14%',
       render: (val: unknown) => (
-        <span className="text-[10px] bg-[#132035] border border-[#1E3352] text-[#8BA3C7] px-1.5 py-0.5 rounded uppercase font-medium">
+        <span className="text-[10px] bg-bg-card border border-border/20 text-text-secondary px-1.5 py-0.5 rounded uppercase font-medium">
           {String(val || '')}
         </span>
       ),
@@ -369,12 +369,12 @@ export function SeoDashboard({
   ];
 
   return (
-    <div className="space-y-6 select-none p-6">
+    <div className="space-y-6 select-none">
       {/* ━━━ HEADER SECTION ━━━ */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1E3352]/30 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/20 pb-5">
         <div>
-          <h1 className="text-[26px] font-black text-[#F0F4FF] leading-tight">SEO Campaigns</h1>
-          <p className="text-xs text-[#8BA3C7]">Manage organic search analytics integrations and keyword tracklists.</p>
+          <h1 className="text-[26px] font-black text-text-primary leading-tight">SEO Campaigns</h1>
+          <p className="text-xs text-text-secondary">Manage organic search analytics integrations and keyword tracklists.</p>
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
@@ -383,17 +383,17 @@ export function SeoDashboard({
             <button
               onClick={() => handleMonthChange(-1)}
               disabled={isPending}
-              className="p-1.5 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] disabled:opacity-50 cursor-pointer transition-colors"
+              className="p-1.5 rounded bg-bg-card-hover/20 border border-border/20 text-text-secondary hover:text-text-primary disabled:opacity-50 cursor-pointer transition-colors"
             >
               <ChevronLeft size={14} />
             </button>
-            <span className="text-xs font-bold text-[#F0F4FF] min-w-[85px] text-center font-mono py-1 bg-[#132035] border border-[#1E3352] rounded">
+            <span className="text-xs font-bold text-text-primary min-w-[85px] text-center font-mono py-1 bg-bg-card border border-border/20 rounded">
               {selectedMonth}
             </span>
             <button
               onClick={() => handleMonthChange(1)}
               disabled={isPending}
-              className="p-1.5 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] disabled:opacity-50 cursor-pointer transition-colors"
+              className="p-1.5 rounded bg-bg-card-hover/20 border border-border/20 text-text-secondary hover:text-text-primary disabled:opacity-50 cursor-pointer transition-colors"
             >
               <ChevronRight size={14} />
             </button>
@@ -402,7 +402,7 @@ export function SeoDashboard({
           <Button
             onClick={() => setLogReportOpen(true)}
             size="sm"
-            className="bg-[#1B4FD8]/20 text-[#4D90FE] border border-[#1E3352] hover:bg-[#1B4FD8] hover:text-white text-xs h-9 gap-1.5 cursor-pointer font-bold transition-all"
+            variant="secondary"
           >
             <span>+ Log SEO Report</span>
           </Button>
@@ -410,7 +410,6 @@ export function SeoDashboard({
           <Button
             onClick={() => setAddKeywordOpen(true)}
             size="sm"
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 cursor-pointer font-bold transition-all"
           >
             <Plus size={14} />
             <span>Add Keyword</span>
@@ -420,7 +419,7 @@ export function SeoDashboard({
             onClick={handleSyncAll}
             disabled={syncingAll}
             size="sm"
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-9 gap-1.5 cursor-pointer transition-colors"
+            variant="secondary"
           >
             <RefreshCw size={13} className={syncingAll ? 'animate-spin' : ''} />
             <span>🔄 Sync All</span>
@@ -442,15 +441,15 @@ export function SeoDashboard({
           const traffic = campaign?.organic_traffic ?? 0;
           const trafficPrev = campaign?.organic_traffic_prev ?? 0;
           let momText = '-';
-          let momColor = 'text-[#8BA3C7]';
+          let momColor = 'text-text-secondary';
           if (trafficPrev > 0) {
             const diffPct = Math.round(((traffic - trafficPrev) / trafficPrev) * 100);
             if (diffPct > 0) {
               momText = `↑${diffPct}%`;
-              momColor = 'text-[#22C55E] font-bold';
+              momColor = 'text-online font-bold';
             } else if (diffPct < 0) {
               momText = `↓${Math.abs(diffPct)}%`;
-              momColor = 'text-[#EF4444] font-bold';
+              momColor = 'text-error font-bold';
             } else {
               momText = '→ 0%';
             }
@@ -484,21 +483,21 @@ export function SeoDashboard({
           return (
             <div
               key={client.id}
-              className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 flex flex-col justify-between space-y-4 hover:border-[#1B4FD8]/40 transition-colors"
+              className="bg-bg-card/70 backdrop-blur-[12px] border border-border/30 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-primary/40 transition-colors shadow-elevated"
             >
               {/* Header */}
-              <div className="flex items-center justify-between border-b border-[#1E3352]/20 pb-3">
+              <div className="flex items-center justify-between border-b border-border/10 pb-3">
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-[#F0F4FF] text-sm">{client.name}</span>
+                  <span className="font-bold text-text-primary text-sm">{client.name}</span>
                   {client.is_agency_self ? (
-                    <span className="text-[9px] font-bold bg-[#F97316]/10 border border-[#F97316]/20 text-[#F97316] rounded-full px-2 py-0.5 uppercase tracking-wide">
+                    <span className="text-[9px] font-bold bg-accent/10 border border-accent/20 text-accent rounded-full px-2 py-0.5 uppercase tracking-wide">
                       My Agency
                     </span>
                   ) : (
                     <span className={`text-[9px] font-bold ${
-                      client.status === 'active' ? 'bg-[#22C55E]/10 border-[#22C55E]/20 text-[#22C55E]' :
-                      client.status === 'paused' ? 'bg-[#F59E0B]/10 border-[#F59E0B]/20 text-[#F59E0B]' :
-                      'bg-[#EF4444]/10 border-[#EF4444]/20 text-[#EF4444]'
+                      client.status === 'active' ? 'bg-online/10 border-online/20 text-online' :
+                      client.status === 'paused' ? 'bg-warning/10 border-warning/20 text-warning' :
+                      'bg-error/10 border-error/20 text-error'
                     } border rounded-full px-2 py-0.5 uppercase`}>
                       {client.status}
                     </span>
@@ -510,7 +509,7 @@ export function SeoDashboard({
                     <button
                       onClick={() => handleSyncClient(client.id)}
                       disabled={syncingClientId === client.id}
-                      className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer disabled:opacity-50 transition-colors"
+                      className="p-1 rounded bg-bg-card-hover/20 border border-border/20 text-text-secondary hover:text-text-primary cursor-pointer disabled:opacity-50 transition-colors"
                       title="Sync client reports"
                     >
                       <RefreshCw size={11} className={syncingClientId === client.id ? 'animate-spin' : ''} />
@@ -518,7 +517,7 @@ export function SeoDashboard({
                   )}
                   <a
                     href={`/dashboard/clients/${client.id}?tab=seo`}
-                    className="text-[11px] text-[#4D90FE] hover:underline inline-flex items-center gap-1 font-semibold"
+                    className="text-[11px] text-primary-light hover:underline inline-flex items-center gap-1 font-semibold"
                   >
                     <span>View Details</span>
                     <ExternalLink size={10} />
@@ -529,10 +528,10 @@ export function SeoDashboard({
               {/* 6-metric mini-grid (2x3) */}
               <div className="grid grid-cols-3 gap-3">
                 {/* 1. Organic Traffic */}
-                <div className="bg-[#132035]/30 border border-[#1E3352]/20 p-2.5 rounded flex flex-col justify-between h-[66px]">
-                  <span className="text-[10px] text-[#4A6480] uppercase tracking-wider">Organic Traffic</span>
+                <div className="bg-bg-card-hover/5 border border-border/10 p-2.5 rounded flex flex-col justify-between h-[66px]">
+                  <span className="text-[10px] text-text-tertiary uppercase tracking-wider">Organic Traffic</span>
                   <div className="flex items-baseline justify-between mt-1">
-                    <span className="text-sm font-bold text-[#F0F4FF] font-mono">
+                    <span className="text-sm font-bold text-text-primary font-mono">
                       {traffic.toLocaleString()}
                     </span>
                     <span className={`text-[10px] ${momColor}`}>{momText}</span>
@@ -540,96 +539,96 @@ export function SeoDashboard({
                 </div>
 
                 {/* 2. Keywords Top 10 */}
-                <div className="bg-[#132035]/30 border border-[#1E3352]/20 p-2.5 rounded flex flex-col justify-between h-[66px]">
-                  <span className="text-[10px] text-[#4A6480] uppercase tracking-wider">Top 10 Keywords</span>
+                <div className="bg-bg-card-hover/5 border border-border/10 p-2.5 rounded flex flex-col justify-between h-[66px]">
+                  <span className="text-[10px] text-text-tertiary uppercase tracking-wider">Top 10 Keywords</span>
                   <div>
-                    <div className="text-sm font-bold text-[#F0F4FF] font-mono mt-1">{kTop10}</div>
+                    <div className="text-sm font-bold text-text-primary font-mono mt-1">{kTop10}</div>
                     {/* Nested Breakdown Progress */}
-                    <div className="w-full bg-[#132035] h-[3px] rounded-full mt-1.5 flex overflow-hidden">
-                      <div className="bg-[#22C55E] h-full" style={{ width: `${pct3}%` }} title={`Top 3: ${kTop3}`} />
-                      <div className="bg-[#1B4FD8] h-full" style={{ width: `${pct10}%` }} title={`Top 10: ${kTop10 - kTop3}`} />
-                      <div className="bg-[#F59E0B] h-full" style={{ width: `${pct20}%` }} title={`Top 20: ${kTop20 - kTop10}`} />
-                      <div className="bg-[#1E3352] h-full" style={{ width: `${pctOther}%` }} title={`Other: ${totalKeywords - kTop20}`} />
+                    <div className="w-full bg-border/20 h-[3px] rounded-full mt-1.5 flex overflow-hidden">
+                      <div className="bg-online h-full" style={{ width: `${pct3}%` }} title={`Top 3: ${kTop3}`} />
+                      <div className="bg-primary h-full" style={{ width: `${pct10}%` }} title={`Top 10: ${kTop10 - kTop3}`} />
+                      <div className="bg-warning h-full" style={{ width: `${pct20}%` }} title={`Top 20: ${kTop20 - kTop10}`} />
+                      <div className="bg-border h-full" style={{ width: `${pctOther}%` }} title={`Other: ${totalKeywords - kTop20}`} />
                     </div>
                   </div>
                 </div>
 
                 {/* 3. Backlinks */}
-                <div className="bg-[#132035]/30 border border-[#1E3352]/20 p-2.5 rounded flex flex-col justify-between h-[66px]">
-                  <span className="text-[10px] text-[#4A6480] uppercase tracking-wider">Backlinks Built</span>
-                  <span className="text-sm font-bold text-[#F0F4FF] font-mono mt-1">
+                <div className="bg-bg-card-hover/5 border border-border/10 p-2.5 rounded flex flex-col justify-between h-[66px]">
+                  <span className="text-[10px] text-text-tertiary uppercase tracking-wider">Backlinks Built</span>
+                  <span className="text-sm font-bold text-text-primary font-mono mt-1">
                     {campaign?.backlinks_built ?? 0}
                   </span>
                 </div>
 
                 {/* 4. GBP Calls */}
-                <div className="bg-[#132035]/30 border border-[#1E3352]/20 p-2.5 rounded flex flex-col justify-between h-[66px]">
-                  <span className="text-[10px] text-[#4A6480] uppercase tracking-wider">GBP Calls</span>
-                  <span className="text-sm font-bold text-[#F0F4FF] font-mono mt-1">
+                <div className="bg-bg-card-hover/5 border border-border/10 p-2.5 rounded flex flex-col justify-between h-[66px]">
+                  <span className="text-[10px] text-text-tertiary uppercase tracking-wider">GBP Calls</span>
+                  <span className="text-sm font-bold text-text-primary font-mono mt-1">
                     {campaign?.gbp_calls ?? 0}
                   </span>
                 </div>
 
                 {/* 5. GSC Clicks & CTR */}
-                <div className="bg-[#132035]/30 border border-[#1E3352]/20 p-2.5 rounded flex flex-col justify-between h-[66px]">
-                  <span className="text-[10px] text-[#4A6480] uppercase tracking-wider">GSC Clicks</span>
+                <div className="bg-bg-card-hover/5 border border-border/10 p-2.5 rounded flex flex-col justify-between h-[66px]">
+                  <span className="text-[10px] text-text-tertiary uppercase tracking-wider">GSC Clicks</span>
                   <div className="flex flex-col mt-0.5">
-                    <span className="text-sm font-bold text-[#F0F4FF] font-mono">
+                    <span className="text-sm font-bold text-text-primary font-mono">
                       {(campaign?.gsc_clicks ?? 0).toLocaleString()}
                     </span>
-                    <span className="text-[8.5px] text-[#4A6480] font-mono">
+                    <span className="text-[8.5px] text-text-tertiary font-mono">
                       CTR: {campaign?.gsc_ctr ? `${campaign.gsc_ctr}%` : '0%'}
                     </span>
                   </div>
                 </div>
 
                 {/* 6. Avg Position */}
-                <div className="bg-[#132035]/30 border border-[#1E3352]/20 p-2.5 rounded flex flex-col justify-between h-[66px]">
-                  <span className="text-[10px] text-[#4A6480] uppercase tracking-wider">Avg Position</span>
-                  <span className="text-sm font-bold text-[#EF4444] font-mono mt-1">
+                <div className="bg-bg-card-hover/5 border border-border/10 p-2.5 rounded flex flex-col justify-between h-[66px]">
+                  <span className="text-[10px] text-text-tertiary uppercase tracking-wider">Avg Position</span>
+                  <span className="text-sm font-bold text-error font-mono mt-1">
                     {campaign?.gsc_avg_position ? `#${campaign.gsc_avg_position}` : '-'}
                   </span>
                 </div>
               </div>
 
               {/* Audit progress bar */}
-              <div className="space-y-1 bg-[#132035]/10 p-3 rounded border border-[#1E3352]/10">
-                <div className="flex items-center justify-between text-[10px] font-semibold text-[#8BA3C7]">
+              <div className="space-y-1 bg-bg-card-hover/5 p-3 rounded border border-border/10">
+                <div className="flex items-center justify-between text-[10px] font-semibold text-text-secondary">
                   <span>Site Technical Audit</span>
-                  <span className="text-[#22C55E]">{auditResolved}/{auditIssues} resolved</span>
+                  <span className="text-online">{auditResolved}/{auditIssues} resolved</span>
                 </div>
-                <div className="w-full bg-[#132035] h-1.5 rounded-full overflow-hidden border border-[#1E3352]/20 mt-1">
+                <div className="w-full bg-border/20 h-1.5 rounded-full overflow-hidden border border-border/10 mt-1">
                   <div
-                    className="bg-[#22C55E] h-full rounded-full transition-all duration-300"
+                    className="bg-online h-full rounded-full transition-all duration-300"
                     style={{ width: `${auditProgressPct}%` }}
                   />
                 </div>
               </div>
 
               {/* Card Footer: Integration and Last synced details */}
-              <div className="flex items-center justify-between text-[10px] font-semibold text-[#8BA3C7] pt-1">
+              <div className="flex items-center justify-between text-[10px] font-semibold text-text-secondary pt-1">
                 {/* Integration states */}
                 <div className="flex items-center gap-2">
                   <div className="flex items-center gap-0.5">
                     <span>GSC</span>
                     {gscConnected ? (
-                      <span className="text-[#22C55E]">✅</span>
+                      <span className="text-online">✅</span>
                     ) : (
-                      <span className="text-[#4A6480]" title="Not Connected">⚠</span>
+                      <span className="text-text-tertiary" title="Not Connected">⚠</span>
                     )}
                   </div>
-                  <span className="text-[#1E3352]/50">|</span>
+                  <span className="text-border/30">|</span>
                   <div className="flex items-center gap-0.5">
                     <span>GA4</span>
                     {ga4Connected ? (
-                      <span className="text-[#22C55E]">✅</span>
+                      <span className="text-online">✅</span>
                     ) : (
-                      <span className="text-[#4A6480]" title="Not Connected">⚠</span>
+                      <span className="text-text-tertiary" title="Not Connected">⚠</span>
                     )}
                   </div>
                 </div>
 
-                <div className="text-[10px] text-[#4A6480] font-mono">
+                <div className="text-[10px] text-text-tertiary font-mono">
                   Last synced: {formatHoursAgo(lastSynced)}
                 </div>
               </div>
@@ -639,10 +638,10 @@ export function SeoDashboard({
       </div>
 
       {/* ━━━ KEYWORD RANKINGS TABLE ━━━ */}
-      <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-6 space-y-4">
+      <div className="bg-bg-card/70 backdrop-blur-[12px] border border-border/30 rounded-xl p-6 space-y-4 shadow-elevated">
         {/* Table Title and Filter bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-[#4A6480]">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-text-tertiary">
             Keyword Tracking List ({selectedMonth})
           </h2>
 
@@ -651,7 +650,7 @@ export function SeoDashboard({
             <select
               value={filterClientId}
               onChange={(e) => setFilterClientId(e.target.value)}
-              className="h-9 bg-[#132035] border border-[#1E3352] rounded px-3 text-xs text-[#F0F4FF] focus:outline-none focus:border-[#1B4FD8] cursor-pointer min-w-[150px]"
+              className="h-9 bg-bg-card/50 border border-border/30 rounded px-3 text-xs text-text-primary focus:outline-none focus:border-primary/50 cursor-pointer min-w-[150px]"
             >
               <option value="all">All Clients</option>
               {initialClients.map((c) => (
@@ -668,9 +667,9 @@ export function SeoDashboard({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search keywords..."
-                className="h-9 bg-[#132035] border border-[#1E3352] rounded pl-9 pr-4 text-xs text-[#F0F4FF] placeholder-[#4A6480] focus:outline-none focus:border-[#1B4FD8] w-48 sm:w-60"
+                className="h-9 bg-bg-card/50 border border-border/30 rounded pl-9 pr-4 text-xs text-text-primary placeholder-text-tertiary focus:outline-none focus:border-primary/50 w-48 sm:w-60"
               />
-              <Search className="absolute left-3 top-2.5 text-[#4A6480] h-3.5 w-3.5" />
+              <Search className="absolute left-3 top-2.5 text-text-tertiary h-3.5 w-3.5" />
             </div>
           </div>
         </div>
@@ -682,7 +681,7 @@ export function SeoDashboard({
           rowActions={(row) => (
             <button
               onClick={() => handleDeleteKeyword(String(row.id))}
-              className="flex items-center w-full text-xs text-[#EF4444] hover:bg-[#EF4444]/10 rounded px-2.5 py-1.5 font-medium transition-colors cursor-pointer gap-2"
+              className="flex items-center w-full text-xs text-error hover:bg-error/10 rounded px-2.5 py-1.5 font-medium transition-colors cursor-pointer gap-2"
             >
               <Trash2 size={13} />
               <span>Delete Keyword</span>

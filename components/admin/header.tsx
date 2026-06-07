@@ -15,7 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Search, Bell, LogOut, User, Settings, CheckSquare, BellOff } from 'lucide-react';
+import { Search, Bell, LogOut, User, Settings, CheckSquare, BellOff, Menu } from 'lucide-react';
 import type { Notification } from '@/types';
 import { toast } from 'sonner';
 
@@ -26,9 +26,10 @@ interface HeaderProps {
     email: string;
     avatar_url?: string | null;
   } | null;
+  onMenuClick?: () => void;
 }
 
-export function Header({ userProfile }: HeaderProps) {
+export function Header({ userProfile, onMenuClick }: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -170,24 +171,36 @@ export function Header({ userProfile }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 h-13 border-b border-[#1E3352] bg-[#060D1A]/95 backdrop-blur-md flex items-center justify-between px-6 z-20 shrink-0">
-      {/* Dynamic Title */}
-      <h1 className="text-[18px] font-semibold text-[#F0F4FF]">
-        {getPageTitle(pathname)}
-      </h1>
+    <header className="sticky top-0 h-14 border-b border-border/30 bg-bg-card/75 backdrop-blur-[12px] flex items-center justify-between px-6 z-20 shrink-0 shadow-elevated">
+      {/* Left side title and Hamburger */}
+      <div className="flex items-center gap-3">
+        {/* Mobile Hamburger menu */}
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden text-text-secondary hover:text-text-primary p-1.5 rounded-md hover:bg-bg-card-hover/20 transition-colors cursor-pointer shrink-0"
+          title="Open Menu"
+        >
+          <Menu className="h-4 w-4 stroke-[1.5]" />
+        </button>
+
+        {/* Dynamic Title */}
+        <h1 className="text-[18px] font-semibold text-text-primary truncate">
+          {getPageTitle(pathname)}
+        </h1>
+      </div>
 
       {/* Right Elements */}
       <div className="flex items-center gap-4">
         {/* Global Search Input */}
         <div className="relative w-64 md:w-80">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#8BA3C7] stroke-[1.5]" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-secondary stroke-[1.5]" />
           <Input
             ref={searchInputRef}
             type="text"
             placeholder="Search..."
-            className="w-full h-8 pl-9 pr-8 bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] placeholder-[#8BA3C7]/60 text-xs rounded-md focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]/30 transition-all"
+            className="w-full h-8 pl-9 pr-8 bg-bg-card border-border/30 text-text-primary placeholder-text-secondary/60 text-xs rounded-md focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all"
           />
-          <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 h-4 select-none items-center gap-1 rounded border border-[#1E3352] bg-[#132035] px-1.5 font-mono text-[9px] font-medium text-[#8BA3C7] flex pointer-events-none">
+          <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 h-4 select-none items-center gap-1 rounded border border-border/30 bg-bg-card-hover/20 px-1.5 font-mono text-[9px] font-medium text-text-secondary flex pointer-events-none">
             /
           </kbd>
         </div>
@@ -199,12 +212,12 @@ export function Header({ userProfile }: HeaderProps) {
               <Button
                 variant="outline"
                 size="icon"
-                className="h-8 w-8 rounded-md border-[#1E3352] bg-[#0D1829] hover:bg-[#132035] hover:text-[#F0F4FF] text-[#8BA3C7] relative cursor-pointer"
+                className="h-8 w-8 rounded-md border-border/30 bg-bg-card hover:bg-bg-card-hover/20 hover:text-text-primary text-text-secondary relative cursor-pointer"
               >
                 <Bell className="h-4 w-4 stroke-[1.5]" />
                 <span className={cn(
                   "absolute -top-1 -right-1 h-4 min-w-4 rounded-full flex items-center justify-center text-[9px] font-bold px-1 select-none transition-colors duration-150",
-                  unreadCount > 0 ? "bg-[#EF4444] text-[#F0F4FF]" : "bg-[#1E3352] text-[#8BA3C7]"
+                  unreadCount > 0 ? "bg-error text-text-primary" : "bg-bg-border text-text-secondary"
                 )}>
                   {unreadCount}
                 </span>
@@ -213,14 +226,14 @@ export function Header({ userProfile }: HeaderProps) {
           />
           <DropdownMenuContent
             align="end"
-            className="w-80 bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] shadow-2xl p-1 z-30"
+            className="w-80 bg-bg-card border-border/30 text-text-primary shadow-2xl p-1 z-30"
           >
-            <div className="flex items-center justify-between p-2 font-semibold text-xs border-b border-[#1E3352]">
-              <span className="text-[#F0F4FF]">Notifications</span>
+            <div className="flex items-center justify-between p-2 font-semibold text-xs border-b border-border/30">
+              <span className="text-text-primary">Notifications</span>
               {unreadCount > 0 && (
                 <button
                   onClick={handleMarkAllRead}
-                  className="text-[#4D90FE] hover:text-[#2563EB] text-[10px] flex items-center gap-1 font-medium transition-colors"
+                  className="text-primary-light hover:text-[#2563EB] text-[10px] flex items-center gap-1 font-medium transition-colors"
                 >
                   <CheckSquare size={11} />
                   Mark all read
@@ -228,10 +241,10 @@ export function Header({ userProfile }: HeaderProps) {
               )}
             </div>
             
-            <div className="max-h-72 overflow-y-auto divide-y divide-[#1E3352]/50">
+            <div className="max-h-72 overflow-y-auto divide-y divide-bg-border/50">
               {notifications.length === 0 ? (
-                <div className="py-6 px-4 text-center text-xs text-[#8BA3C7] flex flex-col items-center gap-2">
-                  <BellOff size={24} className="text-[#4A6480] stroke-[1.5]" />
+                <div className="py-6 px-4 text-center text-xs text-text-secondary flex flex-col items-center gap-2">
+                  <BellOff size={24} className="text-text-tertiary stroke-[1.5]" />
                   <span>No notifications</span>
                 </div>
               ) : (
@@ -239,8 +252,8 @@ export function Header({ userProfile }: HeaderProps) {
                   <div
                     key={n.id}
                     className={cn(
-                      "p-2.5 text-xs transition-colors hover:bg-[#132035] relative flex flex-col gap-0.5 cursor-pointer",
-                      !n.is_read && "bg-[#1B4FD810] border-l-2 border-[#1B4FD8]"
+                      "p-2.5 text-xs transition-colors hover:bg-bg-card-hover/20 relative flex flex-col gap-0.5 cursor-pointer",
+                      !n.is_read && "bg-primary/10 border-l-2 border-primary"
                     )}
                     onClick={() => {
                       if (!n.is_read) handleMarkAsRead(n.id);
@@ -248,19 +261,19 @@ export function Header({ userProfile }: HeaderProps) {
                     }}
                   >
                     <div className="flex justify-between items-start gap-2">
-                      <span className="font-semibold text-xs text-[#F0F4FF] leading-snug">
+                      <span className="font-semibold text-xs text-text-primary leading-snug">
                         {n.title}
                       </span>
                       {!n.is_read && (
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#1B4FD8] shrink-0 mt-1" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0 mt-1" />
                       )}
                     </div>
                     {n.message && (
-                      <p className="text-[11px] text-[#8BA3C7] leading-relaxed">
+                      <p className="text-[11px] text-text-secondary leading-relaxed">
                         {n.message}
                       </p>
                     )}
-                    <span className="text-[9px] text-[#4A6480] mt-1 select-none">
+                    <span className="text-[9px] text-text-tertiary mt-1 select-none">
                       {new Date(n.created_at).toLocaleDateString()}
                     </span>
                   </div>
@@ -276,11 +289,11 @@ export function Header({ userProfile }: HeaderProps) {
             render={
               <Button
                 variant="ghost"
-                className="p-0.5 h-8 w-8 rounded-full border border-[#1E3352] focus-visible:ring-0 focus-visible:ring-offset-0 overflow-hidden cursor-pointer"
+                className="p-0.5 h-8 w-8 rounded-full border border-border/30 focus-visible:ring-0 focus-visible:ring-offset-0 overflow-hidden cursor-pointer"
               >
                 <Avatar className="h-full w-full">
                   <AvatarImage src={userProfile?.avatar_url || undefined} />
-                  <AvatarFallback className="bg-[#1B4FD8] text-xs text-white uppercase font-bold select-none">
+                  <AvatarFallback className="bg-primary text-xs text-white uppercase font-bold select-none">
                     {userProfile?.full_name?.substring(0, 2) || 'AD'}
                   </AvatarFallback>
                 </Avatar>
@@ -289,39 +302,39 @@ export function Header({ userProfile }: HeaderProps) {
           />
           <DropdownMenuContent
             align="end"
-            className="w-56 bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] shadow-2xl p-1 z-30"
+            className="w-56 bg-bg-card border-border/30 text-text-primary shadow-2xl p-1 z-30"
           >
             <DropdownMenuLabel className="px-2 py-1.5 flex flex-col">
-              <span className="text-xs font-semibold text-[#F0F4FF] truncate select-none">
+              <span className="text-xs font-semibold text-text-primary truncate select-none">
                 {userProfile?.full_name || 'Admin User'}
               </span>
-              <span className="text-[10px] text-[#8BA3C7] font-normal truncate select-none">
+              <span className="text-[10px] text-text-secondary font-normal truncate select-none">
                 {userProfile?.email || 'admin@veloxisglobal.com'}
               </span>
             </DropdownMenuLabel>
             
-            <DropdownMenuSeparator className="bg-[#1E3352]" />
+            <DropdownMenuSeparator className="bg-border/30" />
             
             <DropdownMenuItem
-              className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer"
+              className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer"
               onClick={() => router.push('/dashboard/settings')}
             >
-              <User className="mr-2 h-3.5 w-3.5 text-[#8BA3C7]" />
+              <User className="mr-2 h-3.5 w-3.5 text-text-secondary" />
               <span>Profile Settings</span>
             </DropdownMenuItem>
             
             <DropdownMenuItem
-              className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer"
+              className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer"
               onClick={() => router.push('/dashboard/settings')}
             >
-              <Settings className="mr-2 h-3.5 w-3.5 text-[#8BA3C7]" />
+              <Settings className="mr-2 h-3.5 w-3.5 text-text-secondary" />
               <span>Agency Settings</span>
             </DropdownMenuItem>
             
-            <DropdownMenuSeparator className="bg-[#1E3352]" />
+            <DropdownMenuSeparator className="bg-border/30" />
             
             <DropdownMenuItem
-              className="text-xs text-[#EF4444] focus:bg-[#EF444415] focus:text-[#EF4444] cursor-pointer"
+              className="text-xs text-error focus:bg-error/15 focus:text-error cursor-pointer"
               onClick={handleLogout}
             >
               <LogOut className="mr-2 h-3.5 w-3.5" />

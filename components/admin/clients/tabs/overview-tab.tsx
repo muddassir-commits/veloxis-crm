@@ -152,7 +152,7 @@ export function OverviewTab({ client, onTabChange }: OverviewTabProps) {
         <StatCard
           title="Outstanding Balance"
           value={formatCurrency(stats.outstanding)}
-          valueClassName="text-[#F97316] font-mono"
+          valueClassName="text-accent font-mono"
           icon={FileText}
           loading={stats.loading}
         />
@@ -160,8 +160,8 @@ export function OverviewTab({ client, onTabChange }: OverviewTabProps) {
           title="Health Score"
           value={`${client.health_score}%`}
           valueClassName={
-            client.health_score >= 80 ? 'text-[#22C55E]' :
-            client.health_score >= 50 ? 'text-[#F59E0B]' : 'text-[#EF4444]'
+            client.health_score >= 80 ? 'text-online' :
+            client.health_score >= 50 ? 'text-warning' : 'text-error'
           }
           icon={HeartPulse}
           loading={stats.loading}
@@ -170,34 +170,34 @@ export function OverviewTab({ client, onTabChange }: OverviewTabProps) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Revenue Line Chart */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 lg:col-span-2 space-y-4">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between select-none">
-            <h3 className="text-sm font-semibold text-[#F0F4FF]">Revenue History (Paid Invoices)</h3>
-            <span className="text-[10px] text-[#4A6480] uppercase font-mono">Last 6 Months</span>
+            <h3 className="text-sm font-semibold text-text-primary">Revenue History (Paid Invoices)</h3>
+            <span className="text-[10px] text-text-tertiary uppercase font-mono">Last 6 Months</span>
           </div>
 
           <div className="h-60 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={revenueData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} />
+                <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} />
                 <XAxis
                   dataKey="month"
-                  tick={{ fill: '#4A6480', fontSize: 11 }}
+                  tick={{ fill: 'var(--color-text-tertiary)', fontSize: 11 }}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis
-                  tick={{ fill: '#4A6480', fontSize: 11 }}
+                  tick={{ fill: 'var(--color-text-tertiary)', fontSize: 11 }}
                   axisLine={false}
                   tickLine={false}
                   tickFormatter={(val) => `₹${val}`}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#0D1829',
-                    borderColor: '#1E3352',
+                    backgroundColor: 'var(--color-bg-card)',
+                    borderColor: 'var(--color-border-subtle)',
                     borderRadius: 8,
-                    color: '#F0F4FF',
+                    color: 'var(--color-text-primary)',
                     fontSize: 12,
                   }}
                   formatter={(val) => [formatCurrency(Number(val ?? 0)), 'Revenue']}
@@ -205,7 +205,7 @@ export function OverviewTab({ client, onTabChange }: OverviewTabProps) {
                 <Line
                   type="monotone"
                   dataKey="Revenue"
-                  stroke="#1B4FD8"
+                  stroke="var(--color-primary)"
                   strokeWidth={2}
                   dot={false}
                   activeDot={{ r: 4 }}
@@ -218,67 +218,67 @@ export function OverviewTab({ client, onTabChange }: OverviewTabProps) {
         {/* Details & Last Activity */}
         <div className="space-y-6">
           {/* Contact Details */}
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4">
-            <h3 className="text-sm font-semibold text-[#F0F4FF] border-b border-[#1E3352]/30 pb-2 select-none">
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-text-primary border-b border-border/30/30 pb-2 select-none">
               Business Contacts
             </h3>
             <div className="space-y-3 text-xs">
               <div className="flex items-center gap-3">
-                <Mail size={14} className="text-[#4A6480] shrink-0" />
+                <Mail size={14} className="text-text-tertiary shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-[#4A6480] text-[10px] uppercase font-semibold">Email</p>
-                  <p className="text-[#8BA3C7] truncate select-all">{client.email || 'No email registered'}</p>
+                  <p className="text-text-tertiary text-[10px] uppercase font-semibold">Email</p>
+                  <p className="text-text-secondary truncate select-all">{client.email || 'No email registered'}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <Phone size={14} className="text-[#4A6480] shrink-0" />
+                <Phone size={14} className="text-text-tertiary shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-[#4A6480] text-[10px] uppercase font-semibold">Phone</p>
-                  <p className="text-[#8BA3C7] select-all">{client.phone || 'No phone number'}</p>
+                  <p className="text-text-tertiary text-[10px] uppercase font-semibold">Phone</p>
+                  <p className="text-text-secondary select-all">{client.phone || 'No phone number'}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <Globe size={14} className="text-[#4A6480] shrink-0" />
+                <Globe size={14} className="text-text-tertiary shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-[#4A6480] text-[10px] uppercase font-semibold">Website</p>
+                  <p className="text-text-tertiary text-[10px] uppercase font-semibold">Website</p>
                   {client.website ? (
                     <a
                       href={client.website.startsWith('http') ? client.website : `https://${client.website}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-[#4D90FE] hover:underline truncate block"
+                      className="text-primary-light hover:underline truncate block"
                     >
                       {client.website}
                     </a>
                   ) : (
-                    <p className="text-[#4A6480]">No domain registered</p>
+                    <p className="text-text-tertiary">No domain registered</p>
                   )}
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <MapPin size={14} className="text-[#4A6480] shrink-0" />
+                <MapPin size={14} className="text-text-tertiary shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-[#4A6480] text-[10px] uppercase font-semibold">Location</p>
-                  <p className="text-[#8BA3C7]">{client.city || 'Not specified'}</p>
+                  <p className="text-text-tertiary text-[10px] uppercase font-semibold">Location</p>
+                  <p className="text-text-secondary">{client.city || 'Not specified'}</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Last Activity Card */}
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-3">
-            <div className="flex items-center justify-between select-none border-b border-[#1E3352]/30 pb-2">
-              <h3 className="text-sm font-semibold text-[#F0F4FF] flex items-center gap-1.5">
-                <Activity size={14} className="text-[#4D90FE]" />
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-3">
+            <div className="flex items-center justify-between select-none border-b border-border/30/30 pb-2">
+              <h3 className="text-sm font-semibold text-text-primary flex items-center gap-1.5">
+                <Activity size={14} className="text-primary-light" />
                 <span>Last Activity</span>
               </h3>
               {onTabChange && (
                 <button
                   onClick={() => onTabChange('activity')}
-                  className="text-[10px] text-[#4D90FE] hover:underline flex items-center gap-0.5 cursor-pointer font-semibold"
+                  className="text-[10px] text-primary-light hover:underline flex items-center gap-0.5 cursor-pointer font-semibold"
                 >
                   <span>View All</span>
                   <ArrowRight size={10} />
@@ -288,18 +288,18 @@ export function OverviewTab({ client, onTabChange }: OverviewTabProps) {
 
             {lastActivity ? (
               <div className="text-xs space-y-1">
-                <p className="font-semibold text-[#F0F4FF]">{lastActivity.title}</p>
+                <p className="font-semibold text-text-primary">{lastActivity.title}</p>
                 {lastActivity.description && (
-                  <p className="text-[11px] text-[#8BA3C7] line-clamp-2 leading-relaxed">
+                  <p className="text-[11px] text-text-secondary line-clamp-2 leading-relaxed">
                     {lastActivity.description}
                   </p>
                 )}
-                <span className="text-[9px] text-[#4A6480] font-mono block pt-1">
+                <span className="text-[9px] text-text-tertiary font-mono block pt-1">
                   {formatDate(lastActivity.created_at)}
                 </span>
               </div>
             ) : (
-              <p className="text-xs text-[#4A6480] italic">No recent activity recorded.</p>
+              <p className="text-xs text-text-tertiary italic">No recent activity recorded.</p>
             )}
           </div>
         </div>

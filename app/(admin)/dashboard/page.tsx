@@ -19,6 +19,7 @@ import {
   Building2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 export const revalidate = 0; // Dynamic server-side rendering
 
@@ -186,7 +187,7 @@ export default async function OverviewPage() {
       description="Veloxis Global CRM Operations Hub."
       actions={
         <div className="flex items-center gap-2 select-none">
-          <span className="text-[11px] text-[#4A6480] bg-[#132035] px-2.5 py-1 rounded border border-[#1E3352] font-medium">
+          <span className="text-[11px] text-text-secondary bg-bg-card border border-border/20 px-2.5 py-1 rounded font-medium">
             {getMonthYear(now)}
           </span>
         </div>
@@ -201,7 +202,7 @@ export default async function OverviewPage() {
             icon={Users}
             className="h-full"
           >
-            <div className="text-[11px] text-[#8BA3C7]/60 mt-1 select-none font-sans">
+            <div className="text-[11px] text-text-tertiary mt-1 select-none font-sans">
               {pipelineLeadsCount || 0} leads in pipeline
             </div>
           </StatCard>
@@ -219,7 +220,7 @@ export default async function OverviewPage() {
             change={revenueChange}
             changeType={revenueChangeType}
             icon={DollarSign}
-            valueClassName="text-[#F97316]"
+            valueClassName="text-accent"
             className="h-full"
           />
 
@@ -230,7 +231,7 @@ export default async function OverviewPage() {
             className="h-full"
           >
             {overdueTasksCount ? (
-              <div className="flex items-center gap-1 mt-1 text-[11px] text-[#EF4444] font-semibold select-none font-sans">
+              <div className="flex items-center gap-1 mt-1 text-[11px] text-error font-semibold select-none font-sans">
                 <AlertTriangle size={10} className="shrink-0" />
                 <span>{overdueTasksCount} overdue</span>
               </div>
@@ -246,11 +247,11 @@ export default async function OverviewPage() {
         {/* Row 3 — Two column grid (60% / 40%) */}
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
           {/* Left Column — Recent Activity (60%) */}
-          <div className="lg:col-span-6 bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-[20px] md:p-[24px] flex flex-col justify-between">
+          <Card variant="default" className="lg:col-span-6 p-[20px] md:p-[24px] flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4 select-none">
-                <h3 className="text-sm font-semibold text-[#F0F4FF] flex items-center gap-2">
-                  <Activity size={15} className="text-[#1B4FD8]" />
+                <h3 className="text-sm font-semibold text-text-primary flex items-center gap-2">
+                  <Activity size={15} className="text-primary" />
                   <span>Recent Activity</span>
                 </h3>
               </div>
@@ -258,29 +259,29 @@ export default async function OverviewPage() {
               {recentActivities && recentActivities.length > 0 ? (
                 <div className="space-y-4">
                   {recentActivities.map((act) => {
-                    let dotColor = 'bg-[#4A6480]'; // default
+                    let dotColor = 'bg-text-tertiary'; // default
                     if (act.action === 'INSERT' || act.action?.toLowerCase().includes('create')) {
-                      dotColor = 'bg-[#22C55E]';
+                      dotColor = 'bg-success';
                     } else if (act.action === 'UPDATE' || act.action?.toLowerCase().includes('edit')) {
-                      dotColor = 'bg-[#1B4FD8]';
+                      dotColor = 'bg-primary';
                     } else if (act.action === 'DELETE' || act.action?.toLowerCase().includes('remove')) {
-                      dotColor = 'bg-[#EF4444]';
+                      dotColor = 'bg-error';
                     }
 
                     return (
                       <div key={act.id} className="flex items-start gap-3 text-xs leading-relaxed group">
                         <span className={`h-1.5 w-1.5 rounded-full ${dotColor} mt-1.5 shrink-0`} />
                         <div className="flex-1 min-w-0">
-                          <p className="text-[#F0F4FF] font-medium truncate group-hover:text-[#4D90FE] transition-colors duration-150">
+                          <p className="text-text-primary font-medium truncate group-hover:text-primary-light transition-colors duration-150">
                             {act.title}
                           </p>
                           {act.description && (
-                            <p className="text-[#8BA3C7] text-[11px] mt-0.5 line-clamp-1">
+                            <p className="text-text-secondary text-[11px] mt-0.5 line-clamp-1">
                               {act.description}
                             </p>
                           )}
                         </div>
-                        <span className="text-[10px] text-[#4A6480] shrink-0 font-mono select-none">
+                        <span className="text-[10px] text-text-tertiary shrink-0 font-mono select-none">
                           {timeAgo(act.created_at)}
                         </span>
                       </div>
@@ -298,24 +299,24 @@ export default async function OverviewPage() {
             </div>
 
             {recentActivities && recentActivities.length > 0 && (
-              <div className="border-t border-[#1E3352]/20 mt-4 pt-3 flex justify-end">
+              <div className="border-t border-border/20 mt-4 pt-3 flex justify-end">
                 <Link
                   href="/dashboard/it"
-                  className="text-[11px] font-semibold text-[#4D90FE] hover:text-[#2563EB] flex items-center gap-1 transition-colors select-none"
+                  className="text-[11px] font-semibold text-primary-light hover:text-primary flex items-center gap-1 transition-colors select-none"
                 >
                   <span>View Audit Log</span>
                   <ArrowRight size={12} />
                 </Link>
               </div>
             )}
-          </div>
+          </Card>
 
           {/* Right Column — Tasks Due This Week (40%) */}
-          <div className="lg:col-span-4 bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-[20px] md:p-[24px] flex flex-col justify-between">
+          <Card variant="default" className="lg:col-span-4 p-[20px] md:p-[24px] flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4 select-none">
-                <h3 className="text-sm font-semibold text-[#F0F4FF] flex items-center gap-2">
-                  <Calendar size={15} className="text-[#22C55E]" />
+                <h3 className="text-sm font-semibold text-text-primary flex items-center gap-2">
+                  <Calendar size={15} className="text-success" />
                   <span>Tasks Due This Week</span>
                 </h3>
               </div>
@@ -327,17 +328,17 @@ export default async function OverviewPage() {
                     const clientName = (task as unknown as { client?: { name: string } | null }).client?.name || 'Veloxis Global';
 
                     return (
-                      <div key={task.id} className="flex items-start justify-between gap-3 text-xs border-b border-[#1E3352]/10 pb-2.5 last:border-0 last:pb-0">
+                      <div key={task.id} className="flex items-start justify-between gap-3 text-xs border-b border-border/10 pb-2.5 last:border-0 last:pb-0">
                         <div className="min-w-0">
-                          <p className="text-[10px] font-bold text-[#F0F4FF] truncate select-all">
+                          <p className="text-[10px] font-bold text-text-primary truncate select-all">
                             {clientName}
                           </p>
-                          <p className="text-[#8BA3C7] text-xs mt-0.5 truncate font-medium">
+                          <p className="text-text-secondary text-xs mt-0.5 truncate font-medium">
                             {task.title}
                           </p>
                           <span
                             className={`inline-block text-[10px] mt-1 font-mono select-none ${
-                              isOverdue ? 'text-[#EF4444] font-semibold' : 'text-[#4A6480]'
+                              isOverdue ? 'text-error font-semibold' : 'text-text-tertiary'
                             }`}
                           >
                             {isOverdue ? 'Overdue: ' : 'Due: '}
@@ -360,31 +361,31 @@ export default async function OverviewPage() {
             </div>
 
             {tasksThisWeek && tasksThisWeek.length > 0 && (
-              <div className="border-t border-[#1E3352]/20 mt-4 pt-3 flex justify-end">
+              <div className="border-t border-border/20 mt-4 pt-3 flex justify-end">
                 <Link
                   href="/dashboard/operations"
-                  className="text-[11px] font-semibold text-[#4D90FE] hover:text-[#2563EB] flex items-center gap-1 transition-colors select-none"
+                  className="text-[11px] font-semibold text-primary-light hover:text-primary flex items-center gap-1 transition-colors select-none"
                 >
                   <span>Go to Calendar</span>
                   <ArrowRight size={12} />
                 </Link>
               </div>
             )}
-          </div>
+          </Card>
         </div>
 
         {/* Row 4 — "My Agency" Mini Section */}
-        <div className="w-full bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 select-none">
+        <Card variant="default" className="w-full p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 select-none">
           <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-lg bg-[#F9731615] border border-[#F9731630] flex items-center justify-center text-[#F97316]">
+            <div className="h-8 w-8 rounded-lg bg-accent/15 border border-accent/30 flex items-center justify-center text-accent">
               <Building2 size={16} />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h4 className="text-xs font-bold text-[#F0F4FF]">veloxisglobal.com</h4>
+                <h4 className="text-xs font-bold text-text-primary">veloxisglobal.com</h4>
                 <StatusBadge status="agency_self" className="text-[9px] px-1.5 py-0" />
               </div>
-              <p className="text-[10px] text-[#4A6480] mt-0.5 uppercase tracking-wide font-medium">
+              <p className="text-[10px] text-text-tertiary mt-0.5 uppercase tracking-wide font-medium">
                 Agency SEO & Social Performance
               </p>
             </div>
@@ -393,32 +394,32 @@ export default async function OverviewPage() {
           {hasAgencyData ? (
             <div className="flex flex-wrap items-center gap-x-8 gap-y-2 md:gap-x-12">
               <div className="flex flex-col">
-                <span className="text-[9px] text-[#4A6480] uppercase tracking-wider">Organic Traffic</span>
-                <span className="text-xs font-bold font-mono text-[#F0F4FF] mt-0.5">
+                <span className="text-[9px] text-text-tertiary uppercase tracking-wider">Organic Traffic</span>
+                <span className="text-xs font-bold font-mono text-text-primary mt-0.5">
                   {latestSeo?.organic_traffic?.toLocaleString() || '-'}
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[9px] text-[#4A6480] uppercase tracking-wider">Top 10 Keywords</span>
-                <span className="text-xs font-bold font-mono text-[#F0F4FF] mt-0.5">
+                <span className="text-[9px] text-text-tertiary uppercase tracking-wider">Top 10 Keywords</span>
+                <span className="text-xs font-bold font-mono text-text-primary mt-0.5">
                   {latestSeo?.keywords_top10 || '-'}
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[9px] text-[#4A6480] uppercase tracking-wider">Instagram Followers</span>
-                <span className="text-xs font-bold font-mono text-[#F0F4FF] mt-0.5">
+                <span className="text-[9px] text-text-tertiary uppercase tracking-wider">Instagram Followers</span>
+                <span className="text-xs font-bold font-mono text-text-primary mt-0.5">
                   {latestInsta?.followers?.toLocaleString() || '-'}
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[9px] text-[#4A6480] uppercase tracking-wider">GBP Calls</span>
-                <span className="text-xs font-bold font-mono text-[#F0F4FF] mt-0.5">
+                <span className="text-[9px] text-text-tertiary uppercase tracking-wider">GBP Calls</span>
+                <span className="text-xs font-bold font-mono text-text-primary mt-0.5">
                   {latestSeo?.gbp_calls || '-'}
                 </span>
               </div>
             </div>
           ) : (
-            <div className="text-xs text-[#8BA3C7] italic">
+            <div className="text-xs text-text-secondary italic">
               Connect GSC to see your agency&apos;s performance here
             </div>
           )}
@@ -428,14 +429,14 @@ export default async function OverviewPage() {
               <Button
                 variant="outline"
                 size="xs"
-                className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-[11px] h-8 px-3 cursor-pointer"
+                className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/20 text-text-secondary hover:text-text-primary text-[11px] h-8 px-3 cursor-pointer"
               >
                 <span>View Details</span>
                 <ArrowRight size={11} className="ml-1" />
               </Button>
             </Link>
           </div>
-        </div>
+        </Card>
       </div>
     </PageContainer>
   );

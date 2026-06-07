@@ -191,64 +191,64 @@ export function ClientRelationsDashboard({
       {/* ━━━ OVERVIEW KPI SECTION ━━━ */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 select-none">
         {/* KPI 1: Total Communications */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 flex items-center justify-between">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 flex items-center justify-between">
           <div className="space-y-1">
-            <span className="text-[10px] text-[#4A6480] uppercase tracking-wider font-semibold">Communications</span>
-            <span className="text-2xl font-bold font-mono text-[#F0F4FF] block">{comms.length}</span>
-            <span className="text-[9px] text-[#8BA3C7] flex items-center gap-1">
+            <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Communications</span>
+            <span className="text-2xl font-bold font-mono text-text-primary block">{comms.length}</span>
+            <span className="text-[9px] text-text-secondary flex items-center gap-1">
               <Phone size={9} /> {comms.filter(c => c.type === 'call').length} calls · <Mail size={9} /> {comms.filter(c => c.type === 'email').length} emails
             </span>
           </div>
-          <div className="w-10 h-10 rounded-lg bg-[#1B4FD8]/10 flex items-center justify-center text-[#1B4FD8]">
+          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-[#1B4FD8]">
             <MessageSquare size={18} />
           </div>
         </div>
 
         {/* KPI 2: Open Support Tickets */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 flex items-center justify-between">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 flex items-center justify-between">
           <div className="space-y-1">
-            <span className="text-[10px] text-[#4A6480] uppercase tracking-wider font-semibold">Open Tickets</span>
-            <span className="text-2xl font-bold font-mono text-[#F97316] block">{openTickets.length}</span>
-            <span className="text-[9px] text-[#8BA3C7] flex items-center gap-1">
+            <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Open Tickets</span>
+            <span className="text-2xl font-bold font-mono text-accent block">{openTickets.length}</span>
+            <span className="text-[9px] text-text-secondary flex items-center gap-1">
               <AlertCircle size={9} /> {tickets.filter(t => t.priority === 'urgent' && t.status !== 'resolved').length} urgent tickets pending
             </span>
           </div>
-          <div className="w-10 h-10 rounded-lg bg-[#F97316]/10 flex items-center justify-center text-[#F97316]">
+          <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
             <HelpCircle size={18} />
           </div>
         </div>
 
         {/* KPI 3: Average NPS Score */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 flex items-center justify-between">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 flex items-center justify-between">
           <div className="space-y-1">
-            <span className="text-[10px] text-[#4A6480] uppercase tracking-wider font-semibold">Average NPS</span>
-            <span className="text-2xl font-bold font-mono text-[#22C55E] block">{avgNps} / 10</span>
-            <span className="text-[9px] text-[#8BA3C7] flex items-center gap-1">
+            <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Average NPS</span>
+            <span className="text-2xl font-bold font-mono text-online block">{avgNps} / 10</span>
+            <span className="text-[9px] text-text-secondary flex items-center gap-1">
               <TrendingUp size={9} /> {npsList.filter(n => n.score >= 9).length} promoters total
             </span>
           </div>
-          <div className="w-10 h-10 rounded-lg bg-[#22C55E]/10 flex items-center justify-center text-[#22C55E]">
+          <div className="w-10 h-10 rounded-lg bg-online/10 flex items-center justify-center text-online">
             <TrendingUp size={18} />
           </div>
         </div>
 
         {/* KPI 4: Churn Risk */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 flex items-center justify-between">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 flex items-center justify-between">
           <div className="space-y-1">
-            <span className="text-[10px] text-[#4A6480] uppercase tracking-wider font-semibold">Clients at Risk</span>
-            <span className="text-2xl font-bold font-mono text-[#EF4444] block">{riskClients.length}</span>
-            <span className="text-[9px] text-[#8BA3C7] flex items-center gap-1">
+            <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Clients at Risk</span>
+            <span className="text-2xl font-bold font-mono text-error block">{riskClients.length}</span>
+            <span className="text-[9px] text-text-secondary flex items-center gap-1">
               <HeartPulse size={9} /> Health score under 70%
             </span>
           </div>
-          <div className="w-10 h-10 rounded-lg bg-[#EF4444]/10 flex items-center justify-center text-[#EF4444]">
+          <div className="w-10 h-10 rounded-lg bg-error/10 flex items-center justify-center text-error">
             <HeartPulse size={18} />
           </div>
         </div>
       </div>
 
       {/* ━━━ TAB NAVIGATION ━━━ */}
-      <div className="bg-[#060D1A] border border-[#1E3352] rounded-[8px] px-4 py-1.5 flex flex-wrap justify-between items-center gap-3 select-none">
+      <div className="bg-bg-dark border border-border/30 rounded-[8px] px-4 py-1.5 flex flex-wrap justify-between items-center gap-3 select-none">
         <div className="flex gap-2">
           {[
             { id: 'overview', label: 'Overview', icon: Users },
@@ -264,8 +264,8 @@ export function ClientRelationsDashboard({
                 onClick={() => setActiveTab(tab.id as 'overview' | 'comms' | 'tickets' | 'nps' | 'risk')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${
                   activeTab === tab.id
-                    ? 'bg-[#1B4FD8] text-white'
-                    : 'text-[#4A6480] hover:text-[#8BA3C7]'
+                    ? 'bg-primary text-white'
+                    : 'text-text-tertiary hover:text-text-secondary'
                 }`}
               >
                 <Icon size={12} />
@@ -281,7 +281,7 @@ export function ClientRelationsDashboard({
             <Button
               onClick={() => setCommsModalOpen(true)}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+              className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
             >
               <PlusCircle size={13} />
               <span>Log Communication</span>
@@ -294,7 +294,7 @@ export function ClientRelationsDashboard({
                 setTicketModalOpen(true);
               }}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+              className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
             >
               <PlusCircle size={13} />
               <span>Raise Ticket</span>
@@ -304,7 +304,7 @@ export function ClientRelationsDashboard({
             <Button
               onClick={() => setNpsModalOpen(true)}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+              className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
             >
               <PlusCircle size={13} />
               <span>Record NPS</span>
@@ -319,15 +319,15 @@ export function ClientRelationsDashboard({
         {activeTab === 'overview' && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in duration-200">
             {/* Recent Communications Card */}
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4">
-              <div className="flex justify-between items-center border-b border-[#1E3352] pb-3">
-                <h3 className="text-sm font-bold text-[#F0F4FF] flex items-center gap-1.5">
+            <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4">
+              <div className="flex justify-between items-center border-b border-border/30 pb-3">
+                <h3 className="text-sm font-bold text-text-primary flex items-center gap-1.5">
                   <MessageCircle size={16} className="text-[#1B4FD8]" />
                   <span>Recent Communications</span>
                 </h3>
                 <button
                   onClick={() => setActiveTab('comms')}
-                  className="text-[10px] font-bold text-[#4D90FE] hover:underline"
+                  className="text-[10px] font-bold text-primary-light hover:underline"
                 >
                   View All
                 </button>
@@ -337,41 +337,41 @@ export function ClientRelationsDashboard({
                 {comms.slice(0, 5).map((c) => {
                   const client = clients.find((cl) => cl.id === c.client_id);
                   return (
-                    <div key={c.id} className="p-3 bg-[#060D1A] border border-[#1E3352] rounded-lg space-y-2">
+                    <div key={c.id} className="p-3 bg-bg-dark border border-border/30 rounded-lg space-y-2">
                       <div className="flex justify-between items-center text-[10px]">
-                        <span className="font-bold text-[#8BA3C7]">{client?.name || 'Unknown Client'}</span>
-                        <span className="text-[#4A6480]">{formatDate(c.created_at)}</span>
+                        <span className="font-bold text-text-secondary">{client?.name || 'Unknown Client'}</span>
+                        <span className="text-text-tertiary">{formatDate(c.created_at)}</span>
                       </div>
-                      <p className="text-xs text-[#F0F4FF] line-clamp-2">{c.body}</p>
+                      <p className="text-xs text-text-primary line-clamp-2">{c.body}</p>
                       <div className="flex items-center gap-2 text-[9px] font-semibold">
                         <span className={`px-1.5 py-0.5 rounded uppercase ${
-                          c.type === 'call' ? 'bg-[#22C55E]/10 text-[#22C55E]' :
+                          c.type === 'call' ? 'bg-online/10 text-online' :
                           c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :
                           c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'
                         }`}>
                           {c.type}
                         </span>
-                        <span className="text-[#4A6480] capitalize">{c.direction}</span>
+                        <span className="text-text-tertiary capitalize">{c.direction}</span>
                       </div>
                     </div>
                   );
                 })}
                 {comms.length === 0 && (
-                  <div className="text-center py-8 text-xs text-[#4A6480] italic">No communication logs recorded yet.</div>
+                  <div className="text-center py-8 text-xs text-text-tertiary italic">No communication logs recorded yet.</div>
                 )}
               </div>
             </div>
 
             {/* Pending Tickets Card */}
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4">
-              <div className="flex justify-between items-center border-b border-[#1E3352] pb-3">
-                <h3 className="text-sm font-bold text-[#F0F4FF] flex items-center gap-1.5">
-                  <AlertCircle size={16} className="text-[#F97316]" />
+            <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4">
+              <div className="flex justify-between items-center border-b border-border/30 pb-3">
+                <h3 className="text-sm font-bold text-text-primary flex items-center gap-1.5">
+                  <AlertCircle size={16} className="text-accent" />
                   <span>Pending Support Tickets</span>
                 </h3>
                 <button
                   onClick={() => setActiveTab('tickets')}
-                  className="text-[10px] font-bold text-[#4D90FE] hover:underline"
+                  className="text-[10px] font-bold text-primary-light hover:underline"
                 >
                   Board View
                 </button>
@@ -382,19 +382,19 @@ export function ClientRelationsDashboard({
                   const client = clients.find((cl) => cl.id === t.client_id);
                   const assignee = team.find((p) => p.id === t.assigned_to);
                   return (
-                    <div key={t.id} className="p-3 bg-[#060D1A] border border-[#1E3352] rounded-lg space-y-2">
+                    <div key={t.id} className="p-3 bg-bg-dark border border-border/30 rounded-lg space-y-2">
                       <div className="flex justify-between items-center text-[10px]">
-                        <span className="font-bold text-[#8BA3C7]">{client?.name || 'Unknown Client'}</span>
+                        <span className="font-bold text-text-secondary">{client?.name || 'Unknown Client'}</span>
                         <span className={`px-1.5 py-0.5 rounded uppercase font-semibold text-[8px] ${
-                          t.priority === 'urgent' ? 'bg-[#EF4444]/10 text-[#EF4444]' :
-                          t.priority === 'high' ? 'bg-[#F59E0B]/10 text-[#F59E0B]' :
-                          t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-[#8BA3C7]'
+                          t.priority === 'urgent' ? 'bg-error/10 text-error' :
+                          t.priority === 'high' ? 'bg-warning/10 text-warning' :
+                          t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'
                         }`}>
                           {t.priority}
                         </span>
                       </div>
-                      <h4 className="text-xs font-semibold text-[#F0F4FF]">{t.subject}</h4>
-                      <div className="flex justify-between items-center text-[9px] text-[#4A6480]">
+                      <h4 className="text-xs font-semibold text-text-primary">{t.subject}</h4>
+                      <div className="flex justify-between items-center text-[9px] text-text-tertiary">
                         <span>Assigned: {assignee?.full_name || 'Unassigned'}</span>
                         <span>Opened {formatDate(t.created_at)}</span>
                       </div>
@@ -402,7 +402,7 @@ export function ClientRelationsDashboard({
                   );
                 })}
                 {openTickets.length === 0 && (
-                  <div className="text-center py-8 text-xs text-[#4A6480] italic">All support tickets resolved!</div>
+                  <div className="text-center py-8 text-xs text-text-tertiary italic">All support tickets resolved!</div>
                 )}
               </div>
             </div>
@@ -411,11 +411,11 @@ export function ClientRelationsDashboard({
 
         {/* TAB: COMMUNICATIONS LOG */}
         {activeTab === 'comms' && (
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4 animate-in fade-in duration-200">
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4 animate-in fade-in duration-200">
             {/* Filters */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="relative">
-                <Search size={14} className="absolute left-3 top-2.5 text-[#4A6480]" />
+                <Search size={14} className="absolute left-3 top-2.5 text-text-tertiary" />
                 <input
                   type="text"
                   placeholder="Search communication text..."
@@ -466,28 +466,28 @@ export function ClientRelationsDashboard({
                   const client = clients.find((cl) => cl.id === c.client_id);
                   const creator = team.find((p) => p.id === c.created_by);
                   return (
-                    <div key={c.id} className="p-4 bg-[#060D1A] border border-[#1E3352] rounded-[8px] flex justify-between gap-4">
+                    <div key={c.id} className="p-4 bg-bg-dark border border-border/30 rounded-[8px] flex justify-between gap-4">
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-xs font-bold text-[#F0F4FF]">{client?.name}</span>
+                          <span className="text-xs font-bold text-text-primary">{client?.name}</span>
                           <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded uppercase ${
-                            c.type === 'call' ? 'bg-[#22C55E]/10 text-[#22C55E]' :
+                            c.type === 'call' ? 'bg-online/10 text-online' :
                             c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :
                             c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'
                           }`}>
                             {c.type}
                           </span>
-                          <span className="text-[9px] text-[#4A6480] capitalize">({c.direction})</span>
+                          <span className="text-[9px] text-text-tertiary capitalize">({c.direction})</span>
                         </div>
-                        <p className="text-xs text-[#8BA3C7] leading-relaxed max-w-2xl whitespace-pre-wrap">{c.body}</p>
-                        <div className="text-[9px] text-[#4A6480] font-semibold">
+                        <p className="text-xs text-text-secondary leading-relaxed max-w-2xl whitespace-pre-wrap">{c.body}</p>
+                        <div className="text-[9px] text-text-tertiary font-semibold">
                           Logged by: {creator?.full_name || 'System'} on {formatDate(c.created_at)}
                         </div>
                       </div>
 
                       <button
                         onClick={() => setDeleteCommId(c.id)}
-                        className="text-[#4A6480] hover:text-[#EF4444] self-start p-1 transition-colors"
+                        className="text-text-tertiary hover:text-error self-start p-1 transition-colors"
                       >
                         <Trash2 size={13} />
                       </button>
@@ -496,7 +496,7 @@ export function ClientRelationsDashboard({
                 })}
 
               {comms.length === 0 && (
-                <div className="text-center py-10 text-xs text-[#4A6480] italic">No matching communication logs.</div>
+                <div className="text-center py-10 text-xs text-text-tertiary italic">No matching communication logs.</div>
               )}
             </div>
           </div>
@@ -513,16 +513,16 @@ export function ClientRelationsDashboard({
                   key={status}
                   onDragOver={handleDragOver}
                   onDrop={(e) => handleDrop(e, status)}
-                  className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 flex flex-col min-h-[450px] space-y-4"
+                  className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col min-h-[450px] space-y-4"
                 >
-                  <div className="flex justify-between items-center border-b border-[#1E3352] pb-2">
-                    <h3 className="text-xs font-bold text-[#F0F4FF] uppercase tracking-wider flex items-center gap-2">
+                  <div className="flex justify-between items-center border-b border-border/30 pb-2">
+                    <h3 className="text-xs font-bold text-text-primary uppercase tracking-wider flex items-center gap-2">
                       <span className={`w-2 h-2 rounded-full ${
-                        status === 'open' ? 'bg-[#EF4444]' :
-                        status === 'in_progress' ? 'bg-[#F59E0B]' : 'bg-[#22C55E]'
+                        status === 'open' ? 'bg-error' :
+                        status === 'in_progress' ? 'bg-warning' : 'bg-online'
                       }`} />
                       <span>{status.replace('_', ' ')}</span>
-                      <span className="font-mono text-[#8BA3C7]">({statusTickets.length})</span>
+                      <span className="font-mono text-text-secondary">({statusTickets.length})</span>
                     </h3>
                   </div>
 
@@ -535,28 +535,28 @@ export function ClientRelationsDashboard({
                           key={t.id}
                           draggable
                           onDragStart={(e) => handleDragStart(e, t.id)}
-                          className="bg-[#060D1A] border border-[#1E3352] rounded-[8px] p-3 space-y-2 cursor-grab active:cursor-grabbing hover:border-[#4D90FE] transition-colors"
+                          className="bg-bg-dark border border-border/30 rounded-[8px] p-3 space-y-2 cursor-grab active:cursor-grabbing hover:border-[#4D90FE] transition-colors"
                         >
                           <div className="flex justify-between items-start gap-2">
-                            <span className="text-[10px] font-bold text-[#8BA3C7] truncate max-w-[120px]">{client?.name}</span>
+                            <span className="text-[10px] font-bold text-text-secondary truncate max-w-[120px]">{client?.name}</span>
                             <span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded uppercase ${
-                              t.priority === 'urgent' ? 'bg-[#EF4444]/10 text-[#EF4444]' :
-                              t.priority === 'high' ? 'bg-[#F59E0B]/10 text-[#F59E0B]' :
-                              t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-[#8BA3C7]'
+                              t.priority === 'urgent' ? 'bg-error/10 text-error' :
+                              t.priority === 'high' ? 'bg-warning/10 text-warning' :
+                              t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'
                             }`}>
                               {t.priority}
                             </span>
                           </div>
 
-                          <h4 className="text-xs font-semibold text-[#F0F4FF] leading-snug">{t.subject}</h4>
+                          <h4 className="text-xs font-semibold text-text-primary leading-snug">{t.subject}</h4>
 
                           {status === 'resolved' && t.resolution && (
-                            <p className="text-[10px] text-[#22C55E] bg-[#22C55E]/5 border border-[#22C55E]/10 rounded p-1.5 italic">
+                            <p className="text-[10px] text-online bg-online/5 border border-online/10 rounded p-1.5 italic">
                               Resolved: &quot;{t.resolution}&quot;
                             </p>
                           )}
 
-                          <div className="flex justify-between items-center pt-1 text-[9px] text-[#4A6480] border-t border-[#1E3352]/40">
+                          <div className="flex justify-between items-center pt-1 text-[9px] text-text-tertiary border-t border-border/30/40">
                             <span className="flex items-center gap-1 font-semibold">
                               <User size={10} />
                               {assignee ? assignee.full_name : 'Unassigned'}
@@ -567,13 +567,13 @@ export function ClientRelationsDashboard({
                                   setSelectedTicket(t);
                                   setTicketModalOpen(true);
                                 }}
-                                className="hover:text-[#4D90FE] transition-colors"
+                                className="hover:text-primary-light transition-colors"
                               >
                                 <Edit2 size={10} />
                               </button>
                               <button
                                 onClick={() => setDeleteTicketId(t.id)}
-                                className="hover:text-[#EF4444] transition-colors"
+                                className="hover:text-error transition-colors"
                               >
                                 <Trash2 size={10} />
                               </button>
@@ -584,7 +584,7 @@ export function ClientRelationsDashboard({
                     })}
 
                     {statusTickets.length === 0 && (
-                      <div className="text-center py-12 text-[10px] text-[#4A6480] italic">Drag tickets here.</div>
+                      <div className="text-center py-12 text-[10px] text-text-tertiary italic">Drag tickets here.</div>
                     )}
                   </div>
                 </div>
@@ -595,36 +595,36 @@ export function ClientRelationsDashboard({
 
         {/* TAB: NPS & FEEDBACK */}
         {activeTab === 'nps' && (
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4 animate-in fade-in duration-200">
-            <h3 className="text-sm font-bold text-[#F0F4FF] border-b border-[#1E3352] pb-2">NPS Response History</h3>
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4 animate-in fade-in duration-200">
+            <h3 className="text-sm font-bold text-text-primary border-b border-border/30 pb-2">NPS Response History</h3>
 
             <div className="space-y-3">
               {npsList.map((n) => {
                 const client = clients.find((cl) => cl.id === n.client_id);
                 return (
-                  <div key={n.id} className="p-4 bg-[#060D1A] border border-[#1E3352] rounded-[8px] flex items-center justify-between gap-4">
+                  <div key={n.id} className="p-4 bg-bg-dark border border-border/30 rounded-[8px] flex items-center justify-between gap-4">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs font-bold text-[#F0F4FF]">{client?.name}</span>
-                        <span className="text-[10px] text-[#4A6480]">{formatDate(n.created_at)}</span>
+                        <span className="text-xs font-bold text-text-primary">{client?.name}</span>
+                        <span className="text-[10px] text-text-tertiary">{formatDate(n.created_at)}</span>
                       </div>
                       {n.feedback ? (
-                        <p className="text-xs text-[#8BA3C7] leading-relaxed italic">&quot;{n.feedback}&quot;</p>
+                        <p className="text-xs text-text-secondary leading-relaxed italic">&quot;{n.feedback}&quot;</p>
                       ) : (
-                        <p className="text-xs text-[#4A6480] italic">No feedback comments submitted.</p>
+                        <p className="text-xs text-text-tertiary italic">No feedback comments submitted.</p>
                       )}
                     </div>
 
                     <div className="flex items-center gap-3">
                       <span className={`text-base font-black font-mono w-10 h-10 rounded-full flex items-center justify-center border ${
-                        n.score >= 9 ? 'bg-[#22C55E]/10 border-[#22C55E]/30 text-[#22C55E]' :
-                        n.score >= 7 ? 'bg-[#F59E0B]/10 border-[#F59E0B]/30 text-[#F59E0B]' : 'bg-[#EF4444]/10 border-[#EF4444]/30 text-[#EF4444]'
+                        n.score >= 9 ? 'bg-online/10 border-online/30 text-online' :
+                        n.score >= 7 ? 'bg-warning/10 border-warning/30 text-warning' : 'bg-error/10 border-error/30 text-error'
                       }`}>
                         {n.score}
                       </span>
                       <button
                         onClick={() => setDeleteNpsId(n.id)}
-                        className="text-[#4A6480] hover:text-[#EF4444] transition-colors p-1"
+                        className="text-text-tertiary hover:text-error transition-colors p-1"
                       >
                         <Trash2 size={13} />
                       </button>
@@ -634,7 +634,7 @@ export function ClientRelationsDashboard({
               })}
 
               {npsList.length === 0 && (
-                <div className="text-center py-10 text-xs text-[#4A6480] italic">No NPS surveys recorded yet.</div>
+                <div className="text-center py-10 text-xs text-text-tertiary italic">No NPS surveys recorded yet.</div>
               )}
             </div>
           </div>
@@ -642,10 +642,10 @@ export function ClientRelationsDashboard({
 
         {/* TAB: CHURN RISK PANEL */}
         {activeTab === 'risk' && (
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4 animate-in fade-in duration-200">
-            <div className="flex justify-between items-center border-b border-[#1E3352] pb-2">
-              <h3 className="text-sm font-bold text-[#F0F4FF]">At-Risk Clients</h3>
-              <span className="text-[10px] font-semibold text-[#EF4444] bg-[#EF4444]/10 rounded-full px-2.5 py-0.5">
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4 animate-in fade-in duration-200">
+            <div className="flex justify-between items-center border-b border-border/30 pb-2">
+              <h3 className="text-sm font-bold text-text-primary">At-Risk Clients</h3>
+              <span className="text-[10px] font-semibold text-error bg-error/10 rounded-full px-2.5 py-0.5">
                 {riskClients.length} clients flagged
               </span>
             </div>
@@ -657,48 +657,48 @@ export function ClientRelationsDashboard({
                 const lastCommDate = clientComms.length ? formatDate(clientComms[0].created_at) : 'Never';
 
                 return (
-                  <div key={c.id} className="p-4 bg-[#060D1A] border border-[#1E3352] rounded-[8px] grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                  <div key={c.id} className="p-4 bg-bg-dark border border-border/30 rounded-[8px] grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
                     <div className="space-y-1">
                       <div className="flex items-center gap-1.5">
-                        <h4 className="text-xs font-bold text-[#F0F4FF]">{c.name}</h4>
-                        <a href={`/dashboard/clients/${c.id}`} className="text-[#4D90FE] hover:underline">
+                        <h4 className="text-xs font-bold text-text-primary">{c.name}</h4>
+                        <a href={`/dashboard/clients/${c.id}`} className="text-primary-light hover:underline">
                           <ExternalLink size={10} />
                         </a>
                       </div>
-                      <span className="text-[10px] text-[#4A6480] block">{c.company || 'Private Business'}</span>
+                      <span className="text-[10px] text-text-tertiary block">{c.company || 'Private Business'}</span>
                     </div>
 
                     <div className="space-y-0.5">
-                      <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block font-semibold">Health score</span>
+                      <span className="text-[9px] text-text-tertiary uppercase tracking-wider block font-semibold">Health score</span>
                       <span className={`text-xs font-bold ${
-                        c.health_score >= 60 ? 'text-[#F59E0B]' : 'text-[#EF4444]'
+                        c.health_score >= 60 ? 'text-warning' : 'text-error'
                       }`}>
                         {c.health_score}% Health
                       </span>
                     </div>
 
                     <div className="space-y-0.5">
-                      <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block font-semibold">Last communication</span>
-                      <span className="text-xs font-medium text-[#8BA3C7]">
+                      <span className="text-[9px] text-text-tertiary uppercase tracking-wider block font-semibold">Last communication</span>
+                      <span className="text-xs font-medium text-text-secondary">
                         {lastCommDate}
                       </span>
                     </div>
 
                     <div className="space-y-1">
-                      <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block font-semibold">Risk signals</span>
+                      <span className="text-[9px] text-text-tertiary uppercase tracking-wider block font-semibold">Risk signals</span>
                       <div className="flex flex-wrap gap-1">
                         {c.health_score <= 50 && (
-                          <span className="text-[8px] font-bold bg-[#EF4444]/10 text-[#EF4444] border border-[#EF4444]/20 rounded px-1.5 py-0.5 uppercase">
+                          <span className="text-[8px] font-bold bg-error/10 text-error border border-error/20 rounded px-1.5 py-0.5 uppercase">
                             Critical Health
                           </span>
                         )}
                         {clientComms.length === 0 && (
-                          <span className="text-[8px] font-bold bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20 rounded px-1.5 py-0.5 uppercase">
+                          <span className="text-[8px] font-bold bg-warning/10 text-warning border border-warning/20 rounded px-1.5 py-0.5 uppercase">
                             No recent comms
                           </span>
                         )}
                         {c.status === 'paused' && (
-                          <span className="text-[8px] font-bold bg-[#4B5563]/10 text-[#8BA3C7] border border-[#4B5563]/20 rounded px-1.5 py-0.5 uppercase">
+                          <span className="text-[8px] font-bold bg-[#4B5563]/10 text-text-secondary border border-[#4B5563]/20 rounded px-1.5 py-0.5 uppercase">
                             Paused Account
                           </span>
                         )}
@@ -709,7 +709,7 @@ export function ClientRelationsDashboard({
               })}
 
               {riskClients.length === 0 && (
-                <div className="text-center py-10 text-xs text-[#22C55E] bg-[#22C55E]/5 border border-[#22C55E]/10 rounded-[8px] font-medium flex items-center justify-center gap-1.5">
+                <div className="text-center py-10 text-xs text-online bg-online/5 border border-online/10 rounded-[8px] font-medium flex items-center justify-center gap-1.5">
                   <CheckCircle size={14} />
                   <span>All clients are currently healthy and active!</span>
                 </div>

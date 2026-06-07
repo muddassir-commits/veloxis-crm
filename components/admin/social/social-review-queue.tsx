@@ -75,43 +75,43 @@ export function SocialReviewQueue({ posts, onRefresh }: SocialReviewQueueProps) 
   return (
     <div className="space-y-4 select-none">
       {posts.length === 0 ? (
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-12 text-center text-xs text-[#8BA3C7] space-y-2">
+        <div className="bg-bg-card border border-border/30 rounded-lg p-12 text-center text-xs text-text-secondary space-y-2">
           <p className="font-semibold text-slate-500">Review queue is empty</p>
-          <p className="text-[10px] text-[#4A6480]">No student post submissions are currently pending approval.</p>
+          <p className="text-[10px] text-text-tertiary">No student post submissions are currently pending approval.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {posts.map((post) => (
-            <div key={post.id} className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-5 flex flex-col justify-between space-y-4">
+            <div key={post.id} className="bg-bg-card border border-border/30 rounded-lg p-5 flex flex-col justify-between space-y-4">
               <div className="space-y-2">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h4 className="text-xs font-bold text-[#F0F4FF]">
+                    <h4 className="text-xs font-bold text-text-primary">
                       {post.clients?.name} {post.clients?.is_agency_self && '🏢'}
                     </h4>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[9px] font-bold uppercase px-2 py-0.5 rounded bg-[#1B4FD8]/15 text-[#4D90FE] border border-[#1B4FD8]/20">
+                      <span className="text-[9px] font-bold uppercase px-2 py-0.5 rounded bg-primary/15 text-primary-light border border-primary/20">
                         {post.platform}
                       </span>
-                      <span className="text-[9px] text-[#8BA3C7] capitalize">{post.content_type || 'Post'}</span>
+                      <span className="text-[9px] text-text-secondary capitalize">{post.content_type || 'Post'}</span>
                     </div>
                   </div>
 
                   {post.profiles?.full_name && (
-                    <span className="text-[9px] text-[#8BA3C7] flex items-center gap-1 font-semibold bg-[#132035] px-2 py-0.5 rounded">
-                      <User size={10} className="text-[#1B4FD8]" /> {post.profiles.full_name.split(' ')[0]}
+                    <span className="text-[9px] text-text-secondary flex items-center gap-1 font-semibold bg-bg-card-hover/20 px-2 py-0.5 rounded">
+                      <User size={10} className="text-primary" /> {post.profiles.full_name.split(' ')[0]}
                     </span>
                   )}
                 </div>
 
-                <p className="text-xs text-[#8BA3C7] leading-relaxed line-clamp-3 bg-[#060D1A]/50 p-2.5 rounded border border-[#1E3352]/40 italic">
-                  {post.caption || <span className="text-[#4A6480]">No caption copy set</span>}
+                <p className="text-xs text-text-secondary leading-relaxed line-clamp-3 bg-bg-dark/50 p-2.5 rounded border border-border/30/40 italic">
+                  {post.caption || <span className="text-text-tertiary">No caption copy set</span>}
                 </p>
               </div>
 
-              <div className="flex items-center justify-between pt-2 border-t border-[#1E3352]/40">
-                <div className="flex items-center gap-1 text-[10px] text-[#8BA3C7]">
-                  <Calendar size={12} className="text-[#4A6480]" />
+              <div className="flex items-center justify-between pt-2 border-t border-border/30/40">
+                <div className="flex items-center gap-1 text-[10px] text-text-secondary">
+                  <Calendar size={12} className="text-text-tertiary" />
                   <span>{post.scheduled_for ? formatDate(post.scheduled_for) : 'No date set'}</span>
                 </div>
 
@@ -123,14 +123,14 @@ export function SocialReviewQueue({ posts, onRefresh }: SocialReviewQueueProps) 
                       setSelectedPost(post);
                       setRejectOpen(true);
                     }}
-                    className="border-[#EF4444]/30 hover:bg-[#EF4444]/10 text-[#EF4444] text-[10px] h-7 px-2.5 font-bold"
+                    className="border-error/30 hover:bg-error/10 text-error text-[10px] h-7 px-2.5 font-bold"
                   >
                     <MessageSquare size={10} className="mr-1.5" /> Request Changes
                   </Button>
                   <Button
                     size="sm"
                     onClick={() => handleApprove(post)}
-                    className="bg-[#22C55E] hover:bg-[#16A34A] text-white text-[10px] h-7 px-2.5 font-bold"
+                    className="bg-online hover:bg-online/80 text-white text-[10px] h-7 px-2.5 font-bold"
                   >
                     <CheckCircle2 size={10} className="mr-1.5" /> Approve
                   </Button>
@@ -143,20 +143,20 @@ export function SocialReviewQueue({ posts, onRefresh }: SocialReviewQueueProps) 
 
       {/* Reject/Request Changes Dialog */}
       <Dialog open={rejectOpen} onOpenChange={setRejectOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-sm font-bold text-[#F0F4FF]">Request Post Changes</DialogTitle>
+            <DialogTitle className="text-sm font-bold text-text-primary">Request Post Changes</DialogTitle>
           </DialogHeader>
 
           <form onSubmit={handleRejectSubmit} className="space-y-4 py-2 text-xs">
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Rejection / Revision Instructions</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Rejection / Revision Instructions</Label>
               <Textarea
                 required
                 value={rejectComments}
                 onChange={(e) => setRejectComments(e.target.value)}
                 placeholder="Detail what needs to be changed in the creative design or caption copy..."
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs min-h-[90px]"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs min-h-[90px]"
               />
             </div>
 
@@ -165,14 +165,14 @@ export function SocialReviewQueue({ posts, onRefresh }: SocialReviewQueueProps) 
                 type="button"
                 variant="outline"
                 onClick={() => setRejectOpen(false)}
-                className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] text-xs h-8"
+                className="border-border/30 hover:bg-bg-card-hover/20 text-text-secondary text-xs h-8"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={loading}
-                className="bg-[#EF4444] hover:bg-[#DC2626] text-white text-xs h-8"
+                className="bg-error hover:bg-error-light text-white text-xs h-8"
               >
                 {loading ? 'Submitting...' : 'Send Back'}
               </Button>

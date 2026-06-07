@@ -154,7 +154,7 @@ export function ClientReportsViewer({
             <select
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
-              className="bg-white border border-[#E2E8F4] text-[#0A1628] text-xs font-semibold rounded-[7px] px-3 py-1.5 focus:outline-none focus:border-[#1B4FD8]"
+              className="bg-white border border-[#E2E8F4] text-[#0A1628] text-xs font-semibold rounded-[7px] px-3 py-1.5 focus:outline-none focus:border-primary"
             >
               {availableMonths.map((m) => (
                 <option key={m} value={m}>
@@ -288,7 +288,7 @@ export function ClientReportsViewer({
                               </td>
                               <td className="p-3 text-right pr-4 font-bold">
                                 {diff > 0 ? (
-                                  <span className="text-[#22C55E] flex items-center justify-end gap-0.5">
+                                  <span className="text-online flex items-center justify-end gap-0.5">
                                     <TrendingUp size={10} /> +{diff}
                                   </span>
                                 ) : diff < 0 ? (
@@ -357,8 +357,8 @@ export function ClientReportsViewer({
                         <td className="p-3 font-mono">{camp.month_year}</td>
                         <td className="p-3 font-bold font-mono text-[#0A1628]">₹{(camp.budget_spent || 0).toLocaleString('en-IN')}</td>
                         <td className="p-3 font-mono">{(camp.clicks || 0).toLocaleString('en-US')}</td>
-                        <td className="p-3 font-bold font-mono text-[#22C55E]">{(camp.leads || 0).toLocaleString('en-US')}</td>
-                        <td className="p-3 font-bold font-mono text-[#F97316]">₹{camp.cpl ? Number(camp.cpl).toFixed(1) : '—'}</td>
+                        <td className="p-3 font-bold font-mono text-online">{(camp.leads || 0).toLocaleString('en-US')}</td>
+                        <td className="p-3 font-bold font-mono text-accent">₹{camp.cpl ? Number(camp.cpl).toFixed(1) : '—'}</td>
                         <td className="p-3 text-right pr-4 font-mono font-bold text-[#0A1628]">{camp.roas ? `${camp.roas}x` : '—'}</td>
                       </tr>
                     ))}
@@ -372,10 +372,10 @@ export function ClientReportsViewer({
           <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs space-y-4">
             <div className="flex items-center justify-between border-b border-[#F1F5F9] pb-3">
               <h3 className="text-sm font-bold text-[#0A1628] flex items-center gap-1.5">
-                <Globe size={14} className="text-[#F97316]" />
+                <Globe size={14} className="text-accent" />
                 Google Ads Campaigns
               </h3>
-              <span className="text-[9px] bg-orange-50 text-[#F97316] px-2 py-0.5 rounded-full font-bold">
+              <span className="text-[9px] bg-orange-50 text-accent px-2 py-0.5 rounded-full font-bold">
                 Google Ads API
               </span>
             </div>
@@ -406,8 +406,8 @@ export function ClientReportsViewer({
                         <td className="p-3 font-mono">{camp.month_year}</td>
                         <td className="p-3 font-bold font-mono text-[#0A1628]">₹{(camp.budget_spent || 0).toLocaleString('en-IN')}</td>
                         <td className="p-3 font-mono">{(camp.clicks || 0).toLocaleString('en-US')}</td>
-                        <td className="p-3 font-bold font-mono text-[#22C55E]">{(camp.conversions || 0).toLocaleString('en-US')}</td>
-                        <td className="p-3 text-right pr-4 font-bold font-mono text-[#F97316]">₹{camp.cost_per_conv ? Number(camp.cost_per_conv).toFixed(1) : '—'}</td>
+                        <td className="p-3 font-bold font-mono text-online">{(camp.conversions || 0).toLocaleString('en-US')}</td>
+                        <td className="p-3 text-right pr-4 font-bold font-mono text-accent">₹{camp.cost_per_conv ? Number(camp.cost_per_conv).toFixed(1) : '—'}</td>
                       </tr>
                     ))}
                   </tbody>

@@ -154,11 +154,11 @@ export function SocialMetricsView({ clientId, monthYear, clients }: SocialMetric
     <div className="space-y-6 select-none">
       {/* 1. Header with Log Metrics Button */}
       <div className="flex justify-between items-center">
-        <h3 className="text-sm font-bold text-[#F0F4FF]">Performance Analytics</h3>
+        <h3 className="text-sm font-bold text-text-primary">Performance Analytics</h3>
         <Button
           size="sm"
           onClick={() => setLogOpen(true)}
-          className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8"
+          className="bg-primary hover:bg-primary-light text-white text-xs h-8"
         >
           <Plus size={14} className="mr-1" /> Log Monthly Metrics
         </Button>
@@ -176,30 +176,30 @@ export function SocialMetricsView({ clientId, monthYear, clients }: SocialMetric
 
       {/* 3. Charts Area */}
       {chartData.length === 0 ? (
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-12 text-center text-xs text-[#8BA3C7] space-y-2">
+        <div className="bg-bg-card border border-border/30 rounded-lg p-12 text-center text-xs text-text-secondary space-y-2">
           <p className="font-semibold text-slate-500">No history data available for charts</p>
-          <p className="text-[10px] text-[#4A6480]">Once you log metrics for consecutive months, performance graphs will render here.</p>
+          <p className="text-[10px] text-text-tertiary">Once you log metrics for consecutive months, performance graphs will render here.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Reach Area Chart */}
-          <Card className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] overflow-hidden">
+          <Card className="bg-bg-card border-border/30 text-text-primary overflow-hidden">
             <CardContent className="p-5 space-y-3">
-              <h4 className="text-xs font-bold text-[#F0F4FF]">Monthly Reach Trend</h4>
+              <h4 className="text-xs font-bold text-text-primary">Monthly Reach Trend</h4>
               <div className="h-60 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={chartData}>
                     <defs>
                       <linearGradient id="colorReach" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#1B4FD8" stopOpacity={0.2} />
-                        <stop offset="95%" stopColor="#1B4FD8" stopOpacity={0} />
+                        <stop offset="5%" stopColor="var(--color-primary)" stopOpacity={0.2} />
+                        <stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fill: '#4A6480', fontSize: 10 }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fill: '#4A6480', fontSize: 10 }} axisLine={false} tickLine={false} />
-                    <Tooltip contentStyle={{ backgroundColor: '#0D1829', borderColor: '#1E3352', color: '#F0F4FF', fontSize: 11 }} />
-                    <Area type="monotone" dataKey="reach" stroke="#1B4FD8" strokeWidth={2} fillOpacity={1} fill="url(#colorReach)" />
+                    <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} />
+                    <XAxis dataKey="month" tick={{ fill: 'var(--color-text-tertiary)', fontSize: 10 }} axisLine={false} tickLine={false} />
+                    <YAxis tick={{ fill: 'var(--color-text-tertiary)', fontSize: 10 }} axisLine={false} tickLine={false} />
+                    <Tooltip contentStyle={{ backgroundColor: 'var(--color-bg-card)', borderColor: 'var(--color-border-subtle)', color: 'var(--color-text-primary)', fontSize: 11 }} />
+                    <Area type="monotone" dataKey="reach" stroke="var(--color-primary)" strokeWidth={2} fillOpacity={1} fill="url(#colorReach)" />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
@@ -207,19 +207,19 @@ export function SocialMetricsView({ clientId, monthYear, clients }: SocialMetric
           </Card>
 
           {/* Followers & Clicks Bar Chart */}
-          <Card className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] overflow-hidden">
+          <Card className="bg-bg-card border-border/30 text-text-primary overflow-hidden">
             <CardContent className="p-5 space-y-3">
-              <h4 className="text-xs font-bold text-[#F0F4FF]">Followers & Clicks Growth</h4>
+              <h4 className="text-xs font-bold text-text-primary">Followers & Clicks Growth</h4>
               <div className="h-60 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={chartData}>
-                    <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fill: '#4A6480', fontSize: 10 }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fill: '#4A6480', fontSize: 10 }} axisLine={false} tickLine={false} />
-                    <Tooltip contentStyle={{ backgroundColor: '#0D1829', borderColor: '#1E3352', color: '#F0F4FF', fontSize: 11 }} />
-                    <Legend wrapperStyle={{ fontSize: 10, color: '#8BA3C7' }} />
-                    <Bar dataKey="followers" fill="#8B5CF6" name="Followers" radius={[3, 3, 0, 0]} />
-                    <Bar dataKey="clicks" fill="#F97316" name="Clicks" radius={[3, 3, 0, 0]} />
+                    <CartesianGrid stroke="var(--color-border-subtle)" strokeDasharray="3 3" vertical={false} />
+                    <XAxis dataKey="month" tick={{ fill: 'var(--color-text-tertiary)', fontSize: 10 }} axisLine={false} tickLine={false} />
+                    <YAxis tick={{ fill: 'var(--color-text-tertiary)', fontSize: 10 }} axisLine={false} tickLine={false} />
+                    <Tooltip contentStyle={{ backgroundColor: 'var(--color-bg-card)', borderColor: 'var(--color-border-subtle)', color: 'var(--color-text-primary)', fontSize: 11 }} />
+                    <Legend wrapperStyle={{ fontSize: 10, color: 'var(--color-text-secondary)' }} />
+                    <Bar dataKey="followers" fill="var(--color-primary-light)" name="Followers" radius={[3, 3, 0, 0]} />
+                    <Bar dataKey="clicks" fill="var(--color-accent)" name="Clicks" radius={[3, 3, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -230,20 +230,20 @@ export function SocialMetricsView({ clientId, monthYear, clients }: SocialMetric
 
       {/* Log Metrics Modal */}
       <Dialog open={logOpen} onOpenChange={setLogOpen}>
-        <DialogContent className="max-w-lg bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-sm font-bold text-[#F0F4FF]">Log Social Media Metrics</DialogTitle>
+            <DialogTitle className="text-sm font-bold text-text-primary">Log Social Media Metrics</DialogTitle>
           </DialogHeader>
 
           <form onSubmit={handleLogSubmit} className="space-y-4 py-2 text-xs">
             <div className="grid grid-cols-3 gap-4">
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Client *</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Client *</Label>
                 <Select value={formClient} onValueChange={(val) => setFormClient(val || '')}>
-                  <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                  <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                     <SelectValue placeholder="Client" />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                  <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                     {clients.map((c) => (
                       <SelectItem key={c.id} value={c.id} className="text-xs">
                         {c.name}
@@ -254,12 +254,12 @@ export function SocialMetricsView({ clientId, monthYear, clients }: SocialMetric
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Platform *</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Platform *</Label>
                 <Select value={formPlatform} onValueChange={(val) => setFormPlatform(val || '')}>
-                  <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                  <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                     <SelectValue placeholder="Platform" />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                  <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                     <SelectItem value="instagram" className="text-xs">Instagram</SelectItem>
                     <SelectItem value="facebook" className="text-xs">Facebook</SelectItem>
                     <SelectItem value="linkedin" className="text-xs">LinkedIn</SelectItem>
@@ -268,118 +268,118 @@ export function SocialMetricsView({ clientId, monthYear, clients }: SocialMetric
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Month/Year *</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Month/Year *</Label>
                 <Input
                   type="text"
                   value={formMonth}
                   onChange={(e) => setFormMonth(e.target.value)}
                   placeholder="e.g. Jun 2026"
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Total Followers</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Total Followers</Label>
                 <Input
                   type="number"
                   value={followers || ''}
                   onChange={(e) => setFollowers(Number(e.target.value))}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">New Followers</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">New Followers</Label>
                 <Input
                   type="number"
                   value={newFollowers || ''}
                   onChange={(e) => setNewFollowers(Number(e.target.value))}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Reach</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Reach</Label>
                 <Input
                   type="number"
                   value={reach || ''}
                   onChange={(e) => setReach(Number(e.target.value))}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Impressions</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Impressions</Label>
                 <Input
                   type="number"
                   value={impressions || ''}
                   onChange={(e) => setImpressions(Number(e.target.value))}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Engagements</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Engagements</Label>
                 <Input
                   type="number"
                   value={engagements || ''}
                   onChange={(e) => setEngagements(Number(e.target.value))}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Posts Published</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Posts Published</Label>
                 <Input
                   type="number"
                   value={posts || ''}
                   onChange={(e) => setPosts(Number(e.target.value))}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Profile Visits</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Profile Visits</Label>
                 <Input
                   type="number"
                   value={visits || ''}
                   onChange={(e) => setVisits(Number(e.target.value))}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Website Clicks</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Website Clicks</Label>
                 <Input
                   type="number"
                   value={clicks || ''}
                   onChange={(e) => setClicks(Number(e.target.value))}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
             </div>
 
-            <DialogFooter className="mt-4 pt-2 border-t border-[#1E3352]/30">
+            <DialogFooter className="mt-4 pt-2 border-t border-border/30/30">
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => setLogOpen(false)}
-                className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] text-xs h-9"
+                className="border-border/30 hover:bg-bg-card-hover/20 text-text-secondary text-xs h-9"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={loading}
-                className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9"
+                className="bg-primary hover:bg-primary-light text-white text-xs h-9"
               >
                 {loading ? 'Saving...' : 'Save Metrics'}
               </Button>

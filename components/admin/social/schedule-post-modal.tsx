@@ -135,22 +135,22 @@ export function SchedulePostModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF]">
+      <DialogContent className="max-w-lg bg-bg-card border border-border/30 text-text-primary">
         <DialogHeader>
-          <DialogTitle className="text-md font-bold text-[#F0F4FF]">Schedule Social Media Post</DialogTitle>
+          <DialogTitle className="text-md font-bold text-text-primary">Schedule Social Media Post</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 py-2 text-xs">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Select Client *</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Select Client *</Label>
               <Select value={clientId} onValueChange={(val) => setClientId(val || '')}>
-                <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                   <SelectValue placeholder="Select client" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                   {clients.map((c) => (
-                    <SelectItem key={c.id} value={c.id} className="text-xs hover:bg-[#132035]">
+                    <SelectItem key={c.id} value={c.id} className="text-xs hover:bg-bg-card-hover/20">
                       {c.name} {c.is_agency_self && '🏢'}
                     </SelectItem>
                   ))}
@@ -159,12 +159,12 @@ export function SchedulePostModal({
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Platform *</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Platform *</Label>
               <Select value={platform} onValueChange={(val) => setPlatform(val || '')}>
-                <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                   <SelectValue placeholder="Select platform" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                   <SelectItem value="instagram" className="text-xs">Instagram</SelectItem>
                   <SelectItem value="facebook" className="text-xs">Facebook</SelectItem>
                   <SelectItem value="linkedin" className="text-xs">LinkedIn</SelectItem>
@@ -176,12 +176,12 @@ export function SchedulePostModal({
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Content Type</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Content Type</Label>
               <Select value={contentType} onValueChange={(val) => setContentType(val || '')}>
-                <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                   <SelectValue placeholder="Select type" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                   <SelectItem value="post" className="text-xs">Post</SelectItem>
                   <SelectItem value="reel" className="text-xs">Reel</SelectItem>
                   <SelectItem value="story" className="text-xs">Story</SelectItem>
@@ -191,12 +191,12 @@ export function SchedulePostModal({
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Assign To</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Assign To</Label>
               <Select value={assignedTo} onValueChange={(val) => setAssignedTo(val || '')}>
-                <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                   <SelectValue placeholder="Select team member" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                   {employees.map((emp) => (
                     <SelectItem key={emp.id} value={emp.id} className="text-xs">
                       {emp.full_name} ({emp.role === 'admin' ? 'Admin' : 'Student'})
@@ -209,49 +209,49 @@ export function SchedulePostModal({
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Scheduled Date *</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Scheduled Date *</Label>
               <Input
                 type="date"
                 value={scheduledDate}
                 onChange={(e) => setScheduledDate(e.target.value)}
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Scheduled Time *</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Scheduled Time *</Label>
               <Input
                 type="time"
                 value={scheduledTime}
                 onChange={(e) => setScheduledTime(e.target.value)}
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-[#8BA3C7] text-[11px] font-medium">Caption</Label>
+            <Label className="text-text-secondary text-[11px] font-medium">Caption</Label>
             <Textarea
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
               placeholder="Write interesting caption copy here..."
-              className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs min-h-[70px]"
+              className="bg-bg-dark border-border/30 text-text-primary text-xs min-h-[70px]"
             />
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-[#8BA3C7] text-[11px] font-medium">Hashtags (space or comma separated)</Label>
+            <Label className="text-text-secondary text-[11px] font-medium">Hashtags (space or comma separated)</Label>
             <Input
               type="text"
               value={hashtags}
               onChange={(e) => setHashtags(e.target.value)}
               placeholder="e.g. socialmedia marketing crm Kanpur"
-              className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+              className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
             />
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-[#8BA3C7] text-[11px] font-medium">Design Creative File</Label>
+            <Label className="text-text-secondary text-[11px] font-medium">Design Creative File</Label>
             {clientId ? (
               <FileUpload
                 bucket="clients"
@@ -263,25 +263,25 @@ export function SchedulePostModal({
                 className="h-28"
               />
             ) : (
-              <div className="p-3 text-center rounded border border-dashed border-[#1E3352] text-[10px] text-[#4A6480] bg-[#060D1A]">
+              <div className="p-3 text-center rounded border border-dashed border-border/30 text-[10px] text-text-tertiary bg-bg-dark">
                 Please select a client first to unlock file upload.
               </div>
             )}
           </div>
 
-          <DialogFooter className="mt-4 pt-2 border-t border-[#1E3352]/30">
+          <DialogFooter className="mt-4 pt-2 border-t border-border/30/30">
             <Button
               type="button"
               variant="outline"
               onClick={() => onOpenChange(false)}
-              className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] text-xs h-9"
+              className="border-border/30 hover:bg-bg-card-hover/20 text-text-secondary text-xs h-9"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={loading}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9"
+              className="bg-primary hover:bg-primary-light text-white text-xs h-9"
             >
               {loading ? 'Saving...' : 'Save Draft'}
             </Button>

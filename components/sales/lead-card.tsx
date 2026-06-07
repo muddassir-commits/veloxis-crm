@@ -4,7 +4,8 @@ import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { MessageSquare, UserCheck, XCircle, Building, User } from 'lucide-react';
 import { Lead, Profile } from '@/types';
-import { formatCurrency } from '@/lib/utils';
+import { formatCurrency, cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
 interface LeadCardProps {
   lead: Lead;
@@ -29,15 +30,15 @@ export function LeadCard({
   const isWon = lead.status === 'won';
   const isLost = lead.status === 'lost';
 
-  // Score circle background styling
+  // Score circle background styling using theme colors
   const getScoreBg = (val: number) => {
     if (val >= 70) {
-      return 'bg-[#22C55E]/20 text-[#22C55E] border border-[#22C55E]/40';
+      return 'bg-success/15 text-success border border-success/35';
     }
     if (val >= 40) {
-      return 'bg-[#F97316]/20 text-[#F97316] border border-[#F97316]/40';
+      return 'bg-accent/15 text-accent border border-accent/35';
     }
-    return 'bg-[#EF4444]/20 text-[#EF4444] border border-[#EF4444]/40';
+    return 'bg-error/15 text-error border border-error/35';
   };
 
   // Days in stage calculation
@@ -49,21 +50,23 @@ export function LeadCard({
   };
 
   return (
-    <div
-      className={`relative select-none flex flex-col gap-3 p-[14px] bg-[#132035] border border-[#1E3352] rounded-[8px] transition-all hover:border-[#1A2D47] ${
-        isWon ? 'border-l-4 border-l-[#22C55E]' : ''
-      } ${isLost ? 'border-l-4 border-l-[#4A6480] opacity-50' : ''} ${
-        isDragging ? 'opacity-30' : ''
-      }`}
+    <Card
+      variant="compact"
+      className={cn(
+        "relative select-none flex flex-col gap-3 p-3.5 transition-all hover:border-border/60",
+        isWon && "border-l-[3px] border-l-success",
+        isLost && "border-l-[3px] border-l-text-tertiary/50 opacity-50",
+        isDragging && "opacity-30"
+      )}
     >
-      {/* Top Row: Name bold #F0F4FF + Source badge */}
+      {/* Top Row: Name bold text-text-primary + Source badge */}
       <div className="flex items-start justify-between gap-2">
         <div className="space-y-0.5 min-w-0">
-          <h4 className="font-bold text-xs text-[#F0F4FF] hover:text-[#1B4FD8] transition-all break-words pr-4">
+          <h4 className="font-bold text-xs text-text-primary hover:text-primary transition-all break-words pr-4">
             {lead.name}
           </h4>
           {lead.company && (
-            <p className="text-[10px] text-[#8BA3C7] flex items-center gap-1">
+            <p className="text-[10px] text-text-secondary flex items-center gap-1">
               <Building size={10} className="shrink-0" />
               <span className="truncate">{lead.company}</span>
             </p>
@@ -71,7 +74,7 @@ export function LeadCard({
         </div>
 
         {lead.source && (
-          <span className="text-[8px] font-bold bg-[#1E3352]/40 border border-[#1E3352]/60 text-[#8BA3C7] rounded-full px-2 py-0.5 shrink-0 uppercase tracking-wider select-none">
+          <span className="text-[8px] font-bold bg-border/20 border border-border/40 text-text-secondary rounded-full px-2 py-0.5 shrink-0 uppercase tracking-wider select-none">
             {lead.source.replace('_', ' ')}
           </span>
         )}
@@ -82,45 +85,46 @@ export function LeadCard({
         {/* Score badge circle */}
         <div
           title={`Lead Score: ${score}/100`}
-          className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${getScoreBg(
-            score
-          )}`}
+          className={cn(
+            "w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0",
+            getScoreBg(score)
+          )}
         >
           {score}
         </div>
 
         {/* Estimated Value & Days in stage */}
         <div className="flex flex-col items-end text-[11px]">
-          <span className="font-semibold font-mono text-[#F97316]">
+          <span className="font-semibold font-mono text-accent">
             {formatCurrency(lead.estimated_value || 0)}
           </span>
-          <span className="text-[#4A6480] text-[10px]">
+          <span className="text-text-tertiary text-[10px]">
             {getDaysInStage(lead.updated_at)}
           </span>
         </div>
       </div>
 
       {/* Bottom: Assignee avatar + 3 quick action icons */}
-      <div className="flex items-center justify-between pt-2 border-t border-[#1E3352]/20">
+      <div className="flex items-center justify-between pt-2 border-t border-border/10">
         {/* Assignee Avatar */}
         <div className="flex items-center gap-1.5">
           {assignee ? (
             <div
               title={`Assigned to ${assignee.full_name}`}
-              className="h-5 w-5 rounded-full bg-[#1B4FD8] text-[#F0F4FF] flex items-center justify-center font-bold text-[9px] uppercase border border-[#1E3352] shrink-0"
+              className="h-5 w-5 rounded-full bg-primary text-text-primary flex items-center justify-center font-bold text-[9px] uppercase border border-border/20 shrink-0"
             >
               {assignee.full_name.charAt(0)}
             </div>
           ) : (
             <div
               title="Unassigned"
-              className="h-5 w-5 rounded-full bg-[#132035] text-[#4A6480] flex items-center justify-center border border-[#1E3352] shrink-0"
+              className="h-5 w-5 rounded-full bg-bg-card-hover/20 text-text-tertiary flex items-center justify-center border border-border/20 shrink-0"
             >
               <User size={10} />
             </div>
           )}
           {assignee && (
-            <span className="text-[10px] text-[#8BA3C7] truncate max-w-[65px]">
+            <span className="text-[10px] text-text-secondary truncate max-w-[65px]">
               {assignee.full_name.split(' ')[0]}
             </span>
           )}
@@ -135,7 +139,7 @@ export function LeadCard({
               e.stopPropagation();
               onLogActivity();
             }}
-            className="text-[#8BA3C7] hover:text-[#F0F4FF] p-1 rounded hover:bg-[#1E3352]/40 transition-all cursor-pointer"
+            className="text-text-secondary hover:text-text-primary p-1 rounded hover:bg-bg-card-hover/40 transition-all cursor-pointer"
           >
             <MessageSquare size={13} className="stroke-[2]" />
           </button>
@@ -147,7 +151,7 @@ export function LeadCard({
                 e.stopPropagation();
                 onConvert();
               }}
-              className="text-[#22C55E] hover:text-[#F0F4FF] p-1 rounded hover:bg-[#22C55E]/10 transition-all cursor-pointer"
+              className="text-success hover:text-text-primary p-1 rounded hover:bg-success/15 transition-all cursor-pointer"
             >
               <UserCheck size={13} className="stroke-[2]" />
             </button>
@@ -160,14 +164,14 @@ export function LeadCard({
                 e.stopPropagation();
                 onMarkLost();
               }}
-              className="text-[#EF4444] hover:text-[#F0F4FF] p-1 rounded hover:bg-[#EF4444]/10 transition-all cursor-pointer"
+              className="text-error hover:text-text-primary p-1 rounded hover:bg-error/15 transition-all cursor-pointer"
             >
               <XCircle size={13} className="stroke-[2]" />
             </button>
           )}
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
 

@@ -378,29 +378,29 @@ export function AdsTab({ client }: AdsTabProps) {
           <div className="flex items-center gap-1.5">
             <button
               onClick={handlePrevMonth}
-              className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+              className="p-1 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary cursor-pointer"
             >
               <ChevronLeft size={14} />
             </button>
-            <span className="text-xs font-semibold text-[#F0F4FF] min-w-[80px] text-center font-mono">
+            <span className="text-xs font-semibold text-text-primary min-w-[80px] text-center font-mono">
               {monthYearString}
             </span>
             <button
               onClick={handleNextMonth}
-              className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+              className="p-1 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary cursor-pointer"
             >
               <ChevronRight size={14} />
             </button>
           </div>
 
           {/* Sub-tabs switch */}
-          <div className="flex items-center gap-1 bg-[#132035] border border-[#1E3352] p-0.5 rounded">
+          <div className="flex items-center gap-1 bg-bg-card-hover/20 border border-border/30 p-0.5 rounded">
             <button
               onClick={() => setPlatformTab('meta')}
               className={`px-3 py-1 rounded text-[10px] font-semibold uppercase cursor-pointer transition-all ${
                 platformTab === 'meta'
-                  ? 'bg-[#1B4FD8] text-[#F0F4FF]'
-                  : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
+                  ? 'bg-primary text-text-primary'
+                  : 'text-text-secondary hover:text-text-primary'
               }`}
             >
               Meta Ads
@@ -409,8 +409,8 @@ export function AdsTab({ client }: AdsTabProps) {
               onClick={() => setPlatformTab('google')}
               className={`px-3 py-1 rounded text-[10px] font-semibold uppercase cursor-pointer transition-all ${
                 platformTab === 'google'
-                  ? 'bg-[#1B4FD8] text-[#F0F4FF]'
-                  : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
+                  ? 'bg-primary text-text-primary'
+                  : 'text-text-secondary hover:text-text-primary'
               }`}
             >
               Google Ads
@@ -423,7 +423,7 @@ export function AdsTab({ client }: AdsTabProps) {
           <Button
             onClick={handleOpenLogModal}
             size="sm"
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+            className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
           >
             <Plus size={13} />
             <span>Log Campaign</span>
@@ -433,7 +433,7 @@ export function AdsTab({ client }: AdsTabProps) {
             onClick={fetchCampaigns}
             disabled={isLoading}
             size="sm"
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer"
+            className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer"
           >
             <RefreshCw size={13} className={`stroke-[1.5] ${isLoading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
@@ -442,10 +442,10 @@ export function AdsTab({ client }: AdsTabProps) {
       </div>
 
       {/* Collapsible Integrations Panel */}
-      <div className="border border-[#1E3352] bg-[#0D1829] rounded-[10px] p-4 space-y-3">
+      <div className="border border-border/30 bg-bg-card rounded-[10px] p-4 space-y-3">
         <button
           onClick={() => setIntegrationsOpen(!integrationsOpen)}
-          className="flex items-center gap-2 text-xs font-semibold text-[#8BA3C7] hover:text-[#F0F4FF] transition-all cursor-pointer w-full select-none"
+          className="flex items-center gap-2 text-xs font-semibold text-text-secondary hover:text-text-primary transition-all cursor-pointer w-full select-none"
         >
           <Compass size={14} className={integrationsOpen ? 'text-[#1B4FD8]' : ''} />
           <span>Department Integrations & API Sync</span>
@@ -453,17 +453,17 @@ export function AdsTab({ client }: AdsTabProps) {
         </button>
 
         {integrationsOpen && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-[#1E3352]/40 select-none">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-border/30/40 select-none">
             {/* Meta Ads Connection */}
-            <div className="flex items-center justify-between p-3 rounded bg-[#060D1A] border border-[#1E3352]/60">
+            <div className="flex items-center justify-between p-3 rounded bg-bg-dark border border-border/30/60">
               <div>
-                <span className="text-xs font-bold text-[#F0F4FF] block">Meta Ads Connection</span>
+                <span className="text-xs font-bold text-text-primary block">Meta Ads Connection</span>
                 {integrationStatus.meta?.connected ? (
-                  <span className="text-[10px] font-mono text-[#8BA3C7] block">
+                  <span className="text-[10px] font-mono text-text-secondary block">
                     ID: {integrationStatus.meta.adAccountId}
                   </span>
                 ) : (
-                  <span className="text-[10px] text-[#4A6480] block">Not connected</span>
+                  <span className="text-[10px] text-text-tertiary block">Not connected</span>
                 )}
               </div>
               <div className="flex items-center gap-2">
@@ -473,7 +473,7 @@ export function AdsTab({ client }: AdsTabProps) {
                       size="sm"
                       onClick={() => handleSync('meta')}
                       disabled={syncingPlatform === 'meta'}
-                      className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-[10px] h-7 px-2.5 cursor-pointer"
+                      className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-[10px] h-7 px-2.5 cursor-pointer"
                     >
                       {syncingPlatform === 'meta' ? (
                         <Loader2 size={10} className="animate-spin mr-1" />
@@ -486,7 +486,7 @@ export function AdsTab({ client }: AdsTabProps) {
                       size="sm"
                       onClick={() => handleDisconnect('meta')}
                       disabled={disconnectingPlatform === 'meta'}
-                      className="bg-[#EF444415] hover:bg-[#EF444425] border border-[#EF444430] text-[#EF4444] text-[10px] h-7 px-2.5 cursor-pointer"
+                      className="bg-error/15 hover:bg-[#EF444425] border border-[#EF444430] text-error text-[10px] h-7 px-2.5 cursor-pointer"
                     >
                       <Link2Off size={10} className="mr-1" />
                       Disconnect
@@ -496,7 +496,7 @@ export function AdsTab({ client }: AdsTabProps) {
                   <Button
                     size="sm"
                     onClick={() => setMetaConnectOpen(true)}
-                    className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-2.5 cursor-pointer font-semibold"
+                    className="bg-primary hover:bg-primary-light text-white text-[10px] h-7 px-2.5 cursor-pointer font-semibold"
                   >
                     <Link2 size={10} className="mr-1" />
                     Connect ID
@@ -506,15 +506,15 @@ export function AdsTab({ client }: AdsTabProps) {
             </div>
 
             {/* Google Ads Connection */}
-            <div className="flex items-center justify-between p-3 rounded bg-[#060D1A] border border-[#1E3352]/60">
+            <div className="flex items-center justify-between p-3 rounded bg-bg-dark border border-border/30/60">
               <div>
-                <span className="text-xs font-bold text-[#F0F4FF] block">Google Ads Connection</span>
+                <span className="text-xs font-bold text-text-primary block">Google Ads Connection</span>
                 {integrationStatus.google?.connected ? (
-                  <span className="text-[10px] font-mono text-[#8BA3C7] block">
+                  <span className="text-[10px] font-mono text-text-secondary block">
                     ID: {integrationStatus.google.customerId}
                   </span>
                 ) : (
-                  <span className="text-[10px] text-[#4A6480] block">Not connected</span>
+                  <span className="text-[10px] text-text-tertiary block">Not connected</span>
                 )}
               </div>
               <div className="flex items-center gap-2">
@@ -524,7 +524,7 @@ export function AdsTab({ client }: AdsTabProps) {
                       size="sm"
                       onClick={() => handleSync('google')}
                       disabled={syncingPlatform === 'google'}
-                      className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-[10px] h-7 px-2.5 cursor-pointer"
+                      className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-[10px] h-7 px-2.5 cursor-pointer"
                     >
                       {syncingPlatform === 'google' ? (
                         <Loader2 size={10} className="animate-spin mr-1" />
@@ -537,7 +537,7 @@ export function AdsTab({ client }: AdsTabProps) {
                       size="sm"
                       onClick={() => handleDisconnect('google')}
                       disabled={disconnectingPlatform === 'google'}
-                      className="bg-[#EF444415] hover:bg-[#EF444425] border border-[#EF444430] text-[#EF4444] text-[10px] h-7 px-2.5 cursor-pointer"
+                      className="bg-error/15 hover:bg-[#EF444425] border border-[#EF444430] text-error text-[10px] h-7 px-2.5 cursor-pointer"
                     >
                       <Link2Off size={10} className="mr-1" />
                       Disconnect
@@ -547,7 +547,7 @@ export function AdsTab({ client }: AdsTabProps) {
                   <Button
                     size="sm"
                     onClick={() => setGoogleConnectOpen(true)}
-                    className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] h-7 px-2.5 cursor-pointer font-semibold"
+                    className="bg-primary hover:bg-primary-light text-white text-[10px] h-7 px-2.5 cursor-pointer font-semibold"
                   >
                     <Link2 size={10} className="mr-1" />
                     Connect ID
@@ -565,14 +565,14 @@ export function AdsTab({ client }: AdsTabProps) {
           <StatCard
             title="CPL (Meta)"
             value={formatCurrency(cplMeta)}
-            valueClassName="text-[#EF4444] font-mono"
+            valueClassName="text-error font-mono"
             icon={TrendingUp}
             loading={isLoading}
           />
           <StatCard
             title="Meta Spend"
             value={formatCurrency(totalSpendMeta)}
-            valueClassName="text-[#F97316] font-mono"
+            valueClassName="text-accent font-mono"
             icon={DollarSign}
             loading={isLoading}
           />
@@ -594,14 +594,14 @@ export function AdsTab({ client }: AdsTabProps) {
           <StatCard
             title="CPL (Google)"
             value={formatCurrency(cplGoogle)}
-            valueClassName="text-[#EF4444] font-mono"
+            valueClassName="text-error font-mono"
             icon={TrendingUp}
             loading={isLoading}
           />
           <StatCard
             title="Google Spend"
             value={formatCurrency(totalSpendGoogle)}
-            valueClassName="text-[#F97316] font-mono"
+            valueClassName="text-accent font-mono"
             icon={DollarSign}
             loading={isLoading}
           />
@@ -622,7 +622,7 @@ export function AdsTab({ client }: AdsTabProps) {
 
       {/* Campaign Cards List with Budget Progress Bars */}
       <div className="space-y-4">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-[#4A6480] select-none">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-text-tertiary select-none">
           Campaign Performance Cards ({platformTab === 'meta' ? metaCampaigns.length : googleCampaigns.length})
         </h3>
 
@@ -653,9 +653,9 @@ export function AdsTab({ client }: AdsTabProps) {
 
           if (campaignsToShow.length === 0) {
             return (
-              <div className="flex flex-col items-center justify-center py-16 text-center border border-dashed border-[#1E3352] rounded-[10px] bg-[#060D1A] select-none">
+              <div className="flex flex-col items-center justify-center py-16 text-center border border-dashed border-border/30 rounded-[10px] bg-bg-dark select-none">
                 <Target size={32} className="text-[#1E3352] mb-3" />
-                <p className="text-sm font-medium text-[#4A6480]">No Campaigns Logged</p>
+                <p className="text-sm font-medium text-text-tertiary">No Campaigns Logged</p>
                 <p className="text-xs text-[#2A4060] mt-1">
                   No {platformTab === 'meta' ? 'Meta' : 'Google'} campaigns logged for this client in {monthYearString}.
                 </p>
@@ -671,13 +671,13 @@ export function AdsTab({ client }: AdsTabProps) {
                 return (
                   <div
                     key={c.id}
-                    className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4 flex flex-col justify-between"
+                    className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4 flex flex-col justify-between"
                   >
                     <div className="space-y-2">
                       <div className="flex items-start justify-between gap-3">
                         <div>
-                          <h4 className="font-bold text-xs text-[#F0F4FF] line-clamp-1">{c.campaign_name}</h4>
-                          <span className="text-[9px] text-[#4A6480] uppercase tracking-wide">
+                          <h4 className="font-bold text-xs text-text-primary line-clamp-1">{c.campaign_name}</h4>
+                          <span className="text-[9px] text-text-tertiary uppercase tracking-wide">
                             Objective: {c.objective}
                           </span>
                         </div>
@@ -686,35 +686,35 @@ export function AdsTab({ client }: AdsTabProps) {
 
                       <div className="grid grid-cols-4 gap-2 pt-2 text-xs">
                         <div>
-                          <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">Spend</span>
-                          <span className="font-semibold text-xs text-[#F97316] font-mono">{formatCurrency(c.spent)}</span>
+                          <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">Spend</span>
+                          <span className="font-semibold text-xs text-accent font-mono">{formatCurrency(c.spent)}</span>
                         </div>
                         <div>
-                          <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">
+                          <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">
                             {platformTab === 'meta' ? 'Leads' : 'Conversions'}
                           </span>
-                          <span className="font-semibold text-xs text-[#F0F4FF] font-mono">{c.leads}</span>
+                          <span className="font-semibold text-xs text-text-primary font-mono">{c.leads}</span>
                         </div>
                         <div>
-                          <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">CPL</span>
-                          <span className="font-semibold text-xs text-[#EF4444] font-mono">{formatCurrency(c.costPerLead)}</span>
+                          <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">CPL</span>
+                          <span className="font-semibold text-xs text-error font-mono">{formatCurrency(c.costPerLead)}</span>
                         </div>
                         <div>
-                          <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">CTR</span>
-                          <span className="font-semibold text-xs text-[#8BA3C7] font-mono">{c.ctr.toFixed(2)}%</span>
+                          <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">CTR</span>
+                          <span className="font-semibold text-xs text-text-secondary font-mono">{c.ctr.toFixed(2)}%</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Budget Allocation Progress Bar */}
-                    <div className="space-y-1.5 pt-3 border-t border-[#1E3352]/40 select-none">
+                    <div className="space-y-1.5 pt-3 border-t border-border/30/40 select-none">
                       <div className="flex items-center justify-between text-[10px]">
-                        <span className="text-[#8BA3C7]">Budget Consumption</span>
-                        <span className="font-semibold text-[#F0F4FF] font-mono">
+                        <span className="text-text-secondary">Budget Consumption</span>
+                        <span className="font-semibold text-text-primary font-mono">
                           {formatCurrency(c.spent)} / {formatCurrency(c.allocated)} ({pct.toFixed(0)}%)
                         </span>
                       </div>
-                      <Progress value={pct} className="h-1.5 bg-[#060D1A]" />
+                      <Progress value={pct} className="h-1.5 bg-bg-dark" />
                     </div>
                   </div>
                 );
@@ -726,10 +726,10 @@ export function AdsTab({ client }: AdsTabProps) {
 
       {/* ━━━ MODAL: CONNECT META AD ACCOUNT ━━━ */}
       <Dialog open={metaConnectOpen} onOpenChange={setMetaConnectOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Connect Meta Ad Account</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Connect Meta Ad Account</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Provide client&apos;s Meta Ad Account ID (format: act_XXXXXXXXX).
             </DialogDescription>
           </DialogHeader>
@@ -749,14 +749,14 @@ export function AdsTab({ client }: AdsTabProps) {
             <Button
               variant="outline"
               onClick={() => setMetaConnectOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleConnectMeta}
               disabled={connecting}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white cursor-pointer"
             >
               {connecting ? 'Connecting...' : 'Connect'}
             </Button>
@@ -766,10 +766,10 @@ export function AdsTab({ client }: AdsTabProps) {
 
       {/* ━━━ MODAL: CONNECT GOOGLE ADS CUSTOMER ID ━━━ */}
       <Dialog open={googleConnectOpen} onOpenChange={setGoogleConnectOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Connect Google Ads Account</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Connect Google Ads Account</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Provide client&apos;s Google Ads Customer ID (format: XXXXXXXXXX).
             </DialogDescription>
           </DialogHeader>
@@ -789,14 +789,14 @@ export function AdsTab({ client }: AdsTabProps) {
             <Button
               variant="outline"
               onClick={() => setGoogleConnectOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleConnectGoogle}
               disabled={connecting}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white cursor-pointer"
             >
               {connecting ? 'Connecting...' : 'Connect'}
             </Button>
@@ -806,10 +806,10 @@ export function AdsTab({ client }: AdsTabProps) {
 
       {/* ━━━ MODAL: LOG CAMPAIGN ━━━ */}
       <Dialog open={addModalOpen} onOpenChange={setAddModalOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Log Ad Campaign metrics</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Log Ad Campaign metrics</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Log campaign performance metrics for {monthYearString}.
             </DialogDescription>
           </DialogHeader>
@@ -933,11 +933,11 @@ export function AdsTab({ client }: AdsTabProps) {
             <Button
               variant="outline"
               onClick={() => setAddModalOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
-            <Button onClick={handleAddCampaign} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer">
+            <Button onClick={handleAddCampaign} className="bg-primary hover:bg-primary-light text-white cursor-pointer">
               Log Campaign
             </Button>
           </DialogFooter>

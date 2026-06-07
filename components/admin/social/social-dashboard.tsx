@@ -142,14 +142,14 @@ export function SocialDashboard({
     >
       <div className="space-y-6 select-none">
         {/* 1. Toolbar Row */}
-        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0D1829] border border-[#1E3352] p-4 rounded-lg">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-bg-card border border-border/30 p-4 rounded-lg">
           <div className="flex flex-wrap items-center gap-3">
             {/* Client Filter */}
             <Select value={selectedClient} onValueChange={(val) => updateFilters(selectedMonth, val || 'all')}>
-              <SelectTrigger className="w-[180px] bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+              <SelectTrigger className="w-[180px] bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                 <SelectValue placeholder="All Clients" />
               </SelectTrigger>
-              <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+              <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                 <SelectItem value="all" className="text-xs">All Clients</SelectItem>
                 {initialClients.map((c) => (
                   <SelectItem key={c.id} value={c.id} className="text-xs">
@@ -160,23 +160,23 @@ export function SocialDashboard({
             </Select>
 
             {/* Month Navigator */}
-            <div className="flex items-center gap-1.5 bg-[#060D1A] border border-[#1E3352] rounded-[7px] px-1.5 h-9">
+            <div className="flex items-center gap-1.5 bg-bg-dark border border-border/30 rounded-[7px] px-1.5 h-9">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => navigateMonth('prev')}
-                className="h-6 w-6 text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#132035] rounded"
+                className="h-6 w-6 text-text-secondary hover:text-text-primary hover:bg-bg-card-hover/20 rounded"
               >
                 <ChevronLeft size={14} />
               </Button>
-              <span className="text-[11px] font-bold text-[#F0F4FF] min-w-[70px] text-center font-mono">
+              <span className="text-[11px] font-bold text-text-primary min-w-[70px] text-center font-mono">
                 {selectedMonth}
               </span>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => navigateMonth('next')}
-                className="h-6 w-6 text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#132035] rounded"
+                className="h-6 w-6 text-text-secondary hover:text-text-primary hover:bg-bg-card-hover/20 rounded"
               >
                 <ChevronRight size={14} />
               </Button>
@@ -188,7 +188,7 @@ export function SocialDashboard({
               variant="outline"
               size="icon"
               onClick={refreshData}
-              className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] h-9 w-9"
+              className="border-border/30 hover:bg-bg-card-hover/20 text-text-secondary h-9 w-9"
               title="Refresh"
             >
               <RefreshCw size={14} />
@@ -198,7 +198,7 @@ export function SocialDashboard({
                 setSelectedDate(null);
                 setScheduleOpen(true);
               }}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9"
+              className="bg-primary hover:bg-primary-light text-white text-xs h-9"
             >
               <Plus size={14} className="mr-1" /> Schedule Post
             </Button>
@@ -207,25 +207,25 @@ export function SocialDashboard({
 
         {/* 2. Mini Stats strip */}
         <div className="grid grid-cols-3 gap-4">
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3 rounded-lg flex items-center justify-between">
-            <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider">Scheduled Posts</span>
-            <span className="text-sm font-bold font-mono text-[#F0F4FF] bg-[#1B4FD8]/15 px-2 py-0.5 rounded border border-[#1B4FD8]/30">
+          <div className="bg-bg-card border border-border/30 p-3 rounded-lg flex items-center justify-between">
+            <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider">Scheduled Posts</span>
+            <span className="text-sm font-bold font-mono text-text-primary bg-primary/15 px-2 py-0.5 rounded border border-primary/30">
               {scheduledCount}
             </span>
           </div>
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3 rounded-lg flex items-center justify-between">
-            <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider">Published Posts</span>
-            <span className="text-sm font-bold font-mono text-[#F0F4FF] bg-[#22C55E]/15 px-2 py-0.5 rounded border border-[#22C55E]/30 text-[#22C55E]">
+          <div className="bg-bg-card border border-border/30 p-3 rounded-lg flex items-center justify-between">
+            <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider">Published Posts</span>
+            <span className="text-sm font-bold font-mono text-text-primary bg-online/15 px-2 py-0.5 rounded border border-online/30 text-online">
               {publishedCount}
             </span>
           </div>
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3 rounded-lg flex items-center justify-between">
-            <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider">Pending Review</span>
+          <div className="bg-bg-card border border-border/30 p-3 rounded-lg flex items-center justify-between">
+            <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider">Pending Review</span>
             <span className={cn(
               "text-sm font-bold font-mono px-2 py-0.5 rounded border",
               reviewCount > 0
-                ? "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30"
-                : "bg-[#64748B]/15 text-[#64748B] border-[#64748B]/30"
+                ? "bg-warning/15 text-warning border-warning/30"
+                : "bg-border-subtle/15 text-text-tertiary border-border/30"
             )}>
               {reviewCount}
             </span>
@@ -234,14 +234,14 @@ export function SocialDashboard({
 
         {/* 3. Main Content Tabs */}
         <Tabs defaultValue="calendar" className="w-full">
-          <TabsList className="bg-[#0D1829] border border-[#1E3352] p-1 h-9 rounded-lg">
-            <TabsTrigger value="calendar" className="text-xs h-7 data-[state=active]:bg-[#132035] data-[state=active]:text-[#F0F4FF] text-[#8BA3C7]">
+          <TabsList className="bg-bg-card border border-border/30 p-1 h-9 rounded-lg">
+            <TabsTrigger value="calendar" className="text-xs h-7 data-[state=active]:bg-bg-card-hover/20 data-[state=active]:text-text-primary text-text-secondary">
               <CalendarIcon size={12} className="mr-1.5" /> Calendar View
             </TabsTrigger>
-            <TabsTrigger value="list" className="text-xs h-7 data-[state=active]:bg-[#132035] data-[state=active]:text-[#F0F4FF] text-[#8BA3C7]">
+            <TabsTrigger value="list" className="text-xs h-7 data-[state=active]:bg-bg-card-hover/20 data-[state=active]:text-text-primary text-text-secondary">
               <List size={12} className="mr-1.5" /> List View
             </TabsTrigger>
-            <TabsTrigger value="review" className="text-xs h-7 data-[state=active]:bg-[#132035] data-[state=active]:text-[#F0F4FF] text-[#8BA3C7] relative">
+            <TabsTrigger value="review" className="text-xs h-7 data-[state=active]:bg-bg-card-hover/20 data-[state=active]:text-text-primary text-text-secondary relative">
               <AlertCircle size={12} className="mr-1.5" /> Review Queue
               {reviewCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white w-4 h-4 flex items-center justify-center rounded-full text-[8px] font-black animate-pulse">
@@ -249,7 +249,7 @@ export function SocialDashboard({
                 </span>
               )}
             </TabsTrigger>
-            <TabsTrigger value="metrics" className="text-xs h-7 data-[state=active]:bg-[#132035] data-[state=active]:text-[#F0F4FF] text-[#8BA3C7]">
+            <TabsTrigger value="metrics" className="text-xs h-7 data-[state=active]:bg-bg-card-hover/20 data-[state=active]:text-text-primary text-text-secondary">
               <BarChart3 size={12} className="mr-1.5" /> Organic Reach Metrics
             </TabsTrigger>
           </TabsList>

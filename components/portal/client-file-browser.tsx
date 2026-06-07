@@ -136,7 +136,7 @@ export function ClientFileBrowser({ files }: ClientFileBrowserProps) {
             >
               <span className="truncate">{dept.name}</span>
               <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${
-                selectedDept === dept.key ? 'bg-[#1B4FD8]/20 text-[#1B4FD8]' : 'bg-[#F1F5F9] text-[#94A3B8]'
+                selectedDept === dept.key ? 'bg-primary/20 text-[#1B4FD8]' : 'bg-[#F1F5F9] text-[#94A3B8]'
               }`}>
                 {count}
               </span>
@@ -170,7 +170,7 @@ export function ClientFileBrowser({ files }: ClientFileBrowserProps) {
                 placeholder="Search file name/tags..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#F8FAFF] border border-[#E2E8F4] text-[#0A1628] text-xs pl-8 pr-3 py-1.5 rounded-[7px] focus:outline-none focus:border-[#1B4FD8]"
+                className="w-full bg-[#F8FAFF] border border-[#E2E8F4] text-[#0A1628] text-xs pl-8 pr-3 py-1.5 rounded-[7px] focus:outline-none focus:border-primary"
               />
             </div>
 
@@ -179,7 +179,7 @@ export function ClientFileBrowser({ files }: ClientFileBrowserProps) {
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-1 rounded-[5px] transition-colors cursor-pointer ${
-                  viewMode === 'grid' ? 'bg-[#1B4FD8] text-white shadow-xs' : 'text-[#475569] hover:text-[#0A1628]'
+                  viewMode === 'grid' ? 'bg-primary text-white shadow-xs' : 'text-[#475569] hover:text-[#0A1628]'
                 }`}
                 title="Grid view"
               >
@@ -188,7 +188,7 @@ export function ClientFileBrowser({ files }: ClientFileBrowserProps) {
               <button
                 onClick={() => setViewMode('list')}
                 className={`p-1 rounded-[5px] transition-colors cursor-pointer ${
-                  viewMode === 'list' ? 'bg-[#1B4FD8] text-white shadow-xs' : 'text-[#475569] hover:text-[#0A1628]'
+                  viewMode === 'list' ? 'bg-primary text-white shadow-xs' : 'text-[#475569] hover:text-[#0A1628]'
                 }`}
                 title="List view"
               >
@@ -209,7 +209,7 @@ export function ClientFileBrowser({ files }: ClientFileBrowserProps) {
                 return (
                   <div
                     key={file.id}
-                    className="bg-white border border-[#E2E8F4] rounded-[8px] p-4 flex flex-col justify-between hover:border-[#1B4FD8]/30 hover:shadow-xs transition-all relative group h-[160px]"
+                    className="bg-white border border-[#E2E8F4] rounded-[8px] p-4 flex flex-col justify-between hover:border-primary/30 hover:shadow-xs transition-all relative group h-[160px]"
                   >
                     {/* Top row */}
                     <div className="flex items-start justify-between">
@@ -338,16 +338,16 @@ export function ClientFileBrowser({ files }: ClientFileBrowserProps) {
 
       {/* 3. Preview Lightbox Dialog */}
       <Dialog open={previewFile !== null} onOpenChange={(open) => !open && setPreviewFile(null)}>
-        <DialogContent className="bg-white border border-[#E2E8F4] text-[#0A1628] max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl p-4">
+        <DialogContent className="sm:max-w-[800px] max-h-[85vh] overflow-y-auto select-none">
           <DialogHeader>
-            <DialogTitle className="text-sm font-bold text-[#0A1628] truncate flex items-center justify-between pr-6 border-b border-[#F1F5F9] pb-2">
+            <DialogTitle className="text-sm font-bold truncate flex items-center justify-between pr-6 border-b border-border/20 pb-2">
               <span>{previewFile?.name}</span>
               {previewFile?.public_url && (
                 <a
                   href={previewFile.public_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[10px] text-[#1B4FD8] hover:underline flex items-center gap-1 font-semibold ml-4"
+                  className="text-[10px] text-primary hover:text-primary-light hover:underline flex items-center gap-1 font-semibold ml-4"
                 >
                   <span>Open in browser tab</span>
                   <ExternalLink size={10} />
@@ -356,7 +356,7 @@ export function ClientFileBrowser({ files }: ClientFileBrowserProps) {
             </DialogTitle>
           </DialogHeader>
 
-          <div className="flex flex-col items-center justify-center p-2 bg-[#F8FAFF] rounded border border-[#E2E8F4]/50 min-h-[250px] mt-3">
+          <div className="flex flex-col items-center justify-center p-2 bg-bg-card-hover/10 rounded border border-border/15 min-h-[250px] mt-3">
             {previewFile?.public_url ? (
               previewFile.mime_type?.startsWith('image/') || 
               ['png', 'jpg', 'jpeg', 'webp', 'gif'].includes(previewFile.name.split('.').pop()?.toLowerCase() || '') ? (
@@ -371,21 +371,21 @@ export function ClientFileBrowser({ files }: ClientFileBrowserProps) {
                 /* PDF preview */
                 <iframe
                   src={previewFile.public_url}
-                  className="w-full h-[55vh] rounded"
+                  className="w-full h-[55vh] rounded border-0"
                   title="PDF Preview"
                 />
               ) : (
                 /* Non-previewable file type fallback */
                 <div className="text-center p-8 space-y-3">
-                  <div className="h-16 w-16 rounded-full bg-white border border-[#E2E8F4] flex items-center justify-center mx-auto text-[#475569]">
+                  <div className="h-16 w-16 rounded-full bg-bg-card border border-border/20 flex items-center justify-center mx-auto text-text-secondary">
                     {getFileIcon(previewFile.mime_type, previewFile.name)}
                   </div>
-                  <p className="text-xs font-bold text-[#0A1628]">{previewFile.name}</p>
-                  <p className="text-[10px] text-[#94A3B8]">Preview not supported for this document type.</p>
+                  <p className="text-xs font-bold text-text-primary">{previewFile.name}</p>
+                  <p className="text-[10px] text-text-secondary">Preview not supported for this document type.</p>
                   <a
                     href={previewFile.public_url}
                     download
-                    className="inline-flex items-center gap-1.5 text-xs bg-[#1B4FD8] hover:bg-[#2563EB] text-white px-4 py-2 rounded-[7px] font-bold transition-all shadow-xs"
+                    className="inline-flex items-center gap-1.5 text-xs bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-[7px] font-bold transition-all shadow-xs cursor-pointer"
                   >
                     <Download size={12} /> Download Copy
                   </a>

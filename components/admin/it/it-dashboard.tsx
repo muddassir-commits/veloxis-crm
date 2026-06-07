@@ -142,11 +142,11 @@ export function ITDashboard({
       key: 'action',
       header: 'Action Type',
       render: (val: any) => {
-        let color = 'bg-[#1E335220] text-[#8BA3C7] border-[#1E335230]';
-        if (val === 'INSERT') color = 'bg-[#22C55E15] text-[#22C55E] border-[#22C55E30]';
-        else if (val === 'UPDATE') color = 'bg-[#3B82F615] text-[#3B82F6] border-[#3B82F630]';
-        else if (val === 'DELETE') color = 'bg-[#EF444415] text-[#EF4444] border-[#EF444430]';
-        else if (val === 'LOGIN' || val === 'EXPORT') color = 'bg-[#F9731615] text-[#F97316] border-[#F9731630]';
+        let color = 'bg-border-subtle/20 text-text-secondary border-border-subtle/30';
+        if (val === 'INSERT') color = 'bg-online/10 text-online border-online/20';
+        else if (val === 'UPDATE') color = 'bg-primary/10 text-primary-light border-primary/20';
+        else if (val === 'DELETE') color = 'bg-error/10 text-error border-error/20';
+        else if (val === 'LOGIN' || val === 'EXPORT') color = 'bg-accent/10 text-accent border-accent/20';
         return (
           <span className={`inline-flex px-2 py-0.5 rounded text-[10px] font-semibold border uppercase tracking-wider ${color}`}>
             {val}
@@ -158,7 +158,7 @@ export function ITDashboard({
       key: 'table_name',
       header: 'Table affected',
       render: (val: any) => (
-        <code className="text-[11px] font-mono text-[#8BA3C7]">
+        <code className="text-[11px] font-mono text-text-secondary">
           {val || 'n/a'}
         </code>
       )
@@ -172,7 +172,7 @@ export function ITDashboard({
       key: 'user_agent',
       header: 'Client / Agent',
       render: (val: any) => (
-        <span className="text-[11px] text-[#8BA3C7] block line-clamp-1 max-w-xs select-none">
+        <span className="text-[11px] text-text-secondary block line-clamp-1 max-w-xs select-none">
           {val || '-'}
         </span>
       )
@@ -182,12 +182,11 @@ export function ITDashboard({
       header: 'Metadata',
       render: (val: any, row: any) => (
         <Button
-          size="sm"
-          variant="outline"
+          size="xs"
+          variant="secondary"
           onClick={() => setSelectedAuditLog(row)}
-          className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-[11px] h-7 px-2"
         >
-          <Eye size={11} className="mr-1" />
+          <Eye className="mr-1" />
           <span>View Diff</span>
         </Button>
       )
@@ -204,9 +203,9 @@ export function ITDashboard({
       key: 'cron_jobs',
       header: 'Failed Automation Workflow',
       render: (val: any, row: any) => (
-        <div className="flex flex-col select-none font-semibold text-[#F0F4FF]">
+        <div className="flex flex-col select-none font-semibold text-text-primary">
           <span>{row.cron_jobs?.name || 'Scheduled Job'}</span>
-          <span className="text-[10px] text-[#8BA3C7]/70 font-normal">Workflow: {row.cron_jobs?.description || 'n/a'}</span>
+          <span className="text-[10px] text-text-secondary/70 font-normal">Workflow: {row.cron_jobs?.description || 'n/a'}</span>
         </div>
       )
     },
@@ -214,7 +213,7 @@ export function ITDashboard({
       key: 'error',
       header: 'Detailed Stack trace / Error',
       render: (val: any) => (
-        <div className="bg-[#EF444409] border border-[#EF444415] text-[#EF4444] text-[10px] p-2 rounded font-mono break-all whitespace-pre-wrap max-w-md max-h-16 overflow-y-auto">
+        <div className="bg-error/5 border border-error/10 text-error text-[10px] p-2 rounded font-mono break-all whitespace-pre-wrap max-w-md max-h-16 overflow-y-auto">
           {val || 'Execution timed out or aborted by n8n.'}
         </div>
       )
@@ -224,7 +223,7 @@ export function ITDashboard({
   return (
     <div className="space-y-6 select-none">
       {/* ━━━ TAB NAVIGATION ━━━ */}
-      <div className="flex items-center justify-between border-b border-[#1E3352] pb-2 select-none">
+      <div className="flex items-center justify-between border-b border-border/20 pb-2 select-none">
         <div className="flex items-center gap-2 overflow-x-auto">
           {(['health', 'audit', 'errors'] as const).map((tab) => (
             <button
@@ -232,8 +231,8 @@ export function ITDashboard({
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider border-b-2 cursor-pointer transition-all ${
                 activeTab === tab
-                  ? 'border-[#1B4FD8] text-[#F0F4FF]'
-                  : 'border-transparent text-[#8BA3C7] hover:text-[#F0F4FF]'
+                  ? 'border-primary text-text-primary'
+                  : 'border-transparent text-text-secondary hover:text-text-primary'
               }`}
             >
               {tab === 'health' ? 'System Health' : tab === 'audit' ? 'Audit Log Cabinet' : 'Automation Failures Log'}
@@ -245,9 +244,9 @@ export function ITDashboard({
           onClick={refreshITData}
           disabled={isRefreshing}
           size="sm"
-          className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+          variant="secondary"
         >
-          <RefreshCw size={13} className={isRefreshing ? 'animate-spin' : ''} />
+          <RefreshCw className={isRefreshing ? 'animate-spin' : ''} />
           <span>Sync Status</span>
         </Button>
       </div>
@@ -263,15 +262,15 @@ export function ITDashboard({
               subtext={`Estimated DB size: ${systemStats.dbSizeEstimate}`}
               icon={Database}
             />
-            <div className="rounded-lg border border-[#1E3352] bg-[#0D1829] p-4 flex flex-col justify-between hover:border-[#1E3352] transition-colors">
+            <div className="rounded-xl border border-border/30 bg-bg-card/70 backdrop-blur-[12px] p-4 flex flex-col justify-between shadow-elevated hover:bg-bg-card/85 transition-colors">
               <div className="flex items-center justify-between">
-                <span className="text-xs text-[#8BA3C7] font-semibold">Supabase Storage Utilization</span>
-                <HardDrive size={18} className="text-[#3B82F6]" />
+                <span className="text-xs text-text-secondary font-semibold">Supabase Storage Utilization</span>
+                <HardDrive size={18} className="text-primary-light" />
               </div>
               <div className="mt-4 space-y-2">
                 <div className="flex items-baseline justify-between">
-                  <span className="text-lg font-bold text-[#F0F4FF]">{formatBytes(systemStats.usedStorageBytes)}</span>
-                  <span className="text-[10px] text-[#8BA3C7] font-semibold">of 1,000 MB Limit</span>
+                  <span className="text-lg font-bold text-text-primary">{formatBytes(systemStats.usedStorageBytes)}</span>
+                  <span className="text-[10px] text-text-secondary font-semibold">of 1,000 MB Limit</span>
                 </div>
                 <Progress value={storagePercentage} />
               </div>
@@ -287,100 +286,100 @@ export function ITDashboard({
           {/* INTEGRATION HEALTH CARDS */}
           <div className="space-y-4">
             <div>
-              <h2 className="text-base font-semibold text-[#F0F4FF] flex items-center gap-1.5">
-                <Key size={15} className="text-[#3B82F6]" />
+              <h2 className="text-base font-semibold text-text-primary flex items-center gap-1.5">
+                <Key size={15} className="text-primary-light" />
                 <span>Integration Endpoints Status</span>
               </h2>
-              <p className="text-xs text-[#8BA3C7]">Connection status for API channels routed to external marketing profiles.</p>
+              <p className="text-xs text-text-secondary">Connection status for API channels routed to external marketing profiles.</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs">
-              <div className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 space-y-2">
+              <div className="rounded-xl border border-border/30 bg-bg-card/70 backdrop-blur-[12px] p-4 space-y-2 shadow-elevated">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[#F0F4FF]">Google Search Console</span>
-                  <span className="flex items-center gap-1 text-[#22C55E] text-[10px] font-bold">
+                  <span className="font-semibold text-text-primary">Google Search Console</span>
+                  <span className="flex items-center gap-1 text-online text-[10px] font-bold">
                     <CheckCircle size={10} />
                     <span>ONLINE</span>
                   </span>
                 </div>
-                <div className="text-[11px] text-[#8BA3C7]">{healthMetrics.gscCount} client properties connected</div>
+                <div className="text-[11px] text-text-secondary">{healthMetrics.gscCount} client properties connected</div>
               </div>
 
-              <div className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 space-y-2">
+              <div className="rounded-xl border border-border/30 bg-bg-card/70 backdrop-blur-[12px] p-4 space-y-2 shadow-elevated">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[#F0F4FF]">Google Analytics 4</span>
-                  <span className="flex items-center gap-1 text-[#22C55E] text-[10px] font-bold">
+                  <span className="font-semibold text-text-primary">Google Analytics 4</span>
+                  <span className="flex items-center gap-1 text-online text-[10px] font-bold">
                     <CheckCircle size={10} />
                     <span>ONLINE</span>
                   </span>
                 </div>
-                <div className="text-[11px] text-[#8BA3C7]">{healthMetrics.ga4Count} client tags configured</div>
+                <div className="text-[11px] text-text-secondary">{healthMetrics.ga4Count} client tags configured</div>
               </div>
 
-              <div className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 space-y-2">
+              <div className="rounded-xl border border-border/30 bg-bg-card/70 backdrop-blur-[12px] p-4 space-y-2 shadow-elevated">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[#F0F4FF]">Meta Marketing Ads</span>
-                  <span className="flex items-center gap-1 text-[#22C55E] text-[10px] font-bold">
+                  <span className="font-semibold text-text-primary">Meta Marketing Ads</span>
+                  <span className="flex items-center gap-1 text-online text-[10px] font-bold">
                     <CheckCircle size={10} />
                     <span>ONLINE</span>
                   </span>
                 </div>
-                <div className="text-[11px] text-[#8BA3C7]">{healthMetrics.metaCount} ad accounts synced</div>
+                <div className="text-[11px] text-text-secondary">{healthMetrics.metaCount} ad accounts synced</div>
               </div>
 
-              <div className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 space-y-2">
+              <div className="rounded-xl border border-border/30 bg-bg-card/70 backdrop-blur-[12px] p-4 space-y-2 shadow-elevated">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[#F0F4FF]">Google Campaigns Ads</span>
-                  <span className="flex items-center gap-1 text-[#22C55E] text-[10px] font-bold">
+                  <span className="font-semibold text-text-primary">Google Campaigns Ads</span>
+                  <span className="flex items-center gap-1 text-online text-[10px] font-bold">
                     <CheckCircle size={10} />
                     <span>ONLINE</span>
                   </span>
                 </div>
-                <div className="text-[11px] text-[#8BA3C7]">Linked Ads API channels operational</div>
+                <div className="text-[11px] text-text-secondary">Linked Ads API channels operational</div>
               </div>
 
-              <div className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 space-y-2">
+              <div className="rounded-xl border border-border/30 bg-bg-card/70 backdrop-blur-[12px] p-4 space-y-2 shadow-elevated">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[#F0F4FF]">n8n Automation Engine</span>
-                  <span className="flex items-center gap-1 text-[#22C55E] text-[10px] font-bold">
+                  <span className="font-semibold text-text-primary">n8n Automation Engine</span>
+                  <span className="flex items-center gap-1 text-online text-[10px] font-bold">
                     <CheckCircle size={10} />
                     <span>ONLINE</span>
                   </span>
                 </div>
-                <div className="text-[11px] text-[#8BA3C7]">automation.veloxisglobal.com linked</div>
+                <div className="text-[11px] text-text-secondary">automation.veloxisglobal.com linked</div>
               </div>
 
-              <div className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 space-y-2">
+              <div className="rounded-xl border border-border/30 bg-bg-card/70 backdrop-blur-[12px] p-4 space-y-2 shadow-elevated">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[#F0F4FF]">WhatsApp Business API</span>
-                  <span className="flex items-center gap-1 text-[#22C55E] text-[10px] font-bold">
+                  <span className="font-semibold text-text-primary">WhatsApp Business API</span>
+                  <span className="flex items-center gap-1 text-online text-[10px] font-bold">
                     <CheckCircle size={10} />
                     <span>ONLINE</span>
                   </span>
                 </div>
-                <div className="text-[11px] text-[#8BA3C7]">Fired triggers ready for messaging</div>
+                <div className="text-[11px] text-text-secondary">Fired triggers ready for messaging</div>
               </div>
 
-              <div className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 space-y-2">
+              <div className="rounded-xl border border-border/30 bg-bg-card/70 backdrop-blur-[12px] p-4 space-y-2 shadow-elevated">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[#F0F4FF]">Resend SMTP Delivery</span>
-                  <span className="flex items-center gap-1 text-[#22C55E] text-[10px] font-bold">
+                  <span className="font-semibold text-text-primary">Resend SMTP Delivery</span>
+                  <span className="flex items-center gap-1 text-online text-[10px] font-bold">
                     <CheckCircle size={10} />
                     <span>ONLINE</span>
                   </span>
                 </div>
-                <div className="text-[11px] text-[#8BA3C7]">Domain DNS DKIM fully verified</div>
+                <div className="text-[11px] text-text-secondary">Domain DNS DKIM fully verified</div>
               </div>
 
-              <div className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 space-y-2">
+              <div className="rounded-xl border border-border/30 bg-bg-card/70 backdrop-blur-[12px] p-4 space-y-2 shadow-elevated">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[#F0F4FF]">Google Workspace API</span>
-                  <span className="flex items-center gap-1 text-[#22C55E] text-[10px] font-bold">
+                  <span className="font-semibold text-text-primary">Google Workspace API</span>
+                  <span className="flex items-center gap-1 text-online text-[10px] font-bold">
                     <CheckCircle size={10} />
                     <span>ONLINE</span>
                   </span>
                 </div>
-                <div className="text-[11px] text-[#8BA3C7]">OAuth tokens properly mapped</div>
+                <div className="text-[11px] text-text-secondary">OAuth tokens properly mapped</div>
               </div>
             </div>
           </div>
@@ -393,20 +392,20 @@ export function ITDashboard({
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-2 flex-1 max-w-lg">
               <div className="relative flex-1">
-                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8BA3C7]" />
+                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
                 <input
                   type="text"
                   placeholder="Filter by table name or IP..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="input pl-9 h-9 text-xs"
+                  className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 pl-9 pr-3 text-xs text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] placeholder:text-text-tertiary"
                 />
               </div>
 
               <select
                 value={actionFilter}
                 onChange={(e) => setActionFilter(e.target.value)}
-                className="input h-9 text-xs max-w-[130px]"
+                className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-xs text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] max-w-[130px]"
               >
                 <option value="">All Actions</option>
                 <option value="INSERT">INSERT</option>
@@ -420,9 +419,9 @@ export function ITDashboard({
             <Button
               onClick={handleExportCSV}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 font-semibold self-end sm:self-auto cursor-pointer"
+              className="self-end sm:self-auto"
             >
-              <ArrowDownToLine size={13} />
+              <ArrowDownToLine className="mr-1" />
               <span>Export Audit Logs CSV</span>
             </Button>
           </div>
@@ -444,11 +443,11 @@ export function ITDashboard({
       {/* ━━━ TAB 3: ERROR LOGS ━━━ */}
       {activeTab === 'errors' && (
         <div className="space-y-4">
-          <div className="border border-dashed border-[#EF444430] bg-[#EF444405] rounded-lg p-4 flex gap-3 text-xs select-none">
-            <AlertTriangle size={18} className="text-[#EF4444] shrink-0 mt-0.5" />
+          <div className="border border-dashed border-error/30 bg-error/5 rounded-lg p-4 flex gap-3 text-xs select-none">
+            <AlertTriangle size={18} className="text-error shrink-0 mt-0.5" />
             <div>
-              <h4 className="font-semibold text-[#F0F4FF]">Failsafe Automation Monitors</h4>
-              <p className="text-[#8BA3C7] leading-relaxed">
+              <h4 className="font-semibold text-text-primary">Failsafe Automation Monitors</h4>
+              <p className="text-text-secondary leading-relaxed">
                 This log captures cron job runs from n8n that returned status results of 'failed'. Inspect stack traces or payload stack errors below immediately to prevent data gaps.
               </p>
             </div>
@@ -470,35 +469,35 @@ export function ITDashboard({
 
       {/* ━━━ MODAL: VIEW DIFF METADATA ━━━ */}
       <Dialog open={selectedAuditLog !== null} onOpenChange={(open) => !open && setSelectedAuditLog(null)}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-2xl select-none overflow-y-auto max-h-[85vh]">
+        <DialogContent className="sm:max-w-[700px] select-none overflow-y-auto max-h-[85vh]">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF] flex items-center gap-1.5">
-              <ShieldAlert size={16} className="text-[#3B82F6]" />
+            <DialogTitle className="flex items-center gap-1.5">
+              <ShieldAlert size={16} className="text-primary-light" />
               <span>Audit Log Record Diff — #{selectedAuditLog?.id}</span>
             </DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogDescription>
               Administrative transaction detail changes.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4 text-xs">
-            <div className="grid grid-cols-2 gap-4 bg-[#060D1A] border border-[#1E3352]/40 rounded-lg p-3 text-[11px]">
+            <div className="grid grid-cols-2 gap-4 bg-bg-dark border border-border/20 rounded-lg p-3 text-[11px]">
               <div>
-                <span className="text-[#8BA3C7] block">Table Name</span>
-                <span className="text-[#F0F4FF] font-mono font-semibold">{selectedAuditLog?.table_name || 'n/a'}</span>
+                <span className="text-text-secondary block">Table Name</span>
+                <span className="text-text-primary font-mono font-semibold">{selectedAuditLog?.table_name || 'n/a'}</span>
               </div>
               <div>
-                <span className="text-[#8BA3C7] block">Affected UUID</span>
-                <span className="text-[#3B82F6] font-mono select-all">{selectedAuditLog?.record_id || 'n/a'}</span>
+                <span className="text-text-secondary block">Affected UUID</span>
+                <span className="text-primary-light font-mono select-all">{selectedAuditLog?.record_id || 'n/a'}</span>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <h4 className="font-semibold text-[#EF4444] mb-1.5 flex items-center gap-1">
+                <h4 className="font-semibold text-error mb-1.5 flex items-center gap-1">
                   <span>[-] Old Value State</span>
                 </h4>
-                <pre className="bg-[#060D1A] text-[#8BA3C7] text-[10px] p-3 rounded border border-[#EF444415] font-mono overflow-x-auto max-h-60 overflow-y-auto whitespace-pre-wrap">
+                <pre className="bg-bg-dark text-text-secondary text-[10px] p-3 rounded border border-error/20 font-mono overflow-x-auto max-h-60 overflow-y-auto whitespace-pre-wrap">
                   {selectedAuditLog?.old_values 
                     ? JSON.stringify(selectedAuditLog.old_values, null, 2) 
                     : '(empty insert state)'}
@@ -506,10 +505,10 @@ export function ITDashboard({
               </div>
 
               <div>
-                <h4 className="font-semibold text-[#22C55E] mb-1.5 flex items-center gap-1">
+                <h4 className="font-semibold text-online mb-1.5 flex items-center gap-1">
                   <span>[+] New Value State</span>
                 </h4>
-                <pre className="bg-[#060D1A] text-[#8BA3C7] text-[10px] p-3 rounded border border-[#22C55E15] font-mono overflow-x-auto max-h-60 overflow-y-auto whitespace-pre-wrap">
+                <pre className="bg-bg-dark text-text-secondary text-[10px] p-3 rounded border border-online/20 font-mono overflow-x-auto max-h-60 overflow-y-auto whitespace-pre-wrap">
                   {selectedAuditLog?.new_values 
                     ? JSON.stringify(selectedAuditLog.new_values, null, 2) 
                     : '(empty delete state)'}
@@ -520,9 +519,8 @@ export function ITDashboard({
 
           <DialogFooter className="mt-4">
             <Button
-              variant="outline"
+              variant="secondary"
               onClick={() => setSelectedAuditLog(null)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
             >
               Close
             </Button>

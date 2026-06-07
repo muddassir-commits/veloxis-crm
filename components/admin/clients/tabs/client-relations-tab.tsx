@@ -136,53 +136,53 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
     : 'N/A';
 
   if (loading) {
-    return <div className="text-sm text-[#8BA3C7] animate-pulse">Loading Client Relations logs...</div>;
+    return <div className="text-sm text-text-secondary animate-pulse">Loading Client Relations logs...</div>;
   }
 
   return (
     <div className="space-y-6 animate-in fade-in duration-200">
       {/* ━━━ STATS BLOCK ━━━ */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 select-none">
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[8px] p-4 flex items-center justify-between">
+        <div className="bg-bg-card border border-border/30 rounded-[8px] p-4 flex items-center justify-between">
           <div>
-            <span className="text-[10px] text-[#4A6480] uppercase tracking-wider font-semibold">Communications</span>
-            <span className="text-xl font-bold font-mono text-[#F0F4FF] block mt-0.5">{comms.length} logs</span>
+            <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Communications</span>
+            <span className="text-xl font-bold font-mono text-text-primary block mt-0.5">{comms.length} logs</span>
           </div>
           <MessageSquare className="text-[#1B4FD8]" size={20} />
         </div>
 
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[8px] p-4 flex items-center justify-between">
+        <div className="bg-bg-card border border-border/30 rounded-[8px] p-4 flex items-center justify-between">
           <div>
-            <span className="text-[10px] text-[#4A6480] uppercase tracking-wider font-semibold">Pending Tickets</span>
-            <span className="text-xl font-bold font-mono text-[#F97316] block mt-0.5">
+            <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Pending Tickets</span>
+            <span className="text-xl font-bold font-mono text-accent block mt-0.5">
               {tickets.filter((t) => t.status !== 'resolved').length} open
             </span>
           </div>
-          <AlertCircle className="text-[#F97316]" size={20} />
+          <AlertCircle className="text-accent" size={20} />
         </div>
 
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[8px] p-4 flex items-center justify-between">
+        <div className="bg-bg-card border border-border/30 rounded-[8px] p-4 flex items-center justify-between">
           <div>
-            <span className="text-[10px] text-[#4A6480] uppercase tracking-wider font-semibold">Average NPS</span>
-            <span className="text-xl font-bold font-mono text-[#22C55E] block mt-0.5">{avgNps} / 10</span>
+            <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Average NPS</span>
+            <span className="text-xl font-bold font-mono text-online block mt-0.5">{avgNps} / 10</span>
           </div>
-          <TrendingUp className="text-[#22C55E]" size={20} />
+          <TrendingUp className="text-online" size={20} />
         </div>
       </div>
 
       {/* ━━━ TWO COLUMN GRID ━━━ */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Column 1: Communications Log */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4">
-          <div className="flex justify-between items-center border-b border-[#1E3352] pb-3">
-            <h3 className="text-xs font-bold text-[#F0F4FF] uppercase tracking-wider flex items-center gap-1.5">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4">
+          <div className="flex justify-between items-center border-b border-border/30 pb-3">
+            <h3 className="text-xs font-bold text-text-primary uppercase tracking-wider flex items-center gap-1.5">
               <MessageSquare size={14} className="text-[#1B4FD8]" />
               <span>Communications Log</span>
             </h3>
             <Button
               onClick={() => setCommsModalOpen(true)}
               size="sm"
-              className="bg-[#1B4FD8]/10 hover:bg-[#1B4FD8]/20 border border-[#1B4FD8]/20 text-[#4D90FE] text-[10px] h-7 gap-1 px-2.5 cursor-pointer font-semibold"
+              className="bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary-light text-[10px] h-7 gap-1 px-2.5 cursor-pointer font-semibold"
             >
               <PlusCircle size={11} />
               <span>Log Comms</span>
@@ -191,28 +191,28 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
 
           <div className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
             {comms.map((c) => (
-              <div key={c.id} className="p-3 bg-[#060D1A] border border-[#1E3352] rounded-lg space-y-2 relative group">
+              <div key={c.id} className="p-3 bg-bg-dark border border-border/30 rounded-lg space-y-2 relative group">
                 <div className="flex justify-between items-center text-[10px]">
                   <div className="flex items-center gap-1.5">
                     <span className={`px-1.5 py-0.5 rounded uppercase text-[8px] font-bold ${
-                      c.type === 'call' ? 'bg-[#22C55E]/10 text-[#22C55E]' :
+                      c.type === 'call' ? 'bg-online/10 text-online' :
                       c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :
                       c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'
                     }`}>
                       {c.type}
                     </span>
-                    <span className="text-[#4A6480] capitalize font-medium">{c.direction}</span>
+                    <span className="text-text-tertiary capitalize font-medium">{c.direction}</span>
                   </div>
-                  <span className="text-[#4A6480]">{formatDate(c.created_at)}</span>
+                  <span className="text-text-tertiary">{formatDate(c.created_at)}</span>
                 </div>
 
-                <p className="text-xs text-[#8BA3C7] leading-relaxed whitespace-pre-wrap">{c.body}</p>
+                <p className="text-xs text-text-secondary leading-relaxed whitespace-pre-wrap">{c.body}</p>
 
-                <div className="flex justify-between items-center text-[9px] text-[#4A6480] font-medium pt-1">
+                <div className="flex justify-between items-center text-[9px] text-text-tertiary font-medium pt-1">
                   <span>Logged by: {c.profiles?.full_name || 'System'}</span>
                   <button
                     onClick={() => setDeleteCommId(c.id)}
-                    className="opacity-0 group-hover:opacity-100 text-[#4A6480] hover:text-[#EF4444] transition-all p-0.5"
+                    className="opacity-0 group-hover:opacity-100 text-text-tertiary hover:text-error transition-all p-0.5"
                   >
                     <Trash2 size={11} />
                   </button>
@@ -221,7 +221,7 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
             ))}
 
             {comms.length === 0 && (
-              <div className="text-center py-12 text-xs text-[#4A6480] italic">No communications logged yet.</div>
+              <div className="text-center py-12 text-xs text-text-tertiary italic">No communications logged yet.</div>
             )}
           </div>
         </div>
@@ -229,10 +229,10 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
         {/* Column 2: Support Tickets & NPS */}
         <div className="space-y-6">
           {/* Support Tickets list */}
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4">
-            <div className="flex justify-between items-center border-b border-[#1E3352] pb-3">
-              <h3 className="text-xs font-bold text-[#F0F4FF] uppercase tracking-wider flex items-center gap-1.5">
-                <AlertCircle size={14} className="text-[#F97316]" />
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4">
+            <div className="flex justify-between items-center border-b border-border/30 pb-3">
+              <h3 className="text-xs font-bold text-text-primary uppercase tracking-wider flex items-center gap-1.5">
+                <AlertCircle size={14} className="text-accent" />
                 <span>Support Tickets</span>
               </h3>
               <Button
@@ -241,7 +241,7 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
                   setTicketModalOpen(true);
                 }}
                 size="sm"
-                className="bg-[#1B4FD8]/10 hover:bg-[#1B4FD8]/20 border border-[#1B4FD8]/20 text-[#4D90FE] text-[10px] h-7 gap-1 px-2.5 cursor-pointer font-semibold"
+                className="bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary-light text-[10px] h-7 gap-1 px-2.5 cursor-pointer font-semibold"
               >
                 <PlusCircle size={11} />
                 <span>Raise Ticket</span>
@@ -250,33 +250,33 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
 
             <div className="space-y-3 max-h-[220px] overflow-y-auto pr-1">
               {tickets.map((t) => (
-                <div key={t.id} className="p-3 bg-[#060D1A] border border-[#1E3352] rounded-lg space-y-2">
+                <div key={t.id} className="p-3 bg-bg-dark border border-border/30 rounded-lg space-y-2">
                   <div className="flex justify-between items-center text-[10px]">
                     <div className="flex items-center gap-1.5">
                       <span className={`w-1.5 h-1.5 rounded-full ${
-                        t.status === 'open' ? 'bg-[#EF4444]' :
-                        t.status === 'in_progress' ? 'bg-[#F59E0B]' : 'bg-[#22C55E]'
+                        t.status === 'open' ? 'bg-error' :
+                        t.status === 'in_progress' ? 'bg-warning' : 'bg-online'
                       }`} />
-                      <span className="font-bold text-[#8BA3C7] capitalize">{t.status.replace('_', ' ')}</span>
+                      <span className="font-bold text-text-secondary capitalize">{t.status.replace('_', ' ')}</span>
                     </div>
                     <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded uppercase ${
-                      t.priority === 'urgent' ? 'bg-[#EF4444]/10 text-[#EF4444]' :
-                      t.priority === 'high' ? 'bg-[#F59E0B]/10 text-[#F59E0B]' :
-                      t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-[#8BA3C7]'
+                      t.priority === 'urgent' ? 'bg-error/10 text-error' :
+                      t.priority === 'high' ? 'bg-warning/10 text-warning' :
+                      t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'
                     }`}>
                       {t.priority}
                     </span>
                   </div>
 
-                  <h4 className="text-xs font-semibold text-[#F0F4FF]">{t.subject}</h4>
+                  <h4 className="text-xs font-semibold text-text-primary">{t.subject}</h4>
 
                   {t.status === 'resolved' && t.resolution && (
-                    <p className="text-[10px] text-[#22C55E] bg-[#22C55E]/5 border border-[#22C55E]/10 rounded p-1.5 italic">
+                    <p className="text-[10px] text-online bg-online/5 border border-online/10 rounded p-1.5 italic">
                       Resolution: &quot;{t.resolution}&quot;
                     </p>
                   )}
 
-                  <div className="flex justify-between items-center text-[9px] text-[#4A6480] font-semibold pt-1 border-t border-[#1E3352]/40">
+                  <div className="flex justify-between items-center text-[9px] text-text-tertiary font-semibold pt-1 border-t border-border/30/40">
                     <span>Assigned: {t.profiles_assigned?.full_name || 'Unassigned'}</span>
                     <div className="flex items-center gap-1.5">
                       <button
@@ -284,13 +284,13 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
                           setSelectedTicket(t);
                           setTicketModalOpen(true);
                         }}
-                        className="hover:text-[#4D90FE] transition-colors"
+                        className="hover:text-primary-light transition-colors"
                       >
                         <Edit2 size={10} />
                       </button>
                       <button
                         onClick={() => setDeleteTicketId(t.id)}
-                        className="hover:text-[#EF4444] transition-colors"
+                        className="hover:text-error transition-colors"
                       >
                         <Trash2 size={10} />
                       </button>
@@ -300,22 +300,22 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
               ))}
 
               {tickets.length === 0 && (
-                <div className="text-center py-8 text-xs text-[#4A6480] italic">No support tickets created yet.</div>
+                <div className="text-center py-8 text-xs text-text-tertiary italic">No support tickets created yet.</div>
               )}
             </div>
           </div>
 
           {/* NPS History list */}
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4">
-            <div className="flex justify-between items-center border-b border-[#1E3352] pb-3">
-              <h3 className="text-xs font-bold text-[#F0F4FF] uppercase tracking-wider flex items-center gap-1.5">
-                <TrendingUp size={14} className="text-[#22C55E]" />
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4">
+            <div className="flex justify-between items-center border-b border-border/30 pb-3">
+              <h3 className="text-xs font-bold text-text-primary uppercase tracking-wider flex items-center gap-1.5">
+                <TrendingUp size={14} className="text-online" />
                 <span>NPS Response History</span>
               </h3>
               <Button
                 onClick={() => setNpsModalOpen(true)}
                 size="sm"
-                className="bg-[#1B4FD8]/10 hover:bg-[#1B4FD8]/20 border border-[#1B4FD8]/20 text-[#4D90FE] text-[10px] h-7 gap-1 px-2.5 cursor-pointer font-semibold"
+                className="bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary-light text-[10px] h-7 gap-1 px-2.5 cursor-pointer font-semibold"
               >
                 <PlusCircle size={11} />
                 <span>Log NPS</span>
@@ -324,26 +324,26 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
 
             <div className="space-y-3 max-h-[180px] overflow-y-auto pr-1">
               {npsList.map((n) => (
-                <div key={n.id} className="p-3 bg-[#060D1A] border border-[#1E3352] rounded-lg flex items-center justify-between gap-4 group">
+                <div key={n.id} className="p-3 bg-bg-dark border border-border/30 rounded-lg flex items-center justify-between gap-4 group">
                   <div className="space-y-1">
-                    <span className="text-[10px] text-[#4A6480]">{formatDate(n.created_at)}</span>
+                    <span className="text-[10px] text-text-tertiary">{formatDate(n.created_at)}</span>
                     {n.feedback ? (
-                      <p className="text-xs text-[#8BA3C7] italic">&quot;{n.feedback}&quot;</p>
+                      <p className="text-xs text-text-secondary italic">&quot;{n.feedback}&quot;</p>
                     ) : (
-                      <p className="text-xs text-[#4A6480] italic">No comments.</p>
+                      <p className="text-xs text-text-tertiary italic">No comments.</p>
                     )}
                   </div>
 
                   <div className="flex items-center gap-2">
                     <span className={`text-xs font-bold font-mono w-7 h-7 rounded-full flex items-center justify-center border ${
-                      n.score >= 9 ? 'bg-[#22C55E]/10 border-[#22C55E]/30 text-[#22C55E]' :
-                      n.score >= 7 ? 'bg-[#F59E0B]/10 border-[#F59E0B]/30 text-[#F59E0B]' : 'bg-[#EF4444]/10 border-[#EF4444]/30 text-[#EF4444]'
+                      n.score >= 9 ? 'bg-online/10 border-online/30 text-online' :
+                      n.score >= 7 ? 'bg-warning/10 border-warning/30 text-warning' : 'bg-error/10 border-error/30 text-error'
                     }`}>
                       {n.score}
                     </span>
                     <button
                       onClick={() => setDeleteNpsId(n.id)}
-                      className="opacity-0 group-hover:opacity-100 text-[#4A6480] hover:text-[#EF4444] transition-all p-0.5"
+                      className="opacity-0 group-hover:opacity-100 text-text-tertiary hover:text-error transition-all p-0.5"
                     >
                       <Trash2 size={11} />
                     </button>
@@ -352,7 +352,7 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
               ))}
 
               {npsList.length === 0 && (
-                <div className="text-center py-8 text-xs text-[#4A6480] italic">No NPS response logs.</div>
+                <div className="text-center py-8 text-xs text-text-tertiary italic">No NPS response logs.</div>
               )}
             </div>
           </div>

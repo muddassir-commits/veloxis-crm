@@ -181,25 +181,25 @@ export function WebDesignDashboard({
       <div className="space-y-6 select-none">
         {/* 1. Stats strip */}
         <div className="grid grid-cols-4 gap-4">
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3.5 rounded-lg flex items-center justify-between shadow-sm">
+          <div className="bg-bg-card border border-border/30 p-3.5 rounded-lg flex items-center justify-between shadow-sm">
             <div className="space-y-0.5">
-              <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider block">Active Site Builds</span>
-              <span className="text-xl font-bold font-mono text-[#F0F4FF]">{activeCount}</span>
+              <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider block">Active Site Builds</span>
+              <span className="text-xl font-bold font-mono text-text-primary">{activeCount}</span>
             </div>
-            <Layout size={20} className="text-[#1B4FD8] opacity-75" />
+            <Layout size={20} className="text-primary opacity-75" />
           </div>
 
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3.5 rounded-lg flex items-center justify-between shadow-sm">
+          <div className="bg-bg-card border border-border/30 p-3.5 rounded-lg flex items-center justify-between shadow-sm">
             <div className="space-y-0.5">
-              <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider block">Websites Launched</span>
-              <span className="text-xl font-bold font-mono text-[#22C55E]">{liveCount}</span>
+              <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider block">Websites Launched</span>
+              <span className="text-xl font-bold font-mono text-online">{liveCount}</span>
             </div>
-            <PlayCircle size={20} className="text-[#22C55E] opacity-75" />
+            <PlayCircle size={20} className="text-online opacity-75" />
           </div>
 
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3.5 rounded-lg flex items-center justify-between shadow-sm">
+          <div className="bg-bg-card border border-border/30 p-3.5 rounded-lg flex items-center justify-between shadow-sm">
             <div className="space-y-0.5">
-              <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider block">Pipeline Value</span>
+              <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider block">Pipeline Value</span>
               <span className="text-xl font-bold font-mono text-purple-400">
                 ₹{totalPipelineValue.toLocaleString('en-IN')}
               </span>
@@ -207,9 +207,9 @@ export function WebDesignDashboard({
             <DollarSign size={20} className="text-purple-500 opacity-75" />
           </div>
 
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3.5 rounded-lg flex items-center justify-between shadow-sm">
+          <div className="bg-bg-card border border-border/30 p-3.5 rounded-lg flex items-center justify-between shadow-sm">
             <div className="space-y-0.5">
-              <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider block">Avg Progress</span>
+              <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider block">Avg Progress</span>
               <span className="text-xl font-bold font-mono text-amber-400">{avgProgress}%</span>
             </div>
             <CheckCircle size={20} className="text-amber-500 opacity-75" />
@@ -217,25 +217,25 @@ export function WebDesignDashboard({
         </div>
 
         {/* 2. Filters toolbar */}
-        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0D1829] border border-[#1E3352] p-4 rounded-lg">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-bg-card border border-border/30 p-4 rounded-lg">
           <div className="flex flex-wrap items-center gap-3 flex-1">
             <div className="relative min-w-[200px] flex-1 max-w-xs">
-              <Search className="absolute left-3 top-2.5 h-4 w-4 text-[#8BA3C7] pointer-events-none" />
+              <Search className="absolute left-3 top-2.5 h-4 w-4 text-text-secondary pointer-events-none" />
               <Input
                 type="text"
                 placeholder="Search project name, scope..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9 bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="pl-9 bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
 
             {/* Client Filter */}
             <Select value={selectedClient} onValueChange={(val) => setSelectedClient(val || 'all')}>
-              <SelectTrigger className="w-[160px] bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+              <SelectTrigger className="w-[160px] bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                 <SelectValue placeholder="All Clients" />
               </SelectTrigger>
-              <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+              <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                 <SelectItem value="all" className="text-xs">All Clients</SelectItem>
                 {clients.map((c) => (
                   <SelectItem key={c.id} value={c.id} className="text-xs">
@@ -247,10 +247,10 @@ export function WebDesignDashboard({
 
             {/* Stage Filter */}
             <Select value={selectedStage} onValueChange={(val) => setSelectedStage(val || 'all')}>
-              <SelectTrigger className="w-[150px] bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+              <SelectTrigger className="w-[150px] bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                 <SelectValue placeholder="All Stages" />
               </SelectTrigger>
-              <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+              <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                 <SelectItem value="all" className="text-xs">All Stages</SelectItem>
                 {STAGES.map((s) => (
                   <SelectItem key={s.id} value={s.id} className="text-xs">
@@ -267,13 +267,13 @@ export function WebDesignDashboard({
               size="icon"
               onClick={refreshData}
               disabled={loading}
-              className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] h-9 w-9 cursor-pointer"
+              className="border-border/30 hover:bg-bg-card-hover/20 text-text-secondary h-9 w-9 cursor-pointer"
             >
               <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
             </Button>
             <Button
               onClick={() => setNewModalOpen(true)}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white text-xs h-9 cursor-pointer"
             >
               <Plus size={14} className="mr-1" /> New Project
             </Button>
@@ -296,25 +296,25 @@ export function WebDesignDashboard({
             return (
               <div
                 key={project.id}
-                className="bg-[#0D1829] border border-[#1E3352] rounded-xl flex flex-col shadow-lg hover:border-[#1E3352]/70 transition-all overflow-hidden"
+                className="bg-bg-card border border-border/30 rounded-xl flex flex-col shadow-lg hover:border-border/30/70 transition-all overflow-hidden"
               >
                 {/* Card Header */}
-                <div className="p-4 border-b border-[#1E3352]/30 bg-[#060D1A] flex justify-between items-start gap-4">
+                <div className="p-4 border-b border-border/30/30 bg-bg-dark flex justify-between items-start gap-4">
                   <div className="space-y-0.5">
-                    <span className="text-[10px] font-bold text-[#4D90FE] uppercase tracking-wider block">
+                    <span className="text-[10px] font-bold text-primary-light uppercase tracking-wider block">
                       {clientName} {client?.is_agency_self && '🏢'}
                     </span>
-                    <h3 className="text-sm font-bold text-[#F0F4FF] line-clamp-1">{project.name}</h3>
+                    <h3 className="text-sm font-bold text-text-primary line-clamp-1">{project.name}</h3>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] px-2 py-0.5 rounded font-mono font-bold bg-[#1E3352]/30 text-[#8BA3C7] capitalize border border-[#1E3352]/50">
+                    <span className="text-[10px] px-2 py-0.5 rounded font-mono font-bold bg-border-subtle/30 text-text-secondary capitalize border border-border/30/50">
                       {project.project_type?.replace('_', ' ') || 'Web Dev'}
                     </span>
                     <Button
                       variant="ghost"
                       onClick={() => handleEditClick(project)}
-                      className="h-6 text-[10px] text-[#4D90FE] hover:bg-[#1B4FD8]/15 px-2 rounded border border-[#1B4FD8]/25"
+                      className="h-6 text-[10px] text-primary-light hover:bg-primary/15 px-2 rounded border border-primary/25"
                     >
                       Manage
                     </Button>
@@ -322,7 +322,7 @@ export function WebDesignDashboard({
                 </div>
 
                 {/* Pipeline visual stepper */}
-                <div className="p-4 bg-[#08101E]/40 border-b border-[#1E3352]/20 flex items-center justify-between select-none">
+                <div className="p-4 bg-bg-dark/40 border-b border-border/30/20 flex items-center justify-between select-none">
                   {STAGES.map((stage, idx) => {
                     const isDone = idx < activeStageIndex;
                     const isActive = idx === activeStageIndex;
@@ -333,7 +333,7 @@ export function WebDesignDashboard({
                         {idx > 0 && (
                           <div
                             className={`h-[2px] flex-1 mx-2 rounded ${
-                              idx <= activeStageIndex ? 'bg-[#1B4FD8]' : 'bg-[#1E3352]/30'
+                              idx <= activeStageIndex ? 'bg-primary' : 'bg-border-subtle/30'
                             }`}
                           />
                         )}
@@ -342,10 +342,10 @@ export function WebDesignDashboard({
                           <div
                             className={`w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold font-mono border transition-all ${
                               isActive
-                                ? 'bg-[#1B4FD8] text-white border-[#4D90FE] shadow-[0_0_10px_rgba(27,79,216,0.5)] animate-pulse'
+                                ? 'bg-primary text-white border-primary-light shadow-[0_0_10px_rgba(37,99,235,0.5)] animate-pulse'
                                 : isDone
-                                ? 'bg-[#1B4FD8]/10 text-[#4D90FE] border-[#1B4FD8]'
-                                : 'bg-[#060D1A] text-[#4A6480] border-[#1E3352]'
+                                ? 'bg-primary/10 text-primary-light border-primary'
+                                : 'bg-bg-dark text-text-tertiary border-border/30'
                             }`}
                           >
                             {idx + 1}
@@ -353,10 +353,10 @@ export function WebDesignDashboard({
                           <span
                             className={`text-[9px] font-medium tracking-wider ${
                               isActive
-                                ? 'text-[#F0F4FF] font-bold'
+                                ? 'text-text-primary font-bold'
                                 : isDone
-                                ? 'text-[#4D90FE]'
-                                : 'text-[#4A6480]'
+                                ? 'text-primary-light'
+                                : 'text-text-tertiary'
                             }`}
                           >
                             {stage.label}
@@ -371,17 +371,17 @@ export function WebDesignDashboard({
                 <div className="p-4 flex-1 space-y-3.5">
                   {/* Progress Ring / Percentage */}
                   <div className="space-y-1">
-                    <div className="flex justify-between items-center text-[10px] text-[#8BA3C7]">
+                    <div className="flex justify-between items-center text-[10px] text-text-secondary">
                       <span className="font-semibold">Milestone Checklist Completion</span>
-                      <span className="font-mono text-[#F0F4FF] font-bold">
+                      <span className="font-mono text-text-primary font-bold">
                         {completed}/{total} Completed ({percentage}%)
                       </span>
                     </div>
-                    <Progress value={percentage} className="h-1.5 bg-[#060D1A]" indicatorClassName="bg-[#1B4FD8]" />
+                    <Progress value={percentage} className="h-1.5 bg-bg-dark" indicatorClassName="bg-primary" />
                   </div>
 
                   {/* Checklist Grid */}
-                  <div className="grid grid-cols-2 gap-2 bg-[#060D1A] border border-[#1E3352]/40 rounded-lg p-3">
+                  <div className="grid grid-cols-2 gap-2 bg-bg-dark border border-border/30/40 rounded-lg p-3">
                     {MILESTONES_META.map((m) => {
                       const isCompleted = project.milestones?.[m.key] || false;
 
@@ -391,18 +391,18 @@ export function WebDesignDashboard({
                           onClick={() => toggleMilestone(project, m.key)}
                           className={`flex items-center gap-2 p-1.5 rounded cursor-pointer transition-colors ${
                             isCompleted
-                              ? 'bg-[#1B4FD8]/5 hover:bg-[#1B4FD8]/10 text-[#F0F4FF]'
-                              : 'hover:bg-[#132035]/30 text-[#8BA3C7]'
+                              ? 'bg-primary/5 hover:bg-primary/10 text-text-primary'
+                              : 'hover:bg-bg-card-hover/20/30 text-text-secondary'
                           }`}
                         >
                           {isCompleted ? (
-                            <CheckSquare size={13} className="text-[#4D90FE] shrink-0" />
+                            <CheckSquare size={13} className="text-primary-light shrink-0" />
                           ) : (
-                            <Square size={13} className="text-[#4A6480] shrink-0" />
+                            <Square size={13} className="text-text-tertiary shrink-0" />
                           )}
                           <span
                             className={`text-[10px] font-medium leading-none ${
-                              isCompleted ? 'text-[#F0F4FF] font-semibold' : ''
+                              isCompleted ? 'text-text-primary font-semibold' : ''
                             }`}
                           >
                             {m.label}
@@ -413,8 +413,8 @@ export function WebDesignDashboard({
                   </div>
 
                   {/* Dates & Budget */}
-                  <div className="flex items-center justify-between text-[10px] border-t border-[#1E3352]/20 pt-3">
-                    <div className="flex items-center gap-1 text-[#8BA3C7]">
+                  <div className="flex items-center justify-between text-[10px] border-t border-border/30/20 pt-3">
+                    <div className="flex items-center gap-1 text-text-secondary">
                       <Calendar size={11} />
                       <span>
                         Deadline:{' '}
@@ -422,7 +422,7 @@ export function WebDesignDashboard({
                           className={
                             isDeadlineOverdue
                               ? 'text-red-400 underline decoration-wavy decoration-red-500/50'
-                              : 'text-[#F0F4FF]'
+                              : 'text-text-primary'
                           }
                         >
                           {project.deadline
@@ -436,17 +436,17 @@ export function WebDesignDashboard({
                       </span>
                     </div>
 
-                    <div className="font-bold text-[#F0F4FF] bg-[#1B4FD8]/15 border border-[#1B4FD8]/30 px-2 py-0.5 rounded">
+                    <div className="font-bold text-text-primary bg-primary/15 border border-primary/30 px-2 py-0.5 rounded">
                       Budget: ₹{project.budget?.toLocaleString('en-IN') || 0}
                     </div>
                   </div>
                 </div>
 
                 {/* Expand/Collapse Toggle */}
-                <div className="border-t border-[#1E3352]/25 bg-[#060D1A]/50">
+                <div className="border-t border-border/30/25 bg-bg-dark/50">
                   <button
                     onClick={() => toggleExpand(project.id)}
-                    className="w-full py-2 px-4 flex items-center justify-between text-[10px] font-bold text-[#8BA3C7] hover:text-[#F0F4FF] transition-colors"
+                    className="w-full py-2 px-4 flex items-center justify-between text-[10px] font-bold text-text-secondary hover:text-text-primary transition-colors"
                   >
                     <span>{isExpanded ? 'Hide Details' : 'View Scope, Notes & Contacts'}</span>
                     {isExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
@@ -454,14 +454,14 @@ export function WebDesignDashboard({
 
                   {/* Collapsible Panel */}
                   {isExpanded && (
-                    <div className="px-4 pb-4 space-y-3.5 border-t border-[#1E3352]/20 pt-3 text-[10px] leading-relaxed select-text">
+                    <div className="px-4 pb-4 space-y-3.5 border-t border-border/30/20 pt-3 text-[10px] leading-relaxed select-text">
                       {/* Contacts */}
                       {project.key_contacts && (
                         <div className="space-y-1">
-                          <span className="font-bold text-[#8BA3C7] uppercase tracking-wider block">
+                          <span className="font-bold text-text-secondary uppercase tracking-wider block">
                             Key Contacts
                           </span>
-                          <div className="bg-[#060D1A] border border-[#1E3352]/40 rounded p-2 text-[#F0F4FF]">
+                          <div className="bg-bg-dark border border-border/30/40 rounded p-2 text-text-primary">
                             {project.key_contacts}
                           </div>
                         </div>
@@ -470,10 +470,10 @@ export function WebDesignDashboard({
                       {/* Scope */}
                       {project.scope && (
                         <div className="space-y-1">
-                          <span className="font-bold text-[#8BA3C7] uppercase tracking-wider block">
+                          <span className="font-bold text-text-secondary uppercase tracking-wider block">
                             Scope of Work
                           </span>
-                          <div className="bg-[#060D1A] border border-[#1E3352]/40 rounded p-2 text-[#F0F4FF] whitespace-pre-wrap">
+                          <div className="bg-bg-dark border border-border/30/40 rounded p-2 text-text-primary whitespace-pre-wrap">
                             {project.scope}
                           </div>
                         </div>
@@ -482,10 +482,10 @@ export function WebDesignDashboard({
                       {/* Notes */}
                       {project.notes && (
                         <div className="space-y-1">
-                          <span className="font-bold text-[#8BA3C7] uppercase tracking-wider block">
+                          <span className="font-bold text-text-secondary uppercase tracking-wider block">
                             Internal Notes
                           </span>
-                          <div className="bg-[#060D1A] border border-[#1E3352]/40 rounded p-2 text-[#F0F4FF] whitespace-pre-wrap">
+                          <div className="bg-bg-dark border border-border/30/40 rounded p-2 text-text-primary whitespace-pre-wrap">
                             {project.notes}
                           </div>
                         </div>
@@ -493,7 +493,7 @@ export function WebDesignDashboard({
 
                       {/* Fallback if empty */}
                       {!project.scope && !project.notes && !project.key_contacts && (
-                        <p className="text-center text-[#4A6480] italic py-2">
+                        <p className="text-center text-text-tertiary italic py-2">
                           No additional scope details or internal notes recorded.
                         </p>
                       )}
@@ -505,8 +505,8 @@ export function WebDesignDashboard({
           })}
 
           {filteredProjects.length === 0 && (
-            <div className="col-span-2 rounded-lg border border-dashed border-[#1E3352]/30 bg-[#0D1829] p-12 text-center text-[#8BA3C7] select-none">
-              <FileCode2 size={24} className="mx-auto mb-2 opacity-50 text-[#8BA3C7]" />
+            <div className="col-span-2 rounded-lg border border-dashed border-border/30/30 bg-bg-card p-12 text-center text-text-secondary select-none">
+              <FileCode2 size={24} className="mx-auto mb-2 opacity-50 text-text-secondary" />
               No web design projects tracked matching these filter parameters.
             </div>
           )}

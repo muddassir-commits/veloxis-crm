@@ -44,7 +44,7 @@ export function DataTable({
   // If loading, render LoadingSkeleton inside a clean table skeleton shell
   if (loading) {
     return (
-      <div className="w-full overflow-x-auto border border-[#1E3352] rounded-[10px] bg-[#0D1829] p-[20px]">
+      <div className="w-full overflow-x-auto border border-border/30 rounded-[10px] bg-bg-card p-[20px]">
         <div className="min-w-full">
           <LoadingSkeleton rows={5} columns={columns.length + (rowActions ? 1 : 0)} height={24} />
         </div>
@@ -55,7 +55,7 @@ export function DataTable({
   // If empty, render EmptyState component
   if (!data || data.length === 0) {
     return (
-      <div className="w-full border border-[#1E3352] rounded-[10px] bg-[#0D1829] overflow-hidden">
+      <div className="w-full border border-border/30 rounded-[10px] bg-bg-card overflow-hidden">
         {emptyState ? (
           <EmptyState
             icon={emptyState.icon}
@@ -75,21 +75,21 @@ export function DataTable({
   }
 
   return (
-    <div className="w-full overflow-x-auto border border-[#1E3352] rounded-[10px] bg-[#0D1829] shadow-sm select-none">
+    <div className="w-full overflow-x-auto border border-border/30 rounded-[10px] bg-bg-card shadow-sm select-none">
       <table className={cn("w-full border-collapse text-left", className)} {...props}>
         <thead>
-          <tr className="border-b border-[#1E3352] bg-[#0D1829]">
+          <tr className="border-b border-border/30 bg-bg-card">
             {columns.map((col) => (
               <th
                 key={col.key}
-                className="p-4 text-[11px] font-semibold text-[#4A6480] uppercase tracking-[0.06em] whitespace-nowrap"
+                className="p-4 text-[11px] font-semibold text-text-tertiary uppercase tracking-[0.06em] whitespace-nowrap"
                 style={{ width: col.width }}
               >
                 {col.header}
               </th>
             ))}
             {rowActions && (
-              <th className="p-4 text-[11px] font-semibold text-[#4A6480] uppercase tracking-[0.06em] text-right w-[60px]">
+              <th className="p-4 text-[11px] font-semibold text-text-tertiary uppercase tracking-[0.06em] text-right w-[60px]">
                 Actions
               </th>
             )}
@@ -101,8 +101,8 @@ export function DataTable({
               key={typeof row.id === 'string' ? row.id : rowIndex}
               onClick={() => onRowClick && onRowClick(row)}
               className={cn(
-                "group text-[13px] text-[#8BA3C7] transition-colors duration-150",
-                onRowClick ? "hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer" : "hover:bg-[#132035]/50"
+                "group text-[13px] text-text-secondary transition-colors duration-150",
+                onRowClick ? "hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer" : "hover:bg-bg-card-hover/20/50"
               )}
             >
               {columns.map((col) => {
@@ -125,14 +125,14 @@ export function DataTable({
                     <DropdownMenu>
                       <DropdownMenuTrigger
                         render={
-                          <button className="text-[#8BA3C7] hover:text-[#F0F4FF] p-1 rounded hover:bg-[#1A2D47] transition-all cursor-pointer">
+                          <button className="text-text-secondary hover:text-text-primary p-1 rounded hover:bg-bg-card-hover/40 transition-all cursor-pointer">
                             <MoreHorizontal size={16} className="stroke-[1.5]" />
                           </button>
                         }
                       />
                       <DropdownMenuContent
                         align="end"
-                        className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] shadow-xl p-1 w-36 z-40"
+                        className="bg-bg-card border-border/30 text-text-primary shadow-xl p-1 w-36 z-40"
                       >
                         {rowActions(row)}
                       </DropdownMenuContent>

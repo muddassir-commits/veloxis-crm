@@ -23,6 +23,8 @@ import {
   FileDown
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import {
   Dialog,
   DialogContent,
@@ -367,8 +369,8 @@ export function OperationsDashboard({
       key: 'name',
       header: 'Document Name',
       render: (val: any, row: any) => (
-        <div className="flex items-center gap-2.5 select-none font-semibold text-[#F0F4FF] text-xs sm:text-sm">
-          <BookOpen size={15} className="text-[#3B82F6] shrink-0" />
+        <div className="flex items-center gap-2.5 select-none font-semibold text-text-primary text-xs sm:text-sm">
+          <BookOpen size={15} className="text-primary shrink-0" />
           <span>{row.name}</span>
         </div>
       )
@@ -394,17 +396,18 @@ export function OperationsDashboard({
         <div className="flex items-center gap-2 select-none">
           <Button
             size="sm"
-            variant="outline"
+            variant="secondary"
             onClick={() => handleOpenSop(row)}
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-[11px] h-7 px-2"
+            className="text-[11px] h-7 px-2 cursor-pointer"
           >
             <Download size={11} className="mr-1" />
             <span>Open PDF</span>
           </Button>
           <Button
             size="sm"
+            variant="outline"
             onClick={(e) => handleDeleteSop(row.id, row.storage_path, e)}
-            className="bg-[#EF444415] hover:bg-[#EF444430] border border-[#EF444420] text-[#EF4444] text-[11px] h-7 px-2 cursor-pointer"
+            className="text-[11px] h-7 px-2 cursor-pointer"
           >
             <Trash2 size={11} />
           </Button>
@@ -416,15 +419,15 @@ export function OperationsDashboard({
   return (
     <div className="space-y-6 select-none">
       {/* ━━━ TAB NAVIGATION ━━━ */}
-      <div className="flex items-center gap-2 overflow-x-auto border-b border-[#1E3352] pb-2 select-none">
+      <div className="flex items-center gap-2 overflow-x-auto border-b border-border/20 pb-2 select-none">
         {(['sops', 'timeline', 'templates'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider border-b-2 cursor-pointer transition-all ${
               activeTab === tab
-                ? 'border-[#1B4FD8] text-[#F0F4FF]'
-                : 'border-transparent text-[#8BA3C7] hover:text-[#F0F4FF]'
+                ? 'border-primary text-text-primary'
+                : 'border-transparent text-text-secondary hover:text-text-primary'
             }`}
           >
             {tab === 'sops' ? 'SOP Library' : tab === 'timeline' ? 'Monthly Calendar Timeline' : 'Process Templates'}
@@ -437,20 +440,21 @@ export function OperationsDashboard({
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="relative flex-1 max-w-sm">
-              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8BA3C7]" />
-              <input
+              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary" />
+              <Input
                 type="text"
                 placeholder="Search SOP PDF documents..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="input pl-9 h-9 text-xs"
+                className="pl-9 h-9 text-xs"
               />
             </div>
 
             <Button
               onClick={() => setUploadSopOpen(true)}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 font-semibold self-end sm:self-auto cursor-pointer"
+              variant="default"
+              className="text-xs h-9 gap-1.5 font-semibold self-end sm:self-auto cursor-pointer"
             >
               <Upload size={13} />
               <span>Upload SOP Document</span>
@@ -477,18 +481,19 @@ export function OperationsDashboard({
       {/* ━━━ TAB 2: MONTHLY TIMELINE ━━━ */}
       {activeTab === 'timeline' && (
         <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-[#1E3352]/40 pb-2">
+          <div className="flex items-center justify-between border-b border-border/20 pb-2">
             <div>
-              <h2 className="text-base font-semibold text-[#F0F4FF] flex items-center gap-1.5">
-                <CalendarIcon size={16} className="text-[#3B82F6]" />
+              <h2 className="text-base font-semibold text-text-primary flex items-center gap-1.5">
+                <CalendarIcon size={16} className="text-primary" />
                 <span>Standard Monthly Operations Checklist</span>
               </h2>
-              <p className="text-xs text-[#8BA3C7]">Recurring calendar milestones executed automatically or manually each month.</p>
+              <p className="text-xs text-text-secondary">Recurring calendar milestones executed automatically or manually each month.</p>
             </div>
             <Button
               onClick={() => setAddEventOpen(true)}
               size="sm"
-              className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+              variant="secondary"
+              className="text-xs h-8 gap-1.5 cursor-pointer font-semibold"
             >
               <Plus size={13} />
               <span>Add Custom Milestone</span>
@@ -496,39 +501,39 @@ export function OperationsDashboard({
           </div>
 
           {/* Timeline visualization */}
-          <div className="relative border-l border-[#1E3352] ml-4 pl-8 space-y-6 py-2">
+          <div className="relative border-l border-border/30 ml-4 pl-8 space-y-6 py-2">
             {customEvents.map((evt) => {
-              let typeColor = 'bg-[#1E3352] border-[#1E3352] text-[#8BA3C7]';
-              if (evt.type === 'system') typeColor = 'bg-[#F973161a] border-[#F9731630] text-[#F97316]';
-              else if (evt.type === 'hr') typeColor = 'bg-[#EF44441a] border-[#EF444430] text-[#EF4444]';
-              else if (evt.type === 'client') typeColor = 'bg-[#3B82F61a] border-[#3B82F630] text-[#3B82F6]';
-              else if (evt.type === 'delivery') typeColor = 'bg-[#22C55E1a] border-[#22C55E30] text-[#22C55E]';
+              let typeColor = 'bg-bg-card-hover border-border/30 text-text-secondary';
+              if (evt.type === 'system') typeColor = 'bg-accent/10 border-accent/25 text-accent';
+              else if (evt.type === 'hr') typeColor = 'bg-error/10 border-error/25 text-error';
+              else if (evt.type === 'client') typeColor = 'bg-primary/10 border-primary/25 text-primary';
+              else if (evt.type === 'delivery') typeColor = 'bg-success/10 border-success/25 text-success';
 
               return (
-                <div key={evt.id} className="relative group">
+                <div key={evt.id} className="relative group flex items-start">
                   {/* Circular day indicator on timeline */}
-                  <span className="absolute -left-[45px] top-0 flex items-center justify-center w-8 h-8 rounded-full border border-[#1E3352] bg-[#060D1A] font-bold text-xs text-[#F0F4FF] shadow-sm select-none">
+                  <span className="absolute -left-[48px] top-2.5 flex items-center justify-center w-8 h-8 rounded-full border border-border/30 bg-bg-card/90 font-bold text-xs text-text-primary shadow-sm select-none z-10">
                     {evt.day}
                   </span>
 
-                  <div className="rounded-lg border border-[#1E3352]/60 bg-[#0D1829] p-4 space-y-1 hover:border-[#1E3352] transition-all">
+                  <Card variant="compact" className="p-4 space-y-1 hover:border-border/60 transition-all flex-1">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-semibold text-xs sm:text-sm text-[#F0F4FF]">{evt.title}</h3>
+                      <h3 className="font-semibold text-xs sm:text-sm text-text-primary">{evt.title}</h3>
                       <div className="flex items-center gap-2 select-none">
                         <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold border uppercase tracking-wider ${typeColor}`}>
                           {evt.type}
                         </span>
                         <button
                           onClick={() => handleDeleteEvent(evt.id)}
-                          className="text-[#EF4444] hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity p-1 cursor-pointer"
+                          className="text-error hover:text-error/80 opacity-0 group-hover:opacity-100 transition-opacity p-1 cursor-pointer"
                           title="Delete Milestone"
                         >
                           <Trash2 size={12} />
                         </button>
                       </div>
                     </div>
-                    <p className="text-xs text-[#8BA3C7] mt-1 leading-relaxed">{evt.description}</p>
-                  </div>
+                    <p className="text-xs text-text-secondary mt-1 leading-relaxed">{evt.description}</p>
+                  </Card>
                 </div>
               );
             })}
@@ -540,23 +545,23 @@ export function OperationsDashboard({
       {activeTab === 'templates' && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Form Side */}
-          <div className="md:col-span-1 border border-[#1E3352]/60 rounded-lg bg-[#0D1829] p-4 h-fit space-y-4">
-            <h3 className="font-semibold text-sm text-[#F0F4FF] flex items-center gap-1.5">
-              <Settings size={15} className="text-[#3B82F6]" />
+          <Card variant="default" className="md:col-span-1 p-4 h-fit space-y-4">
+            <h3 className="font-semibold text-sm text-text-primary flex items-center gap-1.5">
+              <Settings size={15} className="text-primary" />
               <span>Apply Operational Template</span>
             </h3>
 
             <div className="space-y-3 text-xs">
               <div className="space-y-1">
-                <label className="label">Target Client Retainer *</label>
+                <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Target Client Retainer *</label>
                 <select
                   value={selectedClient}
                   onChange={(e) => setSelectedClient(e.target.value)}
-                  className="input h-9"
+                  className="h-9 w-full bg-bg-card/50 border border-border/30 text-text-primary rounded px-3 hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none text-xs"
                 >
-                  <option value="">Select a Client...</option>
+                  <option value="" className="bg-bg-card text-text-primary">Select a Client...</option>
                   {clients?.map((c) => (
-                    <option key={c.id} value={c.id}>
+                    <option key={c.id} value={c.id} className="bg-bg-card text-text-primary">
                       {c.company ? `${c.company} (${c.name})` : c.name}
                     </option>
                   ))}
@@ -564,38 +569,38 @@ export function OperationsDashboard({
               </div>
 
               <div className="space-y-1">
-                <label className="label">Choose Preset Checklist *</label>
+                <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Choose Preset Checklist *</label>
                 <select
                   value={selectedPreset}
                   onChange={(e) => setSelectedPreset(e.target.value)}
-                  className="input h-9"
+                  className="h-9 w-full bg-bg-card/50 border border-border/30 text-text-primary rounded px-3 hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none text-xs"
                 >
                   {templates && templates.length > 0 ? (
                     templates.map((t) => (
-                      <option key={t.id} value={t.id}>
+                      <option key={t.id} value={t.id} className="bg-bg-card text-text-primary">
                         {t.name}
                       </option>
                     ))
                   ) : (
                     <>
-                      <option value="onboarding">Client Onboarding Checklist</option>
-                      <option value="seo_audit">Monthly SEO Execution Audit</option>
-                      <option value="social_setup">Social Media Production setup</option>
+                      <option value="onboarding" className="bg-bg-card text-text-primary">Client Onboarding Checklist</option>
+                      <option value="seo_audit" className="bg-bg-card text-text-primary">Monthly SEO Execution Audit</option>
+                      <option value="social_setup" className="bg-bg-card text-text-primary">Social Media Production setup</option>
                     </>
                   )}
                 </select>
               </div>
 
               <div className="space-y-1">
-                <label className="label">Assign Checklist Deliverables *</label>
+                <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Assign Checklist Deliverables *</label>
                 <select
                   value={selectedAssignee}
                   onChange={(e) => setSelectedAssignee(e.target.value)}
-                  className="input h-9"
+                  className="h-9 w-full bg-bg-card/50 border border-border/30 text-text-primary rounded px-3 hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none text-xs"
                 >
-                  <option value="">Choose Assigned Intern...</option>
+                  <option value="" className="bg-bg-card text-text-primary">Choose Assigned Intern...</option>
                   {employees?.map((emp) => (
-                    <option key={emp.id} value={emp.id}>
+                    <option key={emp.id} value={emp.id} className="bg-bg-card text-text-primary">
                       {emp.full_name} ({(emp as any).designation || 'Intern'})
                     </option>
                   ))}
@@ -606,40 +611,41 @@ export function OperationsDashboard({
             <Button
               onClick={handleApplyTemplate}
               disabled={isApplyingTemplate}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 w-full font-semibold gap-1.5 cursor-pointer select-none"
+              variant="default"
+              className="w-full text-xs h-9 font-semibold gap-1.5 cursor-pointer select-none"
             >
               <span>{isApplyingTemplate ? 'Creating tasks...' : 'Apply & Generate Tasks'}</span>
               <ArrowRight size={12} />
             </Button>
-          </div>
+          </Card>
 
           {/* Preview Side */}
           <div className="md:col-span-2 space-y-4">
-            <div className="border border-[#1E3352]/60 rounded-lg bg-[#0D1829] p-5 space-y-4">
+            <div className="border border-border/30 bg-bg-card/70 backdrop-blur-[12px] rounded-xl p-5 space-y-4 shadow-elevated">
               <div>
-                <span className="text-[10px] text-[#F97316] uppercase font-bold tracking-wider">Template Preview</span>
-                <h2 className="text-base font-semibold text-[#F0F4FF] mt-0.5">
+                <span className="text-[10px] text-accent uppercase font-bold tracking-wider">Template Preview</span>
+                <h2 className="text-base font-semibold text-text-primary mt-0.5">
                   {getActiveTemplate().name}
                 </h2>
-                <p className="text-xs text-[#8BA3C7] mt-1 leading-relaxed">
+                <p className="text-xs text-text-secondary mt-1 leading-relaxed">
                   {getActiveTemplate().description}
                 </p>
               </div>
 
-              <div className="border-t border-[#1E3352]/30 pt-3 space-y-3">
+              <div className="border-t border-border/20 pt-3 space-y-3">
                 {getActiveTemplate().tasks.map((task: any, index: number) => (
-                  <div key={index} className="flex items-start gap-3 bg-[#060D1A]/40 border border-[#1E3352]/30 rounded-lg p-3">
-                    <span className="flex items-center justify-center w-5 h-5 rounded bg-[#1B4FD810] text-[#1B4FD8] text-[10px] font-bold shrink-0 border border-[#1B4FD820]">
+                  <div key={index} className="flex items-start gap-3 bg-bg-card-hover/20 border border-border/20 rounded-lg p-3">
+                    <span className="flex items-center justify-center w-5 h-5 rounded bg-primary/10 text-primary text-[10px] font-bold shrink-0 border border-primary/20">
                       {index + 1}
                     </span>
                     <div className="space-y-0.5 flex-1 text-xs">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-semibold text-[#F0F4FF]">{task.title}</h4>
-                        <span className="text-[10px] font-mono text-[#F97316] font-semibold bg-[#F9731610] px-1.5 rounded uppercase border border-[#F9731620]">
+                        <h4 className="font-semibold text-text-primary">{task.title}</h4>
+                        <span className="text-[10px] font-mono text-accent font-semibold bg-accent/10 px-1.5 rounded uppercase border border-accent/20">
                           {(task.dept || task.department || '').toUpperCase()} ({task.hours || task.estimated_hours}h)
                         </span>
                       </div>
-                      <p className="text-xs text-[#8BA3C7] leading-relaxed mt-1">{task.description}</p>
+                      <p className="text-xs text-text-secondary leading-relaxed mt-1">{task.description}</p>
                     </div>
                   </div>
                 ))}
@@ -649,12 +655,11 @@ export function OperationsDashboard({
         </div>
       )}
 
-      {/* ━━━ MODAL: UPLOAD SOP DOCUMENT ━━━ */}
       <Dialog open={uploadSopOpen} onOpenChange={setUploadSopOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[550px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Upload SOP Document</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold">Upload SOP Document</DialogTitle>
+            <DialogDescription className="text-xs">
               Select a PDF document containing templates, handbooks, guidelines or checklists for student reference.
             </DialogDescription>
           </DialogHeader>
@@ -670,9 +675,9 @@ export function OperationsDashboard({
 
           <DialogFooter>
             <Button
-              variant="outline"
+              variant="secondary"
               onClick={() => setUploadSopOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="cursor-pointer"
             >
               Cancel
             </Button>
@@ -682,76 +687,77 @@ export function OperationsDashboard({
 
       {/* ━━━ MODAL: ADD CUSTOM TIMELINE MILESTONE ━━━ */}
       <Dialog open={addEventOpen} onOpenChange={setAddEventOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Add Timeline Milestone</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold">Add Timeline Milestone</DialogTitle>
+            <DialogDescription className="text-xs">
               Insert a standard recurring checklist item to the operational timeline.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4 my-2 text-xs">
             <div className="space-y-1">
-              <label className="label">Day of Month (1-31) *</label>
-              <input
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Day of Month (1-31) *</label>
+              <Input
                 type="number"
                 min="1"
                 max="31"
                 placeholder="e.g. 10"
                 value={newEvent.day}
                 onChange={(e) => setNewEvent((p) => ({ ...p, day: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Milestone Title *</label>
-              <input
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Milestone Title *</label>
+              <Input
                 type="text"
                 placeholder="e.g. Backlink Verification Runs"
                 value={newEvent.title}
                 onChange={(e) => setNewEvent((p) => ({ ...p, title: e.target.value }))}
-                className="input h-9"
+                className="h-9"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="label">Milestone Category *</label>
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Milestone Category *</label>
               <select
                 value={newEvent.type}
                 onChange={(e) => setNewEvent((p) => ({ ...p, type: e.target.value }))}
-                className="input h-9"
+                className="h-9 w-full bg-bg-card/50 border border-border/30 text-text-primary rounded px-3 hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none text-xs"
               >
-                <option value="delivery">Delivery Execution</option>
-                <option value="client">Client Strategic Call</option>
-                <option value="system">System / n8n Triggered</option>
-                <option value="hr">HR Stipend / Payroll</option>
+                <option value="delivery" className="bg-bg-card text-text-primary">Delivery Execution</option>
+                <option value="client" className="bg-bg-card text-text-primary">Client Strategic Call</option>
+                <option value="system" className="bg-bg-card text-text-primary">System / n8n Triggered</option>
+                <option value="hr" className="bg-bg-card text-text-primary">HR Stipend / Payroll</option>
               </select>
             </div>
 
             <div className="space-y-1">
-              <label className="label">Brief Description</label>
+              <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Brief Description</label>
               <textarea
                 placeholder="Explain the recurring checklist milestone detail..."
                 value={newEvent.description}
                 onChange={(e) => setNewEvent((p) => ({ ...p, description: e.target.value }))}
                 rows={2}
-                className="input resize-none"
+                className="w-full bg-bg-card/50 border border-border/30 text-text-primary rounded p-2 resize-none hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none text-xs"
               />
             </div>
           </div>
 
           <DialogFooter>
             <Button
-              variant="outline"
+              variant="secondary"
               onClick={() => setAddEventOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleAddEvent}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              variant="default"
+              className="cursor-pointer"
             >
               Add Milestone
             </Button>

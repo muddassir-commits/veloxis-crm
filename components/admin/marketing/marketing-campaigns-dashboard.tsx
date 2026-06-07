@@ -195,13 +195,13 @@ export function MarketingCampaignsDashboard({
   return (
     <div className="space-y-6">
       {/* Tab Navigation */}
-      <div className="flex border-b border-[#1E3352] space-x-2">
+      <div className="flex border-b border-border/30 space-x-2">
         <button
           onClick={() => setActiveTab('overview')}
           className={`px-4 py-2.5 text-sm font-semibold transition-all border-b-2 ${
             activeTab === 'overview'
               ? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'
-              : 'border-transparent text-[#8BA3C7] hover:text-white hover:bg-[#132237]/20'
+              : 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'
           }`}
         >
           Overview
@@ -211,7 +211,7 @@ export function MarketingCampaignsDashboard({
           className={`px-4 py-2.5 text-sm font-semibold transition-all border-b-2 ${
             activeTab === 'campaigns'
               ? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'
-              : 'border-transparent text-[#8BA3C7] hover:text-white hover:bg-[#132237]/20'
+              : 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'
           }`}
         >
           Campaigns Log
@@ -221,7 +221,7 @@ export function MarketingCampaignsDashboard({
           className={`px-4 py-2.5 text-sm font-semibold transition-all border-b-2 ${
             activeTab === 'templates'
               ? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'
-              : 'border-transparent text-[#8BA3C7] hover:text-white hover:bg-[#132237]/20'
+              : 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'
           }`}
         >
           Template Library
@@ -231,7 +231,7 @@ export function MarketingCampaignsDashboard({
           className={`px-4 py-2.5 text-sm font-semibold transition-all border-b-2 ${
             activeTab === 'webhooks'
               ? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'
-              : 'border-transparent text-[#8BA3C7] hover:text-white hover:bg-[#132237]/20'
+              : 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'
           }`}
         >
           Webhooks / API
@@ -246,58 +246,58 @@ export function MarketingCampaignsDashboard({
           {/* Stat Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Stat 1 */}
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-5 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
+            <div className="bg-bg-card border border-border/30 rounded-lg p-5 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
               <div className="flex justify-between items-start mb-2">
-                <span className="text-xs font-semibold text-[#8BA3C7] uppercase tracking-wider">Email Campaigns</span>
+                <span className="text-xs font-semibold text-text-secondary uppercase tracking-wider">Email Campaigns</span>
                 <span className="p-1.5 bg-blue-950 text-blue-400 border border-blue-900 rounded-md">
                   <Mail className="w-4 h-4" />
                 </span>
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-white">{emailCampaigns.length} logged</h3>
-                <p className="text-xs text-[#8BA3C7] mt-1">{totalEmailsSent.toLocaleString()} emails sent total</p>
+                <p className="text-xs text-text-secondary mt-1">{totalEmailsSent.toLocaleString()} emails sent total</p>
               </div>
             </div>
 
             {/* Stat 2 */}
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-5 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
+            <div className="bg-bg-card border border-border/30 rounded-lg p-5 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
               <div className="flex justify-between items-start mb-2">
-                <span className="text-xs font-semibold text-[#8BA3C7] uppercase tracking-wider">Avg Email Open Rate</span>
+                <span className="text-xs font-semibold text-text-secondary uppercase tracking-wider">Avg Email Open Rate</span>
                 <span className="p-1.5 bg-green-950 text-green-400 border border-green-900 rounded-md">
                   <TrendingUp className="w-4 h-4" />
                 </span>
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-green-400">{avgEmailOpenRate}%</h3>
-                <p className="text-xs text-[#8BA3C7] mt-1">Based on Resend Webhooks</p>
+                <p className="text-xs text-text-secondary mt-1">Based on Resend Webhooks</p>
               </div>
             </div>
 
             {/* Stat 3 */}
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-5 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
+            <div className="bg-bg-card border border-border/30 rounded-lg p-5 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
               <div className="flex justify-between items-start mb-2">
-                <span className="text-xs font-semibold text-[#8BA3C7] uppercase tracking-wider">WhatsApp Campaigns</span>
+                <span className="text-xs font-semibold text-text-secondary uppercase tracking-wider">WhatsApp Campaigns</span>
                 <span className="p-1.5 bg-purple-950 text-purple-400 border border-purple-900 rounded-md">
                   <MessageSquare className="w-4 h-4" />
                 </span>
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-white">{whatsappCampaigns.length} logged</h3>
-                <p className="text-xs text-[#8BA3C7] mt-1">{totalWASent.toLocaleString()} messages sent</p>
+                <p className="text-xs text-text-secondary mt-1">{totalWASent.toLocaleString()} messages sent</p>
               </div>
             </div>
 
             {/* Stat 4 */}
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-5 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
+            <div className="bg-bg-card border border-border/30 rounded-lg p-5 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
               <div className="flex justify-between items-start mb-2">
-                <span className="text-xs font-semibold text-[#8BA3C7] uppercase tracking-wider">WA Response Rate</span>
+                <span className="text-xs font-semibold text-text-secondary uppercase tracking-wider">WA Response Rate</span>
                 <span className="p-1.5 bg-yellow-950 text-yellow-400 border border-yellow-900 rounded-md">
                   <BarChart3 className="w-4 h-4" />
                 </span>
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-yellow-400">{avgWAReplyRate}%</h3>
-                <p className="text-xs text-[#8BA3C7] mt-1">Avg customer reply rate</p>
+                <p className="text-xs text-text-secondary mt-1">Avg customer reply rate</p>
               </div>
             </div>
           </div>
@@ -305,7 +305,7 @@ export function MarketingCampaignsDashboard({
           {/* Recent Activity Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Latest Campaigns */}
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-5 space-y-4">
+            <div className="bg-bg-card border border-border/30 rounded-lg p-5 space-y-4">
               <h3 className="text-base font-bold text-white flex items-center">
                 <Calendar className="w-4 h-4 mr-2 text-blue-400" />
                 Latest Campaigns
@@ -321,13 +321,13 @@ export function MarketingCampaignsDashboard({
                       </div>
                       <div>
                         <h4 className="text-sm font-semibold text-white">{c.name}</h4>
-                        <p className="text-xs text-[#8BA3C7]">
+                        <p className="text-xs text-text-secondary">
                           {c.clients?.name || 'Veloxis (Agency Own)'} • {c.month_year}
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <span className="text-xs font-semibold text-[#8BA3C7] block">
+                      <span className="text-xs font-semibold text-text-secondary block">
                         {c.recipientCount} sent
                       </span>
                       <span className={`text-xs ${c.successRate > 30 ? 'text-green-400' : 'text-yellow-500'}`}>
@@ -343,7 +343,7 @@ export function MarketingCampaignsDashboard({
             </div>
 
             {/* Quick Templates Overview */}
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-5 space-y-4">
+            <div className="bg-bg-card border border-border/30 rounded-lg p-5 space-y-4">
               <div className="flex justify-between items-center">
                 <h3 className="text-base font-bold text-white flex items-center">
                   <Layout className="w-4 h-4 mr-2 text-blue-400" />
@@ -359,10 +359,10 @@ export function MarketingCampaignsDashboard({
               </div>
               <div className="grid grid-cols-1 gap-3">
                 {templates.slice(0, 4).map((t) => (
-                  <div key={t.id} className="bg-[#132237]/45 border border-[#1E3352]/70 rounded-md p-3 flex justify-between items-center">
+                  <div key={t.id} className="bg-[#132237]/45 border border-border/30/70 rounded-md p-3 flex justify-between items-center">
                     <div>
                       <h4 className="text-sm font-semibold text-white">{t.name}</h4>
-                      <p className="text-xs text-[#8BA3C7] truncate max-w-[280px] font-mono mt-1">
+                      <p className="text-xs text-text-secondary truncate max-w-[280px] font-mono mt-1">
                         {t.body}
                       </p>
                     </div>
@@ -386,15 +386,15 @@ export function MarketingCampaignsDashboard({
       {activeTab === 'campaigns' && (
         <div className="space-y-4">
           {/* Controls Bar */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#0D1829] border border-[#1E3352] rounded-lg p-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-bg-card border border-border/30 rounded-lg p-4">
             <div className="flex flex-1 flex-wrap gap-3 items-center">
               {/* Search */}
               <div className="relative min-w-[200px] flex-1 md:flex-none">
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-[#8BA3C7]" />
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-text-secondary" />
                 <input
                   type="text"
                   placeholder="Search campaigns..."
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+                  className="w-full bg-[#132237] border border-border/30 rounded-md pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -402,9 +402,9 @@ export function MarketingCampaignsDashboard({
 
               {/* Client Filter */}
               <div className="flex items-center space-x-2">
-                <Filter className="h-4 w-4 text-[#8BA3C7]" />
+                <Filter className="h-4 w-4 text-text-secondary" />
                 <select
-                  className="bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="bg-[#132237] border border-border/30 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                   value={clientFilter}
                   onChange={(e) => setClientFilter(e.target.value)}
                 >
@@ -420,7 +420,7 @@ export function MarketingCampaignsDashboard({
 
               {/* Channel Filter */}
               <select
-                className="bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="bg-[#132237] border border-border/30 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                 value={channelFilter}
                 onChange={(e) => setChannelFilter(e.target.value)}
               >
@@ -450,10 +450,10 @@ export function MarketingCampaignsDashboard({
           </div>
 
           {/* Campaigns Data Table */}
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg overflow-x-auto">
+          <div className="bg-bg-card border border-border/30 rounded-lg overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-[#1E3352] text-[#8BA3C7] text-xs font-semibold uppercase bg-[#132237]/20">
+                <tr className="border-b border-border/30 text-text-secondary text-xs font-semibold uppercase bg-[#132237]/20">
                   <th className="py-3.5 px-4">Channel</th>
                   <th className="py-3.5 px-4">Campaign Name</th>
                   <th className="py-3.5 px-4">Target Client</th>
@@ -481,12 +481,12 @@ export function MarketingCampaignsDashboard({
                     <td className="py-3.5 px-4">
                       <div className="font-semibold text-white">{c.name}</div>
                       {c.channel === 'email' && c.subject && (
-                        <div className="text-xs text-[#8BA3C7] truncate max-w-[200px]">
+                        <div className="text-xs text-text-secondary truncate max-w-[200px]">
                           Subject: {c.subject}
                         </div>
                       )}
                       {c.notes && (
-                        <div className="text-xs text-[#8BA3C7]/80 truncate max-w-[250px]">
+                        <div className="text-xs text-text-secondary/80 truncate max-w-[250px]">
                           {c.notes}
                         </div>
                       )}
@@ -495,12 +495,12 @@ export function MarketingCampaignsDashboard({
                     {/* Client */}
                     <td className="py-3.5 px-4 font-medium">
                       {c.clients?.name || (
-                        <span className="text-[#8BA3C7] italic">Veloxis (Agency Own)</span>
+                        <span className="text-text-secondary italic">Veloxis (Agency Own)</span>
                       )}
                     </td>
 
                     {/* Date */}
-                    <td className="py-3.5 px-4 text-xs font-mono text-[#8BA3C7]">
+                    <td className="py-3.5 px-4 text-xs font-mono text-text-secondary">
                       {c.month_year}
                     </td>
 
@@ -511,16 +511,16 @@ export function MarketingCampaignsDashboard({
 
                     {/* Performance */}
                     <td className="py-3.5 px-4">
-                      <div className="text-xs text-[#8BA3C7]">
+                      <div className="text-xs text-text-secondary">
                         {c.successLabel}: <span className="font-bold text-white">{c.successRate}%</span>
                       </div>
                       {c.channel === 'email' && (
-                        <div className="text-[10px] text-[#8BA3C7]/70">
+                        <div className="text-[10px] text-text-secondary/70">
                           {c.opened || 0} Open • {c.clicked || 0} Click
                         </div>
                       )}
                       {c.channel === 'whatsapp' && (
-                        <div className="text-[10px] text-[#8BA3C7]/70">
+                        <div className="text-[10px] text-text-secondary/70">
                           {c.delivered || 0} Deliv • {c.read_count || 0} Read
                         </div>
                       )}
@@ -549,7 +549,7 @@ export function MarketingCampaignsDashboard({
                             setDeleteWhatsappId(c.id);
                           }
                         }}
-                        className="text-[#8BA3C7] hover:text-red-400 p-1.5 hover:bg-[#1C2C42] rounded-md transition-colors"
+                        className="text-text-secondary hover:text-red-400 p-1.5 hover:bg-[#1C2C42] rounded-md transition-colors"
                         title="Delete log"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -559,7 +559,7 @@ export function MarketingCampaignsDashboard({
                 ))}
                 {filteredCampaigns.length === 0 && (
                   <tr>
-                    <td colSpan={8} className="py-10 text-center text-[#8BA3C7]">
+                    <td colSpan={8} className="py-10 text-center text-text-secondary">
                       No campaigns match the selected filters.
                     </td>
                   </tr>
@@ -573,7 +573,7 @@ export function MarketingCampaignsDashboard({
       {/* 3. TEMPLATE LIBRARY TAB */}
       {activeTab === 'templates' && (
         <div className="space-y-4">
-          <div className="flex justify-between items-center bg-[#0D1829] border border-[#1E3352] rounded-lg p-4">
+          <div className="flex justify-between items-center bg-bg-card border border-border/30 rounded-lg p-4">
             <h3 className="text-base font-bold text-white">Reusable Message Templates</h3>
             <Button
               onClick={() => {
@@ -591,7 +591,7 @@ export function MarketingCampaignsDashboard({
             {templates.map((t) => (
               <div
                 key={t.id}
-                className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-5 flex flex-col justify-between hover:border-blue-500/50 transition-colors"
+                className="bg-bg-card border border-border/30 rounded-lg p-5 flex flex-col justify-between hover:border-blue-500/50 transition-colors"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -604,17 +604,17 @@ export function MarketingCampaignsDashboard({
                   </div>
 
                   {t.type === 'email' && t.subject && (
-                    <p className="text-xs text-[#8BA3C7]">
+                    <p className="text-xs text-text-secondary">
                       <span className="font-semibold text-white">Subject:</span> {t.subject}
                     </p>
                   )}
 
-                  <div className="bg-[#132237]/50 border border-[#1E3352]/40 rounded-md p-3 font-mono text-xs text-[#8BA3C7] max-h-[120px] overflow-y-auto whitespace-pre-wrap">
+                  <div className="bg-[#132237]/50 border border-border/30/40 rounded-md p-3 font-mono text-xs text-text-secondary max-h-[120px] overflow-y-auto whitespace-pre-wrap">
                     {t.body}
                   </div>
                 </div>
 
-                <div className="flex justify-end items-center space-x-2 border-t border-[#1E3352]/50 mt-4 pt-3">
+                <div className="flex justify-end items-center space-x-2 border-t border-border/30/50 mt-4 pt-3">
                   <button
                     onClick={() => {
                       setSelectedTemplate(t);
@@ -637,7 +637,7 @@ export function MarketingCampaignsDashboard({
             ))}
 
             {templates.length === 0 && (
-              <div className="col-span-2 bg-[#0D1829] border border-[#1E3352] rounded-lg py-12 text-center text-[#8BA3C7]">
+              <div className="col-span-2 bg-bg-card border border-border/30 rounded-lg py-12 text-center text-text-secondary">
                 No templates saved yet. Create templates to standardize email and WhatsApp copy.
               </div>
             )}
@@ -647,73 +647,73 @@ export function MarketingCampaignsDashboard({
 
       {/* 4. WEBHOOKS & INTEGRATIONS INFO */}
       {activeTab === 'webhooks' && (
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-lg p-6 space-y-6">
+        <div className="bg-bg-card border border-border/30 rounded-lg p-6 space-y-6">
           <div>
             <h3 className="text-lg font-bold text-white flex items-center">
               <Code className="w-5 h-5 mr-2 text-blue-400" />
               Webhook Integration Guide
             </h3>
-            <p className="text-sm text-[#8BA3C7] mt-1">
+            <p className="text-sm text-text-secondary mt-1">
               Configure external webhook services to update campaign stats automatically.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
             {/* Resend Webhook */}
-            <div className="space-y-4 bg-[#132237]/45 border border-[#1E3352]/70 rounded-lg p-5">
+            <div className="space-y-4 bg-[#132237]/45 border border-border/30/70 rounded-lg p-5">
               <div className="flex items-center space-x-2">
                 <span className="p-1.5 bg-blue-950 text-blue-400 border border-blue-900 rounded-md">
                   <Mail className="w-4 h-4" />
                 </span>
                 <h4 className="text-base font-bold text-white">Resend Event Webhooks</h4>
               </div>
-              <p className="text-xs text-[#8BA3C7]">
+              <p className="text-xs text-text-secondary">
                 Configure Resend webhooks to track delivery, open, bounce, and click states on campaign logs.
               </p>
               
               <div className="space-y-2">
                 <span className="text-xs font-semibold text-white block">Webhook URL (Vercel Production)</span>
-                <div className="bg-[#0D1829] border border-[#1E3352] rounded px-3 py-2 text-xs font-mono text-blue-400 select-all overflow-x-auto flex justify-between items-center">
+                <div className="bg-bg-card border border-border/30 rounded px-3 py-2 text-xs font-mono text-blue-400 select-all overflow-x-auto flex justify-between items-center">
                   <span>https://ops.veloxisglobal.com/api/webhooks/resend</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#8BA3C7]" />
+                  <ExternalLink className="w-3.5 h-3.5 text-text-secondary" />
                 </div>
               </div>
 
-              <div className="space-y-1.5 text-xs text-[#8BA3C7]">
+              <div className="space-y-1.5 text-xs text-text-secondary">
                 <span className="font-semibold text-white block">Supported Webhook Events:</span>
                 <div className="flex flex-wrap gap-1.5">
-                  <span className="bg-[#0D1829] px-2 py-0.5 rounded border border-[#1E3352]/50 text-white">email.sent</span>
-                  <span className="bg-[#0D1829] px-2 py-0.5 rounded border border-[#1E3352]/50 text-white">email.delivered</span>
-                  <span className="bg-[#0D1829] px-2 py-0.5 rounded border border-[#1E3352]/50 text-white">email.opened</span>
-                  <span className="bg-[#0D1829] px-2 py-0.5 rounded border border-[#1E3352]/50 text-white">email.clicked</span>
+                  <span className="bg-bg-card px-2 py-0.5 rounded border border-border/30/50 text-white">email.sent</span>
+                  <span className="bg-bg-card px-2 py-0.5 rounded border border-border/30/50 text-white">email.delivered</span>
+                  <span className="bg-bg-card px-2 py-0.5 rounded border border-border/30/50 text-white">email.opened</span>
+                  <span className="bg-bg-card px-2 py-0.5 rounded border border-border/30/50 text-white">email.clicked</span>
                 </div>
               </div>
             </div>
 
             {/* WhatsApp Webhook */}
-            <div className="space-y-4 bg-[#132237]/45 border border-[#1E3352]/70 rounded-lg p-5">
+            <div className="space-y-4 bg-[#132237]/45 border border-border/30/70 rounded-lg p-5">
               <div className="flex items-center space-x-2">
                 <span className="p-1.5 bg-purple-950 text-purple-400 border border-purple-900 rounded-md">
                   <MessageSquare className="w-4 h-4" />
                 </span>
                 <h4 className="text-base font-bold text-white">WhatsApp (Meta Cloud API) Webhooks</h4>
               </div>
-              <p className="text-xs text-[#8BA3C7]">
+              <p className="text-xs text-text-secondary">
                 Sync campaign status receipts (delivery reports, read counters, customer replies).
               </p>
               
               <div className="space-y-2">
                 <span className="text-xs font-semibold text-white block">Callback Webhook URL</span>
-                <div className="bg-[#0D1829] border border-[#1E3352] rounded px-3 py-2 text-xs font-mono text-purple-400 select-all overflow-x-auto flex justify-between items-center">
+                <div className="bg-bg-card border border-border/30 rounded px-3 py-2 text-xs font-mono text-purple-400 select-all overflow-x-auto flex justify-between items-center">
                   <span>https://ops.veloxisglobal.com/api/webhooks/whatsapp</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#8BA3C7]" />
+                  <ExternalLink className="w-3.5 h-3.5 text-text-secondary" />
                 </div>
               </div>
 
-              <div className="space-y-1.5 text-xs text-[#8BA3C7]">
+              <div className="space-y-1.5 text-xs text-text-secondary">
                 <span className="font-semibold text-white block">Meta Verification Tokens:</span>
                 <p>
-                  Verify Token: <code className="bg-[#0D1829] px-1.5 py-0.5 rounded text-white font-mono text-[11px]">WHATSAPP_WEBHOOK_VERIFY_TOKEN</code> in your environment parameters.
+                  Verify Token: <code className="bg-bg-card px-1.5 py-0.5 rounded text-white font-mono text-[11px]">WHATSAPP_WEBHOOK_VERIFY_TOKEN</code> in your environment parameters.
                 </p>
               </div>
             </div>

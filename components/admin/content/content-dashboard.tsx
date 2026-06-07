@@ -91,60 +91,60 @@ export function ContentDashboard({
       <div className="space-y-6 select-none">
         {/* 1. Mini Stats Panel */}
         <div className="grid grid-cols-4 gap-4">
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3.5 rounded-lg flex items-center justify-between shadow-sm">
+          <div className="bg-bg-card border border-border/30 p-3.5 rounded-lg flex items-center justify-between shadow-sm">
             <div className="space-y-0.5">
-              <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider block">Total Topics</span>
-              <span className="text-xl font-bold font-mono text-[#F0F4FF]">{totalCount}</span>
+              <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider block">Total Topics</span>
+              <span className="text-xl font-bold font-mono text-text-primary">{totalCount}</span>
             </div>
-            <FileText size={20} className="text-[#1B4FD8] opacity-75" />
+            <FileText size={20} className="text-primary opacity-75" />
           </div>
 
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3.5 rounded-lg flex items-center justify-between shadow-sm">
+          <div className="bg-bg-card border border-border/30 p-3.5 rounded-lg flex items-center justify-between shadow-sm">
             <div className="space-y-0.5">
-              <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider block">New Ideas</span>
+              <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider block">New Ideas</span>
               <span className="text-xl font-bold font-mono text-purple-400">{ideaCount}</span>
             </div>
             <AlertCircle size={20} className="text-purple-500 opacity-75" />
           </div>
 
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3.5 rounded-lg flex items-center justify-between shadow-sm">
+          <div className="bg-bg-card border border-border/30 p-3.5 rounded-lg flex items-center justify-between shadow-sm">
             <div className="space-y-0.5">
-              <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider block">In Progress</span>
+              <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider block">In Progress</span>
               <span className="text-xl font-bold font-mono text-amber-400">{inProgressCount}</span>
             </div>
             <Edit size={20} className="text-amber-500 opacity-75" />
           </div>
 
-          <div className="bg-[#0D1829] border border-[#1E3352] p-3.5 rounded-lg flex items-center justify-between shadow-sm">
+          <div className="bg-bg-card border border-border/30 p-3.5 rounded-lg flex items-center justify-between shadow-sm">
             <div className="space-y-0.5">
-              <span className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider block">Published / Live</span>
-              <span className="text-xl font-bold font-mono text-[#22C55E]">{publishedCount}</span>
+              <span className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider block">Published / Live</span>
+              <span className="text-xl font-bold font-mono text-online">{publishedCount}</span>
             </div>
-            <CheckCircle2 size={20} className="text-[#22C55E] opacity-75" />
+            <CheckCircle2 size={20} className="text-online opacity-75" />
           </div>
         </div>
 
         {/* 2. Filters Toolbar */}
-        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0D1829] border border-[#1E3352] p-4 rounded-lg">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-bg-card border border-border/30 p-4 rounded-lg">
           <div className="flex flex-wrap items-center gap-3 flex-1">
             {/* Search Input */}
             <div className="relative min-w-[200px] flex-1 max-w-xs">
-              <Search className="absolute left-3 top-2.5 h-4 w-4 text-[#8BA3C7] pointer-events-none" />
+              <Search className="absolute left-3 top-2.5 h-4 w-4 text-text-secondary pointer-events-none" />
               <Input
                 type="text"
                 placeholder="Search keywords or titles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9 bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="pl-9 bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
 
             {/* Client Filter */}
             <Select value={selectedClient} onValueChange={(val) => setSelectedClient(val || 'all')}>
-              <SelectTrigger className="w-[160px] bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+              <SelectTrigger className="w-[160px] bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                 <SelectValue placeholder="All Clients" />
               </SelectTrigger>
-              <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+              <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                 <SelectItem value="all" className="text-xs">All Clients</SelectItem>
                 {clients.map((c) => (
                   <SelectItem key={c.id} value={c.id} className="text-xs">
@@ -156,10 +156,10 @@ export function ContentDashboard({
 
             {/* Content Type Filter */}
             <Select value={selectedType} onValueChange={(val) => setSelectedType(val || 'all')}>
-              <SelectTrigger className="w-[150px] bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+              <SelectTrigger className="w-[150px] bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                 <SelectValue placeholder="All Types" />
               </SelectTrigger>
-              <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+              <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                 <SelectItem value="all" className="text-xs">All Types</SelectItem>
                 <SelectItem value="blog" className="text-xs">Blog Article</SelectItem>
                 <SelectItem value="landing_page" className="text-xs">Landing Page</SelectItem>
@@ -175,13 +175,13 @@ export function ContentDashboard({
               size="icon"
               onClick={refreshData}
               disabled={loading}
-              className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] h-9 w-9 cursor-pointer"
+              className="border-border/30 hover:bg-bg-card-hover/20 text-text-secondary h-9 w-9 cursor-pointer"
             >
               <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
             </Button>
             <Button
               onClick={() => setAddModalOpen(true)}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white text-xs h-9 cursor-pointer"
             >
               <Plus size={14} className="mr-1" /> Add Content
             </Button>

@@ -164,12 +164,12 @@ export function AddTaskModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[550px] select-none max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-base font-bold text-[#F0F4FF]">
+          <DialogTitle>
             {taskToEdit ? 'Edit Task Deliverable' : 'Add Task Deliverable'}
           </DialogTitle>
-          <DialogDescription className="text-xs text-[#8BA3C7]">
+          <DialogDescription>
             {taskToEdit
               ? `Update details for task in ${taskToEdit.month_year}.`
               : `Create a new monthly deliverable for ${selectedMonth}.`}
@@ -177,143 +177,142 @@ export function AddTaskModal({
         </DialogHeader>
 
         <div className="grid grid-cols-2 gap-4 my-2 text-xs">
-          <div className="col-span-2 space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Client *</label>
+          <div className="col-span-2 space-y-1 flex flex-col">
+            <label className="text-xs font-semibold text-text-secondary select-none">Client *</label>
             <select
               value={form.client_id}
               onChange={(e) => setForm((p) => ({ ...p, client_id: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
               disabled={!!taskToEdit}
             >
               <option value="" disabled>Select client</option>
               {clients.map((client) => (
-                <option key={client.id} value={client.id} className="bg-[#0D1829]">
+                <option key={client.id} value={client.id}>
                   {client.name}
                 </option>
               ))}
             </select>
           </div>
 
-          <div className="col-span-2 space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Task Title *</label>
+          <div className="col-span-2 space-y-1 flex flex-col">
+            <label className="text-xs font-semibold text-text-secondary select-none">Task Title *</label>
             <input
               type="text"
               placeholder="e.g. Conduct SEO Audit reports"
               value={form.title}
               onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] placeholder:text-text-tertiary"
             />
           </div>
 
-          <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Department</label>
+          <div className="space-y-1 flex flex-col">
+            <label className="text-xs font-semibold text-text-secondary select-none">Department</label>
             <select
               value={form.department}
               onChange={(e) => setForm((p) => ({ ...p, department: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
             >
               {DEPARTMENTS.map((d) => (
-                <option key={d.id} value={d.id} className="bg-[#0D1829]">
+                <option key={d.id} value={d.id}>
                   {d.label}
                 </option>
               ))}
             </select>
           </div>
 
-          <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Priority</label>
+          <div className="space-y-1 flex flex-col">
+            <label className="text-xs font-semibold text-text-secondary select-none">Priority</label>
             <select
               value={form.priority}
               onChange={(e) => setForm((p) => ({ ...p, priority: e.target.value as TaskPriority }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
             >
               {PRIORITIES.map((p) => (
-                <option key={p.id} value={p.id} className="bg-[#0D1829]">
+                <option key={p.id} value={p.id}>
                   {p.label}
                 </option>
               ))}
             </select>
           </div>
 
-          <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Status</label>
+          <div className="space-y-1 flex flex-col">
+            <label className="text-xs font-semibold text-text-secondary select-none">Status</label>
             <select
               value={form.status}
               onChange={(e) => setForm((p) => ({ ...p, status: e.target.value as TaskStatus }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
             >
               {STATUSES.map((s) => (
-                <option key={s.id} value={s.id} className="bg-[#0D1829]">
+                <option key={s.id} value={s.id}>
                   {s.label}
                 </option>
               ))}
             </select>
           </div>
 
-          <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Assign To</label>
+          <div className="space-y-1 flex flex-col">
+            <label className="text-xs font-semibold text-text-secondary select-none">Assign To</label>
             <select
               value={form.assigned_to}
               onChange={(e) => setForm((p) => ({ ...p, assigned_to: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
             >
-              <option value="" className="bg-[#0D1829]">Unassigned</option>
+              <option value="">Unassigned</option>
               {profiles.map((p) => (
-                <option key={p.id} value={p.id} className="bg-[#0D1829]">
+                <option key={p.id} value={p.id}>
                   {p.full_name} ({p.role})
                 </option>
               ))}
             </select>
           </div>
 
-          <div className="col-span-2 space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Due Date</label>
+          <div className="col-span-2 space-y-1 flex flex-col">
+            <label className="text-xs font-semibold text-text-secondary select-none">Due Date</label>
             <input
               type="date"
               value={form.due_date}
               onChange={(e) => setForm((p) => ({ ...p, due_date: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
             />
           </div>
 
-          <div className="col-span-2 space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Scope / Requirements</label>
+          <div className="col-span-2 space-y-1 flex flex-col">
+            <label className="text-xs font-semibold text-text-secondary select-none">Scope / Requirements</label>
             <textarea
               placeholder="Write description here..."
               value={form.description}
               onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))}
               rows={2}
-              className="input w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded p-2 resize-none"
+              className="h-20 w-full rounded-lg border border-border/30 bg-bg-card/50 px-3 py-2 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] placeholder:text-text-tertiary resize-none"
             />
           </div>
 
-          <div className="col-span-2 space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Detailed Instructions for Team Member</label>
+          <div className="col-span-2 space-y-1 flex flex-col">
+            <label className="text-xs font-semibold text-text-secondary select-none">Detailed Instructions for Team Member</label>
             <textarea
               placeholder="List SOP parameters, file structures, checklist instructions..."
               value={form.instructions}
               onChange={(e) => setForm((p) => ({ ...p, instructions: e.target.value }))}
               rows={3}
-              className="input w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded p-2 resize-none"
+              className="h-24 w-full rounded-lg border border-border/30 bg-bg-card/50 px-3 py-2 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] placeholder:text-text-tertiary resize-none"
             />
           </div>
         </div>
 
         <DialogFooter className="mt-4 gap-2 sm:gap-0">
           <Button
-            variant="outline"
+            variant="secondary"
             onClick={() => onOpenChange(false)}
-            className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
             disabled={isSubmitting}
           >
             Cancel
           </Button>
           <Button
             onClick={handleSubmit}
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
             disabled={isSubmitting}
+            loading={isSubmitting}
           >
-            {isSubmitting ? 'Saving...' : taskToEdit ? 'Save Changes' : 'Add Deliverable'}
+            {taskToEdit ? 'Save Changes' : 'Add Deliverable'}
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -15,6 +15,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 interface GenerateInvoiceModalProps {
   open: boolean;
@@ -199,12 +200,12 @@ export function GenerateInvoiceModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[700px] select-none max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-base font-bold text-[#F0F4FF]">
+          <DialogTitle className="text-base font-bold">
             {invoiceToEdit ? `Edit Invoice ${form.invoice_number}` : 'Raise Billing Invoice'}
           </DialogTitle>
-          <DialogDescription className="text-xs text-[#8BA3C7]">
+          <DialogDescription className="text-xs">
             {invoiceToEdit
               ? 'Update the invoice details. Subtotal and GST are auto-calculated.'
               : 'Create a professional invoice. Subtotal amounts automatically compute GST.'}
@@ -213,15 +214,15 @@ export function GenerateInvoiceModal({
 
         <div className="grid grid-cols-2 gap-4 my-2 text-xs">
           <div className="col-span-2 space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Client *</label>
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Client *</label>
             <select
               value={form.client_id}
               onChange={(e) => setForm((p) => ({ ...p, client_id: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9 w-full bg-bg-card/50 border border-border/30 text-text-primary rounded px-3 hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none"
               disabled={!!invoiceToEdit}
             >
               {clients.map((client) => (
-                <option key={client.id} value={client.id} className="bg-[#0D1829]">
+                <option key={client.id} value={client.id} className="bg-bg-card text-text-primary">
                   {client.name}
                 </option>
               ))}
@@ -229,117 +230,117 @@ export function GenerateInvoiceModal({
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Invoice Number *</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Invoice Number *</label>
+            <Input
               type="text"
               value={form.invoice_number}
               onChange={(e) => setForm((p) => ({ ...p, invoice_number: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3 font-mono"
+              className="h-9 font-mono"
               disabled={!!invoiceToEdit}
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Month Year *</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Month Year *</label>
+            <Input
               type="text"
               placeholder="e.g. Jun 2026"
               value={form.month_year}
               onChange={(e) => setForm((p) => ({ ...p, month_year: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3 font-mono"
+              className="h-9 font-mono"
               disabled={!!invoiceToEdit}
             />
           </div>
 
           <div className="col-span-2 space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Invoice Description *</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Invoice Description *</label>
+            <Input
               type="text"
               placeholder="e.g. Digital Marketing Services"
               value={form.description}
               onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9"
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Subtotal Amount (₹) *</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Subtotal Amount (₹) *</label>
+            <Input
               type="number"
               placeholder="e.g. 30000"
               value={form.amount}
               onChange={(e) => setForm((p) => ({ ...p, amount: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9"
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">GST Rate (%)</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">GST Rate (%)</label>
+            <Input
               type="number"
               value={form.gst_rate}
               onChange={(e) => setForm((p) => ({ ...p, gst_rate: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9"
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">GST Amount (auto)</label>
-            <div className="h-9 w-full bg-[#132035]/50 border border-[#1E3352]/50 text-[#8BA3C7] rounded px-3 flex items-center font-mono select-none">
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">GST Amount (auto)</label>
+            <div className="h-9 w-full bg-bg-card-hover/20 border border-border/20 text-text-secondary rounded px-3 flex items-center font-mono select-none">
               ₹ {gstAmount.toLocaleString('en-IN')}
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Total Amount (auto)</label>
-            <div className="h-9 w-full bg-[#132035]/50 border border-[#1E3352]/50 text-[#F97316] font-bold rounded px-3 flex items-center font-mono select-none">
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Total Amount (auto)</label>
+            <div className="h-9 w-full bg-bg-card-hover/20 border border-border/20 text-accent font-bold rounded px-3 flex items-center font-mono select-none">
               ₹ {totalAmount.toLocaleString('en-IN')}
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Issued Date</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Issued Date</label>
+            <Input
               type="date"
               value={form.issued_date}
               onChange={(e) => setForm((p) => ({ ...p, issued_date: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3 font-mono"
+              className="h-9 font-mono"
               disabled={!!invoiceToEdit}
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Due Date</label>
-            <input
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Due Date</label>
+            <Input
               type="date"
               value={form.due_date}
               onChange={(e) => setForm((p) => ({ ...p, due_date: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3 font-mono"
+              className="h-9 font-mono"
             />
           </div>
 
           <div className="col-span-2 space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Payment Method</label>
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Payment Method</label>
             <select
               value={form.payment_method}
               onChange={(e) => setForm((p) => ({ ...p, payment_method: e.target.value }))}
-              className="input h-9 w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded px-3"
+              className="h-9 w-full bg-bg-card/50 border border-border/30 text-text-primary rounded px-3 hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none"
             >
-              <option value="Bank Transfer" className="bg-[#0D1829]">Bank Transfer</option>
-              <option value="UPI" className="bg-[#0D1829]">UPI</option>
-              <option value="Cash" className="bg-[#0D1829]">Cash</option>
-              <option value="Other" className="bg-[#0D1829]">Other</option>
+              <option value="Bank Transfer" className="bg-bg-card text-text-primary">Bank Transfer</option>
+              <option value="UPI" className="bg-bg-card text-text-primary">UPI</option>
+              <option value="Cash" className="bg-bg-card text-text-primary">Cash</option>
+              <option value="Other" className="bg-bg-card text-text-primary">Other</option>
             </select>
           </div>
 
           <div className="col-span-2 space-y-1">
-            <label className="text-[11px] font-semibold text-[#8BA3C7] tracking-wider uppercase">Notes</label>
+            <label className="text-[11px] font-semibold text-text-secondary tracking-wider uppercase">Notes</label>
             <textarea
               placeholder="Payment options, banking accounts..."
               value={form.notes}
               onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))}
               rows={2}
-              className="input w-full bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] rounded p-2 resize-none"
+              className="w-full bg-bg-card/50 border border-border/30 text-text-primary rounded p-2 resize-none hover:border-border/60 focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all outline-none"
             />
           </div>
 
@@ -351,9 +352,9 @@ export function GenerateInvoiceModal({
                 id="send_email"
                 checked={form.send_email}
                 onChange={(e) => setForm((p) => ({ ...p, send_email: e.target.checked }))}
-                className="rounded border-[#1E3352] bg-[#060D1A] text-[#1B4FD8] focus:ring-0 cursor-pointer h-4 w-4"
+                className="rounded border-border/30 bg-bg-card/50 text-primary focus:ring-0 cursor-pointer h-4 w-4"
               />
-              <label htmlFor="send_email" className="text-xs text-[#8BA3C7] select-none cursor-pointer">
+              <label htmlFor="send_email" className="text-xs text-text-secondary select-none cursor-pointer">
                 Send invoice link to client via email (Resend)
               </label>
             </div>
@@ -362,16 +363,17 @@ export function GenerateInvoiceModal({
 
         <DialogFooter className="mt-4 gap-2 sm:gap-0">
           <Button
-            variant="outline"
+            variant="secondary"
             onClick={() => onOpenChange(false)}
-            className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+            className="cursor-pointer"
             disabled={isSubmitting}
           >
             Cancel
           </Button>
           <Button
             onClick={handleSubmit}
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+            variant="default"
+            className="cursor-pointer"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Saving...' : invoiceToEdit ? 'Save Changes' : 'Generate Invoice'}

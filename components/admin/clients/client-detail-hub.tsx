@@ -43,6 +43,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { ConfirmDialog } from '@/components/shared/confirm-dialog';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 
 // Tab components
 import { OverviewTab } from '@/components/admin/clients/tabs/overview-tab';
@@ -92,11 +93,11 @@ const TABS: Tab[] = [
 ];
 
 const STATUS_CONFIG: Record<ClientStatus | 'agency_self', { label: string; icon: React.ElementType; color: string }> = {
-  active: { label: 'Active', icon: CheckCircle, color: 'text-[#22C55E]' },
-  lead: { label: 'Lead', icon: Star, color: 'text-[#4D90FE]' },
-  paused: { label: 'Paused', icon: PauseCircle, color: 'text-[#F59E0B]' },
-  churned: { label: 'Churned', icon: XCircle, color: 'text-[#EF4444]' },
-  agency_self: { label: 'My Agency', icon: Star, color: 'text-[#F97316]' },
+  active: { label: 'Active', icon: CheckCircle, color: 'text-online' },
+  lead: { label: 'Lead', icon: Star, color: 'text-primary-light' },
+  paused: { label: 'Paused', icon: PauseCircle, color: 'text-warning' },
+  churned: { label: 'Churned', icon: XCircle, color: 'text-error' },
+  agency_self: { label: 'My Agency', icon: Star, color: 'text-accent' },
 };
 
 const SERVICE_OPTIONS = [
@@ -302,15 +303,15 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
   return (
     <div className="space-y-0">
       {/* ━━━ PAGE HEADER HERO ━━━ */}
-      <div className="bg-[#060D1A] border-b border-[#1E3352] px-6 py-5 select-none">
+      <div className="bg-bg-dark border-b border-border/30 px-6 py-5 select-none">
         {/* Back breadcrumb */}
         <div className="mb-4">
-          <Link
-            href="/dashboard/clients"
-            className="inline-flex items-center gap-1.5 text-[10px] text-[#4A6480] hover:text-[#8BA3C7] transition-colors"
-          >
-            <span>← Clients</span>
-          </Link>
+          <Breadcrumb
+            items={[
+              { label: 'Clients', href: '/dashboard/clients' },
+              { label: client.name }
+            ]}
+          />
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-5">
@@ -325,27 +326,27 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
 
             <div className="space-y-1.5">
               <div className="flex items-center gap-2 flex-wrap">
-                <h1 className="text-[22px] font-bold text-[#F0F4FF] leading-tight">
+                <h1 className="text-[22px] font-bold text-text-primary leading-tight">
                   {client.name}
                 </h1>
                 {client.is_agency_self && (
-                  <span className="text-[9px] font-bold bg-[#F97316]/10 border border-[#F97316]/20 text-[#F97316] rounded-full px-2 py-0.5 uppercase tracking-wide">
+                  <span className="text-[9px] font-bold bg-accent/10 border border-[#F97316]/20 text-accent rounded-full px-2 py-0.5 uppercase tracking-wide">
                     My Agency
                   </span>
                 )}
               </div>
 
               {client.company && (
-                <p className="text-sm text-[#8BA3C7]">{client.company}</p>
+                <p className="text-sm text-text-secondary">{client.company}</p>
               )}
 
-              <div className="flex items-center gap-3 flex-wrap text-[10px] text-[#4A6480]">
+              <div className="flex items-center gap-3 flex-wrap text-[10px] text-text-tertiary">
                 {client.website && (
                   <a
                     href={client.website.startsWith('http') ? client.website : `https://${client.website}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1 hover:text-[#4D90FE] transition-colors"
+                    className="flex items-center gap-1 hover:text-primary-light transition-colors"
                   >
                     <Globe size={11} />
                     <span>{client.website}</span>
@@ -371,16 +372,16 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
           <div className="flex flex-col items-end gap-3">
             <div className="flex items-center gap-3">
               {/* Status chip */}
-              <div className={`flex items-center gap-1.5 text-[10px] font-semibold ${statusConfig.color} bg-[#0D1829] border border-[#1E3352] rounded-full px-3 py-1`}>
+              <div className={`flex items-center gap-1.5 text-[10px] font-semibold ${statusConfig.color} bg-bg-card border border-border/30 rounded-full px-3 py-1`}>
                 <StatusIcon size={11} />
                 <span>{statusConfig.label}</span>
               </div>
 
               {/* Health Score */}
               <div className={`flex items-center gap-1.5 text-[10px] font-semibold ${
-                client.health_score >= 80 ? 'text-[#22C55E]' :
-                client.health_score >= 50 ? 'text-[#F59E0B]' : 'text-[#EF4444]'
-              } bg-[#0D1829] border border-[#1E3352] rounded-full px-3 py-1`}>
+                client.health_score >= 80 ? 'text-online' :
+                client.health_score >= 50 ? 'text-warning' : 'text-error'
+              } bg-bg-card border border-border/30 rounded-full px-3 py-1`}>
                 <HeartPulse size={11} />
                 <span>{client.health_score}% Health</span>
               </div>
@@ -390,7 +391,7 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
               <Button
                 onClick={openEditModal}
                 size="sm"
-                className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer"
+                className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer"
               >
                 <Edit2 size={12} />
                 <span>Edit</span>
@@ -401,29 +402,29 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
                   render={
                     <Button
                       size="sm"
-                      className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 px-2.5 cursor-pointer"
+                      className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 px-2.5 cursor-pointer"
                     >
                       <MoreHorizontal size={14} />
                     </Button>
                   }
                 />
-                <DropdownMenuContent align="end" className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] min-w-[160px]">
+                <DropdownMenuContent align="end" className="bg-bg-card border-border/30 text-text-primary min-w-[160px]">
                   <DropdownMenuItem
                     onClick={handleSendInvite}
                     disabled={inviting}
-                    className="text-xs hover:bg-[#132035] cursor-pointer text-[#8BA3C7] hover:text-[#F0F4FF] gap-2 py-1.5"
+                    className="text-xs hover:bg-bg-card-hover/20 cursor-pointer text-text-secondary hover:text-text-primary gap-2 py-1.5"
                   >
                     <span>Send Portal Invite</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={handleExportClient}
-                    className="text-xs hover:bg-[#132035] cursor-pointer text-[#8BA3C7] hover:text-[#F0F4FF] gap-2 py-1.5"
+                    className="text-xs hover:bg-bg-card-hover/20 cursor-pointer text-text-secondary hover:text-text-primary gap-2 py-1.5"
                   >
                     <span>Export</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => setDeleteDialogOpen(true)}
-                    className="text-xs hover:bg-[#132035] cursor-pointer text-[#EF4444] hover:text-[#EF4444] gap-2 py-1.5"
+                    className="text-xs hover:bg-bg-card-hover/20 cursor-pointer text-error hover:text-error gap-2 py-1.5"
                   >
                     <span>Delete</span>
                   </DropdownMenuItem>
@@ -435,66 +436,66 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
       </div>
 
       {/* ━━━ INFO CARDS ROW ━━━ */}
-      <div className="bg-[#060D1A] border-b border-[#1E3352] px-6 py-4">
+      <div className="bg-bg-dark border-b border-border/30 px-6 py-4">
         <div className="flex flex-row overflow-x-auto gap-4 pb-2 md:pb-0 scrollbar-hide md:grid md:grid-cols-5 flex-nowrap">
           {/* Card 1: Retainer */}
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-[16px_20px] min-w-[180px] flex flex-col justify-center">
-            <span className="text-[10px] text-[#4A6480] uppercase tracking-wider font-semibold">Monthly Retainer</span>
-            <span className="text-xl font-bold font-mono text-[#F97316] mt-1">
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-[16px_20px] min-w-[180px] flex flex-col justify-center">
+            <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Monthly Retainer</span>
+            <span className="text-xl font-bold font-mono text-accent mt-1">
               {formatCurrency(client.monthly_retainer)}
             </span>
           </div>
 
           {/* Card 2: Industry */}
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-[16px_20px] min-w-[180px] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#4D90FE]/10 text-[#4D90FE]">
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-[16px_20px] min-w-[180px] flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-[#4D90FE]/10 text-primary-light">
               <Briefcase size={16} />
             </div>
             <div>
-              <span className="text-[10px] text-[#4A6480] uppercase tracking-wider block">Industry</span>
-              <span className="text-xs font-semibold text-[#F0F4FF] truncate block max-w-[120px]">{client.industry || 'Not Specified'}</span>
+              <span className="text-[10px] text-text-tertiary uppercase tracking-wider block">Industry</span>
+              <span className="text-xs font-semibold text-text-primary truncate block max-w-[120px]">{client.industry || 'Not Specified'}</span>
             </div>
           </div>
 
           {/* Card 3: City */}
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-[16px_20px] min-w-[180px] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#EF4444]/10 text-[#EF4444]">
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-[16px_20px] min-w-[180px] flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-error/10 text-error">
               <MapPin size={16} />
             </div>
             <div>
-              <span className="text-[10px] text-[#4A6480] uppercase tracking-wider block">Location</span>
-              <span className="text-xs font-semibold text-[#F0F4FF] block">{client.city || 'Not Specified'}</span>
+              <span className="text-[10px] text-text-tertiary uppercase tracking-wider block">Location</span>
+              <span className="text-xs font-semibold text-text-primary block">{client.city || 'Not Specified'}</span>
             </div>
           </div>
 
           {/* Card 4: Start Date */}
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-[16px_20px] min-w-[180px] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#22C55E]/10 text-[#22C55E]">
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-[16px_20px] min-w-[180px] flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-online/10 text-online">
               <Calendar size={16} />
             </div>
             <div>
-              <span className="text-[10px] text-[#4A6480] uppercase tracking-wider block">Start Date</span>
-              <span className="text-xs font-semibold text-[#F0F4FF] font-mono block">
+              <span className="text-[10px] text-text-tertiary uppercase tracking-wider block">Start Date</span>
+              <span className="text-xs font-semibold text-text-primary font-mono block">
                 {client.start_date ? formatDate(client.start_date) : 'Not Started'}
               </span>
             </div>
           </div>
 
           {/* Card 5: Services */}
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-[16px_20px] min-w-[200px] flex flex-col justify-center gap-1.5">
-            <span className="text-[10px] text-[#4A6480] uppercase tracking-wider font-semibold">Subscribed Services</span>
+          <div className="bg-bg-card border border-border/30 rounded-[10px] p-[16px_20px] min-w-[200px] flex flex-col justify-center gap-1.5">
+            <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Subscribed Services</span>
             <div className="flex flex-wrap gap-1">
               {client.services && client.services.length > 0 ? (
                 client.services.map((svc) => (
                   <span
                     key={svc}
-                    className="text-[9px] bg-[#1B4FD8]/10 text-[#4D90FE] border border-[#1B4FD8]/20 rounded px-1.5 py-0.5 uppercase font-semibold"
+                    className="text-[9px] bg-primary/10 text-primary-light border border-primary/20 rounded px-1.5 py-0.5 uppercase font-semibold"
                   >
                     {svc}
                   </span>
                 ))
               ) : (
-                <span className="text-[9px] text-[#4A6480] italic">None</span>
+                <span className="text-[9px] text-text-tertiary italic">None</span>
               )}
             </div>
           </div>
@@ -502,7 +503,7 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
       </div>
 
       {/* ━━━ TAB NAVIGATION ━━━ */}
-      <div className="bg-[#060D1A] border-b border-[#1E3352] px-6 select-none sticky top-0 z-20">
+      <div className="bg-bg-dark border-b border-border/30 px-6 select-none sticky top-0 z-20">
         <nav className="flex gap-0 -mb-px overflow-x-auto scrollbar-hide">
           {visibleTabs.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -514,8 +515,8 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
                 className={`
                   flex items-center gap-1.5 px-4 py-3.5 text-[11px] font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-all
                   ${isActive
-                    ? 'border-[#1B4FD8] text-[#1B4FD8]'
-                    : 'border-transparent text-[#4A6480] hover:text-[#8BA3C7] hover:border-[#2A4060]'}
+                    ? 'border-primary text-[#1B4FD8]'
+                    : 'border-transparent text-text-tertiary hover:text-text-secondary hover:border-[#2A4060]'}
                 `}
               >
                 <TabIcon size={12} />
@@ -544,10 +545,10 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
 
       {/* ━━━ MODAL: EDIT CLIENT ━━━ */}
       <Dialog open={editModalOpen} onOpenChange={(open) => { setEditModalOpen(open); }}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-lg select-none max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Edit Client Profile</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Edit Client Profile</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Update business information, health score, retainer and subscribed services.
             </DialogDescription>
           </DialogHeader>
@@ -704,11 +705,11 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
             {/* Services */}
             <div className="col-span-2 space-y-1">
               <label className="label">Subscribed Services</label>
-              <div className="grid grid-cols-2 gap-2 border border-[#1E3352] rounded-[7px] bg-[#060D1A] p-2.5 max-h-[140px] overflow-y-auto">
+              <div className="grid grid-cols-2 gap-2 border border-border/30 rounded-[7px] bg-bg-dark p-2.5 max-h-[140px] overflow-y-auto">
                 {SERVICE_OPTIONS.map((opt) => (
                   <label
                     key={opt.id}
-                    className="flex items-center gap-2 cursor-pointer text-[11px] text-[#8BA3C7] hover:text-[#F0F4FF] select-none"
+                    className="flex items-center gap-2 cursor-pointer text-[11px] text-text-secondary hover:text-text-primary select-none"
                   >
                     <input
                       type="checkbox"
@@ -722,7 +723,7 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
                             : p.services.filter((s) => s !== opt.id),
                         }));
                       }}
-                      className="rounded border-[#1E3352] bg-[#060D1A] text-[#1B4FD8] focus:ring-0 shrink-0"
+                      className="rounded border-border/30 bg-bg-dark text-[#1B4FD8] focus:ring-0 shrink-0"
                     />
                     <span>{opt.label}</span>
                   </label>
@@ -747,14 +748,14 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
             <Button
               variant="outline"
               onClick={() => setEditModalOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleSaveEdit}
               disabled={saving}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white cursor-pointer"
             >
               {saving ? 'Saving...' : 'Save Changes'}
             </Button>

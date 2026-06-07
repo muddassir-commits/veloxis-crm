@@ -167,24 +167,24 @@ export function TemplateModal({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="sm:max-w-[550px] bg-[#0D1829] text-white border border-[#1E3352]">
+      <DialogContent className="sm:max-w-[550px] select-none">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-white">
+          <DialogTitle className="text-lg font-bold text-text-primary">
             {template ? 'Edit Template' : 'Create Template'}
           </DialogTitle>
-          <DialogDescription className="text-sm text-[#8BA3C7]">
+          <DialogDescription className="text-xs text-text-secondary">
             Define reusable templates for email or WhatsApp campaigns.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4 py-2">
+        <form onSubmit={handleSubmit} className="space-y-4 py-2 text-xs">
           {/* Template Name */}
-          <div className="space-y-1">
-            <label className="text-xs font-semibold text-[#8BA3C7]">Template Name</label>
+          <div className="space-y-1.5">
+            <label className="text-xs font-semibold text-text-secondary">Template Name</label>
             <input
               type="text"
               placeholder="e.g. June Newsletter, Client Onboarding Sequence"
-              className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+              className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
               value={form.name}
               onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
               disabled={loading}
@@ -193,27 +193,27 @@ export function TemplateModal({
           </div>
 
           {/* Template Type */}
-          <div className="space-y-1">
-            <label className="text-xs font-semibold text-[#8BA3C7]">Template Type</label>
+          <div className="space-y-1.5">
+            <label className="text-xs font-semibold text-text-secondary">Template Type</label>
             <select
-              className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
               value={form.type}
               onChange={(e) => setForm((prev) => ({ ...prev, type: e.target.value as 'email' | 'whatsapp' }))}
               disabled={loading}
             >
-              <option value="email">Email Template</option>
-              <option value="whatsapp">WhatsApp Template</option>
+              <option value="email" className="bg-bg-card">Email Template</option>
+              <option value="whatsapp" className="bg-bg-card">WhatsApp Template</option>
             </select>
           </div>
 
           {/* Email Subject */}
           {form.type === 'email' && (
-            <div className="space-y-1 animate-fadeIn">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Subject Line</label>
+            <div className="space-y-1.5 animate-fadeIn">
+              <label className="text-xs font-semibold text-text-secondary">Subject Line</label>
               <input
                 type="text"
                 placeholder="e.g. Discover your new dashboard!"
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
                 value={form.subject}
                 onChange={(e) => setForm((prev) => ({ ...prev, subject: e.target.value }))}
                 disabled={loading}
@@ -222,8 +222,8 @@ export function TemplateModal({
           )}
 
           {/* Template Body */}
-          <div className="space-y-1">
-            <label className="text-xs font-semibold text-[#8BA3C7]">Template Body</label>
+          <div className="space-y-1.5">
+            <label className="text-xs font-semibold text-text-secondary">Template Body</label>
             <textarea
               placeholder={
                 form.type === 'email'
@@ -231,7 +231,7 @@ export function TemplateModal({
                   : 'Write your WhatsApp message template here. Use {{1}}, {{2}} for dynamic parameters...'
               }
               rows={6}
-              className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D] font-mono text-xs"
+              className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary font-mono text-xs"
               value={form.body}
               onChange={(e) => setForm((prev) => ({ ...prev, body: e.target.value }))}
               disabled={loading}
@@ -239,20 +239,20 @@ export function TemplateModal({
             />
           </div>
 
-          <DialogFooter className="pt-4 border-t border-[#1E3352]">
+          <DialogFooter className="pt-4 border-t border-border/30">
             <Button
               type="button"
               variant="outline"
               onClick={onClose}
               disabled={loading}
-              className="border-[#1E3352] text-[#8BA3C7] hover:bg-[#132237] hover:text-white"
+              className="border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={loading}
-              className="bg-blue-600 hover:bg-blue-500 text-white"
+              className="bg-primary hover:bg-primary-light text-white font-semibold"
             >
               {loading ? 'Saving...' : 'Save Template'}
             </Button>

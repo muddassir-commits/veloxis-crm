@@ -215,13 +215,13 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
       case 'lead_new':
       case 'lead_created':
         return (
-          <div className="h-8 w-8 rounded-full bg-[#F97316]/15 text-[#F97316] flex items-center justify-center border border-[#F97316]/30">
+          <div className="h-8 w-8 rounded-full bg-accent/15 text-accent flex items-center justify-center border border-[#F97316]/30">
             <User className="h-4 w-4" />
           </div>
         );
       case 'task_submitted':
         return (
-          <div className="h-8 w-8 rounded-full bg-[#F59E0B]/15 text-[#F59E0B] flex items-center justify-center border border-[#F59E0B]/30">
+          <div className="h-8 w-8 rounded-full bg-warning/15 text-warning flex items-center justify-center border border-warning/30">
             <Clock className="h-4 w-4" />
           </div>
         );
@@ -234,7 +234,7 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
         );
       default:
         return (
-          <div className="h-8 w-8 rounded-full bg-[#8BA3C7]/15 text-[#8BA3C7] flex items-center justify-center border border-[#8BA3C7]/30">
+          <div className="h-8 w-8 rounded-full bg-[#8BA3C7]/15 text-text-secondary flex items-center justify-center border border-[#8BA3C7]/30">
             <Activity className="h-4 w-4" />
           </div>
         );
@@ -260,15 +260,15 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
       {/* Action Header Banner */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 select-none">
         <div className="flex items-center gap-2">
-          <History className="h-5 w-5 text-[#4D90FE] stroke-[1.5] animate-pulse" />
-          <h3 className="text-sm font-semibold text-[#F0F4FF]">System Audit Trails</h3>
+          <History className="h-5 w-5 text-primary-light stroke-[1.5] animate-pulse" />
+          <h3 className="text-sm font-semibold text-text-primary">System Audit Trails</h3>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <Button
             variant="outline"
             size="sm"
             onClick={() => fetchFilteredLogs(true)}
-            className="h-8 border-[#1E3352] bg-[#0D1829] hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs gap-1.5 cursor-pointer"
+            className="h-8 border-border/30 bg-bg-card hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary text-xs gap-1.5 cursor-pointer"
             disabled={isRefreshing}
           >
             <RefreshCw className={`h-3 w-3 ${isRefreshing ? 'animate-spin' : ''}`} />
@@ -279,7 +279,7 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
             size="sm"
             onClick={handleMarkAllRead}
             disabled={isLoading || logs.every(l => l.is_read)}
-            className="h-8 border-[#1B4FD8]/40 hover:border-[#1B4FD8] bg-[#1B4FD8]/10 hover:bg-[#1B4FD8]/20 text-[#4D90FE] text-xs gap-1.5 cursor-pointer font-semibold transition-all duration-150"
+            className="h-8 border-primary/40 hover:border-primary bg-primary/10 hover:bg-primary/20 text-primary-light text-xs gap-1.5 cursor-pointer font-semibold transition-all duration-150"
           >
             <CheckCircle2 className="h-3.5 w-3.5" />
             Mark all read
@@ -288,28 +288,28 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
       </div>
 
       {/* Modern Filter panel */}
-      <Card className="p-4 bg-[#0D1829] border-[#1E3352] grid grid-cols-1 md:grid-cols-4 gap-4 shadow-xl">
+      <Card className="p-4 bg-bg-card border-border/30 grid grid-cols-1 md:grid-cols-4 gap-4 shadow-xl">
         {/* Search */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#8BA3C7]/60" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary/60" />
           <Input
             type="text"
             placeholder="Search activity..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="h-9 pl-9 bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] placeholder-[#8BA3C7]/40 text-xs rounded-md focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]/30 transition-all"
+            className="h-9 pl-9 bg-bg-dark border-border/30 text-text-primary placeholder-[#8BA3C7]/40 text-xs rounded-md focus:border-primary focus:ring-1 focus:ring-[#1B4FD8]/30 transition-all"
           />
         </div>
 
         {/* Client dropdown */}
         <Select value={selectedClient} onValueChange={(val) => setSelectedClient(val || 'all')}>
-          <SelectTrigger className="h-9 bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs focus:ring-[#1B4FD8]/30">
+          <SelectTrigger className="h-9 bg-bg-dark border-border/30 text-text-primary text-xs focus:ring-[#1B4FD8]/30">
             <SelectValue placeholder="All Clients" />
           </SelectTrigger>
-          <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
-            <SelectItem value="all" className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer">All Clients</SelectItem>
+          <SelectContent className="bg-bg-card border-border/30 text-text-primary">
+            <SelectItem value="all" className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer">All Clients</SelectItem>
             {clients.map((c) => (
-              <SelectItem key={c.id} value={c.id} className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer">
+              <SelectItem key={c.id} value={c.id} className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer">
                 {c.name}
               </SelectItem>
             ))}
@@ -318,18 +318,18 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
 
         {/* Action Type Dropdown */}
         <Select value={selectedAction} onValueChange={(val) => setSelectedAction(val || 'all')}>
-          <SelectTrigger className="h-9 bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs focus:ring-[#1B4FD8]/30">
+          <SelectTrigger className="h-9 bg-bg-dark border-border/30 text-text-primary text-xs focus:ring-[#1B4FD8]/30">
             <SelectValue placeholder="All Action Types" />
           </SelectTrigger>
-          <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
-            <SelectItem value="all" className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer">All Actions</SelectItem>
-            <SelectItem value="client_created" className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer">Client Created</SelectItem>
-            <SelectItem value="lead_new" className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer">New Lead Added</SelectItem>
-            <SelectItem value="invoice_created" className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer">Invoice Created</SelectItem>
-            <SelectItem value="invoice_paid" className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer">Invoice Paid</SelectItem>
-            <SelectItem value="task_submitted" className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer">Task Submitted</SelectItem>
-            <SelectItem value="task_completed" className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer">Task Completed</SelectItem>
-            <SelectItem value="activity_created" className="text-xs focus:bg-[#132035] focus:text-[#F0F4FF] cursor-pointer">General Activity</SelectItem>
+          <SelectContent className="bg-bg-card border-border/30 text-text-primary">
+            <SelectItem value="all" className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer">All Actions</SelectItem>
+            <SelectItem value="client_created" className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer">Client Created</SelectItem>
+            <SelectItem value="lead_new" className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer">New Lead Added</SelectItem>
+            <SelectItem value="invoice_created" className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer">Invoice Created</SelectItem>
+            <SelectItem value="invoice_paid" className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer">Invoice Paid</SelectItem>
+            <SelectItem value="task_submitted" className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer">Task Submitted</SelectItem>
+            <SelectItem value="task_completed" className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer">Task Completed</SelectItem>
+            <SelectItem value="activity_created" className="text-xs focus:bg-bg-card-hover/20 focus:text-text-primary cursor-pointer">General Activity</SelectItem>
           </SelectContent>
         </Select>
 
@@ -338,13 +338,13 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
           <Button
             variant="ghost"
             onClick={handleResetFilters}
-            className="h-9 text-[#F97316] hover:text-[#EA580C] hover:bg-[#EA580C]/10 text-xs gap-1.5 transition-all select-none cursor-pointer"
+            className="h-9 text-accent hover:text-[#EA580C] hover:bg-[#EA580C]/10 text-xs gap-1.5 transition-all select-none cursor-pointer"
           >
             <FilterX className="h-3.5 w-3.5" />
             Clear Filters
           </Button>
         ) : (
-          <div className="flex items-center gap-1.5 px-3 text-[#8BA3C7]/40 text-xs font-semibold select-none">
+          <div className="flex items-center gap-1.5 px-3 text-text-secondary/40 text-xs font-semibold select-none">
             <SlidersHorizontal className="h-3.5 w-3.5" />
             Filters Pinned
           </div>
@@ -354,25 +354,25 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
       {/* Main List */}
       <div className="space-y-3">
         {logs.length === 0 ? (
-          <Card className="py-12 bg-[#0D1829] border-[#1E3352]/60 text-center flex flex-col items-center justify-center gap-3">
-            <History className="h-10 w-10 text-[#4A6480] stroke-[1]" />
-            <h4 className="text-sm font-semibold text-[#F0F4FF]">No Activities Recorded</h4>
-            <p className="text-xs text-[#8BA3C7] max-w-xs leading-relaxed">
+          <Card className="py-12 bg-bg-card border-border/30/60 text-center flex flex-col items-center justify-center gap-3">
+            <History className="h-10 w-10 text-text-tertiary stroke-[1]" />
+            <h4 className="text-sm font-semibold text-text-primary">No Activities Recorded</h4>
+            <p className="text-xs text-text-secondary max-w-xs leading-relaxed">
               There are no activities matching your current filters or system has not registered any logs yet.
             </p>
           </Card>
         ) : (
-          <div className="divide-y divide-[#1E3352]/30 rounded-lg border border-[#1E3352] bg-[#0D1829] overflow-hidden shadow-xl">
+          <div className="divide-y divide-[#1E3352]/30 rounded-lg border border-border/30 bg-bg-card overflow-hidden shadow-xl">
             {logs.map((log) => (
               <div 
                 key={log.id} 
-                className={`p-4 flex items-start gap-4 transition-all duration-150 hover:bg-[#132035]/30 relative ${
-                  !log.is_read ? 'bg-[#1B4FD8]/5' : ''
+                className={`p-4 flex items-start gap-4 transition-all duration-150 hover:bg-bg-card-hover/20/30 relative ${
+                  !log.is_read ? 'bg-primary/5' : ''
                 }`}
               >
                 {/* Left Blue accent for unread items */}
                 {!log.is_read && (
-                  <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#1B4FD8]" />
+                  <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary" />
                 )}
 
                 {/* Colored action icon */}
@@ -381,17 +381,17 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
                 {/* Action details */}
                 <div className="flex-1 min-w-0 space-y-1">
                   <div className="flex items-start sm:items-center justify-between gap-3 flex-col sm:flex-row">
-                    <h4 className="text-xs font-semibold text-[#F0F4FF] leading-snug truncate">
+                    <h4 className="text-xs font-semibold text-text-primary leading-snug truncate">
                       {log.title}
                     </h4>
-                    <span className="text-[10px] text-[#8BA3C7]/60 flex items-center gap-1 shrink-0 font-medium select-none">
+                    <span className="text-[10px] text-text-secondary/60 flex items-center gap-1 shrink-0 font-medium select-none">
                       <Clock className="h-3 w-3" />
                       {timeAgo(log.created_at)}
                     </span>
                   </div>
                   
                   {log.description && (
-                    <p className="text-xs text-[#8BA3C7] leading-relaxed pr-2 whitespace-pre-wrap">
+                    <p className="text-xs text-text-secondary leading-relaxed pr-2 whitespace-pre-wrap">
                       {log.description}
                     </p>
                   )}
@@ -399,13 +399,13 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
                   {/* Badges and metadata */}
                   <div className="flex items-center gap-3 pt-1 select-none flex-wrap">
                     {/* Action Type Badge */}
-                    <Badge variant="outline" className="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 bg-[#060D1A] border-[#1E3352] text-[#8BA3C7]">
+                    <Badge variant="outline" className="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 bg-bg-dark border-border/30 text-text-secondary">
                       {log.action.replace('_', ' ')}
                     </Badge>
 
                     {/* Linked Client Badge */}
                     {log.clients && (
-                      <Badge variant="outline" className="text-[9px] font-semibold px-1.5 py-0.5 bg-[#1B4FD8]/10 border-[#1B4FD8]/30 text-[#4D90FE] flex items-center gap-0.5">
+                      <Badge variant="outline" className="text-[9px] font-semibold px-1.5 py-0.5 bg-primary/10 border-primary/30 text-primary-light flex items-center gap-0.5">
                         <Briefcase className="h-2.5 w-2.5" />
                         {log.clients.name}
                       </Badge>
@@ -413,9 +413,9 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
 
                     {/* Read/Unread Badge */}
                     {!log.is_read ? (
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#1B4FD8]" title="Unread" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" title="Unread" />
                     ) : (
-                      <span className="text-[9px] text-[#4A6480]">read</span>
+                      <span className="text-[9px] text-text-tertiary">read</span>
                     )}
                   </div>
                 </div>
@@ -431,7 +431,7 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
               variant="outline"
               onClick={handleLoadMore}
               disabled={isRefreshing}
-              className="border-[#1E3352] bg-[#0D1829] hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs font-semibold h-9 px-6 cursor-pointer select-none gap-2 shrink-0 transition-all duration-150"
+              className="border-border/30 bg-bg-card hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary text-xs font-semibold h-9 px-6 cursor-pointer select-none gap-2 shrink-0 transition-all duration-150"
             >
               {isRefreshing && <RefreshCw className="h-3 w-3 animate-spin" />}
               Load More Activities

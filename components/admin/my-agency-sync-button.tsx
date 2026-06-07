@@ -71,10 +71,10 @@ export function MyAgencySyncButton({ clientId }: { clientId: string }) {
       size="sm"
       disabled={syncing}
       onClick={handleSyncAll}
-      className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer disabled:opacity-50"
+      className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer disabled:opacity-50"
     >
       {syncing ? (
-        <Loader2 size={13} className="animate-spin text-[#8BA3C7]" />
+        <Loader2 size={13} className="animate-spin text-text-secondary" />
       ) : (
         <RefreshCw size={13} className="stroke-[1.5]" />
       )}

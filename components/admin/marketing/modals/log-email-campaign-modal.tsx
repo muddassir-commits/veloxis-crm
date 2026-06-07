@@ -133,28 +133,28 @@ export function LogEmailCampaignModal({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="sm:max-w-[600px] bg-[#0D1829] text-white border border-[#1E3352] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-white">Log Email Campaign</DialogTitle>
-          <DialogDescription className="text-sm text-[#8BA3C7]">
+          <DialogTitle className="text-lg font-bold text-text-primary">Log Email Campaign</DialogTitle>
+          <DialogDescription className="text-xs text-text-secondary">
             Record details and performance metrics for email campaigns.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4 py-2">
+        <form onSubmit={handleSubmit} className="space-y-4 py-2 text-xs">
           <div className="grid grid-cols-2 gap-4">
             {/* Target Client */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Owner/Client</label>
+              <label className="text-xs font-semibold text-text-secondary">Owner/Client</label>
               <select
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                 value={form.clientId}
                 onChange={(e) => setForm((prev) => ({ ...prev, clientId: e.target.value }))}
                 disabled={loading}
               >
-                <option value="agency">Veloxis Global (Own Agency)</option>
+                <option value="agency" className="bg-bg-card">Veloxis Global (Own Agency)</option>
                 {clients.filter(c => !c.is_agency_self).map((c) => (
-                  <option key={c.id} value={c.id}>
+                  <option key={c.id} value={c.id} className="bg-bg-card">
                     {c.name} ({c.company})
                   </option>
                 ))}
@@ -163,11 +163,11 @@ export function LogEmailCampaignModal({
 
             {/* Month/Year */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Month & Year</label>
+              <label className="text-xs font-semibold text-text-secondary">Month & Year</label>
               <input
                 type="text"
                 placeholder="e.g. Jun 2026"
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
                 value={form.monthYear}
                 onChange={(e) => setForm((prev) => ({ ...prev, monthYear: e.target.value }))}
                 disabled={loading}
@@ -177,11 +177,11 @@ export function LogEmailCampaignModal({
 
             {/* Campaign Name */}
             <div className="col-span-2 space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Campaign Name</label>
+              <label className="text-xs font-semibold text-text-secondary">Campaign Name</label>
               <input
                 type="text"
                 placeholder="e.g. Summer Retainer Update, Monthly Newsletter"
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
                 value={form.name}
                 onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
                 disabled={loading}
@@ -191,11 +191,11 @@ export function LogEmailCampaignModal({
 
             {/* Subject */}
             <div className="col-span-2 space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Subject Line</label>
+              <label className="text-xs font-semibold text-text-secondary">Subject Line</label>
               <input
                 type="text"
                 placeholder="e.g. Important updates for your agency service"
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
                 value={form.subject}
                 onChange={(e) => setForm((prev) => ({ ...prev, subject: e.target.value }))}
                 disabled={loading}
@@ -204,41 +204,41 @@ export function LogEmailCampaignModal({
 
             {/* Campaign Type */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Campaign Type</label>
+              <label className="text-xs font-semibold text-text-secondary">Campaign Type</label>
               <select
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                 value={form.campaignType}
                 onChange={(e) => setForm((prev) => ({ ...prev, campaignType: e.target.value as 'newsletter' | 'drip' | 'announcement' | 'promo' }))}
                 disabled={loading}
               >
-                <option value="newsletter">Newsletter</option>
-                <option value="drip">Drip Campaign</option>
-                <option value="announcement">Announcement</option>
-                <option value="promo">Promo Offer</option>
+                <option value="newsletter" className="bg-bg-card">Newsletter</option>
+                <option value="drip" className="bg-bg-card">Drip Campaign</option>
+                <option value="announcement" className="bg-bg-card">Announcement</option>
+                <option value="promo" className="bg-bg-card">Promo Offer</option>
               </select>
             </div>
 
             {/* Status */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Status</label>
+              <label className="text-xs font-semibold text-text-secondary">Status</label>
               <select
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                 value={form.status}
                 onChange={(e) => setForm((prev) => ({ ...prev, status: e.target.value as 'draft' | 'scheduled' | 'sent' }))}
                 disabled={loading}
               >
-                <option value="sent">Sent</option>
-                <option value="scheduled">Scheduled</option>
-                <option value="draft">Draft</option>
+                <option value="sent" className="bg-bg-card">Sent</option>
+                <option value="scheduled" className="bg-bg-card">Scheduled</option>
+                <option value="draft" className="bg-bg-card">Draft</option>
               </select>
             </div>
 
             {/* Provider */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Provider</label>
+              <label className="text-xs font-semibold text-text-secondary">Provider</label>
               <input
                 type="text"
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
                 value={form.provider}
                 onChange={(e) => setForm((prev) => ({ ...prev, provider: e.target.value }))}
                 disabled={loading}
@@ -247,11 +247,11 @@ export function LogEmailCampaignModal({
 
             {/* Resend Email ID */}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-[#8BA3C7]">Resend Email ID (Optional)</label>
+              <label className="text-xs font-semibold text-text-secondary">Resend Email ID (Optional)</label>
               <input
                 type="text"
                 placeholder="e.g. email_xxx_yyy"
-                className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D] font-mono text-xs"
+                className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary font-mono text-xs"
                 value={form.resendEmailId}
                 onChange={(e) => setForm((prev) => ({ ...prev, resendEmailId: e.target.value }))}
                 disabled={loading}
@@ -259,15 +259,15 @@ export function LogEmailCampaignModal({
             </div>
           </div>
 
-          <div className="border-t border-[#1E3352] my-4 pt-4">
-            <h4 className="text-sm font-semibold text-[#8BA3C7] mb-3">Metrics (Recipient Counts)</h4>
+          <div className="border-t border-border/30 my-4 pt-4">
+            <h4 className="text-sm font-semibold text-text-secondary mb-3">Metrics (Recipient Counts)</h4>
             <div className="grid grid-cols-3 gap-4">
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-[#8BA3C7]">Emails Sent</label>
+                <label className="text-xs font-semibold text-text-secondary">Emails Sent</label>
                 <input
                   type="number"
                   min="0"
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                   value={form.emailsSent}
                   onChange={(e) => setForm((prev) => ({ ...prev, emailsSent: Math.max(0, parseInt(e.target.value) || 0) }))}
                   disabled={loading}
@@ -275,11 +275,11 @@ export function LogEmailCampaignModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-[#8BA3C7]">Delivered</label>
+                <label className="text-xs font-semibold text-text-secondary">Delivered</label>
                 <input
                   type="number"
                   min="0"
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                   value={form.delivered}
                   onChange={(e) => setForm((prev) => ({ ...prev, delivered: Math.max(0, parseInt(e.target.value) || 0) }))}
                   disabled={loading}
@@ -287,11 +287,11 @@ export function LogEmailCampaignModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-[#8BA3C7]">Opened</label>
+                <label className="text-xs font-semibold text-text-secondary">Opened</label>
                 <input
                   type="number"
                   min="0"
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                   value={form.opened}
                   onChange={(e) => setForm((prev) => ({ ...prev, opened: Math.max(0, parseInt(e.target.value) || 0) }))}
                   disabled={loading}
@@ -299,11 +299,11 @@ export function LogEmailCampaignModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-[#8BA3C7]">Clicked</label>
+                <label className="text-xs font-semibold text-text-secondary">Clicked</label>
                 <input
                   type="number"
                   min="0"
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                   value={form.clicked}
                   onChange={(e) => setForm((prev) => ({ ...prev, clicked: Math.max(0, parseInt(e.target.value) || 0) }))}
                   disabled={loading}
@@ -311,11 +311,11 @@ export function LogEmailCampaignModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-[#8BA3C7]">Unsubscribed</label>
+                <label className="text-xs font-semibold text-text-secondary">Unsubscribed</label>
                 <input
                   type="number"
                   min="0"
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                   value={form.unsubscribed}
                   onChange={(e) => setForm((prev) => ({ ...prev, unsubscribed: Math.max(0, parseInt(e.target.value) || 0) }))}
                   disabled={loading}
@@ -323,11 +323,11 @@ export function LogEmailCampaignModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-[#8BA3C7]">Bounced</label>
+                <label className="text-xs font-semibold text-text-secondary">Bounced</label>
                 <input
                   type="number"
                   min="0"
-                  className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200"
                   value={form.bounced}
                   onChange={(e) => setForm((prev) => ({ ...prev, bounced: Math.max(0, parseInt(e.target.value) || 0) }))}
                   disabled={loading}
@@ -338,31 +338,31 @@ export function LogEmailCampaignModal({
 
           {/* Notes */}
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-[#8BA3C7]">Campaign Notes</label>
+            <label className="text-xs font-semibold text-text-secondary">Campaign Notes</label>
             <textarea
               placeholder="Record any target segments, links used, or remarks..."
               rows={3}
-              className="w-full bg-[#132237] border border-[#1E3352] rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+              className="w-full bg-bg-dark border border-border/30 rounded-md px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-primary/50 focus:bg-bg-card/70 transition-all duration-200 placeholder:text-text-tertiary"
               value={form.notes}
               onChange={(e) => setForm((prev) => ({ ...prev, notes: e.target.value }))}
               disabled={loading}
             />
           </div>
 
-          <DialogFooter className="pt-4 border-t border-[#1E3352]">
+          <DialogFooter className="pt-4 border-t border-border/30">
             <Button
               type="button"
               variant="outline"
               onClick={onClose}
               disabled={loading}
-              className="border-[#1E3352] text-[#8BA3C7] hover:bg-[#132237] hover:text-white"
+              className="border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={loading}
-              className="bg-blue-600 hover:bg-blue-500 text-white"
+              className="bg-primary hover:bg-primary-light text-white font-semibold"
             >
               {loading ? 'Logging...' : 'Log Campaign'}
             </Button>

@@ -110,10 +110,10 @@ export function LogCommunicationModal({
 
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) onClose(); }}>
-      <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+      <DialogContent className="bg-bg-card border border-border/30 text-text-primary max-w-md select-none">
         <DialogHeader>
-          <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Log Client Communication</DialogTitle>
-          <DialogDescription className="text-xs text-[#8BA3C7]">
+          <DialogTitle className="text-base font-semibold text-text-primary">Log Client Communication</DialogTitle>
+          <DialogDescription className="text-xs text-text-secondary">
             Record details of a call, email, WhatsApp chat, or meeting note with this client.
           </DialogDescription>
         </DialogHeader>
@@ -185,14 +185,14 @@ export function LogCommunicationModal({
               type="button"
               variant="outline"
               onClick={onClose}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={loading}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              className="bg-primary hover:bg-primary-light text-white cursor-pointer"
             >
               {loading ? 'Logging...' : 'Log Communication'}
             </Button>

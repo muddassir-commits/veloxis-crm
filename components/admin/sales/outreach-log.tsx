@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { toast } from 'sonner';
-import { formatDate } from '@/lib/utils';
+import { formatDate, cn } from '@/lib/utils';
 import {
   Plus,
   Search,
@@ -25,6 +25,8 @@ import {
   DialogFooter,
   DialogDescription,
 } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { OutreachLog as OutreachLogType } from '@/types';
 
 interface OutreachLogProps {
@@ -59,12 +61,12 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
 
   const getTargetColors = (count: number) => {
     if (count >= 10) {
-      return 'bg-[#22C55E]/10 border-[#22C55E]/30 text-[#22C55E]';
+      return 'bg-success/10 border-success/30 text-success';
     }
     if (count >= 5) {
-      return 'bg-[#F97316]/10 border-[#F97316]/30 text-[#F97316]';
+      return 'bg-accent/10 border-accent/30 text-accent';
     }
-    return 'bg-[#EF4444]/10 border-[#EF4444]/30 text-[#EF4444]';
+    return 'bg-error/10 border-error/30 text-error';
   };
 
   // Filter logs by date range
@@ -134,15 +136,15 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
   const getChannelIcon = (channel: string) => {
     switch (channel) {
       case 'whatsapp':
-        return <MessageSquare size={14} className="text-[#22C55E]" />;
+        return <MessageSquare size={14} className="text-success" />;
       case 'linkedin':
-        return <Linkedin size={14} className="text-[#0A66C2]" />;
+        return <Linkedin size={14} className="text-primary-light" />;
       case 'email':
-        return <Mail size={14} className="text-[#EA4335]" />;
+        return <Mail size={14} className="text-error" />;
       case 'instagram':
-        return <Instagram size={14} className="text-[#E1306C]" />;
+        return <Instagram size={14} className="text-accent" />;
       default:
-        return <HelpCircle size={14} className="text-[#8BA3C7]" />;
+        return <HelpCircle size={14} className="text-text-tertiary" />;
     }
   };
 
@@ -165,13 +167,13 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
       key: 'date',
       header: 'Date',
       width: '12%',
-      render: (val: unknown) => <span className="font-mono text-xs text-[#F0F4FF]">{formatDate(String(val))}</span>,
+      render: (val: unknown) => <span className="font-mono text-xs text-text-primary">{formatDate(String(val))}</span>,
     },
     {
       key: 'business_name',
       header: 'Business Name',
       width: '20%',
-      render: (val: unknown) => <span className="font-semibold text-xs text-[#F0F4FF]">{String(val || '-')}</span>,
+      render: (val: unknown) => <span className="font-semibold text-xs text-text-primary">{String(val || '-')}</span>,
     },
     { key: 'contact_name', header: 'Contact Name', width: '15%' },
     {
@@ -192,7 +194,7 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
       header: 'Observation / Note',
       width: '25%',
       render: (val: unknown) => (
-        <span className="truncate max-w-[200px] inline-block text-[11px] text-[#8BA3C7]/80 italic" title={String(val)}>
+        <span className="truncate max-w-[200px] inline-block text-[11px] text-text-secondary/80 italic" title={String(val)}>
           {val ? `"${val}"` : '-'}
         </span>
       ),
@@ -211,9 +213,9 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
       width: '12%',
       render: (val: unknown) =>
         val ? (
-          <span className="font-mono text-xs text-[#EF4444] font-semibold">{formatDate(String(val))}</span>
+          <span className="font-mono text-xs text-error font-semibold">{formatDate(String(val))}</span>
         ) : (
-          <span className="text-[#4A6480]">-</span>
+          <span className="text-text-tertiary">-</span>
         ),
     },
   ];
@@ -221,7 +223,7 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
   return (
     <div className="space-y-6">
       {/* ━━━ DAILY TARGET COUNTER CARD ━━━ */}
-      <div className={`p-4 rounded-[10px] border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 transition-colors ${getTargetColors(messagesToday)}`}>
+      <div className={cn("p-4 rounded-[10px] border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 transition-colors", getTargetColors(messagesToday))}>
         <div className="flex items-center gap-3">
           <div className="p-2 bg-current/5 rounded-full shrink-0">
             <Target size={20} className="stroke-[1.5]" />
@@ -242,16 +244,17 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
 
       {/* Filters Strip */}
       <div className="flex items-center justify-between select-none">
-        <div className="flex items-center gap-1.5 bg-[#132035] border border-[#1E3352] p-0.5 rounded">
+        <div className="flex items-center gap-1.5 bg-bg-card-hover/20 border border-border/10 p-0.5 rounded">
           {(['week', 'month', 'all'] as const).map((r) => (
             <button
               key={r}
               onClick={() => setFilterRange(r)}
-              className={`px-3 py-1 rounded text-[10px] font-semibold uppercase cursor-pointer transition-all ${
+              className={cn(
+                "px-3 py-1 rounded text-[10px] font-semibold uppercase cursor-pointer transition-all",
                 filterRange === r
-                  ? 'bg-[#1B4FD8] text-[#F0F4FF]'
-                  : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
-              }`}
+                  ? "bg-primary text-text-primary"
+                  : "text-text-secondary hover:text-text-primary"
+              )}
             >
               {r === 'week' ? 'This Week' : r === 'month' ? 'This Month' : 'Show All'}
             </button>
@@ -261,7 +264,7 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
         <Button
           onClick={() => setModalOpen(true)}
           size="sm"
-          className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+          className="text-xs h-8 gap-1.5 cursor-pointer font-semibold"
         >
           <Plus size={13} />
           <span>Log Outreach</span>
@@ -281,10 +284,10 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
 
       {/* ━━━ MODAL: LOG OUTREACH ━━━ */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[550px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Log Outreach Event</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle>Log Outreach Event</DialogTitle>
+            <DialogDescription>
               Enter the details of your cold outreach, target account observations, and responses.
             </DialogDescription>
           </DialogHeader>
@@ -292,21 +295,21 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
           <div className="space-y-4 my-2 text-xs">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="label">Outreach Date *</label>
-                <input
+                <label className="text-text-secondary font-semibold">Outreach Date *</label>
+                <Input
                   type="date"
                   value={form.date}
                   onChange={(e) => setForm((p) => ({ ...p, date: e.target.value }))}
-                  className="input h-9"
+                  className="h-10"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="label">Outreach Channel</label>
+                <label className="text-text-secondary font-semibold">Outreach Channel</label>
                 <select
                   value={form.channel}
                   onChange={(e) => setForm((p) => ({ ...p, channel: e.target.value }))}
-                  className="input h-9"
+                  className="flex h-10 w-full rounded-lg border border-border/30 bg-bg-card/50 backdrop-blur-[8px] px-3 py-2 text-sm text-text-primary outline-none hover:border-border/60 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all duration-200"
                 >
                   <option value="linkedin">LinkedIn DM</option>
                   <option value="whatsapp">Cold WhatsApp</option>
@@ -318,70 +321,70 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="label">Business Name *</label>
-                <input
+                <label className="text-text-secondary font-semibold">Business Name *</label>
+                <Input
                   type="text"
                   placeholder="e.g. Kanpur Bakery"
                   value={form.business_name}
                   onChange={(e) => setForm((p) => ({ ...p, business_name: e.target.value }))}
-                  className="input h-9"
+                  className="h-10"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="label">Contact Name</label>
-                <input
+                <label className="text-text-secondary font-semibold">Contact Name</label>
+                <Input
                   type="text"
                   placeholder="e.g. Rahul Sharma"
                   value={form.contact_name}
                   onChange={(e) => setForm((p) => ({ ...p, contact_name: e.target.value }))}
-                  className="input h-9"
+                  className="h-10"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="label">Phone / WhatsApp</label>
-                <input
+                <label className="text-text-secondary font-semibold">Phone / WhatsApp</label>
+                <Input
                   type="text"
                   placeholder="e.g. +91 9999999999"
                   value={form.phone}
                   onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
-                  className="input h-9"
+                  className="h-10"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="label">City / Location</label>
-                <input
+                <label className="text-text-secondary font-semibold">City / Location</label>
+                <Input
                   type="text"
                   placeholder="e.g. Kanpur"
                   value={form.city}
                   onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))}
-                  className="input h-9"
+                  className="h-10"
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <label className="label">Observation / Icebreaker Note</label>
-              <textarea
+              <label className="text-text-secondary font-semibold">Observation / Icebreaker Note</label>
+              <Textarea
                 placeholder="What specific issue did you notice on their profile/site? (e.g. website not mobile friendly)"
                 value={form.observation}
                 onChange={(e) => setForm((p) => ({ ...p, observation: e.target.value }))}
                 rows={2}
-                className="input resize-none"
+                className="resize-none"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="label">Initial Response</label>
+                <label className="text-text-secondary font-semibold">Initial Response</label>
                 <select
                   value={form.response}
                   onChange={(e) => setForm((p) => ({ ...p, response: e.target.value }))}
-                  className="input h-9"
+                  className="flex h-10 w-full rounded-lg border border-border/30 bg-bg-card/50 backdrop-blur-[8px] px-3 py-2 text-sm text-text-primary outline-none hover:border-border/60 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all duration-200"
                 >
                   <option value="no_response">No Response</option>
                   <option value="positive">Positive / Replied</option>
@@ -391,12 +394,12 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
               </div>
 
               <div className="space-y-1">
-                <label className="label">Follow Up Date</label>
-                <input
+                <label className="text-text-secondary font-semibold">Follow Up Date</label>
+                <Input
                   type="date"
                   value={form.follow_up}
                   onChange={(e) => setForm((p) => ({ ...p, follow_up: e.target.value }))}
-                  className="input h-9"
+                  className="h-10"
                 />
               </div>
             </div>
@@ -406,13 +409,13 @@ export function OutreachLog({ outreachLogs, onOutreachLogged }: OutreachLogProps
             <Button
               variant="outline"
               onClick={() => setModalOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="text-text-secondary hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleLogOutreach}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              className="cursor-pointer"
             >
               Log Outreach
             </Button>

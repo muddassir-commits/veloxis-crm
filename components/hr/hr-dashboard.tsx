@@ -21,6 +21,7 @@ import {
   Search,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { ConfirmDialog } from '@/components/shared/confirm-dialog';
 import { AddEmployeeModal } from './add-employee-modal';
 import {
@@ -288,22 +289,22 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
   return (
     <div className="space-y-6">
       {/* Control bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 select-none bg-[#0D1829] border border-[#1E3352] p-4 rounded-lg">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 select-none bg-bg-card/70 backdrop-blur-[12px] border border-border/30 p-4 rounded-xl shadow-elevated">
         <div className="flex items-center gap-4 flex-1">
-          <div className="flex items-center gap-2 text-sm font-bold text-[#F0F4FF]">
-            <Users className="text-[#F97316] h-5 w-5" />
+          <div className="flex items-center gap-2 text-sm font-bold text-text-primary">
+            <Users className="text-accent h-5 w-5" />
             <span>Team Console</span>
           </div>
 
           {/* Stats Badges */}
           <div className="flex items-center gap-2 select-none">
-            <span className="text-[10px] bg-[#132035] border border-[#1E3352] text-[#8BA3C7] px-2 py-0.5 rounded font-semibold">
+            <span className="text-[10px] bg-bg-card border border-border/30 text-text-secondary px-2 py-0.5 rounded font-semibold">
               Total: {stats.total}
             </span>
-            <span className="text-[10px] bg-[#22C55E15] border border-[#22C55E]/30 text-[#22C55E] px-2 py-0.5 rounded font-semibold">
+            <span className="text-[10px] bg-success/15 border border-success/30 text-success px-2 py-0.5 rounded font-semibold">
               Active: {stats.active}
             </span>
-            <span className="text-[10px] bg-[#8B5CF615] border border-[#8B5CF6]/30 text-[#8B5CF6] px-2 py-0.5 rounded font-semibold">
+            <span className="text-[10px] bg-primary/15 border border-primary/30 text-primary px-2 py-0.5 rounded font-semibold">
               Interns: {stats.interns}
             </span>
           </div>
@@ -311,19 +312,20 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
 
         <div className="flex items-center gap-3">
           <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-[#4A6480]" />
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-text-tertiary" />
             <input
               type="text"
               placeholder="Search team..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-[#060D1A] border border-[#1E3352] text-[#F0F4FF] text-xs pl-8 pr-3 py-2 rounded w-44 placeholder-[#4A6480] focus:outline-none focus:border-[#1B4FD8]"
+              className="bg-bg-card/50 border border-border/30 text-text-primary text-xs pl-8 pr-3 py-2 rounded w-44 placeholder-text-tertiary focus:outline-none focus:border-primary/50 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] transition-all"
             />
           </div>
 
           <Button
             onClick={() => setAddModalOpen(true)}
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 font-semibold cursor-pointer"
+            variant="default"
+            className="text-xs h-9 gap-1.5 font-semibold cursor-pointer"
           >
             <Plus size={15} />
             <span>Add Employee</span>
@@ -331,8 +333,8 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
 
           <Button
             onClick={handleRefresh}
-            variant="outline"
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-9 gap-1.5 cursor-pointer"
+            variant="secondary"
+            className="text-xs h-9 gap-1.5 cursor-pointer"
           >
             <RefreshCw size={14} />
             <span>Refresh</span>
@@ -370,37 +372,38 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
             .toUpperCase();
 
           // Performance Score Color
-          let scoreBadgeColor = 'bg-[#EF444415] text-[#EF4444] border-[#EF4444]/20';
+          let scoreBadgeColor = 'bg-error/15 text-error border-error/20';
           if (initialDisplayScore >= 8) {
-            scoreBadgeColor = 'bg-[#22C55E15] text-[#22C55E] border-[#22C55E]/20';
+            scoreBadgeColor = 'bg-success/15 text-success border-success/20';
           } else if (initialDisplayScore >= 5) {
-            scoreBadgeColor = 'bg-[#F59E0B15] text-[#F59E0B] border-[#F59E0B]/20';
+            scoreBadgeColor = 'bg-warning/15 text-warning border-warning/20';
           }
 
           return (
-            <div
+            <Card
               key={emp.id}
+              variant="default"
               className={cn(
-                "bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-[20px] relative transition-all duration-200 hover:border-[#1A2D47] flex flex-col justify-between shadow-sm",
+                "p-5 relative transition-all duration-200 hover:border-border/60 flex flex-col justify-between",
                 !emp.is_active && "opacity-60 border-dashed"
               )}
             >
               {/* Top row */}
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-[#1B4FD8]/10 text-[#1B4FD8] flex items-center justify-center font-bold text-xs select-none">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs select-none">
                     {initials}
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-[#F0F4FF] text-sm">{emp.full_name}</span>
+                      <span className="font-bold text-text-primary text-sm">{emp.full_name}</span>
                       {!emp.is_active && (
-                        <span className="text-[9px] bg-[#EF444415] text-[#EF4444] px-1.5 py-0.5 rounded font-semibold select-none">
+                        <span className="text-[9px] bg-error/15 text-error px-1.5 py-0.5 rounded font-semibold select-none">
                           Inactive
                         </span>
                       )}
                     </div>
-                    <span className="text-xs text-[#8BA3C7] opacity-80">{designation}</span>
+                    <span className="text-xs text-text-secondary opacity-80">{designation}</span>
                   </div>
                 </div>
 
@@ -408,7 +411,7 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
                 <div className="relative">
                   <button
                     onClick={() => setActiveMenuId(activeMenuId === emp.id ? null : emp.id)}
-                    className="p-1.5 hover:bg-[#132035] rounded-full text-[#8BA3C7] hover:text-[#F0F4FF] transition-all cursor-pointer"
+                    className="p-1.5 hover:bg-bg-card-hover rounded-full text-text-secondary hover:text-text-primary transition-all cursor-pointer"
                   >
                     <MoreHorizontal size={16} />
                   </button>
@@ -419,14 +422,14 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
                         className="fixed inset-0 z-10"
                         onClick={() => setActiveMenuId(null)}
                       />
-                      <div className="absolute right-0 mt-1 w-40 rounded-md bg-[#0D1829] border border-[#1E3352] shadow-2xl z-20 py-1 text-xs select-none animate-in fade-in slide-in-from-top-1 duration-100">
+                      <div className="absolute right-0 mt-1 w-40 rounded-md bg-bg-card/95 backdrop-blur-[12px] border border-border/30 shadow-modal z-20 py-1 text-xs select-none animate-in fade-in slide-in-from-top-1 duration-100">
                         <button
                           onClick={() => {
                             setSelectedPasswordReset({ employeeId: emp.id, name: emp.full_name });
                             setPasswordConfirmOpen(true);
                             setActiveMenuId(null);
                           }}
-                          className="w-full text-left px-3 py-2 hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] flex items-center gap-1.5 cursor-pointer"
+                          className="w-full text-left px-3 py-2 hover:bg-bg-card-hover text-text-secondary hover:text-text-primary flex items-center gap-1.5 cursor-pointer"
                         >
                           <Key size={13} />
                           <span>Reset Password</span>
@@ -442,8 +445,8 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
                             setActiveMenuId(null);
                           }}
                           className={cn(
-                            "w-full text-left px-3 py-2 hover:bg-[#132035] flex items-center gap-1.5 cursor-pointer",
-                            emp.is_active ? "text-[#EF4444] hover:text-[#EF4444]" : "text-[#22C55E] hover:text-[#22C55E]"
+                            "w-full text-left px-3 py-2 hover:bg-bg-card-hover flex items-center gap-1.5 cursor-pointer",
+                            emp.is_active ? "text-error hover:text-error/80" : "text-success hover:text-success/80"
                           )}
                         >
                           <Power size={13} />
@@ -456,17 +459,17 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
               </div>
 
               {/* Sub headers */}
-              <div className="mt-3 flex items-center gap-2 text-[10px] text-[#8BA3C7] opacity-60 select-none">
+              <div className="mt-3 flex items-center gap-2 text-[10px] text-text-secondary opacity-60 select-none">
                 <span>Joined {joinDate}</span>
                 <span>•</span>
                 <div className="flex flex-wrap gap-1">
                   {skills.slice(0, 3).map((skill) => (
-                    <span key={skill} className="bg-[#132035] border border-[#1E3352]/50 px-1.5 py-0.2 rounded text-[9px]">
+                    <span key={skill} className="bg-bg-card border border-border/20 px-1.5 py-0.2 rounded text-[9px]">
                       {skill}
                     </span>
                   ))}
                   {skills.length > 3 && (
-                    <span className="bg-[#132035] px-1.5 py-0.2 rounded text-[9px]">
+                    <span className="bg-bg-card px-1.5 py-0.2 rounded text-[9px]">
                       +{skills.length - 3}
                     </span>
                   )}
@@ -474,30 +477,30 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
               </div>
 
               {/* Performance Section */}
-              <div className="mt-4 border-t border-[#1E3352]/20 pt-4 space-y-2 select-none">
+              <div className="mt-4 border-t border-border/20 pt-4 space-y-2 select-none">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-[#8BA3C7] font-semibold flex items-center gap-1">
-                    <ListTodo size={13} className="text-[#8BA3C7]" />
+                  <span className="text-text-secondary font-semibold flex items-center gap-1">
+                    <ListTodo size={13} className="text-text-secondary" />
                     <span>Tasks This Month</span>
                   </span>
-                  <span className="text-[#F0F4FF] font-semibold">{doneTasks} / {totalTasks} done</span>
+                  <span className="text-text-primary font-semibold">{doneTasks} / {totalTasks} done</span>
                 </div>
                 
                 {/* Thin progress bar */}
-                <div className="h-1 w-full bg-[#132035] rounded-full overflow-hidden">
+                <div className="h-1 w-full bg-bg-card-hover/40 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#22C55E] transition-all duration-300"
+                    className="h-full bg-success transition-all duration-300"
                     style={{ width: `${completionPct}%` }}
                   />
                 </div>
 
                 <div className="flex items-center justify-between text-[11px]">
-                  <span className="text-[#8BA3C7] opacity-65">Completion Rate:</span>
+                  <span className="text-text-secondary opacity-65">Completion Rate:</span>
                   <span className={cn(
                     "font-bold px-1.5 py-0.2 rounded",
-                    completionPct >= 80 ? "text-[#22C55E] bg-[#22C55E10]" :
-                    completionPct >= 55 ? "text-[#F59E0B] bg-[#F59E0B10]" :
-                    "text-[#EF4444] bg-[#EF444410]"
+                    completionPct >= 80 ? "text-success bg-success/10" :
+                    completionPct >= 55 ? "text-warning bg-warning/10" :
+                    "text-error bg-error/10"
                   )}>
                     {completionPct}%
                   </span>
@@ -505,23 +508,23 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
               </div>
 
               {/* Stipend Section */}
-              <div className="mt-4 border-t border-[#1E3352]/20 pt-4 flex items-center justify-between">
+              <div className="mt-4 border-t border-border/20 pt-4 flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] text-[#8BA3C7] uppercase font-bold tracking-wider select-none">Monthly Stipend</span>
-                  <div className="text-sm font-bold text-[#F0F4FF] font-mono mt-0.5">
+                  <span className="text-[10px] text-text-tertiary uppercase font-bold tracking-wider select-none">Monthly Stipend</span>
+                  <div className="text-sm font-bold text-accent font-mono mt-0.5">
                     {formatCurrency(stipendVal)}
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 select-none">
                   {isPaid ? (
-                    <span className="inline-flex items-center gap-1 text-xs text-[#22C55E] bg-[#22C55E15] px-2.5 py-1 rounded-md font-semibold">
+                    <span className="inline-flex items-center gap-1 text-xs text-success bg-success/15 px-2.5 py-1 rounded-md font-semibold">
                       <Check size={12} />
                       <span>Paid</span>
                     </span>
                   ) : (
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] text-[#F59E0B] bg-[#F59E0B15] px-2 py-0.8 rounded font-semibold">
+                      <span className="text-[10px] text-warning bg-warning/15 px-2 py-0.8 rounded font-semibold">
                         ⏳ Pending {currentMonthStr}
                       </span>
                       {emp.is_active && (
@@ -534,7 +537,7 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
                             });
                             setStipendConfirmOpen(true);
                           }}
-                          className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[10px] px-2.5 py-1 rounded font-semibold cursor-pointer transition-colors"
+                          className="bg-primary hover:bg-primary-light text-text-primary text-[10px] px-2.5 py-1 rounded font-semibold cursor-pointer transition-colors"
                         >
                           Mark Paid
                         </button>
@@ -545,10 +548,10 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
               </div>
 
               {/* Footer row */}
-              <div className="mt-4 border-t border-[#1E3352]/20 pt-3 flex items-center justify-between select-none">
+              <div className="mt-4 border-t border-border/20 pt-3 flex items-center justify-between select-none">
                 <Link
                   href={`/dashboard/deliverables?assignee=${emp.id}`}
-                  className="text-[11px] text-[#1B4FD8] hover:text-[#2563EB] font-bold inline-flex items-center gap-1 group"
+                  className="text-[11px] text-primary hover:text-primary-light font-bold inline-flex items-center gap-1 group"
                 >
                   <span>View Tasks</span>
                   <ExternalLink size={10} className="group-hover:translate-x-0.5 transition-transform" />
@@ -561,19 +564,19 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
                   Quality: {initialDisplayScore}/10
                 </span>
               </div>
-            </div>
+            </Card>
           );
         })}
       </div>
 
       {/* Section: Performance Table */}
-      <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4">
+      <div className="bg-bg-card/70 backdrop-blur-[12px] border border-border/30 rounded-xl p-5 space-y-4 shadow-elevated">
         <div className="flex items-center justify-between select-none">
           <div className="flex items-center gap-2">
-            <Award className="text-[#22C55E] h-4 w-4" />
-            <h3 className="text-sm font-bold text-[#F0F4FF]">Performance Leaderboard</h3>
+            <Award className="text-success h-4 w-4" />
+            <h3 className="text-sm font-bold text-text-primary">Performance Leaderboard</h3>
           </div>
-          <span className="text-[10px] text-[#8BA3C7] opacity-60 font-semibold">
+          <span className="text-[10px] text-text-secondary opacity-60 font-semibold">
             Quality scores scale 1-10 (editable inline)
           </span>
         </div>
@@ -581,7 +584,7 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#1E3352]/30 text-[10px] uppercase font-bold text-[#8BA3C7] tracking-wider h-9 select-none">
+              <tr className="border-b border-border/20 text-[10px] uppercase font-bold text-text-secondary tracking-wider h-9 select-none">
                 <th className="px-4">Employee</th>
                 <th className="px-4 text-center">Tasks Assigned</th>
                 <th className="px-4 text-center">Tasks Done</th>
@@ -590,7 +593,7 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
                 <th className="px-4 text-right">Stipend Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1E3352]/10">
+            <tbody className="divide-y divide-border/10">
               {filteredEmployees.map((emp) => {
                 const details = getEmployeeDetails(emp);
                 const designation = details?.designation || 'Intern';
@@ -613,38 +616,38 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
                   <tr
                     key={emp.id}
                     className={cn(
-                      'group h-12 text-xs hover:bg-[#132035]/30 transition-all',
+                      'group h-12 text-xs hover:bg-bg-card-hover/20 transition-all',
                       !emp.is_active && 'opacity-65'
                     )}
                   >
                     {/* Employee Profile details */}
                     <td className="px-4 py-2">
                       <div className="flex flex-col">
-                        <span className="font-bold text-[#F0F4FF]">{emp.full_name}</span>
-                        <span className="text-[10px] text-[#8BA3C7] opacity-75">{designation}</span>
+                        <span className="font-bold text-text-primary">{emp.full_name}</span>
+                        <span className="text-[10px] text-text-secondary opacity-75">{designation}</span>
                       </div>
                     </td>
 
                     {/* Tasks assigned */}
-                    <td className="px-4 py-2 text-center text-[#F0F4FF] font-mono">
+                    <td className="px-4 py-2 text-center text-text-primary font-mono">
                       {totalTasks}
                     </td>
 
                     {/* Tasks done */}
-                    <td className="px-4 py-2 text-center text-[#22C55E] font-mono">
+                    <td className="px-4 py-2 text-center text-success font-mono">
                       {doneTasks}
                     </td>
 
                     {/* Completion bar */}
                     <td className="px-4 py-2">
                       <div className="flex items-center gap-3">
-                        <div className="w-16 h-2 bg-[#132035] rounded-full overflow-hidden shrink-0 select-none">
+                        <div className="w-16 h-2 bg-bg-card-hover/40 rounded-full overflow-hidden shrink-0 select-none">
                           <div
                             className={cn(
                               "h-full rounded-full transition-all duration-300",
-                              completionPct >= 80 ? "bg-[#22C55E]" :
-                              completionPct >= 55 ? "bg-[#F59E0B]" :
-                              "bg-[#EF4444]"
+                              completionPct >= 80 ? "bg-success" :
+                              completionPct >= 55 ? "bg-warning" :
+                              "bg-error"
                             )}
                             style={{ width: `${completionPct}%` }}
                           />
@@ -669,18 +672,18 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
                               handleSaveScore(emp.id, inputVal);
                             }
                           }}
-                          className="w-12 h-7 bg-[#060D1A] border border-[#1E3352] text-[#F0F4FF] font-mono font-bold rounded text-center focus:outline-none focus:border-[#22C55E]"
+                          className="w-12 h-7 bg-bg-card/50 border border-border/30 text-text-primary font-mono font-bold rounded text-center focus:outline-none focus:border-success focus:shadow-[0_0_16px_rgba(16,185,129,0.15)] transition-all"
                         />
-                        <span className="text-[10px] text-[#8BA3C7] ml-1">/10</span>
+                        <span className="text-[10px] text-text-secondary ml-1">/10</span>
                       </div>
                     </td>
 
                     {/* Stipend Status column */}
                     <td className="px-4 py-2 text-right">
                       {isPaid ? (
-                        <span className="text-xs text-[#22C55E] font-semibold">✓ Paid</span>
+                        <span className="text-xs text-success font-semibold">✓ Paid</span>
                       ) : (
-                        <span className="text-xs text-[#F59E0B] font-semibold">⏳ Pending</span>
+                        <span className="text-xs text-warning font-semibold">⏳ Pending</span>
                       )}
                     </td>
                   </tr>
@@ -688,7 +691,7 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
               })}
               {filteredEmployees.length === 0 && (
                 <tr className="h-20 select-none">
-                  <td colSpan={6} className="text-center text-xs text-[#8BA3C7]">
+                  <td colSpan={6} className="text-center text-xs text-text-tertiary">
                     No employee profiles matched.
                   </td>
                 </tr>
@@ -762,32 +765,32 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
 
       {/* Password Reset Credentials Dialog */}
       <Dialog open={!!resetCredentials} onOpenChange={(isOpen) => { if (!isOpen) setResetCredentials(null); }}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-bold text-[#F0F4FF]">Password Reset Successful</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-bold">Password Reset Successful</DialogTitle>
+            <DialogDescription className="text-xs">
               Copy the new credentials and share them with the employee securely.
             </DialogDescription>
           </DialogHeader>
 
           {resetCredentials && (
-            <div className="bg-[#132035] border border-[#1E3352] rounded p-4 space-y-3 font-mono text-xs select-all my-2">
+            <div className="bg-bg-card-hover/20 border border-border/20 rounded p-4 space-y-3 font-mono text-xs select-all my-2">
               <div className="flex flex-col gap-1">
-                <span className="text-[10px] text-[#8BA3C7] uppercase font-bold tracking-wider">Employee</span>
-                <span className="text-[#F0F4FF] font-semibold">{resetCredentials.name}</span>
+                <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider">Employee</span>
+                <span className="text-text-primary font-semibold">{resetCredentials.name}</span>
               </div>
-              <div className="flex flex-col gap-1 border-t border-[#1E3352]/50 pt-2">
-                <span className="text-[10px] text-[#8BA3C7] uppercase font-bold tracking-wider">Login Email</span>
-                <span className="text-[#F0F4FF] font-semibold">{resetCredentials.email}</span>
+              <div className="flex flex-col gap-1 border-t border-border/20 pt-2">
+                <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider">Login Email</span>
+                <span className="text-text-primary font-semibold">{resetCredentials.email}</span>
               </div>
-              <div className="flex flex-col gap-1 border-t border-[#1E3352]/50 pt-2">
-                <span className="text-[10px] text-[#8BA3C7] uppercase font-bold tracking-wider">New Temporary Password</span>
-                <span className="text-[#F97316] font-bold text-sm tracking-widest">{resetCredentials.pass}</span>
+              <div className="flex flex-col gap-1 border-t border-border/20 pt-2">
+                <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider">New Temporary Password</span>
+                <span className="text-accent font-bold text-sm tracking-widest">{resetCredentials.pass}</span>
               </div>
             </div>
           )}
 
-          <div className="bg-[#F59E0B]/10 border border-[#F59E0B]/20 rounded p-2.5 text-[10px] text-[#F59E0B] leading-relaxed select-none">
+          <div className="bg-warning/10 border border-warning/20 rounded p-2.5 text-[10px] text-warning leading-relaxed select-none">
             Please ask the employee to change their password once they login.
           </div>
 
@@ -801,14 +804,15 @@ export function HRDashboard({ employees, tasks, stipends }: HRDashboardProps) {
                   toast.success('Credentials copied!');
                 }
               }}
-              variant="outline"
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] text-xs h-9 cursor-pointer"
+              variant="secondary"
+              className="text-xs h-9 cursor-pointer"
             >
               Copy Details
             </Button>
             <Button
               onClick={() => setResetCredentials(null)}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 cursor-pointer"
+              variant="default"
+              className="text-xs h-9 cursor-pointer"
             >
               Close
             </Button>

@@ -190,7 +190,7 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
             type="checkbox"
             checked={isDone}
             onChange={(e) => handleToggleComplete(task, e.target.checked)}
-            className="rounded border-[#1E3352] bg-[#060D1A] text-[#1B4FD8] focus:ring-0 cursor-pointer h-4 w-4"
+            className="rounded border-border/30 bg-bg-dark text-[#1B4FD8] focus:ring-0 cursor-pointer h-4 w-4"
           />
         );
       },
@@ -204,11 +204,11 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
         const isDone = task.status === 'done';
         return (
           <div className="flex flex-col gap-0.5">
-            <span className={`font-semibold text-xs transition-all ${isDone ? 'line-through text-[#4A6480]' : 'text-[#F0F4FF]'}`}>
+            <span className={`font-semibold text-xs transition-all ${isDone ? 'line-through text-text-tertiary' : 'text-text-primary'}`}>
               {String(val)}
             </span>
             {task.description && (
-              <span className={`text-[10px] truncate max-w-[250px] ${isDone ? 'text-[#4A6480]/50' : 'text-[#8BA3C7]'}`}>
+              <span className={`text-[10px] truncate max-w-[250px] ${isDone ? 'text-text-tertiary/50' : 'text-text-secondary'}`}>
                 {task.description}
               </span>
             )}
@@ -221,7 +221,7 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
       header: 'Dept',
       width: '10%',
       render: (val: unknown) => (
-        <span className="text-[10px] bg-[#132035] border border-[#1E3352] text-[#8BA3C7] px-1.5 py-0.5 rounded uppercase font-medium select-none">
+        <span className="text-[10px] bg-bg-card-hover/20 border border-border/30 text-text-secondary px-1.5 py-0.5 rounded uppercase font-medium select-none">
           {String(val || '')}
         </span>
       ),
@@ -246,7 +246,7 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
         const dateStr = String(val || '');
         const isOverdue = dateStr && dateStr < new Date().toISOString().split('T')[0] && row.status !== 'done';
         return (
-          <span className={`font-mono text-xs ${isOverdue ? 'text-[#EF4444] font-semibold' : 'text-[#4A6480]'}`}>
+          <span className={`font-mono text-xs ${isOverdue ? 'text-error font-semibold' : 'text-text-tertiary'}`}>
             {val ? formatDate(dateStr) : '-'}
           </span>
         );
@@ -259,12 +259,12 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
       render: (val: unknown) => {
         const assignee = profiles.find((p) => p.id === val);
         if (!assignee) {
-          return <span className="text-[#4A6480] text-xs font-mono">-</span>;
+          return <span className="text-text-tertiary text-xs font-mono">-</span>;
         }
         return (
           <div
             title={`Assigned to ${assignee.full_name}`}
-            className="h-5 w-5 rounded-full bg-[#1B4FD8] text-white flex items-center justify-center font-bold text-[9px] uppercase select-none border border-[#1E3352]"
+            className="h-5 w-5 rounded-full bg-primary text-white flex items-center justify-center font-bold text-[9px] uppercase select-none border border-border/30"
           >
             {assignee.full_name.charAt(0)}
           </div>
@@ -281,16 +281,16 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
         <div className="flex items-center gap-2">
           <button
             onClick={handlePrevMonth}
-            className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+            className="p-1 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary cursor-pointer"
           >
             <ChevronLeft size={14} />
           </button>
-          <span className="text-xs font-semibold text-[#F0F4FF] min-w-[80px] text-center font-mono">
+          <span className="text-xs font-semibold text-text-primary min-w-[80px] text-center font-mono">
             {monthYearString}
           </span>
           <button
             onClick={handleNextMonth}
-            className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+            className="p-1 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary cursor-pointer"
           >
             <ChevronRight size={14} />
           </button>
@@ -301,7 +301,7 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
           <Button
             onClick={() => setAddModalOpen(true)}
             size="sm"
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+            className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
           >
             <Plus size={13} />
             <span>Add Task</span>
@@ -311,7 +311,7 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
             onClick={fetchTasks}
             disabled={isLoading}
             size="sm"
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer"
+            className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer"
           >
             <RefreshCw size={13} className={`stroke-[1.5] ${isLoading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
@@ -335,10 +335,10 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
 
       {/* ━━━ MODAL: ADD TASK ━━━ */}
       <Dialog open={addModalOpen} onOpenChange={setAddModalOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[550px] select-none max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Add Task Deliverable</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Add Task Deliverable</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Specify tasks due in {monthYearString} to assign to team members.
             </DialogDescription>
           </DialogHeader>
@@ -452,11 +452,11 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
             <Button
               variant="outline"
               onClick={() => setAddModalOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
-            <Button onClick={handleAddTask} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer">
+            <Button onClick={handleAddTask} className="bg-primary hover:bg-primary-light text-white cursor-pointer">
               Add Deliverable
             </Button>
           </DialogFooter>

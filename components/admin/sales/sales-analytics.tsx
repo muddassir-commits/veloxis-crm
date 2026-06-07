@@ -31,12 +31,12 @@ interface SalesAnalyticsProps {
 }
 
 const CHART_COLORS = {
-  primary: '#1B4FD8',   // Blue (SEO, Organic)
-  secondary: '#F97316', // Orange (Finance, Ads)
-  success: '#22C55E',   // Green (Growth, Wins)
-  purple: '#8B5CF6',    // Purple (Social)
-  cyan: '#06B6D4',      // Cyan (Email/WhatsApp)
-  muted: '#4A6480',     // Gray (Baseline)
+  primary: '#2563EB',   // Lead Blue
+  secondary: '#FF8C42', // Orange Accent
+  success: '#10B981',   // Success Green
+  purple: '#8B5CF6',    // Purple
+  cyan: '#06B6D4',      // Cyan
+  muted: '#94A3B8',     // Muted Gray
 };
 
 export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
@@ -86,7 +86,7 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
     { key: 'discovery', label: 'Discovery', color: '#4F46E5' },
     { key: 'proposal', label: 'Proposal', color: '#2563EB' },
     { key: 'negotiation', label: 'Negotiation', color: '#0EA5E9' },
-    { key: 'won', label: 'Won', color: '#22C55E' },
+    { key: 'won', label: 'Won', color: '#10B981' },
   ];
 
   const funnelData = funnelStages.map((stage) => ({
@@ -138,7 +138,7 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
         <StatCard
           title="Avg Deal Size (Won)"
           value={formatCurrency(avgDealSize)}
-          valueClassName="text-[#F97316]"
+          valueClassName="text-accent"
           icon={DollarSign}
         />
         <StatCard
@@ -151,13 +151,13 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
       {/* ━━━ ROW 2: LEAD SOURCES & FUNNEL ━━━ */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left Column: Lead Sources BarChart */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 h-[320px] flex flex-col justify-between">
+        <div className="bg-bg-card/75 backdrop-blur-[12px] border border-border/20 rounded-[10px] p-5 h-[320px] flex flex-col justify-between shadow-elevated">
           <div>
-            <h3 className="text-sm font-semibold text-[#F0F4FF] flex items-center gap-2 select-none">
-              <BarChart2 size={15} className="text-[#1B4FD8]" />
+            <h3 className="text-sm font-semibold text-text-primary flex items-center gap-2 select-none">
+              <BarChart2 size={15} className="text-primary-light" />
               <span>Lead Sources</span>
             </h3>
-            <p className="text-[10px] text-[#4A6480] uppercase tracking-wider mt-0.5 select-none">
+            <p className="text-[10px] text-text-tertiary uppercase tracking-wider mt-0.5 select-none">
               Acquisition channels sorted by volume
             </p>
           </div>
@@ -170,12 +170,12 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
                   layout="vertical"
                   margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
                 >
-                  <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" horizontal={false} opacity={0.3} />
-                  <XAxis type="number" stroke="#4A6480" fontSize={11} axisLine={false} tickLine={false} />
+                  <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" horizontal={false} opacity={0.25} />
+                  <XAxis type="number" stroke="var(--color-text-tertiary)" fontSize={11} axisLine={false} tickLine={false} />
                   <YAxis
                     dataKey="name"
                     type="category"
-                    stroke="#4A6480"
+                    stroke="var(--color-text-tertiary)"
                     fontSize={11}
                     axisLine={false}
                     tickLine={false}
@@ -183,24 +183,24 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
                   />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: '#0D1829',
-                      borderColor: '#1E3352',
+                      backgroundColor: 'var(--color-bg-card)',
+                      borderColor: 'var(--color-border)',
                       borderRadius: '8px',
-                      color: '#F0F4FF',
+                      color: 'var(--color-text-primary)',
                       fontSize: '12px',
                     }}
                   />
                   <Bar
                     dataKey="count"
-                    fill="rgba(27, 79, 216, 0.15)"
-                    stroke="#1B4FD8"
+                    fill="rgba(37, 99, 235, 0.15)"
+                    stroke="var(--color-primary)"
                     strokeWidth={1.5}
                     radius={[0, 4, 4, 0]}
                   />
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="flex items-center justify-center h-full text-xs text-[#4A6480] italic">
+              <div className="flex items-center justify-center h-full text-xs text-text-tertiary italic">
                 No lead source data available
               </div>
             )}
@@ -208,13 +208,13 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
         </div>
 
         {/* Right Column: Custom Funnel Visualization */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 h-[320px] flex flex-col justify-between">
+        <div className="bg-bg-card/75 backdrop-blur-[12px] border border-border/20 rounded-[10px] p-5 h-[320px] flex flex-col justify-between shadow-elevated">
           <div>
-            <h3 className="text-sm font-semibold text-[#F0F4FF] flex items-center gap-2 select-none">
-              <Award size={15} className="text-[#8B5CF6]" />
+            <h3 className="text-sm font-semibold text-text-primary flex items-center gap-2 select-none">
+              <Award size={15} className="text-purple-400" />
               <span>Pipeline Funnel</span>
             </h3>
-            <p className="text-[10px] text-[#4A6480] uppercase tracking-wider mt-0.5 select-none">
+            <p className="text-[10px] text-text-tertiary uppercase tracking-wider mt-0.5 select-none">
               Proportional stage conversion tracking
             </p>
           </div>
@@ -225,10 +225,10 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
 
               return (
                 <div key={stage.name} className="flex items-center gap-4 text-xs">
-                  <div className="w-20 font-semibold text-[#8BA3C7] select-none text-left">
+                  <div className="w-20 font-semibold text-text-secondary select-none text-left">
                     {stage.name}
                   </div>
-                  <div className="flex-1 bg-[#132035] h-3 rounded-full border border-[#1E3352]/30 relative overflow-hidden flex items-center">
+                  <div className="flex-1 bg-bg-card-hover/20 h-3 rounded-full border border-border/10 relative overflow-hidden flex items-center">
                     <div
                       className="h-full rounded-full transition-all duration-500"
                       style={{
@@ -238,7 +238,7 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
                       }}
                     />
                   </div>
-                  <div className="w-12 text-right font-mono font-bold text-[#F0F4FF] select-all">
+                  <div className="w-12 text-right font-mono font-bold text-text-primary select-all">
                     {stage.count}
                   </div>
                 </div>
@@ -249,13 +249,13 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
       </div>
 
       {/* ━━━ ROW 3: LEADS OVER TIME LINE CHART ━━━ */}
-      <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5">
+      <div className="bg-bg-card/75 backdrop-blur-[12px] border border-border/20 rounded-[10px] p-5 shadow-elevated">
         <div className="mb-4">
-          <h3 className="text-sm font-semibold text-[#F0F4FF] flex items-center gap-2 select-none">
-            <Calendar size={15} className="text-[#22C55E]" />
+          <h3 className="text-sm font-semibold text-text-primary flex items-center gap-2 select-none">
+            <Calendar size={15} className="text-success" />
             <span>Leads Over Time (Last 6 Months)</span>
           </h3>
-          <p className="text-[10px] text-[#4A6480] uppercase tracking-wider mt-0.5 select-none">
+          <p className="text-[10px] text-text-tertiary uppercase tracking-wider mt-0.5 select-none">
             Comparison of prospect acquisition vs conversion rates
           </p>
         </div>
@@ -263,15 +263,15 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
         <div className="h-[250px] select-none">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={last6MonthsData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-              <CartesianGrid stroke="#1E3352" strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="name" stroke="#4A6480" fontSize={11} axisLine={false} tickLine={false} />
-              <YAxis stroke="#4A6480" fontSize={11} axisLine={false} tickLine={false} />
+              <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} opacity={0.25} />
+              <XAxis dataKey="name" stroke="var(--color-text-tertiary)" fontSize={11} axisLine={false} tickLine={false} />
+              <YAxis stroke="var(--color-text-tertiary)" fontSize={11} axisLine={false} tickLine={false} />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: '#0D1829',
-                  borderColor: '#1E3352',
+                  backgroundColor: 'var(--color-bg-card)',
+                  borderColor: 'var(--color-border)',
                   borderRadius: '8px',
-                  color: '#F0F4FF',
+                  color: 'var(--color-text-primary)',
                   fontSize: '12px',
                 }}
               />
@@ -299,4 +299,5 @@ export function SalesAnalytics({ leads }: SalesAnalyticsProps) {
     </div>
   );
 }
+
 export default SalesAnalytics;

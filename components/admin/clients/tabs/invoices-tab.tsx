@@ -222,20 +222,20 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
       key: 'invoice_number',
       header: 'Invoice #',
       width: '15%',
-      render: (val: unknown) => <span className="font-mono text-xs font-semibold text-[#F0F4FF]">{String(val)}</span>,
+      render: (val: unknown) => <span className="font-mono text-xs font-semibold text-text-primary">{String(val)}</span>,
     },
     {
       key: 'description',
       header: 'Description',
       width: '30%',
-      render: (val: unknown) => <span className="text-xs text-[#8BA3C7]">{String(val || '-')}</span>,
+      render: (val: unknown) => <span className="text-xs text-text-secondary">{String(val || '-')}</span>,
     },
     {
       key: 'total_amount',
       header: 'Amount (incl GST)',
       width: '15%',
       render: (val: unknown) => (
-        <span className="font-semibold font-mono text-xs text-[#F97316]">
+        <span className="font-semibold font-mono text-xs text-accent">
           {formatCurrency(Number(val))}
         </span>
       ),
@@ -251,7 +251,7 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
       header: 'Issued',
       width: '12%',
       render: (val: unknown) => (
-        <span className="text-xs text-[#4A6480] font-mono">
+        <span className="text-xs text-text-tertiary font-mono">
           {val ? formatDate(String(val)) : '-'}
         </span>
       ),
@@ -264,7 +264,7 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
         const dateStr = String(val || '');
         const isOverdue = dateStr && dateStr < new Date().toISOString().split('T')[0] && row.status !== 'paid';
         return (
-          <span className={`font-mono text-xs ${isOverdue ? 'text-[#EF4444] font-semibold' : 'text-[#4A6480]'}`}>
+          <span className={`font-mono text-xs ${isOverdue ? 'text-error font-semibold' : 'text-text-tertiary'}`}>
             {val ? formatDate(dateStr) : '-'}
           </span>
         );
@@ -282,16 +282,16 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <button className="text-[#4A6480] hover:text-[#F0F4FF] p-0.5 rounded hover:bg-[#132035] transition-all cursor-pointer">
+            <button className="text-text-tertiary hover:text-text-primary p-0.5 rounded hover:bg-bg-card-hover/20 transition-all cursor-pointer">
               <MoreHorizontal size={14} />
             </button>
           }
         />
-        <DropdownMenuContent align="end" className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] w-36 z-30">
+        <DropdownMenuContent align="end" className="bg-bg-card border-border/30 text-text-primary w-36 z-30">
           {isUnpaid && (
             <DropdownMenuItem
               onClick={() => handleOpenMarkPaid(inv)}
-              className="text-xs hover:bg-[#132035] cursor-pointer text-[#22C55E] hover:text-[#22C55E] gap-2 py-1.5"
+              className="text-xs hover:bg-bg-card-hover/20 cursor-pointer text-online hover:text-online gap-2 py-1.5"
             >
               <Check size={12} />
               <span>Mark Paid</span>
@@ -304,7 +304,7 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
                 // Open public link
                 toast.info('Downloading pdf file receipt...');
               }}
-              className="text-xs hover:bg-[#132035] cursor-pointer text-[#8BA3C7] hover:text-[#F0F4FF] gap-2 py-1.5"
+              className="text-xs hover:bg-bg-card-hover/20 cursor-pointer text-text-secondary hover:text-text-primary gap-2 py-1.5"
             >
               <ExternalLink size={12} />
               <span>View PDF</span>
@@ -314,7 +314,7 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
           {(isDraft || inv.status === 'pending') && (
             <DropdownMenuItem
               onClick={() => handleDeleteInvoice(inv.id)}
-              className="text-xs hover:bg-[#132035] cursor-pointer text-[#EF4444] hover:text-[#EF4444] gap-2 py-1.5"
+              className="text-xs hover:bg-bg-card-hover/20 cursor-pointer text-error hover:text-error gap-2 py-1.5"
             >
               <Trash size={12} />
               <span>Delete</span>
@@ -328,17 +328,17 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
   return (
     <div className="space-y-6">
       {/* Prominent Outstanding billing banner */}
-      <div className="bg-[#F97316]/5 border border-[#F97316]/20 rounded-[10px] p-5 flex items-center justify-between select-none">
+      <div className="bg-accent/5 border border-[#F97316]/20 rounded-[10px] p-5 flex items-center justify-between select-none">
         <div>
-          <span className="text-[10px] text-[#4A6480] uppercase tracking-wider font-semibold">Client Billing Summary</span>
-          <h2 className="text-xl font-bold text-[#F97316] mt-1 font-mono">
+          <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Client Billing Summary</span>
+          <h2 className="text-xl font-bold text-accent mt-1 font-mono">
             Outstanding: {formatCurrency(totalOutstanding)}
           </h2>
         </div>
         <Button
           onClick={handleOpenGenerateModal}
           size="sm"
-          className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+          className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
         >
           <Plus size={13} />
           <span>Generate Invoice</span>
@@ -347,7 +347,7 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
 
       {/* Header controls strip */}
       <div className="flex items-center justify-between select-none">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-[#4A6480]">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-text-tertiary">
           Invoice History ({invoices.length})
         </h3>
 
@@ -355,7 +355,7 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
           onClick={fetchInvoices}
           disabled={isLoading}
           size="sm"
-          className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer"
+          className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer"
         >
           <RefreshCw size={13} className={`stroke-[1.5] ${isLoading ? 'animate-spin' : ''}`} />
           <span>Refresh</span>
@@ -379,10 +379,10 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
 
       {/* ━━━ MODAL: GENERATE INVOICE ━━━ */}
       <Dialog open={generateModalOpen} onOpenChange={setGenerateModalOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[700px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Raise Billing Invoice</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Raise Billing Invoice</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Raise invoice for services. Subtotal amounts automatically compute 18% GST.
             </DialogDescription>
           </DialogHeader>
@@ -456,11 +456,11 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
             <Button
               variant="outline"
               onClick={() => setGenerateModalOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
-            <Button onClick={handleGenerateInvoice} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer">
+            <Button onClick={handleGenerateInvoice} className="bg-primary hover:bg-primary-light text-white cursor-pointer">
               Raise Invoice
             </Button>
           </DialogFooter>
@@ -469,10 +469,10 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
 
       {/* ━━━ MODAL: MARK PAID ━━━ */}
       <Dialog open={markPaidOpen} onOpenChange={setMarkPaidOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Record Payment</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Record Payment</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Specify the date and method for recording invoice payment.
             </DialogDescription>
           </DialogHeader>
@@ -508,11 +508,11 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
             <Button
               variant="outline"
               onClick={() => { setMarkPaidOpen(false); setSelectedInvoice(null); }}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 cursor-pointer"
             >
               Cancel
             </Button>
-            <Button onClick={handleMarkPaid} className="bg-[#22C55E] hover:bg-[#16A34A] text-white cursor-pointer">
+            <Button onClick={handleMarkPaid} className="bg-online hover:bg-online/80 text-white cursor-pointer">
               Record Payment
             </Button>
           </DialogFooter>

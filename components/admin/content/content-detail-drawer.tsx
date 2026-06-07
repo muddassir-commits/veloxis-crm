@@ -178,14 +178,14 @@ export function ContentDetailDrawer({
   return (
     <>
       <Sheet open={open} onOpenChange={onOpenChange}>
-        <SheetContent className="bg-[#0D1829] border-l border-[#1E3352] text-[#F0F4FF] sm:max-w-md md:max-w-lg w-full flex flex-col p-0 overflow-hidden select-none">
-          <SheetHeader className="p-4 border-b border-[#1E3352]/40 bg-[#060D1A]">
+        <SheetContent className="bg-bg-card border-l border-border/30 text-text-primary sm:max-w-md md:max-w-lg w-full flex flex-col p-0 overflow-hidden select-none">
+          <SheetHeader className="p-4 border-b border-border/30/40 bg-bg-dark">
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-[10px] font-bold text-[#4D90FE] uppercase tracking-wider">
+                <span className="text-[10px] font-bold text-primary-light uppercase tracking-wider">
                   {clientName}
                 </span>
-                <SheetTitle className="text-sm font-bold text-[#F0F4FF] line-clamp-1 mt-0.5">
+                <SheetTitle className="text-sm font-bold text-text-primary line-clamp-1 mt-0.5">
                   Content Details
                 </SheetTitle>
               </div>
@@ -193,40 +193,40 @@ export function ContentDetailDrawer({
           </SheetHeader>
 
           {/* Form scroll area */}
-          <div className="flex-1 overflow-y-auto p-5 space-y-4 text-xs scrollbar-thin scrollbar-thumb-[#1E3352] scrollbar-track-transparent">
+          <div className="flex-1 overflow-y-auto p-5 space-y-4 text-xs scrollbar-thin scrollbar-thumb-border/50 scrollbar-track-transparent">
             {/* Target Keyword & Title */}
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Target Keyword *</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Target Keyword *</Label>
               <Input
                 type="text"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#8BA3C7] text-[11px] font-medium">Suggested Title</Label>
+              <Label className="text-text-secondary text-[11px] font-medium">Suggested Title</Label>
               <Input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               {/* Status */}
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Status</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Status</Label>
                 <Select
                   value={status}
                   onValueChange={(val: any) => setStatus(val)}
                 >
-                  <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                  <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                  <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                     <SelectItem value="idea" className="text-xs">Idea</SelectItem>
                     <SelectItem value="brief" className="text-xs">Brief</SelectItem>
                     <SelectItem value="writing" className="text-xs">Writing</SelectItem>
@@ -238,12 +238,12 @@ export function ContentDetailDrawer({
 
               {/* Content Type */}
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Content Type</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Content Type</Label>
                 <Select value={contentType} onValueChange={(val) => setContentType(val || 'blog')}>
-                  <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                  <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                  <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                     <SelectItem value="blog" className="text-xs">Blog Article</SelectItem>
                     <SelectItem value="landing_page" className="text-xs">Landing Page</SelectItem>
                     <SelectItem value="case_study" className="text-xs">Case Study</SelectItem>
@@ -256,23 +256,23 @@ export function ContentDetailDrawer({
             <div className="grid grid-cols-2 gap-4">
               {/* Word Target */}
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Word Target</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Word Target</Label>
                 <Input
                   type="number"
                   value={wordCountTarget}
                   onChange={(e) => setWordCountTarget(Number(e.target.value))}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
 
               {/* Word Current */}
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Current Words</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Current Words</Label>
                 <Input
                   type="number"
                   value={wordCountCurrent}
                   onChange={(e) => setWordCountCurrent(Number(e.target.value))}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
             </div>
@@ -280,12 +280,12 @@ export function ContentDetailDrawer({
             <div className="grid grid-cols-2 gap-4">
               {/* Assignee */}
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Assignee (Intern)</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Assignee (Intern)</Label>
                 <Select value={assignedTo} onValueChange={(val) => setAssignedTo(val || '')}>
-                  <SelectTrigger className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9">
+                  <SelectTrigger className="bg-bg-dark border-border/30 text-text-primary text-xs h-9">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF]">
+                  <SelectContent className="bg-bg-card border-border/30 text-text-primary">
                     <SelectItem value="unassigned" className="text-xs">Unassigned</SelectItem>
                     {employees.map((emp) => (
                       <SelectItem key={emp.id} value={emp.id} className="text-xs">
@@ -298,12 +298,12 @@ export function ContentDetailDrawer({
 
               {/* Due Date */}
               <div className="space-y-1.5">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Due Date</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Due Date</Label>
                 <Input
                   type="date"
                   value={dueDate}
                   onChange={(e) => setDueDate(e.target.value)}
-                  className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                  className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
                 />
               </div>
             </div>
@@ -311,13 +311,13 @@ export function ContentDetailDrawer({
             {/* Google Doc / Draft URL */}
             <div className="space-y-1.5">
               <div className="flex justify-between items-center">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Google Doc / Draft URL</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Google Doc / Draft URL</Label>
                 {draftUrl && (
                   <a
                     href={draftUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[10px] text-[#4D90FE] hover:underline font-bold"
+                    className="flex items-center gap-1 text-[10px] text-primary-light hover:underline font-bold"
                   >
                     Open Link <ExternalLink size={10} />
                   </a>
@@ -328,20 +328,20 @@ export function ContentDetailDrawer({
                 value={draftUrl}
                 onChange={(e) => setDraftUrl(e.target.value)}
                 placeholder="e.g. https://docs.google.com/document/d/..."
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs h-9"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs h-9"
               />
             </div>
 
             {/* Brief outline */}
-            <div className="space-y-1.5 pt-2 border-t border-[#1E3352]/20">
+            <div className="space-y-1.5 pt-2 border-t border-border/30/20">
               <div className="flex justify-between items-center">
-                <Label className="text-[#8BA3C7] text-[11px] font-medium">Content Brief Outline</Label>
+                <Label className="text-text-secondary text-[11px] font-medium">Content Brief Outline</Label>
                 <Button
                   type="button"
                   variant="ghost"
                   onClick={handleGenerateBrief}
                   disabled={generatingBrief}
-                  className="h-6 text-[10px] text-[#4D90FE] hover:text-[#F0F4FF] hover:bg-[#1B4FD8]/15 px-2 rounded flex items-center gap-1 font-bold border border-[#1B4FD8]/20 bg-[#1B4FD8]/5"
+                  className="h-6 text-[10px] text-primary-light hover:text-text-primary hover:bg-primary/15 px-2 rounded flex items-center gap-1 font-bold border border-primary/20 bg-primary/5"
                 >
                   {generatingBrief ? (
                     <>
@@ -358,18 +358,18 @@ export function ContentDetailDrawer({
                 value={brief}
                 onChange={(e) => setBrief(e.target.value)}
                 placeholder="Content brief details..."
-                className="bg-[#060D1A] border-[#1E3352] text-[#F0F4FF] text-xs min-h-[220px] font-mono leading-relaxed"
+                className="bg-bg-dark border-border/30 text-text-primary text-xs min-h-[220px] font-mono leading-relaxed"
               />
             </div>
           </div>
 
           {/* Footer actions */}
-          <SheetFooter className="p-4 border-t border-[#1E3352]/40 bg-[#060D1A] flex items-center justify-between sm:justify-between w-full">
+          <SheetFooter className="p-4 border-t border-border/30/40 bg-bg-dark flex items-center justify-between sm:justify-between w-full">
             <Button
               type="button"
               variant="ghost"
               onClick={() => setDeleteDialogOpen(true)}
-              className="text-[#EF4444] hover:bg-red-500/10 hover:text-red-400 border border-red-500/20 bg-red-500/5 text-xs h-9 cursor-pointer"
+              className="text-error hover:bg-red-500/10 hover:text-red-400 border border-red-500/20 bg-red-500/5 text-xs h-9 cursor-pointer"
             >
               <Trash2 size={13} className="mr-1.5" /> Delete
             </Button>
@@ -378,7 +378,7 @@ export function ContentDetailDrawer({
                 type="button"
                 variant="outline"
                 onClick={() => onOpenChange(false)}
-                className="border-[#1E3352] hover:bg-[#132035] text-[#8BA3C7] text-xs h-9 cursor-pointer"
+                className="border-border/30 hover:bg-bg-card-hover/20 text-text-secondary text-xs h-9 cursor-pointer"
               >
                 Cancel
               </Button>
@@ -386,7 +386,7 @@ export function ContentDetailDrawer({
                 type="button"
                 onClick={handleSave}
                 disabled={loading}
-                className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 cursor-pointer"
+                className="bg-primary hover:bg-primary-light text-white text-xs h-9 cursor-pointer"
               >
                 {loading ? (
                   <>

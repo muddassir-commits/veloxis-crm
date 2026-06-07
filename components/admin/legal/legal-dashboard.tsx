@@ -242,14 +242,14 @@ export function LegalDashboard({
       key: 'party_name',
       header: 'Signing Party',
       render: (val: any, row: any) => {
-        let icon = <Building size={14} className="text-[#3B82F6]" />;
+        let icon = <Building size={14} className="text-primary-light" />;
         if (row.type === 'nda' || row.type === 'student') {
-          icon = <User size={14} className="text-[#F97316]" />;
+          icon = <User size={14} className="text-accent" />;
         } else if (row.type === 'freelancer') {
-          icon = <Users size={14} className="text-[#22C55E]" />;
+          icon = <Users size={14} className="text-online" />;
         }
         return (
-          <div className="flex items-center gap-2 select-none font-semibold text-[#F0F4FF] text-xs sm:text-sm">
+          <div className="flex items-center gap-2 select-none font-semibold text-text-primary text-xs sm:text-sm">
             {icon}
             <span>{row.party_name}</span>
           </div>
@@ -261,16 +261,16 @@ export function LegalDashboard({
       header: 'Agreement Type',
       render: (val: any) => {
         let typeLabel = 'Client Contract';
-        let color = 'bg-[#3B82F610] text-[#3B82F6] border-[#3B82F620]';
+        let color = 'bg-primary/10 text-primary-light border-primary/20';
         if (val === 'nda') {
           typeLabel = 'NDA / Confidentiality';
-          color = 'bg-[#8B5CF610] text-[#8B5CF6] border-[#8B5CF620]';
+          color = 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20';
         } else if (val === 'freelancer') {
           typeLabel = 'Freelancer Agreement';
-          color = 'bg-[#22C55E10] text-[#22C55E] border-[#22C55E20]';
+          color = 'bg-online/10 text-online border-online/20';
         } else if (val === 'student') {
           typeLabel = 'Student Internship';
-          color = 'bg-[#F9731610] text-[#F97316] border-[#F9731620]';
+          color = 'bg-accent/10 text-accent border-accent/20';
         }
         return (
           <span className={`inline-flex px-2 py-0.5 rounded text-[10px] font-semibold border ${color}`}>
@@ -292,7 +292,7 @@ export function LegalDashboard({
         const dateStr = new Date(val).toLocaleDateString();
         const isExp = new Date(val).getTime() < Date.now();
         return (
-          <span className={isExp ? 'text-[#EF4444] font-semibold' : ''}>
+          <span className={isExp ? 'text-error font-semibold' : ''}>
             {dateStr} {isExp && '(Expired)'}
           </span>
         );
@@ -304,17 +304,17 @@ export function LegalDashboard({
       render: (val: any, row: any) => {
         const isExpired = row.expiry_date && new Date(row.expiry_date).getTime() < Date.now();
         const status = isExpired ? 'expired' : val;
-        let badgeColor = 'bg-[#22C55E15] text-[#22C55E] border-[#22C55E20]';
+        let badgeColor = 'bg-online/10 text-online border-online/20';
         let label = 'Active Signed';
 
         if (status === 'draft') {
-          badgeColor = 'bg-[#1E335220] text-[#8BA3C7] border-[#1E335230]';
+          badgeColor = 'bg-border-subtle/20 text-text-secondary border-border-subtle/30';
           label = 'Draft';
         } else if (status === 'expired') {
-          badgeColor = 'bg-[#EF444415] text-[#EF4444] border-[#EF444420]';
+          badgeColor = 'bg-error/10 text-error border-error/20';
           label = 'Expired';
         } else if (status === 'sent') {
-          badgeColor = 'bg-[#F59E0B15] text-[#F59E0B] border-[#F59E0B20]';
+          badgeColor = 'bg-warning/10 text-warning border-warning/20';
           label = 'Out for Signature';
         }
 
@@ -331,20 +331,19 @@ export function LegalDashboard({
       render: (val: any, row: any) => (
         <div className="flex items-center gap-2 select-none">
           <Button
-            size="sm"
-            variant="outline"
+            size="xs"
+            variant="secondary"
             onClick={() => handleDownloadContract(row)}
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-[11px] h-7 px-2"
           >
-            <Download size={11} className="mr-1" />
+            <Download className="mr-1" />
             <span>Fetch PDF</span>
           </Button>
           <Button
-            size="sm"
+            size="xs"
+            variant="outline"
             onClick={(e) => handleDeleteContract(row, e)}
-            className="bg-[#EF444415] hover:bg-[#EF444430] border border-[#EF444420] text-[#EF4444] text-[11px] h-7 px-2 cursor-pointer"
           >
-            <Trash2 size={11} />
+            <Trash2 />
           </Button>
         </div>
       )
@@ -355,14 +354,14 @@ export function LegalDashboard({
     <div className="space-y-6 select-none">
       {/* ━━━ EXPIRY ALERT BANNER ━━━ */}
       {expiringContracts.length > 0 && (
-        <div className="rounded-lg border border-[#EF444430] bg-[#EF44440c] p-4 flex gap-3 text-xs select-none">
-          <AlertTriangle size={18} className="text-[#EF4444] shrink-0 mt-0.5" />
+        <div className="rounded-lg border border-error/30 bg-error/5 p-4 flex gap-3 text-xs select-none">
+          <AlertTriangle size={18} className="text-error shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <h4 className="font-semibold text-[#F0F4FF]">Contract Expiry Warnings ({expiringContracts.length})</h4>
-            <p className="text-[#8BA3C7] leading-relaxed">
+            <h4 className="font-semibold text-text-primary">Contract Expiry Warnings ({expiringContracts.length})</h4>
+            <p className="text-text-secondary leading-relaxed">
               The following signed agreements are scheduled to expire within the next 30 days. Review terms or prepare renewal schedules immediately.
             </p>
-            <ul className="list-disc pl-4 space-y-0.5 text-[#F0F4FF] mt-2 font-semibold">
+            <ul className="list-disc pl-4 space-y-0.5 text-text-primary mt-2 font-semibold">
               {expiringContracts.map((c) => {
                 const days = Math.ceil((new Date(c.expiry_date).getTime() - Date.now()) / (24 * 3600 * 1000));
                 return (
@@ -377,20 +376,19 @@ export function LegalDashboard({
       )}
 
       {/* ━━━ HEADER SECTION ━━━ */}
-      <div className="flex items-center justify-between border-b border-[#1E3352]/40 pb-2 select-none">
+      <div className="flex items-center justify-between border-b border-border/30 pb-2 select-none">
         <div>
-          <h2 className="text-base font-semibold text-[#F0F4FF] flex items-center gap-1.5">
-            <Lock size={16} className="text-[#3B82F6]" />
+          <h2 className="text-base font-semibold text-text-primary flex items-center gap-1.5">
+            <Lock size={16} className="text-primary-light" />
             <span>Signed Agreements Cabinet</span>
           </h2>
-          <p className="text-xs text-[#8BA3C7] mt-0.5">Secure custody of client contracts, student non-disclosure agreements, and freelancer retainers.</p>
+          <p className="text-xs text-text-secondary mt-0.5">Secure custody of client contracts, student non-disclosure agreements, and freelancer retainers.</p>
         </div>
         <Button
           onClick={() => setUploadModalOpen(true)}
           size="sm"
-          className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 font-semibold cursor-pointer"
         >
-          <Upload size={13} />
+          <Upload className="mr-1" />
           <span>Upload Signed Contract</span>
         </Button>
       </div>
@@ -412,21 +410,21 @@ export function LegalDashboard({
 
       {/* ━━━ MODAL: ARCHIVE SIGNED CONTRACT ━━━ */}
       <Dialog open={uploadModalOpen} onOpenChange={setUploadModalOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-lg select-none">
+        <DialogContent className="sm:max-w-[600px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Archive Signed Agreement</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle>Archive Signed Agreement</DialogTitle>
+            <DialogDescription>
               Select a signed PDF contract, NDA, or vendor agreement to securely register in the legal cabinet.
             </DialogDescription>
           </DialogHeader>
 
           <div className="grid grid-cols-2 gap-4 my-2 text-xs">
-            <div className="space-y-1">
-              <label className="label">Signing Party Category *</label>
+            <div className="space-y-1 flex flex-col">
+              <label className="text-xs font-semibold text-text-secondary select-none">Signing Party Category *</label>
               <select
                 value={partyType}
                 onChange={(e: any) => setPartyType(e.target.value)}
-                className="input h-9"
+                className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
               >
                 <option value="client">Paying Client</option>
                 <option value="employee">Student / Intern</option>
@@ -434,12 +432,12 @@ export function LegalDashboard({
               </select>
             </div>
 
-            <div className="space-y-1">
-              <label className="label">Agreement Type *</label>
+            <div className="space-y-1 flex flex-col">
+              <label className="text-xs font-semibold text-text-secondary select-none">Agreement Type *</label>
               <select
                 value={contractType}
                 onChange={(e) => setContractType(e.target.value)}
-                className="input h-9"
+                className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
               >
                 <option value="client_agreement">Client Service Retainer Contract</option>
                 <option value="nda">Non-Disclosure Agreement (NDA)</option>
@@ -449,12 +447,12 @@ export function LegalDashboard({
             </div>
 
             {partyType === 'client' && (
-              <div className="col-span-2 space-y-1">
-                <label className="label">Select Client *</label>
+              <div className="col-span-2 space-y-1 flex flex-col">
+                <label className="text-xs font-semibold text-text-secondary select-none">Select Client *</label>
                 <select
                   value={selectedClientId}
                   onChange={(e) => setSelectedClientId(e.target.value)}
-                  className="input h-9"
+                  className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
                 >
                   <option value="">Choose Client...</option>
                   {clients?.map((c) => (
@@ -467,12 +465,12 @@ export function LegalDashboard({
             )}
 
             {partyType === 'employee' && (
-              <div className="col-span-2 space-y-1">
-                <label className="label">Select Employee Profile *</label>
+              <div className="col-span-2 space-y-1 flex flex-col">
+                <label className="text-xs font-semibold text-text-secondary select-none">Select Employee Profile *</label>
                 <select
                   value={selectedEmployeeId}
                   onChange={(e) => setSelectedEmployeeId(e.target.value)}
-                  className="input h-9"
+                  className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
                 >
                   <option value="">Choose Profile...</option>
                   {employees?.map((emp) => (
@@ -485,51 +483,51 @@ export function LegalDashboard({
             )}
 
             {partyType === 'other' && (
-              <div className="col-span-2 space-y-1">
-                <label className="label">Signing Party Name *</label>
+              <div className="col-span-2 space-y-1 flex flex-col">
+                <label className="text-xs font-semibold text-text-secondary select-none">Signing Party Name *</label>
                 <input
                   type="text"
                   placeholder="e.g. Hostinger, AWS, External Consultant"
                   value={customPartyName}
                   onChange={(e) => setCustomPartyName(e.target.value)}
-                  className="input h-9"
+                  className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] placeholder:text-text-tertiary"
                 />
               </div>
             )}
 
-            <div className="space-y-1">
-              <label className="label">Execution Signed Date</label>
+            <div className="space-y-1 flex flex-col">
+              <label className="text-xs font-semibold text-text-secondary select-none">Execution Signed Date</label>
               <input
                 type="date"
                 value={signedDate}
                 onChange={(e) => setSignedDate(e.target.value)}
-                className="input h-9"
+                className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="label">Agreement Expiration Date</label>
+            <div className="space-y-1 flex flex-col">
+              <label className="text-xs font-semibold text-text-secondary select-none">Agreement Expiration Date</label>
               <input
                 type="date"
                 value={expiryDate}
                 onChange={(e) => setExpiryDate(e.target.value)}
-                className="input h-9"
+                className="h-9 w-full min-w-0 rounded-lg border border-border/30 bg-bg-card/50 px-3 py-1 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)]"
               />
             </div>
 
-            <div className="col-span-2 space-y-1">
-              <label className="label">Brief Audit Notes / Conditions</label>
+            <div className="col-span-2 space-y-1 flex flex-col">
+              <label className="text-xs font-semibold text-text-secondary select-none">Brief Audit Notes / Conditions</label>
               <textarea
                 placeholder="Enter specialized retainers terms, stipulations, or remarks..."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 rows={2}
-                className="input resize-none"
+                className="h-20 w-full rounded-lg border border-border/30 bg-bg-card/50 px-3 py-2 text-sm text-text-primary backdrop-blur-[8px] outline-none transition-all duration-200 focus:border-primary/50 focus:bg-bg-card/70 focus:shadow-[0_0_16px_rgba(37,99,235,0.15)] placeholder:text-text-tertiary resize-none"
               />
             </div>
 
-            <div className="col-span-2 space-y-1 pt-2">
-              <label className="label">Signed Document Upload *</label>
+            <div className="col-span-2 space-y-1 pt-2 flex flex-col">
+              <label className="text-xs font-semibold text-text-secondary select-none">Signed Document Upload *</label>
               <FileUpload
                 bucket="agency"
                 storagePath="legal"
@@ -537,7 +535,7 @@ export function LegalDashboard({
                 onUpload={handleUploadComplete}
               />
               {uploadedFile && (
-                <div className="text-[10px] text-[#22C55E] font-semibold mt-1">
+                <div className="text-[10px] text-online font-semibold mt-1">
                   ✓ File uploaded: {uploadedFile.name}
                 </div>
               )}
@@ -546,18 +544,17 @@ export function LegalDashboard({
 
           <DialogFooter className="mt-4">
             <Button
-              variant="outline"
+              variant="secondary"
               onClick={() => setUploadModalOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleSubmitContract}
               disabled={isSubmitting || !uploadedFile}
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+              loading={isSubmitting}
             >
-              {isSubmitting ? 'Registering...' : 'Archive Agreement'}
+              Archive Agreement
             </Button>
           </DialogFooter>
         </DialogContent>

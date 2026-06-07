@@ -50,13 +50,13 @@ function getFileIcon(mimeType: string | null) {
 }
 
 function getFileIconColor(mimeType: string | null): string {
-  if (!mimeType) return 'text-[#4A6480]';
+  if (!mimeType) return 'text-text-tertiary';
   if (mimeType.startsWith('image/')) return 'text-[#A78BFA]';
-  if (mimeType.startsWith('video/')) return 'text-[#F59E0B]';
-  if (mimeType.includes('pdf')) return 'text-[#EF4444]';
-  if (mimeType.includes('document') || mimeType.includes('word')) return 'text-[#4D90FE]';
-  if (mimeType.includes('sheet') || mimeType.includes('excel')) return 'text-[#22C55E]';
-  return 'text-[#8BA3C7]';
+  if (mimeType.startsWith('video/')) return 'text-warning';
+  if (mimeType.includes('pdf')) return 'text-error';
+  if (mimeType.includes('document') || mimeType.includes('word')) return 'text-primary-light';
+  if (mimeType.includes('sheet') || mimeType.includes('excel')) return 'text-online';
+  return 'text-text-secondary';
 }
 
 export function FilesTab({ client }: FilesTabProps) {
@@ -129,7 +129,7 @@ export function FilesTab({ client }: FilesTabProps) {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-40 text-[#4A6480] text-xs gap-2">
+      <div className="flex items-center justify-center h-40 text-text-tertiary text-xs gap-2">
         <RefreshCw size={14} className="animate-spin" />
         <span>Loading files...</span>
       </div>
@@ -141,8 +141,8 @@ export function FilesTab({ client }: FilesTabProps) {
       {/* Header row */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-sm font-semibold text-[#F0F4FF]">Client Files & Documents</h3>
-          <p className="text-[10px] text-[#4A6480] mt-0.5">
+          <h3 className="text-sm font-semibold text-text-primary">Client Files & Documents</h3>
+          <p className="text-[10px] text-text-tertiary mt-0.5">
             {files.length} file{files.length !== 1 ? 's' : ''} stored for this client
           </p>
         </div>
@@ -150,7 +150,7 @@ export function FilesTab({ client }: FilesTabProps) {
           <Button
             onClick={fetchFiles}
             size="sm"
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] text-xs h-8 gap-1.5 cursor-pointer"
+            className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary text-xs h-8 gap-1.5 cursor-pointer"
           >
             <RefreshCw size={12} />
             <span>Refresh</span>
@@ -158,7 +158,7 @@ export function FilesTab({ client }: FilesTabProps) {
           <Button
             onClick={() => setUploadOpen(true)}
             size="sm"
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+            className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
           >
             <Upload size={12} />
             <span>Upload File</span>
@@ -168,16 +168,16 @@ export function FilesTab({ client }: FilesTabProps) {
 
       {/* Files Grid */}
       {files.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-16 text-center border border-dashed border-[#1E3352] rounded-[10px] bg-[#060D1A]">
+        <div className="flex flex-col items-center justify-center py-16 text-center border border-dashed border-border/30 rounded-[10px] bg-bg-dark">
           <FileText size={32} className="text-[#1E3352] mb-3" />
-          <p className="text-sm font-medium text-[#4A6480]">No Files Uploaded Yet</p>
+          <p className="text-sm font-medium text-text-tertiary">No Files Uploaded Yet</p>
           <p className="text-xs text-[#2A4060] mt-1 max-w-xs">
             Upload contracts, brand assets, audit reports, or any documents for this client.
           </p>
           <Button
             onClick={() => setUploadOpen(true)}
             size="sm"
-            className="mt-4 bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer"
+            className="mt-4 bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer"
           >
             <Upload size={12} />
             <span>Upload First File</span>
@@ -193,41 +193,41 @@ export function FilesTab({ client }: FilesTabProps) {
             return (
               <div
                 key={file.id}
-                className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 flex flex-col gap-3 hover:border-[#2A4060] transition-all group"
+                className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col gap-3 hover:border-[#2A4060] transition-all group"
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-[8px] bg-[#060D1A] border border-[#1E3352] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-[8px] bg-bg-dark border border-border/30 flex items-center justify-center shrink-0">
                     <IconComponent size={18} className={iconColor} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-1">
-                      <p className="text-xs font-semibold text-[#F0F4FF] truncate leading-tight flex-1">
+                      <p className="text-xs font-semibold text-text-primary truncate leading-tight flex-1">
                         {file.original_name || file.name}
                       </p>
                       {file.is_shared_with_client ? (
-                        <span className="text-[8px] font-bold text-[#22C55E] bg-[#22C55E]/10 border border-[#22C55E]/20 rounded px-1 shrink-0 select-none">
+                        <span className="text-[8px] font-bold text-online bg-online/10 border border-online/20 rounded px-1 shrink-0 select-none">
                           SHARED
                         </span>
                       ) : (
-                        <span className="text-[8px] font-bold text-[#4A6480] bg-[#132035] border border-[#1E3352] rounded px-1 shrink-0 select-none">
+                        <span className="text-[8px] font-bold text-text-tertiary bg-bg-card-hover/20 border border-border/30 rounded px-1 shrink-0 select-none">
                           PRIVATE
                         </span>
                       )}
                     </div>
-                    <p className="text-[10px] text-[#4A6480] mt-0.5">
+                    <p className="text-[10px] text-text-tertiary mt-0.5">
                       {formatBytes(file.size_bytes)} · {formatDate(file.created_at)}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2.5 pt-2 border-t border-[#1E3352]/50">
+                <div className="flex items-center gap-2.5 pt-2 border-t border-border/30/50">
                   {file.public_url && (
                     <>
                       <a
                         href={file.public_url}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-1 text-[10px] text-[#4D90FE] hover:text-[#7BB3FF] transition-colors"
+                        className="flex items-center gap-1 text-[10px] text-primary-light hover:text-[#7BB3FF] transition-colors"
                       >
                         <ExternalLink size={11} />
                         <span>View</span>
@@ -235,7 +235,7 @@ export function FilesTab({ client }: FilesTabProps) {
                       <a
                         href={file.public_url}
                         download={file.original_name || file.name}
-                        className="flex items-center gap-1 text-[10px] text-[#8BA3C7] hover:text-[#F0F4FF] transition-colors"
+                        className="flex items-center gap-1 text-[10px] text-text-secondary hover:text-text-primary transition-colors"
                       >
                         <Download size={11} />
                         <span>Download</span>
@@ -246,16 +246,16 @@ export function FilesTab({ client }: FilesTabProps) {
                   {/* Share Toggle */}
                   <button
                     onClick={() => handleToggleShare(file)}
-                    className="flex items-center gap-1 text-[10px] text-[#8BA3C7] hover:text-[#F0F4FF] transition-colors cursor-pointer"
+                    className="flex items-center gap-1 text-[10px] text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
                   >
                     {file.is_shared_with_client ? (
                       <>
-                        <EyeOff size={11} className="text-[#F59E0B]" />
+                        <EyeOff size={11} className="text-warning" />
                         <span>Unshare</span>
                       </>
                     ) : (
                       <>
-                        <Eye size={11} className="text-[#22C55E]" />
+                        <Eye size={11} className="text-online" />
                         <span>Share</span>
                       </>
                     )}
@@ -264,7 +264,7 @@ export function FilesTab({ client }: FilesTabProps) {
                   <button
                     onClick={() => handleDelete(file)}
                     disabled={isDeleting}
-                    className="ml-auto flex items-center gap-1 text-[10px] text-[#EF4444]/60 hover:text-[#EF4444] transition-colors cursor-pointer disabled:opacity-50"
+                    className="ml-auto flex items-center gap-1 text-[10px] text-error/60 hover:text-error transition-colors cursor-pointer disabled:opacity-50"
                   >
                     {isDeleting ? (
                       <RefreshCw size={11} className="animate-spin" />
@@ -282,10 +282,10 @@ export function FilesTab({ client }: FilesTabProps) {
 
       {/* ━━━ UPLOAD MODAL DIALOG ━━━ */}
       <Dialog open={uploadOpen} onOpenChange={setUploadOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Upload Document</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Upload Document</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Drag and drop any contract or campaign audit assets.
             </DialogDescription>
           </DialogHeader>

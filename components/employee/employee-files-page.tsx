@@ -110,15 +110,15 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-base font-bold text-[#F0F4FF]">My Files</h1>
-          <p className="text-[10px] text-[#4A6480]">
+          <h1 className="text-base font-bold text-text-primary">My Files</h1>
+          <p className="text-[10px] text-text-tertiary">
             {filteredFiles.length} files · {formatBytes(totalSize)}
           </p>
         </div>
         <Button
           onClick={() => setUploadOpen(true)}
           size="sm"
-          className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[11px] h-8 gap-1.5 cursor-pointer font-bold"
+          className="bg-primary hover:bg-primary-light text-white text-[11px] h-8 gap-1.5 cursor-pointer font-bold"
         >
           <Upload size={12} /> Upload
         </Button>
@@ -126,26 +126,26 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
 
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-2.5 h-3.5 w-3.5 text-[#4A6480]" />
+        <Search className="absolute left-3 top-2.5 h-3.5 w-3.5 text-text-tertiary" />
         <input
           type="text"
           placeholder="Search files..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-[#0D1829] border border-[#1E3352] rounded-[8px] pl-9 pr-3 py-2 text-xs text-[#F0F4FF] placeholder-[#4A6480] focus:outline-none focus:border-[#1B4FD8]"
+          className="w-full bg-bg-card border border-border/30 rounded-[8px] pl-9 pr-3 py-2 text-xs text-text-primary placeholder-[#4A6480] focus:outline-none focus:border-primary"
         />
       </div>
 
       {/* Files */}
       {filteredFiles.length === 0 ? (
-        <div className="bg-[#0D1829] border border-[#1E3352] border-dashed rounded-[10px] p-10 text-center">
+        <div className="bg-bg-card border border-border/30 border-dashed rounded-[10px] p-10 text-center">
           <FileText size={28} className="text-[#1E3352] mx-auto mb-2" />
-          <p className="text-sm font-semibold text-[#8BA3C7]">No files yet</p>
-          <p className="text-xs text-[#4A6480] mt-1 mb-4">Upload files here to keep them organized.</p>
+          <p className="text-sm font-semibold text-text-secondary">No files yet</p>
+          <p className="text-xs text-text-tertiary mt-1 mb-4">Upload files here to keep them organized.</p>
           <Button
             onClick={() => setUploadOpen(true)}
             size="sm"
-            className="bg-[#1B4FD8]/15 border border-[#1E3352] hover:bg-[#1B4FD8] hover:text-white text-[#4D90FE] text-xs cursor-pointer"
+            className="bg-primary/15 border border-border/30 hover:bg-primary hover:text-white text-primary-light text-xs cursor-pointer"
           >
             Upload First File
           </Button>
@@ -159,10 +159,10 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
             return (
               <div
                 key={file.id}
-                className="bg-[#0D1829] border border-[#1E3352] rounded-[8px] px-4 py-3 flex items-center gap-3 group hover:border-[#1A2D47] transition-all"
+                className="bg-bg-card border border-border/30 rounded-[8px] px-4 py-3 flex items-center gap-3 group hover:border-border/50 transition-all"
               >
                 {/* Icon / thumb */}
-                <div className="w-9 h-9 rounded bg-[#132035]/60 border border-[#1E3352]/50 flex items-center justify-center shrink-0 overflow-hidden">
+                <div className="w-9 h-9 rounded bg-bg-card-hover/20/60 border border-border/30/50 flex items-center justify-center shrink-0 overflow-hidden">
                   {isImg && file.public_url ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={file.public_url} alt={file.name} className="object-cover w-full h-full" />
@@ -173,8 +173,8 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold text-[#F0F4FF] truncate">{file.name}</p>
-                  <p className="text-[10px] text-[#4A6480] font-mono">
+                  <p className="text-xs font-semibold text-text-primary truncate">{file.name}</p>
+                  <p className="text-[10px] text-text-tertiary font-mono">
                     {formatBytes(file.size_bytes)} · {formatDate(file.created_at)}
                   </p>
                 </div>
@@ -184,7 +184,7 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
                   {file.public_url && (
                     <button
                       onClick={() => setPreviewFile(file)}
-                      className="p-1.5 rounded hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+                      className="p-1.5 rounded hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary cursor-pointer"
                       title="Preview"
                     >
                       <Eye size={13} />
@@ -195,14 +195,14 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
                     download={file.name}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-1.5 rounded hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+                    className="p-1.5 rounded hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary cursor-pointer"
                     title="Download"
                   >
                     <Download size={13} />
                   </a>
                   <button
                     onClick={() => setDeleteFile(file)}
-                    className="p-1.5 rounded hover:bg-[#EF444415] text-[#8BA3C7] hover:text-[#EF4444] cursor-pointer"
+                    className="p-1.5 rounded hover:bg-error/15 text-text-secondary hover:text-error cursor-pointer"
                     title="Delete"
                   >
                     <Trash2 size={13} />
@@ -214,12 +214,11 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
         </div>
       )}
 
-      {/* Upload Dialog */}
       <Dialog open={uploadOpen} onOpenChange={setUploadOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md">
+        <DialogContent className="sm:max-w-[550px] select-none">
           <DialogHeader>
             <DialogTitle className="text-sm font-semibold">Upload File</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogDescription className="text-xs text-text-secondary">
               Upload files to your personal work folder.
             </DialogDescription>
           </DialogHeader>
@@ -239,7 +238,7 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
               type="button"
               variant="outline"
               onClick={() => setUploadOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
@@ -249,11 +248,11 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
 
       {/* Preview Dialog */}
       <Dialog open={previewFile !== null} onOpenChange={(open) => !open && setPreviewFile(null)}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-2xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[700px] max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-sm font-bold truncate">{previewFile?.name}</DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col items-center justify-center p-2 bg-[#060D1A] rounded border border-[#1E3352]/40 min-h-[200px]">
+          <div className="flex flex-col items-center justify-center p-2 bg-bg-dark rounded border border-border/30/40 min-h-[200px]">
             {previewFile?.public_url ? (
               previewFile.mime_type?.startsWith('image/') ||
               ['png', 'jpg', 'jpeg', 'webp', 'gif'].includes(previewFile.name.split('.').pop()?.toLowerCase() || '') ? (
@@ -264,11 +263,11 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
               ) : (
                 <div className="text-center space-y-3">
                   {getFileIcon(previewFile.mime_type, previewFile.name)}
-                  <p className="text-xs text-[#8BA3C7]">Preview not available.</p>
+                  <p className="text-xs text-text-secondary">Preview not available.</p>
                   <a
                     href={previewFile.public_url}
                     download
-                    className="inline-flex items-center gap-1 text-[11px] bg-[#1B4FD8] hover:bg-[#2563EB] text-white px-3 py-1.5 rounded font-bold"
+                    className="inline-flex items-center gap-1 text-[11px] bg-primary hover:bg-primary-light text-white px-3 py-1.5 rounded font-bold"
                   >
                     <Download size={12} /> Download
                   </a>
@@ -281,25 +280,25 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
 
       {/* Delete Confirm Dialog */}
       <Dialog open={deleteFile !== null} onOpenChange={(open) => !open && setDeleteFile(null)}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#EF4444]">Delete File?</DialogTitle>
+            <DialogTitle className="text-base font-semibold text-error">Delete File?</DialogTitle>
           </DialogHeader>
-          <p className="text-xs text-[#8BA3C7] my-3 leading-relaxed">
-            Are you sure you want to delete <strong className="text-[#F0F4FF]">{deleteFile?.name}</strong>? This cannot be undone.
+          <p className="text-xs text-text-secondary my-3 leading-relaxed">
+            Are you sure you want to delete <strong className="text-text-primary">{deleteFile?.name}</strong>? This cannot be undone.
           </p>
           <DialogFooter>
             <Button
               variant="outline"
               onClick={() => setDeleteFile(null)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleDelete}
               disabled={isDeleting}
-              className="bg-[#EF4444] hover:bg-[#DC2626] text-white cursor-pointer"
+              className="bg-error hover:bg-error-light text-white cursor-pointer"
             >
               {isDeleting ? 'Deleting...' : 'Delete'}
             </Button>

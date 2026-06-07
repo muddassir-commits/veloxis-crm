@@ -237,7 +237,7 @@ export function FileBrowser({
   return (
     <div className="flex flex-col lg:flex-row gap-6 min-h-[600px] select-none">
       {/* ─── SIDEBAR NAVIGATION TREE ─── */}
-      <div className="w-full lg:w-[260px] shrink-0 bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 flex flex-col space-y-5 h-fit">
+      <div className="w-full lg:w-[260px] shrink-0 bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col space-y-5 h-fit">
         {/* Category: All Files */}
         <button
           onClick={() => {
@@ -247,8 +247,8 @@ export function FileBrowser({
           }}
           className={`flex items-center gap-3 w-full px-3 py-2 rounded-[7px] text-xs font-semibold border transition-all cursor-pointer ${
             activeCategory === 'all'
-              ? 'bg-[#1B4FD8] border-[#1B4FD8] text-white font-bold'
-              : 'bg-[#132035]/30 border-transparent text-[#8BA3C7] hover:bg-[#132035]/60 hover:text-[#F0F4FF]'
+              ? 'bg-primary border-primary text-white font-bold'
+              : 'bg-bg-card-hover/20/30 border-transparent text-text-secondary hover:bg-bg-card-hover/20/60 hover:text-text-primary'
           }`}
         >
           <Folder size={15} />
@@ -259,7 +259,7 @@ export function FileBrowser({
         <div className="space-y-1">
           <button
             onClick={() => setClientsCollapsed(!clientsCollapsed)}
-            className="flex items-center justify-between w-full px-2 py-1 text-[10px] font-bold text-[#4A6480] uppercase tracking-wider hover:text-[#F0F4FF] cursor-pointer"
+            className="flex items-center justify-between w-full px-2 py-1 text-[10px] font-bold text-text-tertiary uppercase tracking-wider hover:text-text-primary cursor-pointer"
           >
             <span>By Client</span>
             {clientsCollapsed ? <ChevronRight size={12} /> : <ChevronDown size={12} />}
@@ -277,14 +277,14 @@ export function FileBrowser({
                   }}
                   className={`flex items-center gap-2 w-full text-left px-2.5 py-1.5 rounded-[5px] text-[11px] font-medium transition-all truncate cursor-pointer ${
                     activeCategory === 'client' && selectedClientId === client.id
-                      ? 'bg-[#1B4FD8]/20 border border-[#1B4FD8]/40 text-[#4D90FE] font-semibold'
-                      : 'border border-transparent text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF]'
+                      ? 'bg-primary/20 border border-primary/40 text-primary-light font-semibold'
+                      : 'border border-transparent text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary'
                   }`}
                 >
                   <Folder size={11} className="shrink-0" />
                   <span className="truncate">{client.name}</span>
                   {client.is_agency_self && (
-                    <span className="text-[8px] bg-[#F97316]/10 text-[#F97316] px-1 py-0.2 rounded font-bold uppercase ml-auto scale-90 shrink-0">
+                    <span className="text-[8px] bg-accent/10 text-accent px-1 py-0.2 rounded font-bold uppercase ml-auto scale-90 shrink-0">
                       Agency
                     </span>
                   )}
@@ -298,7 +298,7 @@ export function FileBrowser({
         <div className="space-y-1">
           <button
             onClick={() => setDeptsCollapsed(!deptsCollapsed)}
-            className="flex items-center justify-between w-full px-2 py-1 text-[10px] font-bold text-[#4A6480] uppercase tracking-wider hover:text-[#F0F4FF] cursor-pointer"
+            className="flex items-center justify-between w-full px-2 py-1 text-[10px] font-bold text-text-tertiary uppercase tracking-wider hover:text-text-primary cursor-pointer"
           >
             <span>By Department</span>
             {deptsCollapsed ? <ChevronRight size={12} /> : <ChevronDown size={12} />}
@@ -316,8 +316,8 @@ export function FileBrowser({
                   }}
                   className={`flex items-center gap-2 w-full text-left px-2.5 py-1.5 rounded-[5px] text-[11px] font-medium transition-all truncate cursor-pointer ${
                     activeCategory === 'department' && selectedDept === dept.key
-                      ? 'bg-[#1B4FD8]/20 border border-[#1B4FD8]/40 text-[#4D90FE] font-semibold'
-                      : 'border border-transparent text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF]'
+                      ? 'bg-primary/20 border border-primary/40 text-primary-light font-semibold'
+                      : 'border border-transparent text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary'
                   }`}
                 >
                   <Folder size={11} className="shrink-0" />
@@ -332,31 +332,31 @@ export function FileBrowser({
       {/* ─── MAIN FILE EXPLORER AREA ─── */}
       <div className="flex-1 space-y-4">
         {/* Navigation & Toolbar Header */}
-        <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
           {/* Active Folder Path */}
           <div className="text-xs">
-            <span className="text-[#4A6480] font-semibold">Root</span>
-            <span className="text-[#4A6480] mx-1.5">/</span>
-            {activeCategory === 'all' && <span className="text-[#F0F4FF] font-bold">All Agency Files</span>}
+            <span className="text-text-tertiary font-semibold">Root</span>
+            <span className="text-text-tertiary mx-1.5">/</span>
+            {activeCategory === 'all' && <span className="text-text-primary font-bold">All Agency Files</span>}
             {activeCategory === 'client' && (
               <>
-                <span className="text-[#8BA3C7]">Clients</span>
-                <span className="text-[#4A6480] mx-1.5">/</span>
-                <span className="text-[#F0F4FF] font-bold">
+                <span className="text-text-secondary">Clients</span>
+                <span className="text-text-tertiary mx-1.5">/</span>
+                <span className="text-text-primary font-bold">
                   {initialClients.find((c) => c.id === selectedClientId)?.name || 'Unknown Client'}
                 </span>
               </>
             )}
             {activeCategory === 'department' && (
               <>
-                <span className="text-[#8BA3C7]">Departments</span>
-                <span className="text-[#4A6480] mx-1.5">/</span>
-                <span className="text-[#F0F4FF] font-bold">
+                <span className="text-text-secondary">Departments</span>
+                <span className="text-text-tertiary mx-1.5">/</span>
+                <span className="text-text-primary font-bold">
                   {departments.find((d) => d.key === selectedDept)?.name || 'Unknown'}
                 </span>
               </>
             )}
-            <span className="ml-2 text-[10px] text-[#8BA3C7] bg-[#132035] border border-[#1E3352] px-2 py-0.5 rounded-full font-bold">
+            <span className="ml-2 text-[10px] text-text-secondary bg-bg-card-hover/20 border border-border/30 px-2 py-0.5 rounded-full font-bold">
               {filteredFiles.length} {filteredFiles.length === 1 ? 'file' : 'files'}
             </span>
           </div>
@@ -365,7 +365,7 @@ export function FileBrowser({
           <div className="flex flex-wrap items-center gap-3">
             {/* Search Input */}
             <div className="relative w-full sm:w-[220px]">
-              <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-[#4A6480]" />
+              <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-text-tertiary" />
               <input
                 type="text"
                 placeholder="Search file name/tags..."
@@ -376,11 +376,11 @@ export function FileBrowser({
             </div>
 
             {/* View switcher Grid/List */}
-            <div className="flex items-center bg-[#132035] border border-[#1E3352] rounded p-0.5">
+            <div className="flex items-center bg-bg-card-hover/20 border border-border/30 rounded p-0.5">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-1 rounded-[3px] transition-colors cursor-pointer ${
-                  viewMode === 'grid' ? 'bg-[#1B4FD8] text-white' : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
+                  viewMode === 'grid' ? 'bg-primary text-white' : 'text-text-secondary hover:text-text-primary'
                 }`}
                 title="Grid view"
               >
@@ -389,7 +389,7 @@ export function FileBrowser({
               <button
                 onClick={() => setViewMode('list')}
                 className={`p-1 rounded-[3px] transition-colors cursor-pointer ${
-                  viewMode === 'list' ? 'bg-[#1B4FD8] text-white' : 'text-[#8BA3C7] hover:text-[#F0F4FF]'
+                  viewMode === 'list' ? 'bg-primary text-white' : 'text-text-secondary hover:text-text-primary'
                 }`}
                 title="List view"
               >
@@ -401,7 +401,7 @@ export function FileBrowser({
             <Button
               onClick={openUploadModal}
               size="sm"
-              className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-[11px] h-8 gap-1.5 cursor-pointer font-bold transition-all"
+              className="bg-primary hover:bg-primary-light text-white text-[11px] h-8 gap-1.5 cursor-pointer font-bold transition-all"
             >
               <Upload size={13} />
               <span>Upload</span>
@@ -411,26 +411,26 @@ export function FileBrowser({
 
         {/* Stats Strip */}
         <div className="grid grid-cols-3 gap-4">
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[8px] p-3 flex items-center justify-between">
+          <div className="bg-bg-card border border-border/30 rounded-[8px] p-3 flex items-center justify-between">
             <div>
-              <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block font-bold">Total Files</span>
-              <span className="font-bold text-sm text-[#F0F4FF] font-mono mt-0.5">{filteredFiles.length}</span>
+              <span className="text-[9px] text-text-tertiary uppercase tracking-wider block font-bold">Total Files</span>
+              <span className="font-bold text-sm text-text-primary font-mono mt-0.5">{filteredFiles.length}</span>
             </div>
             <Folder size={18} className="text-[#1B4FD8] opacity-60" />
           </div>
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[8px] p-3 flex items-center justify-between">
+          <div className="bg-bg-card border border-border/30 rounded-[8px] p-3 flex items-center justify-between">
             <div>
-              <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block font-bold">Space Occupied</span>
-              <span className="font-bold text-sm text-[#F97316] font-mono mt-0.5">{formatBytes(totalFilesSize)}</span>
+              <span className="text-[9px] text-text-tertiary uppercase tracking-wider block font-bold">Space Occupied</span>
+              <span className="font-bold text-sm text-accent font-mono mt-0.5">{formatBytes(totalFilesSize)}</span>
             </div>
-            <Info size={18} className="text-[#F97316] opacity-60" />
+            <Info size={18} className="text-accent opacity-60" />
           </div>
-          <div className="bg-[#0D1829] border border-[#1E3352] rounded-[8px] p-3 flex items-center justify-between">
+          <div className="bg-bg-card border border-border/30 rounded-[8px] p-3 flex items-center justify-between">
             <div>
-              <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block font-bold">Client Shared</span>
-              <span className="font-bold text-sm text-[#22C55E] font-mono mt-0.5">{sharedCount}</span>
+              <span className="text-[9px] text-text-tertiary uppercase tracking-wider block font-bold">Client Shared</span>
+              <span className="font-bold text-sm text-online font-mono mt-0.5">{sharedCount}</span>
             </div>
-            <CheckCircle size={18} className="text-[#22C55E] opacity-60" />
+            <CheckCircle size={18} className="text-online opacity-60" />
           </div>
         </div>
 
@@ -445,13 +445,13 @@ export function FileBrowser({
                 return (
                   <div
                     key={file.id}
-                    className="bg-[#0D1829] border border-[#1E3352] rounded-[8px] p-4 flex flex-col justify-between hover:border-[#1A2D47] transition-all relative group h-[190px]"
+                    className="bg-bg-card border border-border/30 rounded-[8px] p-4 flex flex-col justify-between hover:border-border/50 transition-all relative group h-[190px]"
                   >
                     {/* Top line metadata */}
                     <div className="flex items-start justify-between">
                       {/* Icon / Thumbnail */}
                       {isImg && file.public_url ? (
-                        <div className="h-10 w-10 rounded border border-[#1E3352] overflow-hidden bg-[#060D1A] flex items-center justify-center">
+                        <div className="h-10 w-10 rounded border border-border/30 overflow-hidden bg-bg-dark flex items-center justify-center">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={file.public_url}
@@ -460,7 +460,7 @@ export function FileBrowser({
                           />
                         </div>
                       ) : (
-                        <div className="h-10 w-10 rounded bg-[#132035]/60 border border-[#1E3352]/50 flex items-center justify-center shrink-0">
+                        <div className="h-10 w-10 rounded bg-bg-card-hover/20/60 border border-border/30/50 flex items-center justify-center shrink-0">
                           {getFileIcon(file.mime_type, file.name)}
                         </div>
                       )}
@@ -470,7 +470,7 @@ export function FileBrowser({
                         {file.public_url && (
                           <button
                             onClick={() => setPreviewFile(file)}
-                            className="p-1 rounded hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+                            className="p-1 rounded hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary cursor-pointer"
                             title="Preview file"
                           >
                             <Eye size={12} />
@@ -481,14 +481,14 @@ export function FileBrowser({
                           download={file.name}
                           target="_blank"
                           rel="noreferrer"
-                          className="p-1 rounded hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+                          className="p-1 rounded hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary cursor-pointer"
                           title="Download file"
                         >
                           <Download size={12} />
                         </a>
                         <button
                           onClick={() => setDeleteFile(file)}
-                          className="p-1 rounded hover:bg-[#EF444415] text-[#8BA3C7] hover:text-[#EF4444] cursor-pointer"
+                          className="p-1 rounded hover:bg-error/15 text-text-secondary hover:text-error cursor-pointer"
                           title="Delete file"
                         >
                           <Trash2 size={12} />
@@ -499,31 +499,31 @@ export function FileBrowser({
                     {/* Middle info */}
                     <div className="mt-3 min-w-0">
                       <p
-                        className="font-bold text-xs text-[#F0F4FF] truncate"
+                        className="font-bold text-xs text-text-primary truncate"
                         title={file.name}
                       >
                         {file.name}
                       </p>
-                      <p className="text-[9px] text-[#4A6480] mt-0.5 font-mono">
+                      <p className="text-[9px] text-text-tertiary mt-0.5 font-mono">
                         {formatBytes(file.size_bytes)} • {formatDate(file.created_at)}
                       </p>
                       {file.description && (
-                        <p className="text-[10px] text-[#8BA3C7] mt-1 line-clamp-1 italic">
+                        <p className="text-[10px] text-text-secondary mt-1 line-clamp-1 italic">
                           {file.description}
                         </p>
                       )}
                     </div>
 
                     {/* Bottom Metadata & sharing controls */}
-                    <div className="pt-2 border-t border-[#1E3352]/30 mt-3 flex items-center justify-between text-[9px] font-mono text-[#8BA3C7]">
+                    <div className="pt-2 border-t border-border/30/30 mt-3 flex items-center justify-between text-[9px] font-mono text-text-secondary">
                       <span>By: {file.profiles?.full_name || 'System'}</span>
                       {file.bucket === 'clients' && (
                         <button
                           onClick={() => handleToggleShare(file)}
                           className={`px-1.5 py-0.5 rounded-[3px] font-bold uppercase transition-colors cursor-pointer ${
                             file.is_shared_with_client
-                              ? 'bg-[#22C55E15] text-[#22C55E] border border-[#22C55E30]'
-                              : 'bg-[#132035] text-[#4A6480] border border-[#1E3352] hover:text-[#F0F4FF]'
+                              ? 'bg-online/15 text-online border border-[#22C55E30]'
+                              : 'bg-bg-card-hover/20 text-text-tertiary border border-border/30 hover:text-text-primary'
                           }`}
                         >
                           {file.is_shared_with_client ? 'Shared' : 'Private'}
@@ -536,10 +536,10 @@ export function FileBrowser({
             </div>
           ) : (
             /* LIST VIEW */
-            <div className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] overflow-hidden select-none">
+            <div className="bg-bg-card border border-border/30 rounded-[10px] overflow-hidden select-none">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-[#1E3352] bg-[#132035]/30 text-[10px] font-bold text-[#4A6480] uppercase tracking-wider">
+                  <tr className="border-b border-border/30 bg-bg-card-hover/20/30 text-[10px] font-bold text-text-tertiary uppercase tracking-wider">
                     <th className="p-3 pl-4">Name</th>
                     <th className="p-3">Size</th>
                     <th className="p-3">Uploaded Date</th>
@@ -551,9 +551,9 @@ export function FileBrowser({
                   {filteredFiles.map((file) => (
                     <tr
                       key={file.id}
-                      className="hover:bg-[#132035]/30 text-[#8BA3C7] group"
+                      className="hover:bg-bg-card-hover/20/30 text-text-secondary group"
                     >
-                      <td className="p-3 pl-4 font-semibold text-[#F0F4FF] max-w-[200px] truncate">
+                      <td className="p-3 pl-4 font-semibold text-text-primary max-w-[200px] truncate">
                         <div className="flex items-center gap-2">
                           {getFileIcon(file.mime_type, file.name)}
                           <span className="truncate" title={file.name}>{file.name}</span>
@@ -567,7 +567,7 @@ export function FileBrowser({
                           {file.public_url && (
                             <button
                               onClick={() => setPreviewFile(file)}
-                              className="p-1 rounded hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+                              className="p-1 rounded hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary cursor-pointer"
                               title="Preview"
                             >
                               <Eye size={12} />
@@ -578,7 +578,7 @@ export function FileBrowser({
                             download={file.name}
                             target="_blank"
                             rel="noreferrer"
-                            className="p-1 rounded hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer"
+                            className="p-1 rounded hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary cursor-pointer"
                             title="Download"
                           >
                             <Download size={12} />
@@ -586,8 +586,8 @@ export function FileBrowser({
                           {file.bucket === 'clients' && (
                             <button
                               onClick={() => handleToggleShare(file)}
-                              className={`p-1 rounded hover:bg-[#132035] cursor-pointer ${
-                                file.is_shared_with_client ? 'text-[#22C55E]' : 'text-[#4A6480]'
+                              className={`p-1 rounded hover:bg-bg-card-hover/20 cursor-pointer ${
+                                file.is_shared_with_client ? 'text-online' : 'text-text-tertiary'
                               }`}
                               title={file.is_shared_with_client ? 'Make Private' : 'Share with Client'}
                             >
@@ -596,7 +596,7 @@ export function FileBrowser({
                           )}
                           <button
                             onClick={() => setDeleteFile(file)}
-                            className="p-1 rounded hover:bg-[#EF444415] text-[#8BA3C7] hover:text-[#EF4444] cursor-pointer"
+                            className="p-1 rounded hover:bg-error/15 text-text-secondary hover:text-error cursor-pointer"
                             title="Delete"
                           >
                             <Trash2 size={12} />
@@ -611,16 +611,16 @@ export function FileBrowser({
           )
         ) : (
           /* EMPTY STATE */
-          <div className="bg-[#0D1829] border border-[#1E3352] border-dashed rounded-[10px] p-12 text-center text-[#4A6480] space-y-2 select-none">
+          <div className="bg-bg-card border border-border/30 border-dashed rounded-[10px] p-12 text-center text-text-tertiary space-y-2 select-none">
             <Folder size={32} className="mx-auto text-[#1E3352]" />
-            <p className="font-bold text-sm text-[#8BA3C7]">No files found</p>
+            <p className="font-bold text-sm text-text-secondary">No files found</p>
             <p className="text-xs max-w-xs mx-auto">
               There are no documents uploaded under this category yet, or nothing matches your current search.
             </p>
             <Button
               onClick={openUploadModal}
               size="sm"
-              className="bg-[#1B4FD8]/15 border border-[#1E3352] hover:bg-[#1B4FD8] hover:text-white text-[#4D90FE] text-xs mt-3 cursor-pointer"
+              className="bg-primary/15 border border-border/30 hover:bg-primary hover:text-white text-primary-light text-xs mt-3 cursor-pointer"
             >
               Upload First File
             </Button>
@@ -628,12 +628,11 @@ export function FileBrowser({
         )}
       </div>
 
-      {/* ─── MODAL: UPLOAD FILE ─── */}
       <Dialog open={uploadOpen} onOpenChange={setUploadOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[600px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Upload File to Vault</DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogTitle className="text-base font-semibold text-text-primary">Upload File to Vault</DialogTitle>
+            <DialogDescription className="text-xs text-text-secondary">
               Specify document metadata and select the target folder.
             </DialogDescription>
           </DialogHeader>
@@ -726,7 +725,7 @@ export function FileBrowser({
             </div>
 
             {/* File Drag-and-drop Component */}
-            <div className="pt-2 border-t border-[#1E3352]/30">
+            <div className="pt-2 border-t border-border/30/30">
               <FileUpload
                 bucket={uploadTarget.bucket}
                 storagePath={getUploadStoragePath()}
@@ -747,7 +746,7 @@ export function FileBrowser({
               type="button"
               variant="outline"
               onClick={() => setUploadOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
@@ -755,18 +754,17 @@ export function FileBrowser({
         </DialogContent>
       </Dialog>
 
-      {/* ─── MODAL: PREVIEW FILE LIGHTBOX ─── */}
       <Dialog open={previewFile !== null} onOpenChange={(open) => !open && setPreviewFile(null)}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-3xl select-none max-h-[85vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[800px] select-none max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-sm font-bold text-[#F0F4FF] truncate flex items-center justify-between pr-6">
+            <DialogTitle className="text-sm font-bold text-text-primary truncate flex items-center justify-between pr-6">
               <span>{previewFile?.name}</span>
               {previewFile?.public_url && (
                 <a
                   href={previewFile.public_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[10px] text-[#4D90FE] hover:underline flex items-center gap-1 font-semibold ml-4"
+                  className="text-[10px] text-primary-light hover:underline flex items-center gap-1 font-semibold ml-4"
                 >
                   <span>Open in tab</span>
                   <ExternalLink size={10} />
@@ -775,7 +773,7 @@ export function FileBrowser({
             </DialogTitle>
           </DialogHeader>
 
-          <div className="flex flex-col items-center justify-center p-2 bg-[#060D1A] rounded border border-[#1E3352]/40 min-h-[250px]">
+          <div className="flex flex-col items-center justify-center p-2 bg-bg-dark rounded border border-border/30/40 min-h-[250px]">
             {previewFile?.public_url ? (
               previewFile.mime_type?.startsWith('image/') || 
               ['png', 'jpg', 'jpeg', 'webp', 'gif'].includes(previewFile.name.split('.').pop()?.toLowerCase() || '') ? (
@@ -795,14 +793,14 @@ export function FileBrowser({
                 />
               ) : (
                 <div className="text-center p-8 space-y-3">
-                  <div className="h-16 w-16 rounded-full bg-[#132035]/60 border border-[#1E3352] flex items-center justify-center mx-auto text-[#8BA3C7]">
+                  <div className="h-16 w-16 rounded-full bg-bg-card-hover/20/60 border border-border/30 flex items-center justify-center mx-auto text-text-secondary">
                     {getFileIcon(previewFile.mime_type, previewFile.name)}
                   </div>
-                  <p className="text-xs text-[#8BA3C7]">Preview not available for this file type.</p>
+                  <p className="text-xs text-text-secondary">Preview not available for this file type.</p>
                   <a
                     href={previewFile.public_url}
                     download
-                    className="inline-flex items-center gap-1 text-[11px] bg-[#1B4FD8] hover:bg-[#2563EB] text-white px-3 py-1.5 rounded font-bold transition-all cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11px] bg-primary hover:bg-primary-light text-white px-3 py-1.5 rounded font-bold transition-all cursor-pointer"
                   >
                     <Download size={12} />
                     <span>Download File</span>
@@ -812,7 +810,7 @@ export function FileBrowser({
             ) : null}
           </div>
 
-          <DialogFooter className="sm:justify-between text-[10px] font-mono text-[#8BA3C7] items-center border-t border-[#1E3352]/20 pt-3">
+          <DialogFooter className="sm:justify-between text-[10px] font-mono text-text-secondary items-center border-t border-border/30/20 pt-3">
             <span>Size: {previewFile ? formatBytes(previewFile.size_bytes) : '-'}</span>
             <span>Uploaded: {previewFile ? formatDate(previewFile.created_at) : '-'}</span>
           </DialogFooter>
@@ -821,13 +819,13 @@ export function FileBrowser({
 
       {/* ─── DIALOG: DELETE CONFIRMATION ─── */}
       <Dialog open={deleteFile !== null} onOpenChange={(open) => !open && setDeleteFile(null)}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#EF4444]">Confirm File Deletion</DialogTitle>
+            <DialogTitle className="text-base font-semibold text-error">Confirm File Deletion</DialogTitle>
           </DialogHeader>
 
-          <p className="text-xs text-[#8BA3C7] my-3 leading-relaxed">
-            Are you sure you want to permanently delete <strong className="text-[#F0F4FF]">{deleteFile?.name}</strong>?
+          <p className="text-xs text-text-secondary my-3 leading-relaxed">
+            Are you sure you want to permanently delete <strong className="text-text-primary">{deleteFile?.name}</strong>?
             This will remove the file metadata and permanently delete the physical asset from storage. This action is irreversible.
           </p>
 
@@ -836,13 +834,13 @@ export function FileBrowser({
               type="button"
               variant="outline"
               onClick={() => setDeleteFile(null)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
             <Button
               onClick={handleDeleteConfirm}
-              className="bg-[#EF4444] hover:bg-[#DC2626] text-white cursor-pointer font-semibold"
+              className="bg-error hover:bg-error-light text-white cursor-pointer font-semibold"
             >
               Delete File
             </Button>

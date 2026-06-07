@@ -30,17 +30,17 @@ export function EmptyState({
     >
       {/* Icon with custom opacity and styling */}
       {Icon && (
-        <div className="text-[#4A6480] opacity-25 shrink-0">
+        <div className="text-text-tertiary opacity-25 shrink-0">
           <Icon size={32} className="stroke-[1.5]" />
         </div>
       )}
 
       {/* Text Details */}
       <div className="space-y-1.5 max-w-md">
-        <h3 className="text-base font-semibold text-[#F0F4FF] tracking-tight">
+        <h3 className="text-base font-semibold text-text-primary tracking-tight">
           {title}
         </h3>
-        <p className="text-sm text-[#8BA3C7] leading-relaxed">
+        <p className="text-sm text-text-secondary leading-relaxed">
           {description}
         </p>
       </div>
@@ -50,7 +50,7 @@ export function EmptyState({
         <Button
           onClick={onAction}
           size="sm"
-          className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold px-4 py-2 rounded-md transition-colors"
+          className="bg-primary hover:bg-primary-light text-white text-xs font-semibold px-4 py-2 rounded-md transition-colors"
         >
           {actionLabel}
         </Button>

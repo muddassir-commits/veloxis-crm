@@ -15,10 +15,10 @@ export function PageContainer({ children, className, title, description, actions
       {...props}
     >
       {title && (
-        <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between pb-4 border-b border-[#1E3352]/30 select-none">
+        <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between pb-4 border-b border-border/20 select-none">
           <div>
-            <h2 className="text-[16px] md:text-[20px] font-bold text-[#F0F4FF] tracking-tight">{title}</h2>
-            {description && <p className="text-xs text-[#8BA3C7] mt-0.5">{description}</p>}
+            <h2 className="text-[16px] md:text-[20px] font-bold text-text-primary tracking-tight">{title}</h2>
+            {description && <p className="text-xs text-text-secondary mt-0.5">{description}</p>}
           </div>
           {actions && <div className="flex items-center gap-2 mt-2 md:mt-0">{actions}</div>}
         </div>

@@ -201,9 +201,9 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
       width: '30%',
       render: (val: unknown, row: Record<string, unknown>) => (
         <div className="flex flex-col gap-0.5">
-          <span className="font-semibold text-xs text-[#F0F4FF]">{String(val)}</span>
+          <span className="font-semibold text-xs text-text-primary">{String(val)}</span>
           {Boolean(row.description) && (
-            <span className="text-[10px] text-[#4A6480] line-clamp-1 truncate max-w-[200px]" title={String(row.description)}>
+            <span className="text-[10px] text-text-tertiary line-clamp-1 truncate max-w-[200px]" title={String(row.description)}>
               {String(row.description)}
             </span>
           )}
@@ -218,7 +218,7 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
         const t = String(val || '');
         const opt = PROJECT_TYPES.find((o) => o.id === t);
         return (
-          <span className="text-[9px] font-bold bg-[#1B4FD8]/10 text-[#4D90FE] border border-[#1B4FD8]/20 px-2 py-0.5 rounded uppercase tracking-wider select-none">
+          <span className="text-[9px] font-bold bg-primary/10 text-primary-light border border-primary/20 px-2 py-0.5 rounded uppercase tracking-wider select-none">
             {opt ? opt.label : t.toUpperCase()}
           </span>
         );
@@ -235,7 +235,7 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
           <select
             value={status}
             onChange={(e) => handleStatusChange(projectId, e.target.value as ProjectStatus)}
-            className="bg-[#0D1829] border border-[#1E3352] text-[11px] rounded px-2 py-1 focus:outline-none focus:border-[#1B4FD8] font-semibold text-[#8BA3C7] cursor-pointer"
+            className="bg-bg-card border border-border/30 text-[11px] rounded px-2 py-1 focus:outline-none focus:border-primary font-semibold text-text-secondary cursor-pointer"
           >
             <option value="planning">Planning</option>
             <option value="active">Active</option>
@@ -251,9 +251,9 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
       width: '15%',
       render: (val: unknown) => {
         const valNum = Number(val || 0);
-        if (client.is_agency_self) return <span className="text-[#4A6480] text-xs italic">-</span>;
+        if (client.is_agency_self) return <span className="text-text-tertiary text-xs italic">-</span>;
         return (
-          <span className="font-semibold font-mono text-xs text-[#F97316]">
+          <span className="font-semibold font-mono text-xs text-accent">
             {formatCurrency(valNum)}
           </span>
         );
@@ -264,7 +264,7 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
       header: 'Start Date',
       width: '12%',
       render: (val: unknown) => (
-        <span className="text-xs text-[#4A6480] font-mono">
+        <span className="text-xs text-text-tertiary font-mono">
           {val ? formatDate(String(val)) : '-'}
         </span>
       ),
@@ -279,18 +279,18 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <button className="text-[#4A6480] hover:text-[#F0F4FF] p-0.5 rounded hover:bg-[#132035] transition-all cursor-pointer">
+            <button className="text-text-tertiary hover:text-text-primary p-0.5 rounded hover:bg-bg-card-hover/20 transition-all cursor-pointer">
               <MoreHorizontal size={14} />
             </button>
           }
         />
         <DropdownMenuContent
           align="end"
-          className="bg-[#0D1829] border-[#1E3352] text-[#F0F4FF] shadow-xl p-1 w-36 z-30"
+          className="bg-bg-card border-border/30 text-text-primary shadow-xl p-1 w-36 z-30"
         >
           <DropdownMenuItem
             onClick={() => handleOpenEditModal(project)}
-            className="text-xs hover:bg-[#132035] cursor-pointer text-[#8BA3C7] hover:text-[#F0F4FF] gap-2 py-1.5"
+            className="text-xs hover:bg-bg-card-hover/20 cursor-pointer text-text-secondary hover:text-text-primary gap-2 py-1.5"
           >
             <Edit2 size={12} />
             <span>Edit Project</span>
@@ -301,7 +301,7 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
               setSelectedProject(project);
               setDeleteDialogOpen(true);
             }}
-            className="text-xs hover:bg-[#132035] cursor-pointer text-[#EF4444] hover:text-[#EF4444] gap-2 py-1.5"
+            className="text-xs hover:bg-bg-card-hover/20 cursor-pointer text-error hover:text-error gap-2 py-1.5"
           >
             <Trash2 size={12} />
             <span>Delete Project</span>
@@ -315,7 +315,7 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
     <div className="space-y-4">
       {/* Header controls strip */}
       <div className="flex items-center justify-between select-none">
-        <h3 className="text-xs font-bold uppercase tracking-wider text-[#4A6480]">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-text-tertiary">
           Active Projects ({projects.length})
         </h3>
 
@@ -323,7 +323,7 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
           <Button
             onClick={handleOpenAddModal}
             size="sm"
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+            className="bg-primary hover:bg-primary-light text-white text-xs h-8 gap-1.5 cursor-pointer font-semibold"
           >
             <Plus size={13} />
             <span>Add Project</span>
@@ -333,7 +333,7 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
             onClick={fetchProjects}
             disabled={isLoading}
             size="sm"
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer"
+            className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer"
           >
             <RefreshCw size={13} className={`stroke-[1.5] ${isLoading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
@@ -356,14 +356,13 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
         }}
       />
 
-      {/* ━━━ MODAL: ADD / EDIT PROJECT ━━━ */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none">
+        <DialogContent className="sm:max-w-[600px] select-none">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold text-[#F0F4FF]">
+            <DialogTitle className="text-base font-semibold text-text-primary">
               {isEditMode ? 'Edit Project Details' : 'Create New Campaign Project'}
             </DialogTitle>
-            <DialogDescription className="text-xs text-[#8BA3C7]">
+            <DialogDescription className="text-xs text-text-secondary">
               Specify retainer details, target channel services, and timeframe constraints.
             </DialogDescription>
           </DialogHeader>
@@ -457,11 +456,11 @@ export function ProjectsTab({ client }: ProjectsTabProps) {
             <Button
               variant="outline"
               onClick={() => setModalOpen(false)}
-              className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+              className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
             >
               Cancel
             </Button>
-            <Button onClick={handleSubmitProject} className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer">
+            <Button onClick={handleSubmitProject} className="bg-primary hover:bg-primary-light text-white cursor-pointer">
               {isEditMode ? 'Save Changes' : 'Create Project'}
             </Button>
           </DialogFooter>

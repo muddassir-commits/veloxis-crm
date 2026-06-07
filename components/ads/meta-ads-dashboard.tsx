@@ -261,17 +261,17 @@ export function MetaAdsDashboard({
           <button
             onClick={() => handleMonthChange(-1)}
             disabled={isPending}
-            className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] disabled:opacity-50 cursor-pointer"
+            className="p-1 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary disabled:opacity-50 cursor-pointer"
           >
             <ChevronLeft size={16} />
           </button>
-          <span className="text-sm font-semibold text-[#F0F4FF] min-w-[100px] text-center font-mono">
+          <span className="text-sm font-semibold text-text-primary min-w-[100px] text-center font-mono">
             {selectedMonth}
           </span>
           <button
             onClick={() => handleMonthChange(1)}
             disabled={isPending}
-            className="p-1 rounded bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] disabled:opacity-50 cursor-pointer"
+            className="p-1 rounded bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary disabled:opacity-50 cursor-pointer"
           >
             <ChevronRight size={16} />
           </button>
@@ -282,7 +282,7 @@ export function MetaAdsDashboard({
           <Button
             onClick={() => setConnectModalOpen(true)}
             variant="outline"
-            className="border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] hover:bg-[#132035] text-xs h-9 cursor-pointer"
+            className="border-border/30 text-text-secondary hover:text-text-primary hover:bg-bg-card-hover/20 text-xs h-9 cursor-pointer"
           >
             <Link2 size={14} className="mr-1.5" />
             <span>Connect Account</span>
@@ -290,7 +290,7 @@ export function MetaAdsDashboard({
 
           <Button
             onClick={() => setLogReportOpen(true)}
-            className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs h-9 gap-1.5 cursor-pointer font-semibold"
+            className="bg-primary hover:bg-primary-light text-white text-xs h-9 gap-1.5 cursor-pointer font-semibold"
           >
             <Plus size={14} />
             <span>Log Campaign</span>
@@ -299,7 +299,7 @@ export function MetaAdsDashboard({
           <Button
             onClick={handleSyncAll}
             disabled={syncingAll}
-            className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-9 gap-1.5 cursor-pointer"
+            className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-9 gap-1.5 cursor-pointer"
           >
             <RefreshCw size={14} className={syncingAll ? 'animate-spin' : ''} />
             <span>Sync All</span>
@@ -312,14 +312,14 @@ export function MetaAdsDashboard({
         <StatCard
           title="CPL (Meta)"
           value={formatCurrency(cplGlobal)}
-          valueClassName="text-[#EF4444] font-mono"
+          valueClassName="text-error font-mono"
           icon={TrendingUp}
           loading={isPending}
         />
         <StatCard
           title="Total Meta Spend"
           value={formatCurrency(totalSpend)}
-          valueClassName="text-[#F97316] font-mono"
+          valueClassName="text-accent font-mono"
           icon={DollarSign}
           loading={isPending}
         />
@@ -339,7 +339,7 @@ export function MetaAdsDashboard({
 
       {/* Client List Section */}
       <div className="space-y-4">
-        <h2 className="text-sm font-bold uppercase tracking-wider text-[#4A6480] select-none">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-text-tertiary select-none">
           Client Ad Accounts ({sortedClients.length})
         </h2>
 
@@ -362,25 +362,25 @@ export function MetaAdsDashboard({
             return (
               <div
                 key={client.id}
-                className="bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-5 space-y-4 hover:border-[#1A2D47] transition-all flex flex-col justify-between"
+                className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4 hover:border-border/50 transition-all flex flex-col justify-between"
               >
                 {/* Header */}
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-sm text-[#F0F4FF]">{client.name}</span>
+                      <span className="font-bold text-sm text-text-primary">{client.name}</span>
                       {client.is_agency_self && (
                         <span className="badge badge-orange py-0.5 px-2 text-[9px] rounded-full uppercase font-bold">
                           My Agency
                         </span>
                       )}
                     </div>
-                    <span className="text-xs text-[#8BA3C7]">{client.company || 'No Company'}</span>
+                    <span className="text-xs text-text-secondary">{client.company || 'No Company'}</span>
                   </div>
 
                   {connection ? (
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] text-[#22C55E] bg-[#22C55E15] px-2 py-0.5 rounded-full font-medium">
+                      <span className="text-[10px] text-online bg-online/15 px-2 py-0.5 rounded-full font-medium">
                         API Connected
                       </span>
                       <Button
@@ -388,7 +388,7 @@ export function MetaAdsDashboard({
                         variant="ghost"
                         onClick={() => handleSyncClient(client.id)}
                         disabled={syncingClientId === client.id}
-                        className="h-7 w-7 p-0 hover:bg-[#132035] cursor-pointer"
+                        className="h-7 w-7 p-0 hover:bg-bg-card-hover/20 cursor-pointer"
                       >
                         <RefreshCw
                           size={12}
@@ -397,46 +397,46 @@ export function MetaAdsDashboard({
                       </Button>
                     </div>
                   ) : (
-                    <span className="text-[10px] text-[#4A6480] bg-[#132035] px-2 py-0.5 rounded-full font-medium">
+                    <span className="text-[10px] text-text-tertiary bg-bg-card-hover/20 px-2 py-0.5 rounded-full font-medium">
                       Not Connected
                     </span>
                   )}
                 </div>
 
                 {/* Sub KPI Stats Grid */}
-                <div className="grid grid-cols-4 gap-2 pt-2 border-t border-[#1E3352]/40">
+                <div className="grid grid-cols-4 gap-2 pt-2 border-t border-border/30/40">
                   <div>
-                    <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">Spend</span>
-                    <span className="font-semibold text-xs text-[#F97316] font-mono">{formatCurrency(clientSpend)}</span>
+                    <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">Spend</span>
+                    <span className="font-semibold text-xs text-accent font-mono">{formatCurrency(clientSpend)}</span>
                   </div>
                   <div>
-                    <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">Leads</span>
-                    <span className="font-semibold text-xs text-[#F0F4FF] font-mono">{clientLeads}</span>
+                    <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">Leads</span>
+                    <span className="font-semibold text-xs text-text-primary font-mono">{clientLeads}</span>
                   </div>
                   <div>
-                    <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">CPL</span>
-                    <span className="font-semibold text-xs text-[#EF4444] font-mono">{formatCurrency(clientCpl)}</span>
+                    <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">CPL</span>
+                    <span className="font-semibold text-xs text-error font-mono">{formatCurrency(clientCpl)}</span>
                   </div>
                   <div>
-                    <span className="text-[9px] text-[#4A6480] uppercase tracking-wider block">CTR</span>
-                    <span className="font-semibold text-xs text-[#8BA3C7] font-mono">{clientCtr.toFixed(2)}%</span>
+                    <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">CTR</span>
+                    <span className="font-semibold text-xs text-text-secondary font-mono">{clientCtr.toFixed(2)}%</span>
                   </div>
                 </div>
 
                 {/* Campaign Progress details */}
-                <div className="space-y-1.5 select-none pt-2 border-t border-[#1E3352]/40">
+                <div className="space-y-1.5 select-none pt-2 border-t border-border/30/40">
                   <div className="flex items-center justify-between text-[10px]">
-                    <span className="text-[#8BA3C7]">Monthly Budget consumption</span>
-                    <span className="font-semibold text-[#F0F4FF] font-mono">
+                    <span className="text-text-secondary">Monthly Budget consumption</span>
+                    <span className="font-semibold text-text-primary font-mono">
                       {formatCurrency(clientSpend)} / {formatCurrency(clientAllocated)} ({progressPct.toFixed(0)}%)
                     </span>
                   </div>
-                  <Progress value={progressPct} className="h-1.5 bg-[#060D1A]" />
+                  <Progress value={progressPct} className="h-1.5 bg-bg-dark" />
                 </div>
 
                 {/* Campaigns List or Empty details */}
                 <div className="pt-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#4A6480] mb-2 block">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-text-tertiary mb-2 block">
                     Campaigns Logged ({clientCampaigns.length})
                   </span>
                   {clientCampaigns.length > 0 ? (
@@ -444,19 +444,19 @@ export function MetaAdsDashboard({
                       {clientCampaigns.map((c) => (
                         <div
                           key={c.id}
-                          className="flex items-center justify-between text-xs p-2 rounded bg-[#060D1A] border border-[#1E3352]/60"
+                          className="flex items-center justify-between text-xs p-2 rounded bg-bg-dark border border-border/30/60"
                         >
-                          <span className="text-[#F0F4FF] font-medium truncate max-w-[150px]">{c.campaign_name}</span>
+                          <span className="text-text-primary font-medium truncate max-w-[150px]">{c.campaign_name}</span>
                           <div className="flex items-center gap-2 font-mono">
-                            <span className="text-[#F97316]">{formatCurrency(c.budget_spent)}</span>
-                            <span className="text-[#8BA3C7] text-[10px]">({c.leads} L)</span>
+                            <span className="text-accent">{formatCurrency(c.budget_spent)}</span>
+                            <span className="text-text-secondary text-[10px]">({c.leads} L)</span>
                             <StatusBadge status={c.status} />
                           </div>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className="text-center py-4 border border-dashed border-[#1E3352]/60 rounded text-[#4A6480] text-xs">
+                    <div className="text-center py-4 border border-dashed border-border/30/60 rounded text-text-tertiary text-xs">
                       No campaigns logged for {selectedMonth}.
                     </div>
                   )}
@@ -464,11 +464,11 @@ export function MetaAdsDashboard({
 
                 {/* Account Details footer */}
                 {connection && (
-                  <div className="flex items-center gap-1.5 text-[9px] text-[#8BA3C7] pt-2 border-t border-[#1E3352]/40 font-mono">
-                    <AlertCircle size={10} className="text-[#4A6480]" />
+                  <div className="flex items-center gap-1.5 text-[9px] text-text-secondary pt-2 border-t border-border/30/40 font-mono">
+                    <AlertCircle size={10} className="text-text-tertiary" />
                     <span>Ad Account ID: {connection.ad_account_id}</span>
                     {connection.last_sync && (
-                      <span className="text-[#4A6480] ml-auto">
+                      <span className="text-text-tertiary ml-auto">
                         Synced: {new Date(connection.last_sync).toLocaleTimeString()}
                       </span>
                     )}
@@ -482,11 +482,11 @@ export function MetaAdsDashboard({
 
       {/* ── MODAL: CONNECT META AD ACCOUNT ── */}
       <Dialog open={connectModalOpen} onOpenChange={setConnectModalOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-sm select-none">
+        <DialogContent className="sm:max-w-[400px] select-none">
           <form onSubmit={handleConnectSubmit}>
             <DialogHeader>
-              <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Connect Meta Ad Account</DialogTitle>
-              <DialogDescription className="text-xs text-[#8BA3C7]">
+              <DialogTitle className="text-base font-semibold text-text-primary">Connect Meta Ad Account</DialogTitle>
+              <DialogDescription className="text-xs text-text-secondary">
                 Provide client&apos;s Meta Ad Account ID (format: act_XXXXXXXXX).
               </DialogDescription>
             </DialogHeader>
@@ -528,14 +528,14 @@ export function MetaAdsDashboard({
                 type="button"
                 variant="outline"
                 onClick={() => setConnectModalOpen(false)}
-                className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+                className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={connecting}
-                className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer"
+                className="bg-primary hover:bg-primary-light text-white cursor-pointer"
               >
                 {connecting ? 'Verifying...' : 'Connect Account'}
               </Button>
@@ -546,11 +546,11 @@ export function MetaAdsDashboard({
 
       {/* ── MODAL: LOG CAMPAIGN MANUALLY ── */}
       <Dialog open={logReportOpen} onOpenChange={setLogReportOpen}>
-        <DialogContent className="bg-[#0D1829] border border-[#1E3352] text-[#F0F4FF] max-w-md select-none max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[600px] select-none max-h-[90vh] overflow-y-auto">
           <form onSubmit={handleLogSubmit}>
             <DialogHeader>
-              <DialogTitle className="text-base font-semibold text-[#F0F4FF]">Log Meta Campaign</DialogTitle>
-              <DialogDescription className="text-xs text-[#8BA3C7]">
+              <DialogTitle className="text-base font-semibold text-text-primary">Log Meta Campaign</DialogTitle>
+              <DialogDescription className="text-xs text-text-secondary">
                 Manually log campaign metrics for {selectedMonth}.
               </DialogDescription>
             </DialogHeader>
@@ -684,11 +684,11 @@ export function MetaAdsDashboard({
                 type="button"
                 variant="outline"
                 onClick={() => setLogReportOpen(false)}
-                className="bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] cursor-pointer"
+                className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary cursor-pointer"
               >
                 Cancel
               </Button>
-              <Button type="submit" className="bg-[#1B4FD8] hover:bg-[#2563EB] text-white cursor-pointer">
+              <Button type="submit" className="bg-primary hover:bg-primary-light text-white cursor-pointer">
                 Log Campaign
               </Button>
             </DialogFooter>

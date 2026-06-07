@@ -50,17 +50,17 @@ const STATUS_LABELS: Record<string, string> = {
   done: 'Done',
 };
 const STATUS_COLORS: Record<string, string> = {
-  todo: 'text-[#8BA3C7] bg-[#8BA3C7]/10',
-  in_progress: 'text-[#4D90FE] bg-[#1B4FD8]/15',
+  todo: 'text-text-secondary bg-[#8BA3C7]/10',
+  in_progress: 'text-primary-light bg-primary/15',
   review: 'text-[#A78BFA] bg-[#A78BFA]/15',
   approved: 'text-[#34D399] bg-[#34D399]/15',
-  done: 'text-[#22C55E] bg-[#22C55E]/15',
+  done: 'text-online bg-online/15',
 };
 const PRIORITY_COLORS: Record<string, string> = {
-  urgent: 'bg-[#EF444420] text-[#EF4444] border border-[#EF444430]',
-  high: 'bg-[#F9731620] text-[#F97316] border border-[#F9731630]',
+  urgent: 'bg-[#EF444420] text-error border border-[#EF444430]',
+  high: 'bg-[#F9731620] text-accent border border-[#F9731630]',
   medium: 'bg-[#EAB30820] text-[#EAB308] border border-[#EAB30830]',
-  low: 'bg-[#22C55E20] text-[#22C55E] border border-[#22C55E30]',
+  low: 'bg-[#22C55E20] text-online border border-[#22C55E30]',
 };
 
 function parseMonthYear(monthYear: string) {
@@ -175,20 +175,20 @@ export function EmployeeTasksPage({
     <div className="space-y-4 py-3">
       {/* Month Navigator */}
       <div className="flex items-center justify-between">
-        <h1 className="text-base font-bold text-[#F0F4FF]">My Tasks</h1>
-        <div className="flex items-center gap-2 bg-[#0D1829] border border-[#1E3352] rounded-[8px] p-1">
+        <h1 className="text-base font-bold text-text-primary">My Tasks</h1>
+        <div className="flex items-center gap-2 bg-bg-card border border-border/30 rounded-[8px] p-1">
           <button
             onClick={() => navigateMonth('prev')}
             disabled={isPending}
-            className="p-1 rounded hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer disabled:opacity-50"
+            className="p-1 rounded hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary cursor-pointer disabled:opacity-50"
           >
             <ChevronLeft size={14} />
           </button>
-          <span className="text-xs font-bold text-[#F0F4FF] px-2 min-w-[80px] text-center">{selectedMonth}</span>
+          <span className="text-xs font-bold text-text-primary px-2 min-w-[80px] text-center">{selectedMonth}</span>
           <button
             onClick={() => navigateMonth('next')}
             disabled={isPending}
-            className="p-1 rounded hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer disabled:opacity-50"
+            className="p-1 rounded hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary cursor-pointer disabled:opacity-50"
           >
             <ChevronRight size={14} />
           </button>
@@ -205,12 +205,12 @@ export function EmployeeTasksPage({
               onClick={() => setActiveStatus(status)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${
                 activeStatus === status
-                  ? 'bg-[#1B4FD8] text-white'
-                  : 'bg-[#0D1829] border border-[#1E3352] text-[#4A6480] hover:text-[#8BA3C7]'
+                  ? 'bg-primary text-white'
+                  : 'bg-bg-card border border-border/30 text-text-tertiary hover:text-text-secondary'
               }`}
             >
               {STATUS_LABELS[status]}
-              <span className={`text-[9px] px-1 py-0.5 rounded-full font-black ${activeStatus === status ? 'bg-white/20 text-white' : 'bg-[#132035] text-[#4A6480]'}`}>
+              <span className={`text-[9px] px-1 py-0.5 rounded-full font-black ${activeStatus === status ? 'bg-white/20 text-white' : 'bg-bg-card-hover/20 text-text-tertiary'}`}>
                 {count}
               </span>
             </button>
@@ -220,10 +220,10 @@ export function EmployeeTasksPage({
 
       {/* Tasks List */}
       {filteredTasks.length === 0 ? (
-        <div className="bg-[#0D1829] border border-[#1E3352] border-dashed rounded-[10px] p-8 text-center">
-          <CheckCircle2 size={24} className="text-[#22C55E] mx-auto mb-2" />
-          <p className="text-sm font-semibold text-[#F0F4FF]">No tasks found</p>
-          <p className="text-xs text-[#4A6480] mt-1">No tasks match this filter for {selectedMonth}.</p>
+        <div className="bg-bg-card border border-border/30 border-dashed rounded-[10px] p-8 text-center">
+          <CheckCircle2 size={24} className="text-online mx-auto mb-2" />
+          <p className="text-sm font-semibold text-text-primary">No tasks found</p>
+          <p className="text-xs text-text-tertiary mt-1">No tasks match this filter for {selectedMonth}.</p>
         </div>
       ) : (
         <div className="space-y-2">
@@ -233,13 +233,13 @@ export function EmployeeTasksPage({
               <button
                 key={task.id}
                 onClick={() => { setSelectedTask(task); setSubmitMode(false); }}
-                className="w-full text-left bg-[#0D1829] border border-[#1E3352] rounded-[10px] p-4 hover:border-[#1B4FD8]/40 hover:bg-[#132035]/30 transition-all cursor-pointer"
+                className="w-full text-left bg-bg-card border border-border/30 rounded-[10px] p-4 hover:border-primary/40 hover:bg-bg-card-hover/20/30 transition-all cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-1.5 mb-1">
                       {task.clients && (
-                        <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase ${task.clients.is_agency_self ? 'bg-[#F97316]/20 text-[#F97316]' : 'bg-[#1B4FD8]/15 text-[#4D90FE]'}`}>
+                        <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase ${task.clients.is_agency_self ? 'bg-accent/20 text-accent' : 'bg-primary/15 text-primary-light'}`}>
                           {task.clients.name}
                         </span>
                       )}
@@ -250,9 +250,9 @@ export function EmployeeTasksPage({
                         {STATUS_LABELS[task.status] || task.status}
                       </span>
                     </div>
-                    <p className="text-xs font-bold text-[#F0F4FF] leading-snug">{task.title}</p>
+                    <p className="text-xs font-bold text-text-primary leading-snug">{task.title}</p>
                   </div>
-                  <div className={`text-[10px] font-mono shrink-0 ${isOverdue ? 'text-[#EF4444]' : 'text-[#4A6480]'}`}>
+                  <div className={`text-[10px] font-mono shrink-0 ${isOverdue ? 'text-error' : 'text-text-tertiary'}`}>
                     {task.due_date ? formatDate(task.due_date) : '-'}
                     {isOverdue && <AlertTriangle size={10} className="inline ml-1" />}
                   </div>
@@ -273,20 +273,20 @@ export function EmployeeTasksPage({
           />
 
           {/* Drawer Panel */}
-          <div className="w-full max-w-md bg-[#0D1829] border-l border-[#1E3352] flex flex-col overflow-y-auto">
+          <div className="w-full max-w-md bg-bg-card border-l border-border/30 flex flex-col overflow-y-auto">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-[#1E3352] sticky top-0 bg-[#0D1829] z-10">
+            <div className="flex items-center justify-between p-4 border-b border-border/30 sticky top-0 bg-bg-card z-10">
               <div>
-                <p className="text-[10px] text-[#4A6480] uppercase font-bold tracking-wider">
+                <p className="text-[10px] text-text-tertiary uppercase font-bold tracking-wider">
                   {selectedTask.clients?.name || 'Task Details'}
                 </p>
-                <h3 className="text-sm font-bold text-[#F0F4FF] leading-snug mt-0.5 line-clamp-2">
+                <h3 className="text-sm font-bold text-text-primary leading-snug mt-0.5 line-clamp-2">
                   {selectedTask.title}
                 </h3>
               </div>
               <button
                 onClick={() => { setSelectedTask(null); setSubmitMode(false); }}
-                className="p-1.5 rounded hover:bg-[#132035] text-[#8BA3C7] hover:text-[#F0F4FF] cursor-pointer shrink-0 ml-3"
+                className="p-1.5 rounded hover:bg-bg-card-hover/20 text-text-secondary hover:text-text-primary cursor-pointer shrink-0 ml-3"
               >
                 <X size={16} />
               </button>
@@ -305,15 +305,15 @@ export function EmployeeTasksPage({
                 {selectedTask.due_date && (
                   <span className={`text-[10px] px-2 py-1 rounded-full font-mono font-semibold ${
                     selectedTask.due_date < today && selectedTask.status !== 'done'
-                      ? 'bg-[#EF4444]/15 text-[#EF4444]'
-                      : 'bg-[#132035] text-[#8BA3C7]'
+                      ? 'bg-error/15 text-error'
+                      : 'bg-bg-card-hover/20 text-text-secondary'
                   }`}>
                     <Clock size={10} className="inline mr-1" />
                     Due {formatDate(selectedTask.due_date)}
                   </span>
                 )}
                 {selectedTask.month_year && (
-                  <span className="text-[10px] px-2 py-1 rounded-full font-semibold bg-[#132035] text-[#4A6480]">
+                  <span className="text-[10px] px-2 py-1 rounded-full font-semibold bg-bg-card-hover/20 text-text-tertiary">
                     {selectedTask.month_year}
                   </span>
                 )}
@@ -322,21 +322,21 @@ export function EmployeeTasksPage({
               {/* Description */}
               {selectedTask.description && (
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider mb-1.5 flex items-center gap-1">
+                  <p className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider mb-1.5 flex items-center gap-1">
                     <Info size={10} /> Description
                   </p>
-                  <p className="text-xs text-[#8BA3C7] leading-relaxed">{selectedTask.description}</p>
+                  <p className="text-xs text-text-secondary leading-relaxed">{selectedTask.description}</p>
                 </div>
               )}
 
               {/* Instructions */}
               {selectedTask.instructions && (
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider mb-1.5 flex items-center gap-1">
+                  <p className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider mb-1.5 flex items-center gap-1">
                     <FileText size={10} /> Instructions
                   </p>
-                  <div className="bg-[#060D1A] border border-[#1E3352] rounded-[7px] p-3">
-                    <p className="text-xs text-[#F0F4FF] leading-relaxed whitespace-pre-wrap">
+                  <div className="bg-bg-dark border border-border/30 rounded-[7px] p-3">
+                    <p className="text-xs text-text-primary leading-relaxed whitespace-pre-wrap">
                       {selectedTask.instructions}
                     </p>
                   </div>
@@ -346,7 +346,7 @@ export function EmployeeTasksPage({
               {/* Status Update (not done tasks) */}
               {selectedTask.status !== 'done' && !submitMode && (
                 <div>
-                  <p className="text-[10px] uppercase font-bold text-[#4A6480] tracking-wider mb-2">Update Status</p>
+                  <p className="text-[10px] uppercase font-bold text-text-tertiary tracking-wider mb-2">Update Status</p>
                   <div className="flex flex-wrap gap-2">
                     {['todo', 'in_progress'].map((s) => (
                       <button
@@ -355,8 +355,8 @@ export function EmployeeTasksPage({
                         disabled={selectedTask.status === s || updatingTaskId === selectedTask.id}
                         className={`px-3 py-1.5 rounded text-[10px] font-bold uppercase cursor-pointer transition-all disabled:opacity-50 ${
                           selectedTask.status === s
-                            ? 'bg-[#1B4FD8] text-white'
-                            : 'bg-[#132035] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF]'
+                            ? 'bg-primary text-white'
+                            : 'bg-bg-card-hover/20 border border-border/30 text-text-secondary hover:text-text-primary'
                         }`}
                       >
                         {updatingTaskId === selectedTask.id ? (
@@ -374,7 +374,7 @@ export function EmployeeTasksPage({
               {!submitMode && selectedTask.status !== 'done' && (
                 <button
                   onClick={() => setSubmitMode(true)}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] rounded-[7px] text-xs font-bold hover:bg-[#22C55E]/25 transition-colors cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-online/15 border border-online/30 text-online rounded-[7px] text-xs font-bold hover:bg-online/25 transition-colors cursor-pointer"
                 >
                   <Send size={13} /> Submit for Review
                 </button>
@@ -382,25 +382,25 @@ export function EmployeeTasksPage({
 
               {/* Submission Form */}
               {submitMode && (
-                <div className="space-y-3 border border-[#1E3352] rounded-[10px] p-4 bg-[#060D1A]">
-                  <p className="text-xs font-bold text-[#F0F4FF] flex items-center gap-2">
-                    <Paperclip size={12} className="text-[#22C55E]" />
+                <div className="space-y-3 border border-border/30 rounded-[10px] p-4 bg-bg-dark">
+                  <p className="text-xs font-bold text-text-primary flex items-center gap-2">
+                    <Paperclip size={12} className="text-online" />
                     Submit Work for Review
                   </p>
 
                   <div className="space-y-1">
-                    <label className="text-[10px] text-[#4A6480] font-bold uppercase tracking-wider">Work Notes</label>
+                    <label className="text-[10px] text-text-tertiary font-bold uppercase tracking-wider">Work Notes</label>
                     <textarea
                       value={workNotes}
                       onChange={(e) => setWorkNotes(e.target.value)}
                       placeholder="Describe what you did, any comments, links, etc."
                       rows={4}
-                      className="w-full bg-[#0D1829] border border-[#1E3352] rounded-[7px] px-3 py-2 text-xs text-[#F0F4FF] placeholder-[#4A6480] resize-none focus:outline-none focus:border-[#1B4FD8]"
+                      className="w-full bg-bg-card border border-border/30 rounded-[7px] px-3 py-2 text-xs text-text-primary placeholder-[#4A6480] resize-none focus:outline-none focus:border-primary"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-[10px] text-[#4A6480] font-bold uppercase tracking-wider">
+                    <label className="text-[10px] text-text-tertiary font-bold uppercase tracking-wider">
                       Attach Files (optional)
                     </label>
                     <FileUpload
@@ -412,7 +412,7 @@ export function EmployeeTasksPage({
                     {uploadedFiles.length > 0 && (
                       <div className="space-y-1 mt-2">
                         {uploadedFiles.map((f, i) => (
-                          <div key={i} className="flex items-center gap-2 text-[10px] text-[#22C55E] bg-[#22C55E]/10 border border-[#22C55E]/20 rounded px-2 py-1">
+                          <div key={i} className="flex items-center gap-2 text-[10px] text-online bg-online/10 border border-online/20 rounded px-2 py-1">
                             <CheckCircle2 size={10} />
                             <span className="truncate">{f.name}</span>
                           </div>
@@ -426,7 +426,7 @@ export function EmployeeTasksPage({
                       onClick={() => setSubmitMode(false)}
                       variant="outline"
                       size="sm"
-                      className="flex-1 bg-transparent border-[#1E3352] text-[#8BA3C7] hover:bg-[#132035] hover:text-[#F0F4FF] text-xs cursor-pointer"
+                      className="flex-1 bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 hover:text-text-primary text-xs cursor-pointer"
                     >
                       Cancel
                     </Button>
@@ -434,7 +434,7 @@ export function EmployeeTasksPage({
                       onClick={handleSubmitForReview}
                       disabled={isSubmitting}
                       size="sm"
-                      className="flex-1 bg-[#22C55E] hover:bg-[#16A34A] text-white text-xs font-bold cursor-pointer"
+                      className="flex-1 bg-online hover:bg-online/80 text-white text-xs font-bold cursor-pointer"
                     >
                       {isSubmitting ? (
                         <><Loader2 size={11} className="animate-spin mr-1" /> Submitting...</>
@@ -448,9 +448,9 @@ export function EmployeeTasksPage({
 
               {/* Done state */}
               {selectedTask.status === 'done' && (
-                <div className="flex items-center gap-2 p-3 bg-[#22C55E]/10 border border-[#22C55E]/20 rounded-[7px]">
-                  <CheckCircle2 size={14} className="text-[#22C55E]" />
-                  <p className="text-xs text-[#22C55E] font-semibold">This task is complete! 🎉</p>
+                <div className="flex items-center gap-2 p-3 bg-online/10 border border-online/20 rounded-[7px]">
+                  <CheckCircle2 size={14} className="text-online" />
+                  <p className="text-xs text-online font-semibold">This task is complete! 🎉</p>
                 </div>
               )}
             </div>

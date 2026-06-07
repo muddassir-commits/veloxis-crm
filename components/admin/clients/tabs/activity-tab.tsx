@@ -24,14 +24,14 @@ const ACTION_ICONS: Record<string, React.ElementType> = {
 };
 
 const ACTION_COLORS: Record<string, string> = {
-  task_submitted: 'text-[#22C55E] bg-[#22C55E]/10 border-[#22C55E]/20',
-  task_created: 'text-[#4D90FE] bg-[#4D90FE]/10 border-[#4D90FE]/20',
-  invoice_created: 'text-[#F59E0B] bg-[#F59E0B]/10 border-[#F59E0B]/20',
-  invoice_paid: 'text-[#22C55E] bg-[#22C55E]/10 border-[#22C55E]/20',
+  task_submitted: 'text-online bg-online/10 border-online/20',
+  task_created: 'text-primary-light bg-[#4D90FE]/10 border-[#4D90FE]/20',
+  invoice_created: 'text-warning bg-warning/10 border-warning/20',
+  invoice_paid: 'text-online bg-online/10 border-online/20',
   client_updated: 'text-[#A78BFA] bg-[#A78BFA]/10 border-[#A78BFA]/20',
-  project_created: 'text-[#4D90FE] bg-[#4D90FE]/10 border-[#4D90FE]/20',
-  note_added: 'text-[#8BA3C7] bg-[#8BA3C7]/10 border-[#8BA3C7]/20',
-  default: 'text-[#4A6480] bg-[#4A6480]/10 border-[#4A6480]/20',
+  project_created: 'text-primary-light bg-[#4D90FE]/10 border-[#4D90FE]/20',
+  note_added: 'text-text-secondary bg-[#8BA3C7]/10 border-[#8BA3C7]/20',
+  default: 'text-text-tertiary bg-[#4A6480]/10 border-border/20/20',
 };
 
 const ACTION_OPTIONS = [
@@ -144,8 +144,8 @@ export function ActivityTab({ client }: ActivityTabProps) {
       {/* Header controls strip */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 select-none">
         <div>
-          <h3 className="text-sm font-semibold text-[#F0F4FF]">Activity Timeline</h3>
-          <p className="text-[10px] text-[#4A6480] mt-0.5">
+          <h3 className="text-sm font-semibold text-text-primary">Activity Timeline</h3>
+          <p className="text-[10px] text-text-tertiary mt-0.5">
             Recent audit activities across tasks, invoices, and campaigns.
           </p>
         </div>
@@ -155,7 +155,7 @@ export function ActivityTab({ client }: ActivityTabProps) {
           <select
             value={actionFilter}
             onChange={(e) => setActionFilter(e.target.value)}
-            className="bg-[#0D1829] border border-[#1E3352] text-xs rounded px-2.5 py-1.5 focus:outline-none focus:border-[#1B4FD8] font-semibold text-[#8BA3C7] cursor-pointer"
+            className="bg-bg-card border border-border/30 text-xs rounded px-2.5 py-1.5 focus:outline-none focus:border-primary font-semibold text-text-secondary cursor-pointer"
           >
             {ACTION_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -167,7 +167,7 @@ export function ActivityTab({ client }: ActivityTabProps) {
           <button
             onClick={handleRefresh}
             disabled={loading}
-            className="flex items-center gap-1.5 text-[10px] text-[#4A6480] hover:text-[#F0F4FF] bg-[#132035] border border-[#1E3352] px-2.5 py-1.5 rounded-[6px] cursor-pointer transition-all"
+            className="flex items-center gap-1.5 text-[10px] text-text-tertiary hover:text-text-primary bg-bg-card-hover/20 border border-border/30 px-2.5 py-1.5 rounded-[6px] cursor-pointer transition-all"
           >
             <RefreshCw size={11} className={loading && !loadingMore ? 'animate-spin' : ''} />
             <span>Refresh</span>
@@ -177,14 +177,14 @@ export function ActivityTab({ client }: ActivityTabProps) {
 
       {/* Activity Timeline list */}
       {loading && !loadingMore ? (
-        <div className="flex items-center justify-center h-40 text-[#4A6480] text-xs gap-2">
+        <div className="flex items-center justify-center h-40 text-text-tertiary text-xs gap-2">
           <RefreshCw size={14} className="animate-spin" />
           <span>Loading activity timeline...</span>
         </div>
       ) : logs.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-16 text-center border border-dashed border-[#1E3352] rounded-[10px] bg-[#060D1A]">
+        <div className="flex flex-col items-center justify-center py-16 text-center border border-dashed border-border/30 rounded-[10px] bg-bg-dark">
           <Activity size={32} className="text-[#1E3352] mb-3" />
-          <p className="text-sm font-medium text-[#4A6480]">No Activity Recorded Yet</p>
+          <p className="text-sm font-medium text-text-tertiary">No Activity Recorded Yet</p>
           <p className="text-xs text-[#2A4060] mt-1 max-w-xs">
             Events will render automatically when updates are processed.
           </p>
@@ -209,11 +209,11 @@ export function ActivityTab({ client }: ActivityTabProps) {
                     <div className={`flex-1 pb-5 ${index < logs.length - 1 ? 'border-b border-[#0D1829]' : ''}`}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-semibold text-[#F0F4FF] leading-tight">
+                          <p className="text-xs font-semibold text-text-primary leading-tight">
                             {log.title}
                           </p>
                           {log.description && (
-                            <p className="text-[10px] text-[#8BA3C7] mt-0.5 leading-relaxed">
+                            <p className="text-[10px] text-text-secondary mt-0.5 leading-relaxed">
                               {log.description}
                             </p>
                           )}
@@ -228,7 +228,7 @@ export function ActivityTab({ client }: ActivityTabProps) {
                             )}
                           </div>
                         </div>
-                        <span className="text-[10px] text-[#4A6480] font-mono shrink-0 mt-0.5">
+                        <span className="text-[10px] text-text-tertiary font-mono shrink-0 mt-0.5">
                           {formatRelativeTime(log.created_at)}
                         </span>
                       </div>
@@ -246,7 +246,7 @@ export function ActivityTab({ client }: ActivityTabProps) {
                 onClick={handleLoadMore}
                 disabled={loadingMore}
                 size="sm"
-                className="bg-[#132035] hover:bg-[#1A2D47] border border-[#1E3352] text-[#8BA3C7] hover:text-[#F0F4FF] text-xs h-8 gap-1.5 cursor-pointer font-semibold"
+                className="bg-bg-card-hover/20 hover:bg-bg-card-hover/40 border border-border/30 text-text-secondary hover:text-text-primary text-xs h-8 gap-1.5 cursor-pointer font-semibold"
               >
                 {loadingMore ? <RefreshCw size={12} className="animate-spin" /> : null}
                 <span>{loadingMore ? 'Loading more...' : 'Load More'}</span>

@@ -48,16 +48,16 @@ function DroppableColumn({ id, label, count, colorClass, children }: DroppableCo
   return (
     <div
       ref={setNodeRef}
-      className={`rounded-[10px] bg-[#0D1829] border border-[#1E3352] border-t-2 ${colorClass} p-3 flex flex-col min-h-[500px] w-[265px] shrink-0 transition-all ${
-        isOver ? 'bg-[#132035]/80 border-[#1B4FD8]' : ''
+      className={`rounded-[10px] bg-bg-card border border-border/30 border-t-2 ${colorClass} p-3 flex flex-col min-h-[500px] w-[265px] shrink-0 transition-all ${
+        isOver ? 'bg-bg-card-hover/20/80 border-primary' : ''
       }`}
     >
       {/* Column Header */}
-      <div className="flex items-center justify-between mb-3 border-b border-[#1E3352]/30 pb-2">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-[#8BA3C7] select-none">
+      <div className="flex items-center justify-between mb-3 border-b border-border/30/30 pb-2">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-text-secondary select-none">
           {label}
         </span>
-        <span className="text-[10px] font-mono bg-[#1E3352]/30 text-[#F0F4FF] px-2 py-0.5 rounded-full select-none font-bold">
+        <span className="text-[10px] font-mono bg-border-subtle/30 text-text-primary px-2 py-0.5 rounded-full select-none font-bold">
           {count}
         </span>
       </div>
@@ -123,7 +123,7 @@ function DraggableCard({
       case 'email':
         return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
       default:
-        return 'bg-[#1E3352]/30 text-[#8BA3C7] border-[#1E3352]/50';
+        return 'bg-border-subtle/30 text-text-secondary border-border/30/50';
     }
   };
 
@@ -144,14 +144,14 @@ function DraggableCard({
       {...listeners}
       {...attributes}
       onClick={() => onCardClick(item)}
-      className={`group rounded-[8px] bg-[#060D1A] border border-[#1E3352] p-3 hover:border-[#1B4FD8] transition-all duration-200 cursor-pointer shadow-md select-none relative ${
-        isDragging ? 'shadow-2xl border-[#1B4FD8]' : ''
+      className={`group rounded-[8px] bg-bg-dark border border-border/30 p-3 hover:border-primary transition-all duration-200 cursor-pointer shadow-md select-none relative ${
+        isDragging ? 'shadow-2xl border-primary' : ''
       }`}
     >
       <div className="space-y-2">
         {/* Client Name & Type Badge */}
         <div className="flex justify-between items-start gap-2">
-          <span className="text-[10px] font-bold text-[#4D90FE] uppercase truncate max-w-[120px]">
+          <span className="text-[10px] font-bold text-primary-light uppercase truncate max-w-[120px]">
             {clientName}
           </span>
           <span
@@ -165,11 +165,11 @@ function DraggableCard({
 
         {/* Keyword & Title */}
         <div className="space-y-0.5">
-          <h4 className="text-xs font-bold text-[#F0F4FF] line-clamp-1 group-hover:text-[#4D90FE] transition-colors">
+          <h4 className="text-xs font-bold text-text-primary line-clamp-1 group-hover:text-primary-light transition-colors">
             {item.keyword}
           </h4>
           {item.title && item.title !== item.keyword && (
-            <p className="text-[10px] text-[#8BA3C7] line-clamp-2 leading-relaxed">
+            <p className="text-[10px] text-text-secondary line-clamp-2 leading-relaxed">
               {item.title}
             </p>
           )}
@@ -178,18 +178,18 @@ function DraggableCard({
         {/* Word count tracking for writing and review stages */}
         {(item.status === 'writing' || item.status === 'review' || item.status === 'published') && (
           <div className="space-y-1 pt-1">
-            <div className="flex justify-between items-center text-[9px] text-[#8BA3C7]">
+            <div className="flex justify-between items-center text-[9px] text-text-secondary">
               <span>Progress</span>
-              <span className="font-mono text-[#F0F4FF] font-medium">
+              <span className="font-mono text-text-primary font-medium">
                 {currentWords} / {targetWords} words ({wordPercentage}%)
               </span>
             </div>
-            <Progress value={wordPercentage} className="h-1 bg-[#132035]" indicatorClassName="bg-[#1B4FD8]" />
+            <Progress value={wordPercentage} className="h-1 bg-bg-card-hover/20" indicatorClassName="bg-primary" />
           </div>
         )}
 
         {/* Card Footer: Due Date, Brief indicator, Draft URL, Assignee */}
-        <div className="flex items-center justify-between pt-2 border-t border-[#1E3352]/20 mt-1">
+        <div className="flex items-center justify-between pt-2 border-t border-border/30/20 mt-1">
           {/* Due date and Link indicators */}
           <div className="flex items-center gap-2">
             {formattedDueDate && (
@@ -197,7 +197,7 @@ function DraggableCard({
                 className={`flex items-center gap-1 text-[9px] font-semibold px-1 rounded ${
                   isOverdue
                     ? 'text-red-400 bg-red-500/10 border border-red-500/20 animate-pulse'
-                    : 'text-[#8BA3C7]'
+                    : 'text-text-secondary'
                 }`}
               >
                 {isOverdue ? <AlertCircle size={9} /> : <Calendar size={9} />}
@@ -206,13 +206,13 @@ function DraggableCard({
             )}
 
             {item.brief && (
-              <span className="text-[#8BA3C7]" title="Brief available">
+              <span className="text-text-secondary" title="Brief available">
                 <FileText size={10} />
               </span>
             )}
 
             {item.draft_url && (
-              <span className="text-[#22C55E]" title="Draft link attached">
+              <span className="text-online" title="Draft link attached">
                 <Link2 size={10} />
               </span>
             )}
@@ -222,14 +222,14 @@ function DraggableCard({
           <div>
             {assigneeName ? (
               <div
-                className="w-5 h-5 rounded-full bg-[#1E3352] text-[#F0F4FF] text-[8px] font-bold flex items-center justify-center border border-[#060D1A]"
+                className="w-5 h-5 rounded-full bg-primary/20 text-primary-light text-[8px] font-bold flex items-center justify-center border border-primary/30"
                 title={`Assigned to: ${assigneeName}`}
               >
                 {getInitials(assigneeName)}
               </div>
             ) : (
               <div
-                className="w-5 h-5 rounded-full border border-dashed border-[#1E3352] text-[#4A6480] flex items-center justify-center"
+                className="w-5 h-5 rounded-full border border-dashed border-border/30 text-text-tertiary flex items-center justify-center"
                 title="Unassigned"
               >
                 <User size={8} />
@@ -292,7 +292,7 @@ export function ContentKanban({
 
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-      <div className="flex gap-4 items-start overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-[#1E3352] scrollbar-track-transparent">
+      <div className="flex gap-4 items-start overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-border/50 scrollbar-track-transparent">
         {COLUMNS.map((col) => {
           const colItems = items.filter((item) => item.status === col.status);
 
@@ -325,8 +325,8 @@ export function ContentKanban({
               })}
 
               {colItems.length === 0 && (
-                <div className="flex-1 flex flex-col items-center justify-center border border-dashed border-[#1E3352]/20 rounded-[8px] p-6 text-center text-[10px] text-[#4A6480] min-h-[140px] select-none">
-                  <CheckCircle2 size={16} className="mb-1 opacity-40 text-[#4A6480]" />
+                <div className="flex-1 flex flex-col items-center justify-center border border-dashed border-border/30/20 rounded-[8px] p-6 text-center text-[10px] text-text-tertiary min-h-[140px] select-none">
+                  <CheckCircle2 size={16} className="mb-1 opacity-40 text-text-tertiary" />
                   No items in stage
                 </div>
               )}
