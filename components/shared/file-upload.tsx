@@ -184,7 +184,7 @@ export function FileUpload({
 
         {isUploading ? (
           <div className="space-y-3 w-full max-w-xs flex flex-col items-center">
-            <Loader2 className="h-7 w-7 text-[#1B4FD8] animate-spin" />
+            <Loader2 className="h-7 w-7 text-primary animate-spin" />
             <div className="text-xs text-text-secondary font-medium">Uploading file...</div>
             <Progress value={uploadProgress} className="h-1.5 w-full bg-bg-card-hover/20" />
           </div>
@@ -194,7 +194,7 @@ export function FileUpload({
               size={32}
               className={cn(
                 "stroke-[1.5]",
-                isDragging ? "text-[#1B4FD8]" : error ? "text-error" : "text-text-tertiary"
+                isDragging ? "text-primary" : error ? "text-error" : "text-text-tertiary"
               )}
             />
             <div className="text-xs text-text-secondary">
@@ -209,7 +209,7 @@ export function FileUpload({
 
       {/* Success State */}
       {uploadedFile && !error && (
-        <div className="flex items-center gap-2.5 p-3 rounded-lg border border-online/30 bg-[#22C55E10] text-xs">
+        <div className="flex items-center gap-2.5 p-3 rounded-lg border border-online/30 bg-success/10 text-xs">
           <CheckCircle2 size={16} className="text-online shrink-0 stroke-[1.5]" />
           <div className="min-w-0 flex-1">
             <p className="font-medium text-text-primary truncate">{uploadedFile.name}</p>
@@ -220,7 +220,7 @@ export function FileUpload({
 
       {/* Error State */}
       {error && (
-        <div className="flex items-center gap-2.5 p-3 rounded-lg border border-error/30 bg-[#EF444410] text-xs">
+        <div className="flex items-center gap-2.5 p-3 rounded-lg border border-error/30 bg-error/10 text-xs">
           <AlertCircle size={16} className="text-error shrink-0 stroke-[1.5]" />
           <p className="font-medium text-error min-w-0 flex-1">{error}</p>
         </div>

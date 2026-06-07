@@ -51,21 +51,21 @@ const getFileIcon = (mimeType: string | null, name: string) => {
   const type = mimeType?.toLowerCase() || '';
   const ext = name.split('.').pop()?.toLowerCase() || '';
   if (type.startsWith('image/') || ['png', 'jpg', 'jpeg', 'webp', 'gif'].includes(ext)) {
-    return <FileImage className="text-[#38BDF8]" size={18} />;
+    return <FileImage className="text-sky-400" size={18} />;
   }
   if (type === 'application/pdf' || ext === 'pdf') {
-    return <FileText className="text-[#F87171]" size={18} />;
+    return <FileText className="text-error" size={18} />;
   }
   if (type.includes('spreadsheet') || type.includes('excel') || ['xlsx', 'xls', 'csv'].includes(ext)) {
-    return <FileSpreadsheet className="text-[#34D399]" size={18} />;
+    return <FileSpreadsheet className="text-emerald-400" size={18} />;
   }
   if (type.startsWith('video/') || ['mp4', 'mov', 'avi'].includes(ext)) {
-    return <Video className="text-[#A78BFA]" size={18} />;
+    return <Video className="text-purple-400" size={18} />;
   }
   if (type.includes('zip') || ['zip', 'rar', '7z'].includes(ext)) {
-    return <Archive className="text-[#FBBF24]" size={18} />;
+    return <Archive className="text-amber-400" size={18} />;
   }
-  return <File className="text-[#94A3B8]" size={18} />;
+  return <File className="text-text-muted" size={18} />;
 };
 
 export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps) {
@@ -139,7 +139,7 @@ export function EmployeeFilesPage({ files, employeeId }: EmployeeFilesPageProps)
       {/* Files */}
       {filteredFiles.length === 0 ? (
         <div className="bg-bg-card border border-border/30 border-dashed rounded-[10px] p-10 text-center">
-          <FileText size={28} className="text-[#1E3352] mx-auto mb-2" />
+          <FileText size={28} className="text-border mx-auto mb-2" />
           <p className="text-sm font-semibold text-text-secondary">No files yet</p>
           <p className="text-xs text-text-tertiary mt-1 mb-4">Upload files here to keep them organized.</p>
           <Button

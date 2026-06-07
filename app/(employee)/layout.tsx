@@ -26,7 +26,7 @@ export default async function EmployeeLayout({ children }: { children: React.Rea
   }
 
   return (
-    <div className="min-h-screen bg-[#060D1A] text-[#F0F4FF] flex flex-col">
+    <div className="min-h-screen bg-bg-dark text-text-primary flex flex-col">
       <EmployeeHeader profile={profile} />
       <EmployeeNav />
       <main className="flex-1 p-4 pb-24 md:pb-6 max-w-4xl mx-auto w-full">

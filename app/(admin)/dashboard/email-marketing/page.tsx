@@ -34,7 +34,7 @@ export default async function EmailMarketingPage() {
 
   return (
     <PageContainer title="Email & WhatsApp Marketing" description="Manage campaign calendars, templates, and analytics for both agency marketing and client deliveries.">
-      <Suspense fallback={<div className="text-sm text-[#8BA3C7] animate-pulse">Loading Marketing Campaigns Dashboard...</div>}>
+      <Suspense fallback={<div className="text-sm text-text-muted animate-pulse">Loading Marketing Campaigns Dashboard...</div>}>
         <MarketingCampaignsDashboard
           clients={clients || []}
           initialEmailCampaigns={emailCampaigns || []}

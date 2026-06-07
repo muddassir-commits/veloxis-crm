@@ -338,7 +338,7 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
           <Button
             variant="ghost"
             onClick={handleResetFilters}
-            className="h-9 text-accent hover:text-[#EA580C] hover:bg-[#EA580C]/10 text-xs gap-1.5 transition-all select-none cursor-pointer"
+            className="h-9 text-accent hover:text-accent hover:bg-accent/10 text-xs gap-1.5 transition-all select-none cursor-pointer"
           >
             <FilterX className="h-3.5 w-3.5" />
             Clear Filters

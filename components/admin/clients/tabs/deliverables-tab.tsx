@@ -190,7 +190,7 @@ export function DeliverablesTab({ client, profiles }: DeliverablesTabProps) {
             type="checkbox"
             checked={isDone}
             onChange={(e) => handleToggleComplete(task, e.target.checked)}
-            className="rounded border-border/30 bg-bg-dark text-[#1B4FD8] focus:ring-0 cursor-pointer h-4 w-4"
+            className="rounded border-border/30 bg-bg-dark text-primary focus:ring-0 cursor-pointer h-4 w-4"
           />
         );
       },

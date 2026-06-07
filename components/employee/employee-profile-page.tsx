@@ -211,7 +211,7 @@ export function EmployeeProfilePage({
                   <th className="p-3">Paid Date</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#1E3352]/30">
+              <tbody className="divide-y divide-border/30">
                 {stipends.map((s) => (
                   <tr key={s.id} className="text-xs text-text-secondary">
                     <td className="p-3 font-semibold text-text-primary">{s.month_year}</td>
@@ -240,7 +240,7 @@ export function EmployeeProfilePage({
       {clientNames.length > 0 && (
         <div>
           <h3 className="text-sm font-bold text-text-primary mb-3 flex items-center gap-2">
-            <Users size={14} className="text-[#A78BFA]" />
+            <Users size={14} className="text-purple-400" />
             My Clients This Month
           </h3>
           <div className="flex flex-wrap gap-2">

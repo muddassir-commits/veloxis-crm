@@ -330,7 +330,7 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
                   {client.name}
                 </h1>
                 {client.is_agency_self && (
-                  <span className="text-[9px] font-bold bg-accent/10 border border-[#F97316]/20 text-accent rounded-full px-2 py-0.5 uppercase tracking-wide">
+                  <span className="text-[9px] font-bold bg-accent/10 border border-accent/20 text-accent rounded-full px-2 py-0.5 uppercase tracking-wide">
                     My Agency
                   </span>
                 )}
@@ -448,7 +448,7 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
 
           {/* Card 2: Industry */}
           <div className="bg-bg-card border border-border/30 rounded-[10px] p-[16px_20px] min-w-[180px] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#4D90FE]/10 text-primary-light">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary-light">
               <Briefcase size={16} />
             </div>
             <div>
@@ -515,8 +515,8 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
                 className={`
                   flex items-center gap-1.5 px-4 py-3.5 text-[11px] font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-all
                   ${isActive
-                    ? 'border-primary text-[#1B4FD8]'
-                    : 'border-transparent text-text-tertiary hover:text-text-secondary hover:border-[#2A4060]'}
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-text-tertiary hover:text-text-secondary hover:border-text-muted'}
                 `}
               >
                 <TabIcon size={12} />
@@ -723,7 +723,7 @@ export function ClientDetailHub({ client: initialClient, profiles }: ClientDetai
                             : p.services.filter((s) => s !== opt.id),
                         }));
                       }}
-                      className="rounded border-border/30 bg-bg-dark text-[#1B4FD8] focus:ring-0 shrink-0"
+                      className="rounded border-border/30 bg-bg-dark text-primary focus:ring-0 shrink-0"
                     />
                     <span>{opt.label}</span>
                   </label>

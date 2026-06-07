@@ -831,7 +831,7 @@ export function AgencyDashboard({
             </div>
           </div>
           <div className="flex items-center justify-between mt-1">
-            <span className="text-[10px] text-[#8B5CF6] font-semibold select-none">Instagram Brand</span>
+            <span className="text-[10px] text-purple-500 font-semibold select-none">Instagram Brand</span>
             {renderSparkline(socialSparkline, CHART_COLORS.purple)}
           </div>
         </div>
@@ -922,7 +922,7 @@ export function AgencyDashboard({
             <div className="lg:col-span-6 bg-bg-card border border-border/30 rounded-[10px] p-5 flex flex-col justify-between h-[380px]">
               <div>
                 <h3 className="text-sm font-semibold text-text-primary select-none flex items-center gap-2">
-                  <Award size={15} className="text-[#1B4FD8]" />
+                  <Award size={15} className="text-primary" />
                   <span>All Channels Performance (Scores)</span>
                 </h3>
                 <p className="text-[10px] text-text-tertiary mt-0.5 select-none uppercase tracking-wide">
@@ -1175,7 +1175,7 @@ export function AgencyDashboard({
               {integrationsOpen && (
                 <div className="p-4 border-t border-border/30/40 grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* GSC Card */}
-                  <div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
+                  <div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-bg-card border-online/30' : 'bg-bg-darker border-border/30'} flex flex-col justify-between h-40`}>
                     <div>
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-text-primary">Google Search Console</span>
@@ -1220,7 +1220,7 @@ export function AgencyDashboard({
                   </div>
 
                   {/* GA4 Card */}
-                  <div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
+                  <div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-bg-card border-online/30' : 'bg-bg-darker border-border/30'} flex flex-col justify-between h-40`}>
                     <div>
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-text-primary">Google Analytics 4</span>
@@ -1261,7 +1261,7 @@ export function AgencyDashboard({
                   </div>
 
                   {/* Meta Ads Card */}
-                  <div className={`p-4 rounded-lg border ${integrationStatus.meta?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
+                  <div className={`p-4 rounded-lg border ${integrationStatus.meta?.connected ? 'bg-bg-card border-online/30' : 'bg-bg-darker border-border/30'} flex flex-col justify-between h-40`}>
                     <div>
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-text-primary">Meta Ads Connection</span>
@@ -1302,7 +1302,7 @@ export function AgencyDashboard({
                   </div>
 
                   {/* Google Ads Card */}
-                  <div className={`p-4 rounded-lg border ${integrationStatus.google?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
+                  <div className={`p-4 rounded-lg border ${integrationStatus.google?.connected ? 'bg-bg-card border-online/30' : 'bg-bg-darker border-border/30'} flex flex-col justify-between h-40`}>
                     <div>
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-text-primary">Google Ads Connection</span>
@@ -1883,10 +1883,10 @@ export function AgencyDashboard({
                   }`}
                 >
                   <div className="flex items-start justify-between">
-                    <div className="p-2 rounded bg-bg-dark text-[#1B4FD8]">
-                      {folder.id === 'logos' && <FileImage size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-text-secondary'} />}
-                      {folder.id === 'templates' && <FileText size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-text-secondary'} />}
-                      {folder.id === 'brand' && <Archive size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-text-secondary'} />}
+                    <div className="p-2 rounded bg-bg-dark text-primary">
+                      {folder.id === 'logos' && <FileImage size={18} className={assetCategory === folder.id ? 'text-primary' : 'text-text-secondary'} />}
+                      {folder.id === 'templates' && <FileText size={18} className={assetCategory === folder.id ? 'text-primary' : 'text-text-secondary'} />}
+                      {folder.id === 'brand' && <Archive size={18} className={assetCategory === folder.id ? 'text-primary' : 'text-text-secondary'} />}
                     </div>
                     <span className="text-[10px] font-bold font-mono text-text-secondary bg-bg-card-hover/20 border border-border/30 px-2 py-0.5 rounded-full">
                       {folder.count} files
@@ -1953,7 +1953,7 @@ export function AgencyDashboard({
                             className="object-contain w-full h-full p-2 group-hover:scale-[1.03] transition-transform duration-200"
                           />
                         ) : (
-                          <div className="p-4 rounded-full bg-bg-card-hover/20 text-[#1B4FD8]">
+                          <div className="p-4 rounded-full bg-bg-card-hover/20 text-primary">
                             {file.mime_type?.includes('pdf') && <FileText size={24} />}
                             {file.mime_type?.includes('spreadsheet') || file.mime_type?.includes('xlsx') || file.mime_type?.includes('csv') ? <FileSpreadsheet size={24} /> : null}
                             {!file.mime_type?.includes('pdf') && !file.mime_type?.includes('spreadsheet') && !file.mime_type?.includes('xlsx') && !file.mime_type?.includes('csv') && <Archive size={24} />}
@@ -2663,7 +2663,7 @@ export function AgencyDashboard({
         <DialogContent className="sm:max-w-[400px] bg-bg-card border border-border/30 text-text-primary select-none">
           <DialogHeader>
             <DialogTitle className="text-sm font-bold flex items-center gap-2">
-              <Globe size={16} className="text-[#1D4ED8]" />
+              <Globe size={16} className="text-primary" />
               <span>Configure GSC Property URL</span>
             </DialogTitle>
             <DialogDescription className="text-xs text-text-secondary mt-1">
@@ -2710,7 +2710,7 @@ export function AgencyDashboard({
         <DialogContent className="sm:max-w-[400px] bg-bg-card border border-border/30 text-text-primary select-none">
           <DialogHeader>
             <DialogTitle className="text-sm font-bold flex items-center gap-2">
-              <Globe size={16} className="text-[#1D4ED8]" />
+              <Globe size={16} className="text-primary" />
               <span>Configure GA4 Property ID</span>
             </DialogTitle>
             <DialogDescription className="text-xs text-text-secondary mt-1">
@@ -2757,7 +2757,7 @@ export function AgencyDashboard({
         <DialogContent className="sm:max-w-[400px] bg-bg-card border border-border/30 text-text-primary select-none">
           <DialogHeader>
             <DialogTitle className="text-sm font-bold flex items-center gap-2">
-              <Link2 size={16} className="text-[#1D4ED8]" />
+              <Link2 size={16} className="text-primary" />
               <span>Connect Meta Ad Account</span>
             </DialogTitle>
             <DialogDescription className="text-xs text-text-secondary mt-1">
@@ -2804,7 +2804,7 @@ export function AgencyDashboard({
         <DialogContent className="sm:max-w-[400px] bg-bg-card border border-border/30 text-text-primary select-none">
           <DialogHeader>
             <DialogTitle className="text-sm font-bold flex items-center gap-2">
-              <Link2 size={16} className="text-[#1D4ED8]" />
+              <Link2 size={16} className="text-primary" />
               <span>Connect Google Ads Account</span>
             </DialogTitle>
             <DialogDescription className="text-xs text-text-secondary mt-1">

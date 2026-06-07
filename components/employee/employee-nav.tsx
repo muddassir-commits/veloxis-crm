@@ -49,7 +49,7 @@ export function EmployeeNav() {
               key={item.href}
               href={item.href}
               className={`flex-1 flex flex-col items-center justify-center gap-1 transition-all ${
-                isActive ? 'text-[#1B4FD8]' : 'text-text-tertiary'
+                isActive ? 'text-primary' : 'text-text-tertiary'
               }`}
             >
               <Icon size={20} />

@@ -54,7 +54,7 @@ export default async function ClientRelationsPage() {
 
   return (
     <PageContainer title="Client Relations" description="Manage client communication logs, support tickets, NPS feedback, and churn risks.">
-      <Suspense fallback={<div className="text-sm text-[#8BA3C7] animate-pulse">Loading Client Relations Dashboard...</div>}>
+      <Suspense fallback={<div className="text-sm text-text-muted animate-pulse">Loading Client Relations Dashboard...</div>}>
         <ClientRelationsDashboard
           clients={clients || []}
           team={team || []}

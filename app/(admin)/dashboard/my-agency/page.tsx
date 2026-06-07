@@ -88,7 +88,7 @@ export default async function MyAgencyPage() {
         </div>
       }
     >
-      <Suspense fallback={<div className="text-xs text-[#8BA3C7] animate-pulse">Loading dashboard...</div>}>
+      <Suspense fallback={<div className="text-xs text-text-muted animate-pulse">Loading dashboard...</div>}>
         <AgencyDashboard
           clientId={agencyClient.id}
           seoCampaigns={seoCampaigns}

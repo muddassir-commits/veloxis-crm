@@ -126,7 +126,7 @@ export function PortalHeader({ profile, client }: PortalHeaderProps) {
             <DropdownMenuSeparator className="bg-bg-border" />
             <DropdownMenuItem
               onClick={handleLogout}
-              className="gap-2 text-xs text-error hover:text-[#DC2626] hover:bg-[#EF444410] cursor-pointer"
+              className="gap-2 text-xs text-error hover:text-error hover:bg-error/10 cursor-pointer"
             >
               <LogOut size={13} /> Sign Out
             </DropdownMenuItem>

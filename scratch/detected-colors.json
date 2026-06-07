@@ -1,0 +1,3972 @@
+[
+  {
+    "file": "components\\admin\\activity\\activity-dashboard.tsx",
+    "matches": [
+      {
+        "line": 199,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#10B981]/15 text-[#10B981] flex items-center justify-center border border-[#10B981]/30\">",
+        "color": "#10B981"
+      },
+      {
+        "line": 199,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#10B981]/15 text-[#10B981] flex items-center justify-center border border-[#10B981]/30\">",
+        "color": "#10B981"
+      },
+      {
+        "line": 199,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#10B981]/15 text-[#10B981] flex items-center justify-center border border-[#10B981]/30\">",
+        "color": "#10B981"
+      },
+      {
+        "line": 205,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#3B82F6]/15 text-[#3B82F6] flex items-center justify-center border border-[#3B82F6]/30\">",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 205,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#3B82F6]/15 text-[#3B82F6] flex items-center justify-center border border-[#3B82F6]/30\">",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 205,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#3B82F6]/15 text-[#3B82F6] flex items-center justify-center border border-[#3B82F6]/30\">",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 211,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#6366F1]/15 text-[#6366F1] flex items-center justify-center border border-[#6366F1]/30\">",
+        "color": "#6366F1"
+      },
+      {
+        "line": 211,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#6366F1]/15 text-[#6366F1] flex items-center justify-center border border-[#6366F1]/30\">",
+        "color": "#6366F1"
+      },
+      {
+        "line": 211,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#6366F1]/15 text-[#6366F1] flex items-center justify-center border border-[#6366F1]/30\">",
+        "color": "#6366F1"
+      },
+      {
+        "line": 218,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-accent/15 text-accent flex items-center justify-center border border-[#F97316]/30\">",
+        "color": "#F97316"
+      },
+      {
+        "line": 231,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#10B981]/15 text-[#10B981] flex items-center justify-center border border-[#10B981]/30\">",
+        "color": "#10B981"
+      },
+      {
+        "line": 231,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#10B981]/15 text-[#10B981] flex items-center justify-center border border-[#10B981]/30\">",
+        "color": "#10B981"
+      },
+      {
+        "line": 231,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#10B981]/15 text-[#10B981] flex items-center justify-center border border-[#10B981]/30\">",
+        "color": "#10B981"
+      },
+      {
+        "line": 237,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#8BA3C7]/15 text-text-secondary flex items-center justify-center border border-[#8BA3C7]/30\">",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 237,
+        "content": "<div className=\"h-8 w-8 rounded-full bg-[#8BA3C7]/15 text-text-secondary flex items-center justify-center border border-[#8BA3C7]/30\">",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 300,
+        "content": "className=\"h-9 pl-9 bg-bg-dark border-border/30 text-text-primary placeholder-[#8BA3C7]/40 text-xs rounded-md focus:border-primary focus:ring-1 focus:ring-[#1B4FD8]/30 transition-all\"",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 300,
+        "content": "className=\"h-9 pl-9 bg-bg-dark border-border/30 text-text-primary placeholder-[#8BA3C7]/40 text-xs rounded-md focus:border-primary focus:ring-1 focus:ring-[#1B4FD8]/30 transition-all\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 306,
+        "content": "<SelectTrigger className=\"h-9 bg-bg-dark border-border/30 text-text-primary text-xs focus:ring-[#1B4FD8]/30\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 321,
+        "content": "<SelectTrigger className=\"h-9 bg-bg-dark border-border/30 text-text-primary text-xs focus:ring-[#1B4FD8]/30\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 341,
+        "content": "className=\"h-9 text-accent hover:text-[#EA580C] hover:bg-[#EA580C]/10 text-xs gap-1.5 transition-all select-none cursor-pointer\"",
+        "color": "#EA580C"
+      },
+      {
+        "line": 341,
+        "content": "className=\"h-9 text-accent hover:text-[#EA580C] hover:bg-[#EA580C]/10 text-xs gap-1.5 transition-all select-none cursor-pointer\"",
+        "color": "#EA580C"
+      },
+      {
+        "line": 365,
+        "content": "<div className=\"divide-y divide-[#1E3352]/30 rounded-lg border border-border/30 bg-bg-card overflow-hidden shadow-xl\">",
+        "color": "#1E3352"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\agency-dashboard.tsx",
+    "matches": [
+      {
+        "line": 95,
+        "content": "primary: '#1B4FD8',   // Blue (SEO, Organic)",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 96,
+        "content": "secondary: '#F97316', // Orange (Finance, Ads)",
+        "color": "#F97316"
+      },
+      {
+        "line": 97,
+        "content": "success: '#22C55E',   // Green (Growth, Wins)",
+        "color": "#22C55E"
+      },
+      {
+        "line": 98,
+        "content": "purple: '#8B5CF6',    // Purple (Social)",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 99,
+        "content": "cyan: '#06B6D4',      // Cyan (Email/WhatsApp)",
+        "color": "#06B6D4"
+      },
+      {
+        "line": 100,
+        "content": "muted: '#4A6480',     // Gray (Baseline)",
+        "color": "#4A6480"
+      },
+      {
+        "line": 109,
+        "content": "'#F59E0B',              // Email",
+        "color": "#F59E0B"
+      },
+      {
+        "line": 834,
+        "content": "<span className=\"text-[10px] text-[#8B5CF6] font-semibold select-none\">Instagram Brand</span>",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 925,
+        "content": "<Award size={15} className=\"text-[#1B4FD8]\" />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 936,
+        "content": "<PolarAngleAxis dataKey=\"subject\" stroke=\"#4A6480\" fontSize={10} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 937,
+        "content": "<PolarRadiusAxis angle={30} domain={[0, 100]} stroke=\"#4A6480\" fontSize={9} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1048,
+        "content": "<XAxis dataKey=\"month_year\" stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1049,
+        "content": "<YAxis stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1076,
+        "content": "fill: '#22C55E',",
+        "color": "#22C55E"
+      },
+      {
+        "line": 1084,
+        "content": "fill: '#1B4FD8',",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 1092,
+        "content": "fill: '#F59E0B',",
+        "color": "#F59E0B"
+      },
+      {
+        "line": 1097,
+        "content": "fill: '#EF4444',",
+        "color": "#EF4444"
+      },
+      {
+        "line": 1103,
+        "content": "<XAxis dataKey=\"name\" stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1104,
+        "content": "<YAxis stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1108,
+        "content": "const fills = ['#22C55E', '#1B4FD8', '#F59E0B', '#EF4444'];",
+        "color": "#22C55E"
+      },
+      {
+        "line": 1108,
+        "content": "const fills = ['#22C55E', '#1B4FD8', '#F59E0B', '#EF4444'];",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 1108,
+        "content": "const fills = ['#22C55E', '#1B4FD8', '#F59E0B', '#EF4444'];",
+        "color": "#F59E0B"
+      },
+      {
+        "line": 1108,
+        "content": "const fills = ['#22C55E', '#1B4FD8', '#F59E0B', '#EF4444'];",
+        "color": "#EF4444"
+      },
+      {
+        "line": 1178,
+        "content": "<div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>",
+        "color": "#0A1220"
+      },
+      {
+        "line": 1223,
+        "content": "<div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>",
+        "color": "#0A1220"
+      },
+      {
+        "line": 1264,
+        "content": "<div className={`p-4 rounded-lg border ${integrationStatus.meta?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>",
+        "color": "#0A1220"
+      },
+      {
+        "line": 1305,
+        "content": "<div className={`p-4 rounded-lg border ${integrationStatus.google?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>",
+        "color": "#0A1220"
+      },
+      {
+        "line": 1396,
+        "content": "<XAxis dataKey=\"month_year\" stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1397,
+        "content": "<YAxis stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1554,
+        "content": "<XAxis dataKey=\"month_year\" stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1555,
+        "content": "<YAxis yAxisId=\"left\" stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1556,
+        "content": "<YAxis yAxisId=\"right\" orientation=\"right\" stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1581,
+        "content": "<XAxis dataKey=\"month_year\" stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1582,
+        "content": "<YAxis stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1584,
+        "content": "<ReferenceLine y={400} stroke=\"#EF4444\" strokeDasharray=\"4 4\" label={{ value: 'Target CPL (₹400)', fill: '#EF4444', fontSize: 10 }} />",
+        "color": "#EF4444"
+      },
+      {
+        "line": 1584,
+        "content": "<ReferenceLine y={400} stroke=\"#EF4444\" strokeDasharray=\"4 4\" label={{ value: 'Target CPL (₹400)', fill: '#EF4444', fontSize: 10 }} />",
+        "color": "#EF4444"
+      },
+      {
+        "line": 1685,
+        "content": "<XAxis dataKey=\"month_year\" stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1686,
+        "content": "<YAxis stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} domain={[0, 100]} tickFormatter={(v) => `${v}%`} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1794,
+        "content": "<XAxis dataKey=\"month_year\" stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1795,
+        "content": "<YAxis stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1798,
+        "content": "<Bar dataKey=\"messages_sent\" name=\"Sent\" stackId=\"a\" fill=\"#064E3B\" />",
+        "color": "#064E3B"
+      },
+      {
+        "line": 1799,
+        "content": "<Bar dataKey=\"delivered\" name=\"Delivered\" stackId=\"a\" fill=\"#22C55E\" />",
+        "color": "#22C55E"
+      },
+      {
+        "line": 1800,
+        "content": "<Bar dataKey=\"read_count\" name=\"Read\" stackId=\"a\" fill=\"#86EFAC\" />",
+        "color": "#86EFAC"
+      },
+      {
+        "line": 1815,
+        "content": "<XAxis dataKey=\"month_year\" stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1816,
+        "content": "<YAxis stroke=\"#4A6480\" fontSize={10} axisLine={false} tickLine={false} domain={[0, 100]} tickFormatter={(v) => `${v}%`} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1818,
+        "content": "<ReferenceLine y={65} stroke=\"#4A6480\" strokeDasharray=\"4 4\" label={{ value: 'Industry Avg (65%)', fill: 'var(--color-text-tertiary)', fontSize: 10 }} />",
+        "color": "#4A6480"
+      },
+      {
+        "line": 1881,
+        "content": "? 'bg-primary/10 border-primary shadow-lg shadow-[#1B4FD8]/5'",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 1886,
+        "content": "<div className=\"p-2 rounded bg-bg-dark text-[#1B4FD8]\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 1887,
+        "content": "{folder.id === 'logos' && <FileImage size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-text-secondary'} />}",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 1888,
+        "content": "{folder.id === 'templates' && <FileText size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-text-secondary'} />}",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 1889,
+        "content": "{folder.id === 'brand' && <Archive size={18} className={assetCategory === folder.id ? 'text-[#1B4FD8]' : 'text-text-secondary'} />}",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 1956,
+        "content": "<div className=\"p-4 rounded-full bg-bg-card-hover/20 text-[#1B4FD8]\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 2666,
+        "content": "<Globe size={16} className=\"text-[#1D4ED8]\" />",
+        "color": "#1D4ED8"
+      },
+      {
+        "line": 2713,
+        "content": "<Globe size={16} className=\"text-[#1D4ED8]\" />",
+        "color": "#1D4ED8"
+      },
+      {
+        "line": 2760,
+        "content": "<Link2 size={16} className=\"text-[#1D4ED8]\" />",
+        "color": "#1D4ED8"
+      },
+      {
+        "line": 2807,
+        "content": "<Link2 size={16} className=\"text-[#1D4ED8]\" />",
+        "color": "#1D4ED8"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\automations\\automations-dashboard.tsx",
+    "matches": [
+      {
+        "line": 209,
+        "content": "badgeColor = 'bg-[#3B82F615] text-[#3B82F6] border-[#3B82F630]';",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 270,
+        "content": "<Database size={16} className=\"text-[#3B82F6]\" />",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 362,
+        "content": "<code className=\"text-[#3B82F6] font-mono\">{selectedJob?.n8n_workflow_id || 'n/a'}</code>",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 375,
+        "content": "<RefreshCw size={20} className=\"animate-spin mx-auto text-[#1B4FD8]\" />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 425,
+        "content": "<summary className=\"text-[10px] text-[#3B82F6] hover:underline list-none flex items-center gap-0.5 select-none font-semibold\">",
+        "color": "#3B82F6"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\client-relations\\client-relations-dashboard.tsx",
+    "matches": [
+      {
+        "line": 202,
+        "content": "<div className=\"w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-[#1B4FD8]\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 325,
+        "content": "<MessageCircle size={16} className=\"text-[#1B4FD8]\" />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 349,
+        "content": "c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :",
+        "color": "#10B981"
+      },
+      {
+        "line": 349,
+        "content": "c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :",
+        "color": "#10B981"
+      },
+      {
+        "line": 350,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 350,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 350,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 350,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 391,
+        "content": "t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 391,
+        "content": "t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 391,
+        "content": "t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'",
+        "color": "#4B5563"
+      },
+      {
+        "line": 475,
+        "content": "c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :",
+        "color": "#10B981"
+      },
+      {
+        "line": 475,
+        "content": "c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :",
+        "color": "#10B981"
+      },
+      {
+        "line": 476,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 476,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 476,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 476,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 538,
+        "content": "className=\"bg-bg-dark border border-border/30 rounded-[8px] p-3 space-y-2 cursor-grab active:cursor-grabbing hover:border-[#4D90FE] transition-colors\"",
+        "color": "#4D90FE"
+      },
+      {
+        "line": 545,
+        "content": "t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 545,
+        "content": "t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 545,
+        "content": "t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'",
+        "color": "#4B5563"
+      },
+      {
+        "line": 701,
+        "content": "<span className=\"text-[8px] font-bold bg-[#4B5563]/10 text-text-secondary border border-[#4B5563]/20 rounded px-1.5 py-0.5 uppercase\">",
+        "color": "#4B5563"
+      },
+      {
+        "line": 701,
+        "content": "<span className=\"text-[8px] font-bold bg-[#4B5563]/10 text-text-secondary border border-[#4B5563]/20 rounded px-1.5 py-0.5 uppercase\">",
+        "color": "#4B5563"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\client-relations\\modals\\nps-modal.tsx",
+    "matches": [
+      {
+        "line": 161,
+        "content": "className=\"w-full h-1.5 bg-bg-card-hover/20 rounded-lg appearance-none cursor-pointer accent-[#1B4FD8]\"",
+        "color": "#1B4FD8"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\clients\\client-detail-hub.tsx",
+    "matches": [
+      {
+        "line": 321,
+        "content": "<div className=\"w-14 h-14 rounded-[12px] bg-gradient-to-br from-[#1B4FD8] to-[#7C3AED] flex items-center justify-center shrink-0\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 321,
+        "content": "<div className=\"w-14 h-14 rounded-[12px] bg-gradient-to-br from-[#1B4FD8] to-[#7C3AED] flex items-center justify-center shrink-0\">",
+        "color": "#7C3AED"
+      },
+      {
+        "line": 333,
+        "content": "<span className=\"text-[9px] font-bold bg-accent/10 border border-[#F97316]/20 text-accent rounded-full px-2 py-0.5 uppercase tracking-wide\">",
+        "color": "#F97316"
+      },
+      {
+        "line": 451,
+        "content": "<div className=\"p-2 rounded-lg bg-[#4D90FE]/10 text-primary-light\">",
+        "color": "#4D90FE"
+      },
+      {
+        "line": 518,
+        "content": "? 'border-primary text-[#1B4FD8]'",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 519,
+        "content": ": 'border-transparent text-text-tertiary hover:text-text-secondary hover:border-[#2A4060]'}",
+        "color": "#2A4060"
+      },
+      {
+        "line": 726,
+        "content": "className=\"rounded border-border/30 bg-bg-dark text-[#1B4FD8] focus:ring-0 shrink-0\"",
+        "color": "#1B4FD8"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\clients\\tabs\\activity-tab.tsx",
+    "matches": [
+      {
+        "line": 28,
+        "content": "task_created: 'text-primary-light bg-[#4D90FE]/10 border-[#4D90FE]/20',",
+        "color": "#4D90FE"
+      },
+      {
+        "line": 28,
+        "content": "task_created: 'text-primary-light bg-[#4D90FE]/10 border-[#4D90FE]/20',",
+        "color": "#4D90FE"
+      },
+      {
+        "line": 31,
+        "content": "client_updated: 'text-[#A78BFA] bg-[#A78BFA]/10 border-[#A78BFA]/20',",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 31,
+        "content": "client_updated: 'text-[#A78BFA] bg-[#A78BFA]/10 border-[#A78BFA]/20',",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 31,
+        "content": "client_updated: 'text-[#A78BFA] bg-[#A78BFA]/10 border-[#A78BFA]/20',",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 32,
+        "content": "project_created: 'text-primary-light bg-[#4D90FE]/10 border-[#4D90FE]/20',",
+        "color": "#4D90FE"
+      },
+      {
+        "line": 32,
+        "content": "project_created: 'text-primary-light bg-[#4D90FE]/10 border-[#4D90FE]/20',",
+        "color": "#4D90FE"
+      },
+      {
+        "line": 33,
+        "content": "note_added: 'text-text-secondary bg-[#8BA3C7]/10 border-[#8BA3C7]/20',",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 33,
+        "content": "note_added: 'text-text-secondary bg-[#8BA3C7]/10 border-[#8BA3C7]/20',",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 34,
+        "content": "default: 'text-text-tertiary bg-[#4A6480]/10 border-border/20/20',",
+        "color": "#4A6480"
+      },
+      {
+        "line": 186,
+        "content": "<Activity size={32} className=\"text-[#1E3352] mb-3\" />",
+        "color": "#1E3352"
+      },
+      {
+        "line": 188,
+        "content": "<p className=\"text-xs text-[#2A4060] mt-1 max-w-xs\">",
+        "color": "#2A4060"
+      },
+      {
+        "line": 196,
+        "content": "<div className=\"absolute left-4 top-4 bottom-4 w-px bg-[#1E3352]\" />",
+        "color": "#1E3352"
+      },
+      {
+        "line": 209,
+        "content": "<div className={`flex-1 pb-5 ${index < logs.length - 1 ? 'border-b border-[#0D1829]' : ''}`}>",
+        "color": "#0D1829"
+      },
+      {
+        "line": 225,
+        "content": "<span className=\"text-[9px] text-[#2A4060] font-mono\">",
+        "color": "#2A4060"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\clients\\tabs\\ads-tab.tsx",
+    "matches": [
+      {
+        "line": 450,
+        "content": "<Compass size={14} className={integrationsOpen ? 'text-[#1B4FD8]' : ''} />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 657,
+        "content": "<Target size={32} className=\"text-[#1E3352] mb-3\" />",
+        "color": "#1E3352"
+      },
+      {
+        "line": 659,
+        "content": "<p className=\"text-xs text-[#2A4060] mt-1\">",
+        "color": "#2A4060"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\clients\\tabs\\client-relations-tab.tsx",
+    "matches": [
+      {
+        "line": 151,
+        "content": "<MessageSquare className=\"text-[#1B4FD8]\" size={20} />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 179,
+        "content": "<MessageSquare size={14} className=\"text-[#1B4FD8]\" />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 199,
+        "content": "c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :",
+        "color": "#10B981"
+      },
+      {
+        "line": 199,
+        "content": "c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :",
+        "color": "#10B981"
+      },
+      {
+        "line": 200,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 200,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 200,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 200,
+        "content": "c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 265,
+        "content": "t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 265,
+        "content": "t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 265,
+        "content": "t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'",
+        "color": "#4B5563"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\clients\\tabs\\deliverables-tab.tsx",
+    "matches": [
+      {
+        "line": 193,
+        "content": "className=\"rounded border-border/30 bg-bg-dark text-[#1B4FD8] focus:ring-0 cursor-pointer h-4 w-4\"",
+        "color": "#1B4FD8"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\clients\\tabs\\files-tab.tsx",
+    "matches": [
+      {
+        "line": 54,
+        "content": "if (mimeType.startsWith('image/')) return 'text-[#A78BFA]';",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 172,
+        "content": "<FileText size={32} className=\"text-[#1E3352] mb-3\" />",
+        "color": "#1E3352"
+      },
+      {
+        "line": 174,
+        "content": "<p className=\"text-xs text-[#2A4060] mt-1 max-w-xs\">",
+        "color": "#2A4060"
+      },
+      {
+        "line": 196,
+        "content": "className=\"bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col gap-3 hover:border-[#2A4060] transition-all group\"",
+        "color": "#2A4060"
+      },
+      {
+        "line": 230,
+        "content": "className=\"flex items-center gap-1 text-[10px] text-primary-light hover:text-[#7BB3FF] transition-colors\"",
+        "color": "#7BB3FF"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\clients\\tabs\\invoices-tab.tsx",
+    "matches": [
+      {
+        "line": 331,
+        "content": "<div className=\"bg-accent/5 border border-[#F97316]/20 rounded-[10px] p-5 flex items-center justify-between select-none\">",
+        "color": "#F97316"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\clients\\tabs\\seo-tab.tsx",
+    "matches": [
+      {
+        "line": 475,
+        "content": "else if (pos <= 10) colorClass = 'text-[#1B4FD8] font-bold';",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 704,
+        "content": "<div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>",
+        "color": "#0A1220"
+      },
+      {
+        "line": 749,
+        "content": "<div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>",
+        "color": "#0A1220"
+      },
+      {
+        "line": 1224,
+        "content": "<Button onClick={handleSaveGscProperty} disabled={connecting} className=\"bg-warning hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold\">",
+        "color": "#D97706"
+      },
+      {
+        "line": 1224,
+        "content": "<Button onClick={handleSaveGscProperty} disabled={connecting} className=\"bg-warning hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold\">",
+        "color": "#060D1A"
+      },
+      {
+        "line": 1252,
+        "content": "<Button onClick={handleSaveGa4Property} disabled={connecting} className=\"bg-warning hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold\">",
+        "color": "#D97706"
+      },
+      {
+        "line": 1252,
+        "content": "<Button onClick={handleSaveGa4Property} disabled={connecting} className=\"bg-warning hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold\">",
+        "color": "#060D1A"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\deliverables\\deliverables-dashboard.tsx",
+    "matches": [
+      {
+        "line": 53,
+        "content": "const colors = ['#22C55E', '#4ADE80', '#86EFAC', '#15803D', '#166534'];",
+        "color": "#22C55E"
+      },
+      {
+        "line": 53,
+        "content": "const colors = ['#22C55E', '#4ADE80', '#86EFAC', '#15803D', '#166534'];",
+        "color": "#4ADE80"
+      },
+      {
+        "line": 53,
+        "content": "const colors = ['#22C55E', '#4ADE80', '#86EFAC', '#15803D', '#166534'];",
+        "color": "#86EFAC"
+      },
+      {
+        "line": 53,
+        "content": "const colors = ['#22C55E', '#4ADE80', '#86EFAC', '#15803D', '#166534'];",
+        "color": "#15803D"
+      },
+      {
+        "line": 53,
+        "content": "const colors = ['#22C55E', '#4ADE80', '#86EFAC', '#15803D', '#166534'];",
+        "color": "#166534"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\header.tsx",
+    "matches": [
+      {
+        "line": 236,
+        "content": "className=\"text-primary-light hover:text-[#2563EB] text-[10px] flex items-center gap-1 font-medium transition-colors\"",
+        "color": "#2563EB"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\marketing\\marketing-campaigns-dashboard.tsx",
+    "matches": [
+      {
+        "line": 203,
+        "content": "? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'",
+        "color": "#132237"
+      },
+      {
+        "line": 204,
+        "content": ": 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'",
+        "color": "#132237"
+      },
+      {
+        "line": 213,
+        "content": "? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'",
+        "color": "#132237"
+      },
+      {
+        "line": 214,
+        "content": ": 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'",
+        "color": "#132237"
+      },
+      {
+        "line": 223,
+        "content": "? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'",
+        "color": "#132237"
+      },
+      {
+        "line": 224,
+        "content": ": 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'",
+        "color": "#132237"
+      },
+      {
+        "line": 233,
+        "content": "? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'",
+        "color": "#132237"
+      },
+      {
+        "line": 234,
+        "content": ": 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'",
+        "color": "#132237"
+      },
+      {
+        "line": 313,
+        "content": "<div className=\"divide-y divide-[#1E3352]/50 space-y-3\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 340,
+        "content": "<div className=\"text-sm text-[#4B5E7D] py-6 text-center\">No campaigns logged yet.</div>",
+        "color": "#4B5E7D"
+      },
+      {
+        "line": 362,
+        "content": "<div key={t.id} className=\"bg-[#132237]/45 border border-border/30/70 rounded-md p-3 flex justify-between items-center\">",
+        "color": "#132237"
+      },
+      {
+        "line": 377,
+        "content": "<div className=\"text-sm text-[#4B5E7D] py-6 text-center\">No templates added yet.</div>",
+        "color": "#4B5E7D"
+      },
+      {
+        "line": 397,
+        "content": "className=\"w-full bg-[#132237] border border-border/30 rounded-md pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]\"",
+        "color": "#132237"
+      },
+      {
+        "line": 397,
+        "content": "className=\"w-full bg-[#132237] border border-border/30 rounded-md pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]\"",
+        "color": "#4B5E7D"
+      },
+      {
+        "line": 407,
+        "content": "className=\"bg-[#132237] border border-border/30 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500\"",
+        "color": "#132237"
+      },
+      {
+        "line": 423,
+        "content": "className=\"bg-[#132237] border border-border/30 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500\"",
+        "color": "#132237"
+      },
+      {
+        "line": 456,
+        "content": "<tr className=\"border-b border-border/30 text-text-secondary text-xs font-semibold uppercase bg-[#132237]/20\">",
+        "color": "#132237"
+      },
+      {
+        "line": 467,
+        "content": "<tbody className=\"divide-y divide-[#1E3352]/40 text-sm text-[#E2E8F0]\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 467,
+        "content": "<tbody className=\"divide-y divide-[#1E3352]/40 text-sm text-[#E2E8F0]\">",
+        "color": "#E2E8F0"
+      },
+      {
+        "line": 469,
+        "content": "<tr key={c.id} className=\"hover:bg-[#132237]/25 transition-colors\">",
+        "color": "#132237"
+      },
+      {
+        "line": 552,
+        "content": "className=\"text-text-secondary hover:text-red-400 p-1.5 hover:bg-[#1C2C42] rounded-md transition-colors\"",
+        "color": "#1C2C42"
+      },
+      {
+        "line": 612,
+        "content": "<div className=\"bg-[#132237]/50 border border-border/30/40 rounded-md p-3 font-mono text-xs text-text-secondary max-h-[120px] overflow-y-auto whitespace-pre-wrap\">",
+        "color": "#132237"
+      },
+      {
+        "line": 623,
+        "content": "className=\"text-xs text-blue-400 hover:text-blue-300 font-semibold flex items-center space-x-1 px-2.5 py-1.5 hover:bg-[#132237] rounded-md transition-colors\"",
+        "color": "#132237"
+      },
+      {
+        "line": 630,
+        "content": "className=\"text-xs text-red-400 hover:text-red-300 font-semibold flex items-center space-x-1 px-2.5 py-1.5 hover:bg-[#132237] rounded-md transition-colors\"",
+        "color": "#132237"
+      },
+      {
+        "line": 663,
+        "content": "<div className=\"space-y-4 bg-[#132237]/45 border border-border/30/70 rounded-lg p-5\">",
+        "color": "#132237"
+      },
+      {
+        "line": 694,
+        "content": "<div className=\"space-y-4 bg-[#132237]/45 border border-border/30/70 rounded-lg p-5\">",
+        "color": "#132237"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\reports\\pdf-report-document.tsx",
+    "matches": [
+      {
+        "line": 18,
+        "content": "color: '#334155',",
+        "color": "#334155"
+      },
+      {
+        "line": 19,
+        "content": "backgroundColor: '#ffffff',",
+        "color": "#ffffff"
+      },
+      {
+        "line": 24,
+        "content": "backgroundColor: '#0a1628',",
+        "color": "#0a1628"
+      },
+      {
+        "line": 25,
+        "content": "color: '#ffffff',",
+        "color": "#ffffff"
+      },
+      {
+        "line": 34,
+        "content": "color: '#ffffff',",
+        "color": "#ffffff"
+      },
+      {
+        "line": 39,
+        "content": "color: '#3b82f6',",
+        "color": "#3b82f6"
+      },
+      {
+        "line": 47,
+        "content": "color: '#94a3b8',",
+        "color": "#94a3b8"
+      },
+      {
+        "line": 52,
+        "content": "borderTopColor: '#1e293b',",
+        "color": "#1e293b"
+      },
+      {
+        "line": 55,
+        "content": "color: '#64748b',",
+        "color": "#64748b"
+      },
+      {
+        "line": 59,
+        "content": "borderBottomColor: '#e2e8f0',",
+        "color": "#e2e8f0"
+      },
+      {
+        "line": 70,
+        "content": "color: '#0f172a',",
+        "color": "#0f172a"
+      },
+      {
+        "line": 74,
+        "content": "color: '#64748b',",
+        "color": "#64748b"
+      },
+      {
+        "line": 82,
+        "content": "color: '#0f172a',",
+        "color": "#0f172a"
+      },
+      {
+        "line": 84,
+        "content": "borderBottomColor: '#cbd5e1',",
+        "color": "#cbd5e1"
+      },
+      {
+        "line": 97,
+        "content": "backgroundColor: '#f8fafc',",
+        "color": "#f8fafc"
+      },
+      {
+        "line": 101,
+        "content": "borderColor: '#f1f5f9',",
+        "color": "#f1f5f9"
+      },
+      {
+        "line": 106,
+        "content": "color: '#64748b',",
+        "color": "#64748b"
+      },
+      {
+        "line": 112,
+        "content": "color: '#0f172a',",
+        "color": "#0f172a"
+      },
+      {
+        "line": 118,
+        "content": "color: '#334155',",
+        "color": "#334155"
+      },
+      {
+        "line": 125,
+        "content": "borderColor: '#e2e8f0',",
+        "color": "#e2e8f0"
+      },
+      {
+        "line": 133,
+        "content": "backgroundColor: '#f1f5f9',",
+        "color": "#f1f5f9"
+      },
+      {
+        "line": 137,
+        "content": "borderBottomColor: '#e2e8f0',",
+        "color": "#e2e8f0"
+      },
+      {
+        "line": 144,
+        "content": "borderBottomColor: '#f1f5f9',",
+        "color": "#f1f5f9"
+      },
+      {
+        "line": 156,
+        "content": "borderTopColor: '#e2e8f0',",
+        "color": "#e2e8f0"
+      },
+      {
+        "line": 162,
+        "content": "color: '#94a3b8',",
+        "color": "#94a3b8"
+      },
+      {
+        "line": 204,
+        "content": "<Text style={{ fontSize: 12, fontWeight: 'bold', color: '#3b82f6', letterSpacing: 2 }}>VELOXIS GLOBAL</Text>",
+        "color": "#3b82f6"
+      },
+      {
+        "line": 261,
+        "content": "<Text style={{ fontSize: 9, fontWeight: 'bold', color: '#475569', marginBottom: 5 }}>Tracked Keyword Rankings</Text>",
+        "color": "#475569"
+      },
+      {
+        "line": 272,
+        "content": "<Text style={[styles.col2, { color: '#2563eb', fontWeight: 'bold' }]}>{kw.current_position ?? 'N/A'}</Text>",
+        "color": "#2563eb"
+      },
+      {
+        "line": 310,
+        "content": "<Text style={[styles.metricValue, { color: '#16a34a' }]}>{totalLeadsConversions}</Text>",
+        "color": "#16a34a"
+      },
+      {
+        "line": 321,
+        "content": "<View style={{ flex: 1, backgroundColor: '#f8fafc', padding: 10, borderRadius: 6, borderWidth: 1, borderColor: '#e2e8f0' }}>",
+        "color": "#f8fafc"
+      },
+      {
+        "line": 321,
+        "content": "<View style={{ flex: 1, backgroundColor: '#f8fafc', padding: 10, borderRadius: 6, borderWidth: 1, borderColor: '#e2e8f0' }}>",
+        "color": "#e2e8f0"
+      },
+      {
+        "line": 322,
+        "content": "<Text style={{ fontSize: 9.5, fontWeight: 'bold', color: '#1e3a8a', borderBottomWidth: 1, borderBottomColor: '#cbd5e1', paddingBottom: 3, marginBottom: 5 }}>Meta Ads Insights</Text>",
+        "color": "#1e3a8a"
+      },
+      {
+        "line": 322,
+        "content": "<Text style={{ fontSize: 9.5, fontWeight: 'bold', color: '#1e3a8a', borderBottomWidth: 1, borderBottomColor: '#cbd5e1', paddingBottom: 3, marginBottom: 5 }}>Meta Ads Insights</Text>",
+        "color": "#cbd5e1"
+      },
+      {
+        "line": 330,
+        "content": "<View style={{ flex: 1, backgroundColor: '#f8fafc', padding: 10, borderRadius: 6, borderWidth: 1, borderColor: '#e2e8f0' }}>",
+        "color": "#f8fafc"
+      },
+      {
+        "line": 330,
+        "content": "<View style={{ flex: 1, backgroundColor: '#f8fafc', padding: 10, borderRadius: 6, borderWidth: 1, borderColor: '#e2e8f0' }}>",
+        "color": "#e2e8f0"
+      },
+      {
+        "line": 331,
+        "content": "<Text style={{ fontSize: 9.5, fontWeight: 'bold', color: '#854d0e', borderBottomWidth: 1, borderBottomColor: '#cbd5e1', paddingBottom: 3, marginBottom: 5 }}>Google Ads Insights</Text>",
+        "color": "#854d0e"
+      },
+      {
+        "line": 331,
+        "content": "<Text style={{ fontSize: 9.5, fontWeight: 'bold', color: '#854d0e', borderBottomWidth: 1, borderBottomColor: '#cbd5e1', paddingBottom: 3, marginBottom: 5 }}>Google Ads Insights</Text>",
+        "color": "#cbd5e1"
+      },
+      {
+        "line": 348,
+        "content": "<Text style={[styles.metricLabel, { color: '#2563eb', fontSize: 9, textTransform: 'capitalize' }]}>{s.platform}</Text>",
+        "color": "#2563eb"
+      },
+      {
+        "line": 349,
+        "content": "<Text style={{ fontSize: 8, color: '#64748b', marginTop: 4 }}>Followers: {s.followers?.toLocaleString()}</Text>",
+        "color": "#64748b"
+      },
+      {
+        "line": 350,
+        "content": "<Text style={{ fontSize: 8, color: '#16a34a', fontWeight: 'bold' }}>New: +{s.new_followers?.toLocaleString()}</Text>",
+        "color": "#16a34a"
+      },
+      {
+        "line": 351,
+        "content": "<Text style={{ fontSize: 8, color: '#64748b' }}>Reach: {s.reach?.toLocaleString()}</Text>",
+        "color": "#64748b"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\reports\\report-preview.tsx",
+    "matches": [
+      {
+        "line": 58,
+        "content": "<div className=\"bg-white text-[#0A1628] rounded-2xl shadow-xl border border-slate-200 p-6 md:p-10 max-w-5xl mx-auto font-sans leading-normal\">",
+        "color": "#0A1628"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\reports\\reports-dashboard.tsx",
+    "matches": [
+      {
+        "line": 300,
+        "content": "className=\"bg-[#0A1628] border border-border/30 text-text-primary rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-blue-500 w-full\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 318,
+        "content": "className=\"bg-[#0A1628] border border-border/30 text-text-primary rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-blue-500 w-full\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 335,
+        "content": "className={`text-xs ${activeTab === 'dashboard' ? 'bg-[#1E3352] text-text-primary hover:bg-[#1E3352]/80' : 'text-text-secondary'}`}",
+        "color": "#1E3352"
+      },
+      {
+        "line": 335,
+        "content": "className={`text-xs ${activeTab === 'dashboard' ? 'bg-[#1E3352] text-text-primary hover:bg-[#1E3352]/80' : 'text-text-secondary'}`}",
+        "color": "#1E3352"
+      },
+      {
+        "line": 342,
+        "content": "className={`text-xs ${activeTab === 'preview' ? 'bg-[#1E3352] text-text-primary hover:bg-[#1E3352]/80' : 'text-text-secondary'}`}",
+        "color": "#1E3352"
+      },
+      {
+        "line": 342,
+        "content": "className={`text-xs ${activeTab === 'preview' ? 'bg-[#1E3352] text-text-primary hover:bg-[#1E3352]/80' : 'text-text-secondary'}`}",
+        "color": "#1E3352"
+      },
+      {
+        "line": 357,
+        "content": "<div className=\"p-4 bg-[#1E3352]/40 rounded-full text-blue-400\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 369,
+        "content": "<div className=\"bg-[#0B132B] border border-border/30 rounded-xl p-4 md:p-8 shadow-inner overflow-hidden\">",
+        "color": "#0B132B"
+      },
+      {
+        "line": 379,
+        "content": "className=\"text-xs border-border/30 text-text-secondary hover:bg-[#1E3352]/40\"",
+        "color": "#1E3352"
+      },
+      {
+        "line": 431,
+        "content": "className=\"bg-[#2E66FF] hover:bg-[#1E4DFF] text-white text-xs px-4 py-2 font-medium\"",
+        "color": "#2E66FF"
+      },
+      {
+        "line": 431,
+        "content": "className=\"bg-[#2E66FF] hover:bg-[#1E4DFF] text-white text-xs px-4 py-2 font-medium\"",
+        "color": "#1E4DFF"
+      },
+      {
+        "line": 453,
+        "content": "className=\"bg-[#10B981] hover:bg-[#059669] text-white text-xs px-4 py-2 font-medium\"",
+        "color": "#10B981"
+      },
+      {
+        "line": 453,
+        "content": "className=\"bg-[#10B981] hover:bg-[#059669] text-white text-xs px-4 py-2 font-medium\"",
+        "color": "#059669"
+      },
+      {
+        "line": 471,
+        "content": "className=\"inline-flex shrink-0 items-center justify-center rounded-lg border border-border/30 bg-transparent text-sm font-medium whitespace-nowrap transition-all outline-none select-none text-text-secondary hover:bg-[#1E3352]/40 px-2.5 h-8 text-xs\"",
+        "color": "#1E3352"
+      },
+      {
+        "line": 482,
+        "content": "className=\"border-border/30 text-text-secondary hover:bg-[#1E3352]/40 text-xs\"",
+        "color": "#1E3352"
+      },
+      {
+        "line": 503,
+        "content": "<div className=\"flex justify-between items-center bg-[#0A1628] border border-border/30/40 p-2.5 rounded-lg\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 505,
+        "content": "<span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isGscConnected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-border/30/60'}`}>",
+        "color": "#1E3352"
+      },
+      {
+        "line": 510,
+        "content": "<div className=\"flex justify-between items-center bg-[#0A1628] border border-border/30/40 p-2.5 rounded-lg\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 512,
+        "content": "<span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isGa4Connected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-border/30/60'}`}>",
+        "color": "#1E3352"
+      },
+      {
+        "line": 517,
+        "content": "<div className=\"flex justify-between items-center bg-[#0A1628] border border-border/30/40 p-2.5 rounded-lg\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 519,
+        "content": "<span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isMetaConnected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-border/30/60'}`}>",
+        "color": "#1E3352"
+      },
+      {
+        "line": 524,
+        "content": "<div className=\"flex justify-between items-center bg-[#0A1628] border border-border/30/40 p-2.5 rounded-lg\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 526,
+        "content": "<span className={`text-[10px] px-2 py-0.5 rounded font-bold ${isGoogleAdsConnected ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-[#1E3352]/40 text-gray-400 border border-border/30/60'}`}>",
+        "color": "#1E3352"
+      },
+      {
+        "line": 609,
+        "content": "<div className=\"grid grid-cols-3 gap-2 bg-[#0A1628] border border-border/30/40 p-3 rounded-lg text-center\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 628,
+        "content": "<thead className=\"bg-[#0A1628] text-text-primary uppercase text-[10px] border-b border-border/30/50 sticky top-0\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 637,
+        "content": "<tr key={i} className=\"border-b border-border/30/30 hover:bg-[#1E3352]/20\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 647,
+        "content": "<div className=\"text-center text-xs text-gray-500 py-6 bg-[#0A1628] rounded-lg border border-dashed border-border/30\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 669,
+        "content": "<div className=\"bg-[#0A1628] border border-border/30/40 p-4 rounded-lg\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 696,
+        "content": "<div className=\"bg-[#0A1628] border border-border/30/40 p-4 rounded-lg\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 724,
+        "content": "<div className=\"bg-[#0A1628] border border-border/30/40 p-4 rounded-lg\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 758,
+        "content": "<thead className=\"bg-[#0A1628] text-text-primary uppercase text-[10px] border-b border-border/30/50\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 769,
+        "content": "<tr key={i} className=\"border-b border-border/30/30 hover:bg-[#1E3352]/20\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 800,
+        "content": "className=\"inline-flex items-center justify-center rounded-lg border border-transparent text-text-secondary hover:text-text-primary hover:bg-[#1E3352]/40 h-7 w-7 p-0 transition-colors\"",
+        "color": "#1E3352"
+      },
+      {
+        "line": 829,
+        "content": "<div className=\"text-center text-xs text-gray-500 py-10 bg-[#0A1628]/40 border border-dashed border-border/30 rounded-lg\">",
+        "color": "#0A1628"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\revenue-chart.tsx",
+    "matches": [
+      {
+        "line": 65,
+        "content": "stroke=\"#4A6480\"",
+        "color": "#4A6480"
+      },
+      {
+        "line": 72,
+        "content": "stroke=\"#4A6480\"",
+        "color": "#4A6480"
+      },
+      {
+        "line": 99,
+        "content": "stroke=\"#F97316\"",
+        "color": "#F97316"
+      },
+      {
+        "line": 102,
+        "content": "activeDot={{ r: 4, fill: '#F97316' }}",
+        "color": "#F97316"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\sales\\sales-analytics.tsx",
+    "matches": [
+      {
+        "line": 34,
+        "content": "primary: '#2563EB',   // Lead Blue",
+        "color": "#2563EB"
+      },
+      {
+        "line": 35,
+        "content": "secondary: '#FF8C42', // Orange Accent",
+        "color": "#FF8C42"
+      },
+      {
+        "line": 36,
+        "content": "success: '#10B981',   // Success Green",
+        "color": "#10B981"
+      },
+      {
+        "line": 37,
+        "content": "purple: '#8B5CF6',    // Purple",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 38,
+        "content": "cyan: '#06B6D4',      // Cyan",
+        "color": "#06B6D4"
+      },
+      {
+        "line": 39,
+        "content": "muted: '#94A3B8',     // Muted Gray",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 84,
+        "content": "{ key: 'new', label: 'New', color: '#8B5CF6' },",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 85,
+        "content": "{ key: 'contacted', label: 'Contacted', color: '#7C3AED' },",
+        "color": "#7C3AED"
+      },
+      {
+        "line": 86,
+        "content": "{ key: 'discovery', label: 'Discovery', color: '#4F46E5' },",
+        "color": "#4F46E5"
+      },
+      {
+        "line": 87,
+        "content": "{ key: 'proposal', label: 'Proposal', color: '#2563EB' },",
+        "color": "#2563EB"
+      },
+      {
+        "line": 88,
+        "content": "{ key: 'negotiation', label: 'Negotiation', color: '#0EA5E9' },",
+        "color": "#0EA5E9"
+      },
+      {
+        "line": 89,
+        "content": "{ key: 'won', label: 'Won', color: '#10B981' },",
+        "color": "#10B981"
+      },
+      {
+        "line": 236,
+        "content": "background: `linear-gradient(90deg, #8B5CF6, ${stage.color})`,",
+        "color": "#8B5CF6"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\settings\\settings-dashboard.tsx",
+    "matches": [
+      {
+        "line": 456,
+        "content": "<div className=\"px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[#4B6B94] select-none\">",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 477,
+        "content": "? 'bg-[#1E3352] text-white border-l-2 border-[#3B82F6]'",
+        "color": "#1E3352"
+      },
+      {
+        "line": 477,
+        "content": "? 'bg-[#1E3352] text-white border-l-2 border-[#3B82F6]'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 481,
+        "content": "<Icon className={`h-4.5 w-4.5 ${isActive ? 'text-[#3B82F6]' : 'text-[#4B6B94]'}`} />",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 481,
+        "content": "<Icon className={`h-4.5 w-4.5 ${isActive ? 'text-[#3B82F6]' : 'text-[#4B6B94]'}`} />",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 506,
+        "content": "<Building className=\"absolute left-3 top-3 h-4 w-4 text-[#4B6B94]\" />",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 511,
+        "content": "className=\"border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 519,
+        "content": "<Mail className=\"absolute left-3 top-3 h-4 w-4 text-[#4B6B94]\" />",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 525,
+        "content": "className=\"border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 533,
+        "content": "<Phone className=\"absolute left-3 top-3 h-4 w-4 text-[#4B6B94]\" />",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 538,
+        "content": "className=\"border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 546,
+        "content": "<MapPin className=\"absolute left-3 top-3 h-4 w-4 text-[#4B6B94]\" />",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 551,
+        "content": "className=\"border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 587,
+        "content": "className=\"bg-[#3B82F6] hover:bg-primary-light text-white select-none px-6\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 611,
+        "content": "<span className=\"absolute left-3.5 top-2.5 text-sm font-semibold text-[#4B6B94]\">#</span>",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 616,
+        "content": "className=\"border-border/30 bg-bg-dark text-white pl-8 focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 624,
+        "content": "<Percent className=\"absolute left-3 top-3 h-4 w-4 text-[#4B6B94]\" />",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 630,
+        "content": "className=\"border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 638,
+        "content": "<Calendar className=\"absolute left-3 top-3 h-4 w-4 text-[#4B6B94]\" />",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 644,
+        "content": "className=\"border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 659,
+        "content": "className=\"border-border/30 bg-bg-dark text-white focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 669,
+        "content": "className=\"border-border/30 bg-bg-dark text-white focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 679,
+        "content": "className=\"border-border/30 bg-bg-dark text-white focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 689,
+        "content": "className=\"border-border/30 bg-bg-dark text-white focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 698,
+        "content": "<span className=\"absolute left-3.5 top-2.5 text-sm font-semibold text-[#4B6B94]\">UPI</span>",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 703,
+        "content": "className=\"border-border/30 bg-bg-dark text-white pl-12 focus:border-[#3B82F6]\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 712,
+        "content": "className=\"bg-[#3B82F6] hover:bg-primary-light text-white select-none px-6\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 761,
+        "content": "<div className=\"flex items-center gap-1 text-[10px] text-[#4B6B94] mt-1\">",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 803,
+        "content": "className=\"bg-[#3B82F6] hover:bg-primary-light text-white\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 833,
+        "content": "? 'bg-[#3B82F615] text-[#3B82F6] border-[#3B82F630]'",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 895,
+        "content": "<div className=\"text-xs font-semibold text-[#4B6B94] select-none\">Temp Password:</div>",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 970,
+        "content": "className=\"bg-[#3B82F6] hover:bg-primary-light text-white select-none px-6\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 1053,
+        "content": "<TableCell colSpan={4} className=\"text-center text-xs text-[#4B6B94] py-8\">",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 1081,
+        "content": "<HardDrive className=\"h-4.5 w-4.5 text-[#3B82F6]\" />",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 1088,
+        "content": "<Progress value={storagePercentage} className=\"h-2.5 bg-[#1E3352]\" />",
+        "color": "#1E3352"
+      },
+      {
+        "line": 1110,
+        "content": "<div className=\"text-[10px] uppercase font-bold tracking-wider text-[#4B6B94]\">{dbMetric.label}</div>",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 1240,
+        "content": "<div className=\"text-[10px] text-[#4B6B94] mt-0.5\">",
+        "color": "#4B6B94"
+      },
+      {
+        "line": 1304,
+        "content": "className=\"bg-[#3B82F6] hover:bg-primary-light text-white\"",
+        "color": "#3B82F6"
+      }
+    ]
+  },
+  {
+    "file": "components\\admin\\traffic-chart.tsx",
+    "matches": [
+      {
+        "line": 55,
+        "content": "stroke=\"#4A6480\"",
+        "color": "#4A6480"
+      },
+      {
+        "line": 62,
+        "content": "stroke=\"#4A6480\"",
+        "color": "#4A6480"
+      },
+      {
+        "line": 77,
+        "content": "<span className=\"text-[#1B4FD8] font-mono\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 92,
+        "content": "activeDot={{ r: 4, fill: '#1B4FD8' }}",
+        "color": "#1B4FD8"
+      }
+    ]
+  },
+  {
+    "file": "components\\employee\\employee-files-page.tsx",
+    "matches": [
+      {
+        "line": 54,
+        "content": "return <FileImage className=\"text-[#38BDF8]\" size={18} />;",
+        "color": "#38BDF8"
+      },
+      {
+        "line": 57,
+        "content": "return <FileText className=\"text-[#F87171]\" size={18} />;",
+        "color": "#F87171"
+      },
+      {
+        "line": 60,
+        "content": "return <FileSpreadsheet className=\"text-[#34D399]\" size={18} />;",
+        "color": "#34D399"
+      },
+      {
+        "line": 63,
+        "content": "return <Video className=\"text-[#A78BFA]\" size={18} />;",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 66,
+        "content": "return <Archive className=\"text-[#FBBF24]\" size={18} />;",
+        "color": "#FBBF24"
+      },
+      {
+        "line": 68,
+        "content": "return <File className=\"text-[#94A3B8]\" size={18} />;",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 135,
+        "content": "className=\"w-full bg-bg-card border border-border/30 rounded-[8px] pl-9 pr-3 py-2 text-xs text-text-primary placeholder-[#4A6480] focus:outline-none focus:border-primary\"",
+        "color": "#4A6480"
+      },
+      {
+        "line": 142,
+        "content": "<FileText size={28} className=\"text-[#1E3352] mx-auto mb-2\" />",
+        "color": "#1E3352"
+      }
+    ]
+  },
+  {
+    "file": "components\\employee\\employee-header.tsx",
+    "matches": [
+      {
+        "line": 51,
+        "content": "<span className=\"text-[#1B4FD8] font-bold text-sm ml-1\">Global</span>",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 63,
+        "content": "<div className=\"w-7 h-7 rounded-full bg-gradient-to-br from-[#1B4FD8] to-[#7C3AED] flex items-center justify-center text-white font-bold text-[11px] shrink-0\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 63,
+        "content": "<div className=\"w-7 h-7 rounded-full bg-gradient-to-br from-[#1B4FD8] to-[#7C3AED] flex items-center justify-center text-white font-bold text-[11px] shrink-0\">",
+        "color": "#7C3AED"
+      },
+      {
+        "line": 87,
+        "content": "className=\"gap-2 text-xs text-error hover:text-[#FCA5A5] hover:bg-[#EF444410] cursor-pointer\"",
+        "color": "#FCA5A5"
+      }
+    ]
+  },
+  {
+    "file": "components\\employee\\employee-nav.tsx",
+    "matches": [
+      {
+        "line": 52,
+        "content": "isActive ? 'text-[#1B4FD8]' : 'text-text-tertiary'",
+        "color": "#1B4FD8"
+      }
+    ]
+  },
+  {
+    "file": "components\\employee\\employee-profile-page.tsx",
+    "matches": [
+      {
+        "line": 79,
+        "content": "<div className=\"w-16 h-16 rounded-full bg-gradient-to-br from-[#1B4FD8] to-[#7C3AED] flex items-center justify-center text-white font-black text-xl shrink-0\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 79,
+        "content": "<div className=\"w-16 h-16 rounded-full bg-gradient-to-br from-[#1B4FD8] to-[#7C3AED] flex items-center justify-center text-white font-black text-xl shrink-0\">",
+        "color": "#7C3AED"
+      },
+      {
+        "line": 214,
+        "content": "<tbody className=\"divide-y divide-[#1E3352]/30\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 243,
+        "content": "<Users size={14} className=\"text-[#A78BFA]\" />",
+        "color": "#A78BFA"
+      }
+    ]
+  },
+  {
+    "file": "components\\employee\\employee-tasks-page.tsx",
+    "matches": [
+      {
+        "line": 53,
+        "content": "todo: 'text-text-secondary bg-[#8BA3C7]/10',",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 55,
+        "content": "review: 'text-[#A78BFA] bg-[#A78BFA]/15',",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 55,
+        "content": "review: 'text-[#A78BFA] bg-[#A78BFA]/15',",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 56,
+        "content": "approved: 'text-[#34D399] bg-[#34D399]/15',",
+        "color": "#34D399"
+      },
+      {
+        "line": 56,
+        "content": "approved: 'text-[#34D399] bg-[#34D399]/15',",
+        "color": "#34D399"
+      },
+      {
+        "line": 62,
+        "content": "medium: 'bg-[#EAB30820] text-[#EAB308] border border-[#EAB30830]',",
+        "color": "#EAB308"
+      },
+      {
+        "line": 398,
+        "content": "className=\"w-full bg-bg-card border border-border/30 rounded-[7px] px-3 py-2 text-xs text-text-primary placeholder-[#4A6480] resize-none focus:outline-none focus:border-primary\"",
+        "color": "#4A6480"
+      }
+    ]
+  },
+  {
+    "file": "components\\employee\\employee-today-dashboard.tsx",
+    "matches": [
+      {
+        "line": 50,
+        "content": "medium: 'bg-[#EAB30820] text-[#EAB308] border border-[#EAB30830]',",
+        "color": "#EAB308"
+      },
+      {
+        "line": 57,
+        "content": "review: 'bg-[#A78BFA20] text-[#A78BFA]',",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 110,
+        "content": "<span className=\"text-[#1B4FD8]\">{profile.full_name.split(' ')[0]}</span>! 👋",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 144,
+        "content": "<span className=\"text-[10px] bg-accent/20 text-accent border border-[#F97316]/30 px-1.5 py-0.5 rounded-full font-bold\">",
+        "color": "#F97316"
+      },
+      {
+        "line": 149,
+        "content": "<Link href=\"/team/tasks\" className=\"text-[10px] text-primary-light hover:text-[#60A5FA] font-semibold flex items-center gap-1\">",
+        "color": "#60A5FA"
+      },
+      {
+        "line": 266,
+        "content": "<div className=\"w-9 h-9 rounded-[7px] bg-[#A78BFA]/20 flex items-center justify-center\">",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 267,
+        "content": "<AlertTriangle size={16} className=\"text-[#A78BFA] group-hover:scale-110 transition-transform\" />",
+        "color": "#A78BFA"
+      }
+    ]
+  },
+  {
+    "file": "components\\portal\\client-file-browser.tsx",
+    "matches": [
+      {
+        "line": 68,
+        "content": "return <FileImage className=\"text-[#38BDF8]\" size={20} />;",
+        "color": "#38BDF8"
+      },
+      {
+        "line": 71,
+        "content": "return <FileText className=\"text-[#F87171]\" size={20} />;",
+        "color": "#F87171"
+      },
+      {
+        "line": 79,
+        "content": "return <FileSpreadsheet className=\"text-[#34D399]\" size={20} />;",
+        "color": "#34D399"
+      },
+      {
+        "line": 82,
+        "content": "return <Video className=\"text-[#A78BFA]\" size={20} />;",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 85,
+        "content": "return <Music className=\"text-[#F472B6]\" size={20} />;",
+        "color": "#F472B6"
+      },
+      {
+        "line": 93,
+        "content": "return <Archive className=\"text-[#FBBF24]\" size={20} />;",
+        "color": "#FBBF24"
+      },
+      {
+        "line": 95,
+        "content": "return <File className=\"text-[#94A3B8]\" size={20} />;",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 118,
+        "content": "<div className=\"w-full lg:w-[240px] shrink-0 bg-white border border-[#E2E8F4] rounded-[10px] p-4 flex flex-col space-y-1 h-fit shadow-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 119,
+        "content": "<p className=\"text-[10px] font-bold text-[#94A3B8] uppercase tracking-wider px-2.5 pb-2\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 133,
+        "content": "? 'bg-brand-blue-muted border-transparent text-[#1B4FD8] font-bold'",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 134,
+        "content": ": 'bg-transparent border-transparent text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0A1628]'",
+        "color": "#475569"
+      },
+      {
+        "line": 134,
+        "content": ": 'bg-transparent border-transparent text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0A1628]'",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 134,
+        "content": ": 'bg-transparent border-transparent text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0A1628]'",
+        "color": "#0A1628"
+      },
+      {
+        "line": 139,
+        "content": "selectedDept === dept.key ? 'bg-primary/20 text-[#1B4FD8]' : 'bg-[#F1F5F9] text-[#94A3B8]'",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 139,
+        "content": "selectedDept === dept.key ? 'bg-primary/20 text-[#1B4FD8]' : 'bg-[#F1F5F9] text-[#94A3B8]'",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 139,
+        "content": "selectedDept === dept.key ? 'bg-primary/20 text-[#1B4FD8]' : 'bg-[#F1F5F9] text-[#94A3B8]'",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 151,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-4 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 153,
+        "content": "<span className=\"text-[#94A3B8] font-semibold\">Shared Vault</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 154,
+        "content": "<span className=\"text-[#94A3B8] mx-1.5\">/</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 155,
+        "content": "<span className=\"text-[#0A1628] font-bold\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 158,
+        "content": "<span className=\"ml-2 text-[9px] bg-slate-100 text-[#475569] px-2 py-0.5 rounded-full font-bold\">",
+        "color": "#475569"
+      },
+      {
+        "line": 167,
+        "content": "<Search className=\"absolute left-2.5 top-2.5 h-3.5 w-3.5 text-[#94A3B8]\" />",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 173,
+        "content": "className=\"w-full bg-[#F8FAFF] border border-[#E2E8F4] text-[#0A1628] text-xs pl-8 pr-3 py-1.5 rounded-[7px] focus:outline-none focus:border-primary\"",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 173,
+        "content": "className=\"w-full bg-[#F8FAFF] border border-[#E2E8F4] text-[#0A1628] text-xs pl-8 pr-3 py-1.5 rounded-[7px] focus:outline-none focus:border-primary\"",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 173,
+        "content": "className=\"w-full bg-[#F8FAFF] border border-[#E2E8F4] text-[#0A1628] text-xs pl-8 pr-3 py-1.5 rounded-[7px] focus:outline-none focus:border-primary\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 178,
+        "content": "<div className=\"flex items-center bg-[#F1F5F9] border border-[#E2E8F4] rounded p-0.5\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 178,
+        "content": "<div className=\"flex items-center bg-[#F1F5F9] border border-[#E2E8F4] rounded p-0.5\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 182,
+        "content": "viewMode === 'grid' ? 'bg-primary text-white shadow-xs' : 'text-[#475569] hover:text-[#0A1628]'",
+        "color": "#475569"
+      },
+      {
+        "line": 182,
+        "content": "viewMode === 'grid' ? 'bg-primary text-white shadow-xs' : 'text-[#475569] hover:text-[#0A1628]'",
+        "color": "#0A1628"
+      },
+      {
+        "line": 191,
+        "content": "viewMode === 'list' ? 'bg-primary text-white shadow-xs' : 'text-[#475569] hover:text-[#0A1628]'",
+        "color": "#475569"
+      },
+      {
+        "line": 191,
+        "content": "viewMode === 'list' ? 'bg-primary text-white shadow-xs' : 'text-[#475569] hover:text-[#0A1628]'",
+        "color": "#0A1628"
+      },
+      {
+        "line": 212,
+        "content": "className=\"bg-white border border-[#E2E8F4] rounded-[8px] p-4 flex flex-col justify-between hover:border-primary/30 hover:shadow-xs transition-all relative group h-[160px]\"",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 217,
+        "content": "<div className=\"h-10 w-10 rounded border border-[#E2E8F4] overflow-hidden bg-[#F8FAFF] flex items-center justify-center\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 217,
+        "content": "<div className=\"h-10 w-10 rounded border border-[#E2E8F4] overflow-hidden bg-[#F8FAFF] flex items-center justify-center\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 226,
+        "content": "<div className=\"h-10 w-10 rounded bg-[#F8FAFF] border border-[#E2E8F4]/50 flex items-center justify-center shrink-0\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 226,
+        "content": "<div className=\"h-10 w-10 rounded bg-[#F8FAFF] border border-[#E2E8F4]/50 flex items-center justify-center shrink-0\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 236,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 236,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#475569"
+      },
+      {
+        "line": 236,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 247,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 247,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#475569"
+      },
+      {
+        "line": 247,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 257,
+        "content": "<p className=\"font-bold text-xs text-[#0A1628] truncate\" title={file.name}>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 260,
+        "content": "<p className=\"text-[9px] text-[#94A3B8] mt-0.5 font-mono\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 264,
+        "content": "<p className=\"text-[10px] text-[#475569] mt-1.5 line-clamp-1 italic\">",
+        "color": "#475569"
+      },
+      {
+        "line": 275,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] overflow-hidden shadow-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 278,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 278,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 278,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#475569"
+      },
+      {
+        "line": 286,
+        "content": "<tbody className=\"divide-y divide-[#E2E8F4]/50 text-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 288,
+        "content": "<tr key={file.id} className=\"hover:bg-[#F8FAFF] text-[#475569] transition-colors\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 288,
+        "content": "<tr key={file.id} className=\"hover:bg-[#F8FAFF] text-[#475569] transition-colors\">",
+        "color": "#475569"
+      },
+      {
+        "line": 289,
+        "content": "<td className=\"p-3 pl-4 font-semibold text-[#0A1628] max-w-[220px] truncate\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 303,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 303,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#475569"
+      },
+      {
+        "line": 303,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 314,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 314,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#475569"
+      },
+      {
+        "line": 314,
+        "content": "className=\"p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 329,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] border-dashed rounded-[10px] p-12 text-center text-[#94A3B8] space-y-2 shadow-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 329,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] border-dashed rounded-[10px] p-12 text-center text-[#94A3B8] space-y-2 shadow-xs\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 330,
+        "content": "<Folder size={32} className=\"mx-auto text-[#E2E8F4]\" />",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 331,
+        "content": "<p className=\"font-bold text-sm text-[#0A1628]\">No shared files found</p>",
+        "color": "#0A1628"
+      }
+    ]
+  },
+  {
+    "file": "components\\portal\\client-reports-viewer.tsx",
+    "matches": [
+      {
+        "line": 117,
+        "content": "<div className=\"flex bg-[#F1F5F9] border border-[#E2E8F4] p-1 rounded-[8px]\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 117,
+        "content": "<div className=\"flex bg-[#F1F5F9] border border-[#E2E8F4] p-1 rounded-[8px]\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 122,
+        "content": "? 'bg-white text-[#0A1628] shadow-xs'",
+        "color": "#0A1628"
+      },
+      {
+        "line": 123,
+        "content": ": 'text-[#475569] hover:text-[#0A1628]'",
+        "color": "#475569"
+      },
+      {
+        "line": 123,
+        "content": ": 'text-[#475569] hover:text-[#0A1628]'",
+        "color": "#0A1628"
+      },
+      {
+        "line": 132,
+        "content": "? 'bg-white text-[#0A1628] shadow-xs'",
+        "color": "#0A1628"
+      },
+      {
+        "line": 133,
+        "content": ": 'text-[#475569] hover:text-[#0A1628]'",
+        "color": "#475569"
+      },
+      {
+        "line": 133,
+        "content": ": 'text-[#475569] hover:text-[#0A1628]'",
+        "color": "#0A1628"
+      },
+      {
+        "line": 142,
+        "content": "? 'bg-white text-[#0A1628] shadow-xs'",
+        "color": "#0A1628"
+      },
+      {
+        "line": 143,
+        "content": ": 'text-[#475569] hover:text-[#0A1628]'",
+        "color": "#475569"
+      },
+      {
+        "line": 143,
+        "content": ": 'text-[#475569] hover:text-[#0A1628]'",
+        "color": "#0A1628"
+      },
+      {
+        "line": 153,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase\">Report Period:</span>",
+        "color": "#475569"
+      },
+      {
+        "line": 157,
+        "content": "className=\"bg-white border border-[#E2E8F4] text-[#0A1628] text-xs font-semibold rounded-[7px] px-3 py-1.5 focus:outline-none focus:border-primary\"",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 157,
+        "content": "className=\"bg-white border border-[#E2E8F4] text-[#0A1628] text-xs font-semibold rounded-[7px] px-3 py-1.5 focus:outline-none focus:border-primary\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 173,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-10 text-center text-[#475569] space-y-2\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 173,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-10 text-center text-[#475569] space-y-2\">",
+        "color": "#475569"
+      },
+      {
+        "line": 174,
+        "content": "<Globe size={32} className=\"mx-auto text-[#94A3B8]\" />",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 175,
+        "content": "<p className=\"font-bold text-sm text-[#0A1628]\">No SEO Report Data Yet</p>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 184,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-4 shadow-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 185,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase tracking-wider block\">Organic Traffic</span>",
+        "color": "#475569"
+      },
+      {
+        "line": 186,
+        "content": "<div className=\"text-xl font-bold font-mono text-[#0A1628] mt-1\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 189,
+        "content": "<span className=\"text-[9px] text-[#94A3B8] block mt-0.5\">GA4 Sessions</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 191,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-4 shadow-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 192,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase tracking-wider block\">Search Clicks</span>",
+        "color": "#475569"
+      },
+      {
+        "line": 193,
+        "content": "<div className=\"text-xl font-bold font-mono text-[#0A1628] mt-1\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 196,
+        "content": "<span className=\"text-[9px] text-[#94A3B8] block mt-0.5\">Google Web Search</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 198,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-4 shadow-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 199,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase tracking-wider block\">Avg position</span>",
+        "color": "#475569"
+      },
+      {
+        "line": 200,
+        "content": "<div className=\"text-xl font-bold font-mono text-[#0A1628] mt-1\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 203,
+        "content": "<span className=\"text-[9px] text-[#94A3B8] block mt-0.5\">Search Console</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 205,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-4 shadow-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 206,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase tracking-wider block\">CTR %</span>",
+        "color": "#475569"
+      },
+      {
+        "line": 207,
+        "content": "<div className=\"text-xl font-bold font-mono text-[#0A1628] mt-1\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 210,
+        "content": "<span className=\"text-[9px] text-[#94A3B8] block mt-0.5\">Clicks / Impressions</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 215,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs space-y-4\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 216,
+        "content": "<div className=\"flex items-center justify-between border-b border-[#F1F5F9] pb-3\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 217,
+        "content": "<h3 className=\"text-sm font-bold text-[#0A1628]\">Tracked SEO Keyword Positions</h3>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 218,
+        "content": "<span className=\"text-[9px] bg-slate-100 text-[#475569] px-2 py-0.5 rounded-full font-bold\">",
+        "color": "#475569"
+      },
+      {
+        "line": 224,
+        "content": "<div className=\"py-8 text-center text-xs text-[#94A3B8]\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 231,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 231,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 231,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#475569"
+      },
+      {
+        "line": 240,
+        "content": "<tbody className=\"divide-y divide-[#E2E8F4]/50 text-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 247,
+        "content": "<tr key={kw.id} className=\"hover:bg-[#F8FAFF] text-[#475569] transition-colors\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 247,
+        "content": "<tr key={kw.id} className=\"hover:bg-[#F8FAFF] text-[#475569] transition-colors\">",
+        "color": "#475569"
+      },
+      {
+        "line": 248,
+        "content": "<td className=\"p-3 pl-4 font-mono font-bold text-[#0A1628]\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 253,
+        "content": "<span className=\"font-semibold text-[#0A1628]\">{kw.keyword}</span>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 259,
+        "content": "className=\"text-[9px] text-[#1B4FD8] hover:underline block mt-0.5 truncate max-w-[200px]\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 284,
+        "content": "<span className=\"px-1.5 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-[#1B4FD8] uppercase\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 299,
+        "content": "<span className=\"text-[#94A3B8]\">—</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 319,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs space-y-4\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 320,
+        "content": "<div className=\"flex items-center justify-between border-b border-[#F1F5F9] pb-3\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 321,
+        "content": "<h3 className=\"text-sm font-bold text-[#0A1628] flex items-center gap-1.5\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 322,
+        "content": "<Megaphone size={14} className=\"text-[#1B4FD8]\" />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 325,
+        "content": "<span className=\"text-[9px] bg-blue-50 text-[#1B4FD8] px-2 py-0.5 rounded-full font-bold\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 331,
+        "content": "<div className=\"py-8 text-center text-xs text-[#94A3B8]\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 338,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 338,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 338,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#475569"
+      },
+      {
+        "line": 348,
+        "content": "<tbody className=\"divide-y divide-[#E2E8F4]/50 text-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 350,
+        "content": "<tr key={camp.id} className=\"hover:bg-[#F8FAFF] text-[#475569]\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 350,
+        "content": "<tr key={camp.id} className=\"hover:bg-[#F8FAFF] text-[#475569]\">",
+        "color": "#475569"
+      },
+      {
+        "line": 353,
+        "content": "<span className=\"font-semibold text-[#0A1628]\">{camp.campaign_name}</span>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 354,
+        "content": "{camp.notes && <p className=\"text-[9px] text-[#94A3B8] mt-0.5\">{camp.notes}</p>}",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 358,
+        "content": "<td className=\"p-3 font-bold font-mono text-[#0A1628]\">₹{(camp.budget_spent || 0).toLocaleString('en-IN')}</td>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 362,
+        "content": "<td className=\"p-3 text-right pr-4 font-mono font-bold text-[#0A1628]\">{camp.roas ? `${camp.roas}x` : '—'}</td>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 372,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs space-y-4\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 373,
+        "content": "<div className=\"flex items-center justify-between border-b border-[#F1F5F9] pb-3\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 374,
+        "content": "<h3 className=\"text-sm font-bold text-[#0A1628] flex items-center gap-1.5\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 384,
+        "content": "<div className=\"py-8 text-center text-xs text-[#94A3B8]\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 391,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 391,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 391,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#475569"
+      },
+      {
+        "line": 400,
+        "content": "<tbody className=\"divide-y divide-[#E2E8F4]/50 text-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 402,
+        "content": "<tr key={camp.id} className=\"hover:bg-[#F8FAFF] text-[#475569]\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 402,
+        "content": "<tr key={camp.id} className=\"hover:bg-[#F8FAFF] text-[#475569]\">",
+        "color": "#475569"
+      },
+      {
+        "line": 404,
+        "content": "<span className=\"font-semibold text-[#0A1628]\">{camp.campaign_name}</span>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 407,
+        "content": "<td className=\"p-3 font-bold font-mono text-[#0A1628]\">₹{(camp.budget_spent || 0).toLocaleString('en-IN')}</td>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 423,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs space-y-4\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 424,
+        "content": "<div className=\"flex items-center justify-between border-b border-[#F1F5F9] pb-3\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 425,
+        "content": "<h3 className=\"text-sm font-bold text-[#0A1628] flex items-center gap-1.5\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 426,
+        "content": "<FileText size={14} className=\"text-[#1B4FD8]\" />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 429,
+        "content": "<span className=\"text-[10px] text-[#475569] font-medium\">Download PDF Snapshots</span>",
+        "color": "#475569"
+      },
+      {
+        "line": 433,
+        "content": "<div className=\"py-12 text-center text-xs text-[#94A3B8] space-y-2\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 434,
+        "content": "<FileText size={32} className=\"mx-auto text-[#94A3B8]/60\" />",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 435,
+        "content": "<p className=\"font-semibold text-[#0A1628]\">No PDF Reports Released Yet</p>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 442,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 442,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 442,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#475569"
+      },
+      {
+        "line": 449,
+        "content": "<tbody className=\"divide-y divide-[#E2E8F4]/50 text-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 451,
+        "content": "<tr key={report.id} className=\"hover:bg-[#F8FAFF] text-[#475569]\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 451,
+        "content": "<tr key={report.id} className=\"hover:bg-[#F8FAFF] text-[#475569]\">",
+        "color": "#475569"
+      },
+      {
+        "line": 452,
+        "content": "<td className=\"p-3 pl-4 font-bold text-[#0A1628]\">{report.month_year}</td>",
+        "color": "#0A1628"
+      }
+    ]
+  },
+  {
+    "file": "components\\portal\\portal-header.tsx",
+    "matches": [
+      {
+        "line": 55,
+        "content": "<header className=\"sticky top-0 z-50 h-14 bg-white border-b border-[#E2E8F4] flex items-center justify-between px-4 md:px-6 shadow-xs select-none\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 63,
+        "content": "<span className=\"text-[#0A1628] font-bold text-sm tracking-tight\">Veloxis</span>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 64,
+        "content": "<span className=\"text-[#1B4FD8] font-bold text-sm ml-1\">Global</span>",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 68,
+        "content": "<span className=\"text-[10px] text-[#475569] bg-[#F1F5F9] border border-[#E2E8F4] px-2.5 py-0.5 rounded-full font-bold uppercase truncate max-w-[140px] md:max-w-[200px]\">",
+        "color": "#475569"
+      },
+      {
+        "line": 68,
+        "content": "<span className=\"text-[10px] text-[#475569] bg-[#F1F5F9] border border-[#E2E8F4] px-2.5 py-0.5 rounded-full font-bold uppercase truncate max-w-[140px] md:max-w-[200px]\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 68,
+        "content": "<span className=\"text-[10px] text-[#475569] bg-[#F1F5F9] border border-[#E2E8F4] px-2.5 py-0.5 rounded-full font-bold uppercase truncate max-w-[140px] md:max-w-[200px]\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 84,
+        "content": "? 'bg-brand-blue-muted text-[#1B4FD8]'",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 85,
+        "content": ": 'text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0A1628]'",
+        "color": "#475569"
+      },
+      {
+        "line": 85,
+        "content": ": 'text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0A1628]'",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 85,
+        "content": ": 'text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0A1628]'",
+        "color": "#0A1628"
+      },
+      {
+        "line": 101,
+        "content": "<button className=\"flex items-center gap-2 hover:bg-[#F1F5F9] p-1 rounded-full md:rounded-[7px] transition-colors cursor-pointer outline-none\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 102,
+        "content": "<div className=\"w-7 h-7 rounded-full bg-gradient-to-br from-[#1B4FD8] to-[#8B5CF6] flex items-center justify-center text-white font-bold text-[11px] shrink-0\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 102,
+        "content": "<div className=\"w-7 h-7 rounded-full bg-gradient-to-br from-[#1B4FD8] to-[#8B5CF6] flex items-center justify-center text-white font-bold text-[11px] shrink-0\">",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 106,
+        "content": "<p className=\"text-[11px] font-semibold text-[#0A1628] leading-tight\">{profile.full_name}</p>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 107,
+        "content": "<p className=\"text-[9px] text-[#475569] leading-tight truncate max-w-[100px]\">{profile.email}</p>",
+        "color": "#475569"
+      },
+      {
+        "line": 112,
+        "content": "<DropdownMenuContent className=\"bg-white border-[#E2E8F4] text-[#0A1628] w-48 shadow-lg p-1\" align=\"end\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 112,
+        "content": "<DropdownMenuContent className=\"bg-white border-[#E2E8F4] text-[#0A1628] w-48 shadow-lg p-1\" align=\"end\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 113,
+        "content": "<div className=\"px-3 py-2 border-b border-[#E2E8F4] select-none\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 114,
+        "content": "<p className=\"text-xs font-semibold text-[#0A1628]\">{profile.full_name}</p>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 115,
+        "content": "<p className=\"text-[9px] text-[#475569] truncate mt-0.5\">{profile.email}</p>",
+        "color": "#475569"
+      },
+      {
+        "line": 117,
+        "content": "<p className=\"text-[9px] text-[#94A3B8] truncate italic mt-0.5\">{client.company}</p>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 122,
+        "content": "className=\"gap-2 text-xs text-[#475569] hover:text-[#0A1628] hover:bg-[#F1F5F9] cursor-pointer\"",
+        "color": "#475569"
+      },
+      {
+        "line": 122,
+        "content": "className=\"gap-2 text-xs text-[#475569] hover:text-[#0A1628] hover:bg-[#F1F5F9] cursor-pointer\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 122,
+        "content": "className=\"gap-2 text-xs text-[#475569] hover:text-[#0A1628] hover:bg-[#F1F5F9] cursor-pointer\"",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 126,
+        "content": "<DropdownMenuSeparator className=\"bg-[#E2E8F4]\" />",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 129,
+        "content": "className=\"gap-2 text-xs text-error hover:text-[#DC2626] hover:bg-[#EF444410] cursor-pointer\"",
+        "color": "#DC2626"
+      },
+      {
+        "line": 139,
+        "content": "className=\"md:hidden p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 139,
+        "content": "className=\"md:hidden p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#475569"
+      },
+      {
+        "line": 139,
+        "content": "className=\"md:hidden p-1 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] cursor-pointer\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 147,
+        "content": "<div className=\"md:hidden fixed inset-x-0 top-14 bg-white border-b border-[#E2E8F4] shadow-md z-40 p-3 flex flex-col gap-1.5 animate-in fade-in slide-in-from-top-4 duration-150\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 158,
+        "content": "? 'bg-brand-blue-muted text-[#1B4FD8] font-bold'",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 159,
+        "content": ": 'text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0A1628]'",
+        "color": "#475569"
+      },
+      {
+        "line": 159,
+        "content": ": 'text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0A1628]'",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 159,
+        "content": ": 'text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0A1628]'",
+        "color": "#0A1628"
+      }
+    ]
+  },
+  {
+    "file": "components\\shared\\data-table.tsx",
+    "matches": [
+      {
+        "line": 98,
+        "content": "<tbody className=\"divide-y divide-[#1E3352]/30\">",
+        "color": "#1E3352"
+      }
+    ]
+  },
+  {
+    "file": "components\\shared\\file-browser.tsx",
+    "matches": [
+      {
+        "line": 107,
+        "content": "return <FileImage className=\"text-[#38BDF8]\" size={20} />;",
+        "color": "#38BDF8"
+      },
+      {
+        "line": 110,
+        "content": "return <FileText className=\"text-[#F87171]\" size={20} />;",
+        "color": "#F87171"
+      },
+      {
+        "line": 118,
+        "content": "return <FileSpreadsheet className=\"text-[#34D399]\" size={20} />;",
+        "color": "#34D399"
+      },
+      {
+        "line": 121,
+        "content": "return <Video className=\"text-[#A78BFA]\" size={20} />;",
+        "color": "#A78BFA"
+      },
+      {
+        "line": 124,
+        "content": "return <Music className=\"text-[#F472B6]\" size={20} />;",
+        "color": "#F472B6"
+      },
+      {
+        "line": 132,
+        "content": "return <Archive className=\"text-[#FBBF24]\" size={20} />;",
+        "color": "#FBBF24"
+      },
+      {
+        "line": 134,
+        "content": "return <File className=\"text-[#94A3B8]\" size={20} />;",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 419,
+        "content": "<Folder size={18} className=\"text-[#1B4FD8] opacity-60\" />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 550,
+        "content": "<tbody className=\"divide-y divide-[#1E3352]/30 text-xs\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 615,
+        "content": "<Folder size={32} className=\"mx-auto text-[#1E3352]\" />",
+        "color": "#1E3352"
+      }
+    ]
+  },
+  {
+    "file": "components\\shared\\file-upload.tsx",
+    "matches": [
+      {
+        "line": 187,
+        "content": "<Loader2 className=\"h-7 w-7 text-[#1B4FD8] animate-spin\" />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 197,
+        "content": "isDragging ? \"text-[#1B4FD8]\" : error ? \"text-error\" : \"text-text-tertiary\"",
+        "color": "#1B4FD8"
+      }
+    ]
+  },
+  {
+    "file": "components\\shared\\status-badge.tsx",
+    "matches": [
+      {
+        "line": 11,
+        "content": "let badgeStyle = \"bg-[#1E335215] text-[#64748B]\";",
+        "color": "#64748B"
+      },
+      {
+        "line": 26,
+        "content": "badgeStyle = \"bg-[#64748B15] text-[#64748B]\";",
+        "color": "#64748B"
+      },
+      {
+        "line": 30,
+        "content": "badgeStyle = \"bg-[#64748B15] text-[#64748B]\";",
+        "color": "#64748B"
+      },
+      {
+        "line": 34,
+        "content": "badgeStyle = \"bg-[#8B5CF615] text-[#8B5CF6]\";",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 38,
+        "content": "badgeStyle = \"bg-[#8B5CF615] text-[#8B5CF6]\";",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 70,
+        "content": "badgeStyle = \"bg-[#1E335215] text-[#64748B]\";",
+        "color": "#64748B"
+      },
+      {
+        "line": 74,
+        "content": "badgeStyle = \"bg-[#1E335215] text-[#64748B]\";",
+        "color": "#64748B"
+      },
+      {
+        "line": 78,
+        "content": "badgeStyle = \"bg-[#1B4FD815] text-[#1B4FD8]\";",
+        "color": "#1B4FD8"
+      }
+    ]
+  },
+  {
+    "file": "components\\ui\\Chart.tsx",
+    "matches": [
+      {
+        "line": 26,
+        "content": "\"#8B5CF6\",",
+        "color": "#8B5CF6"
+      },
+      {
+        "line": 27,
+        "content": "\"#06B6D4\"",
+        "color": "#06B6D4"
+      }
+    ]
+  },
+  {
+    "file": "app\\(admin)\\dashboard\\client-relations\\page.tsx",
+    "matches": [
+      {
+        "line": 57,
+        "content": "<Suspense fallback={<div className=\"text-sm text-[#8BA3C7] animate-pulse\">Loading Client Relations Dashboard...</div>}>",
+        "color": "#8BA3C7"
+      }
+    ]
+  },
+  {
+    "file": "app\\(admin)\\dashboard\\deliverables\\page.tsx",
+    "matches": [
+      {
+        "line": 39,
+        "content": "<Suspense fallback={<div className=\"text-sm text-[#8BA3C7] animate-pulse\">Loading deliverables...</div>}>",
+        "color": "#8BA3C7"
+      }
+    ]
+  },
+  {
+    "file": "app\\(admin)\\dashboard\\email-marketing\\page.tsx",
+    "matches": [
+      {
+        "line": 37,
+        "content": "<Suspense fallback={<div className=\"text-sm text-[#8BA3C7] animate-pulse\">Loading Marketing Campaigns Dashboard...</div>}>",
+        "color": "#8BA3C7"
+      }
+    ]
+  },
+  {
+    "file": "app\\(admin)\\dashboard\\error.tsx",
+    "matches": [
+      {
+        "line": 21,
+        "content": "<div className=\"bg-[#0D1829] border border-[#1E3352] rounded-lg p-8 max-w-md w-full shadow-sm text-center space-y-5\">",
+        "color": "#0D1829"
+      },
+      {
+        "line": 21,
+        "content": "<div className=\"bg-[#0D1829] border border-[#1E3352] rounded-lg p-8 max-w-md w-full shadow-sm text-center space-y-5\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 22,
+        "content": "<div className=\"w-12 h-12 bg-[#EF444415] border border-[#EF444430] text-[#EF4444] rounded-full flex items-center justify-center mx-auto\">",
+        "color": "#EF4444"
+      },
+      {
+        "line": 27,
+        "content": "<p className=\"text-xs text-[#8BA3C7] leading-relaxed\">",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 34,
+        "content": "className=\"bg-[#3B82F6] hover:bg-[#2563EB] text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 34,
+        "content": "className=\"bg-[#3B82F6] hover:bg-[#2563EB] text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#2563EB"
+      },
+      {
+        "line": 42,
+        "content": "className=\"border-[#1E3352] bg-[#0D1829] hover:bg-[#1E335230] text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#1E3352"
+      },
+      {
+        "line": 42,
+        "content": "className=\"border-[#1E3352] bg-[#0D1829] hover:bg-[#1E335230] text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#0D1829"
+      },
+      {
+        "line": 44,
+        "content": "<Home className=\"h-3.5 w-3.5 text-[#4B6B94]\" />",
+        "color": "#4B6B94"
+      }
+    ]
+  },
+  {
+    "file": "app\\(admin)\\dashboard\\finance\\page.tsx",
+    "matches": [
+      {
+        "line": 122,
+        "content": "<Suspense fallback={<div className=\"text-sm text-[#8BA3C7] animate-pulse\">Loading finance console...</div>}>",
+        "color": "#8BA3C7"
+      }
+    ]
+  },
+  {
+    "file": "app\\(admin)\\dashboard\\hr\\page.tsx",
+    "matches": [
+      {
+        "line": 34,
+        "content": "<Suspense fallback={<div className=\"text-sm text-[#8BA3C7] animate-pulse\">Loading HR dashboard...</div>}>",
+        "color": "#8BA3C7"
+      }
+    ]
+  },
+  {
+    "file": "app\\(admin)\\dashboard\\loading.tsx",
+    "matches": [
+      {
+        "line": 7,
+        "content": "<div className=\"rounded-lg border border-[#1E3352] bg-[#0D1829] p-8 shadow-sm\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 7,
+        "content": "<div className=\"rounded-lg border border-[#1E3352] bg-[#0D1829] p-8 shadow-sm\">",
+        "color": "#0D1829"
+      }
+    ]
+  },
+  {
+    "file": "app\\(admin)\\dashboard\\my-agency\\page.tsx",
+    "matches": [
+      {
+        "line": 91,
+        "content": "<Suspense fallback={<div className=\"text-xs text-[#8BA3C7] animate-pulse\">Loading dashboard...</div>}>",
+        "color": "#8BA3C7"
+      }
+    ]
+  },
+  {
+    "file": "app\\(auth)\\login\\page.tsx",
+    "matches": [
+      {
+        "line": 84,
+        "content": "<main className=\"flex min-h-screen items-center justify-center bg-[#060D1A] px-4 py-12\">",
+        "color": "#060D1A"
+      },
+      {
+        "line": 85,
+        "content": "<div className=\"w-full max-w-[400px] rounded-xl border border-[#1E3352] bg-[#0D1829] p-8 shadow-2xl\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 85,
+        "content": "<div className=\"w-full max-w-[400px] rounded-xl border border-[#1E3352] bg-[#0D1829] p-8 shadow-2xl\">",
+        "color": "#0D1829"
+      },
+      {
+        "line": 89,
+        "content": "<span className=\"text-[#1B4FD8]\">Veloxis</span>",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 90,
+        "content": "<span className=\"text-[#F97316]\">Global</span>",
+        "color": "#F97316"
+      },
+      {
+        "line": 93,
+        "content": "<Badge className=\"mt-2 bg-[#1B4FD820] text-[#4D90FE] hover:bg-[#1B4FD830] border border-[#1E3352] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider\">",
+        "color": "#4D90FE"
+      },
+      {
+        "line": 93,
+        "content": "<Badge className=\"mt-2 bg-[#1B4FD820] text-[#4D90FE] hover:bg-[#1B4FD830] border border-[#1E3352] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 97,
+        "content": "<span className=\"mt-3 text-[13px] font-medium text-[#8BA3C7] tracking-wide\">",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 103,
+        "content": "<hr className=\"my-6 border-[#1E3352]\" />",
+        "color": "#1E3352"
+      },
+      {
+        "line": 108,
+        "content": "<Label htmlFor=\"email\" className=\"text-xs font-semibold text-[#8BA3C7] uppercase tracking-wider\">",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 120,
+        "content": "className=\"h-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#1E3352"
+      },
+      {
+        "line": 120,
+        "content": "className=\"h-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#060D1A"
+      },
+      {
+        "line": 120,
+        "content": "className=\"h-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#F0F4FF"
+      },
+      {
+        "line": 120,
+        "content": "className=\"h-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#4A6480"
+      },
+      {
+        "line": 120,
+        "content": "className=\"h-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 120,
+        "content": "className=\"h-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 126,
+        "content": "<Label htmlFor=\"password\" className=\"text-xs font-semibold text-[#8BA3C7] uppercase tracking-wider\">",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 129,
+        "content": "<a href=\"#\" className=\"text-xs font-medium text-[#4D90FE] hover:underline hover:text-[#2563EB]\">",
+        "color": "#4D90FE"
+      },
+      {
+        "line": 129,
+        "content": "<a href=\"#\" className=\"text-xs font-medium text-[#4D90FE] hover:underline hover:text-[#2563EB]\">",
+        "color": "#2563EB"
+      },
+      {
+        "line": 143,
+        "content": "className=\"h-10 pr-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#1E3352"
+      },
+      {
+        "line": 143,
+        "content": "className=\"h-10 pr-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#060D1A"
+      },
+      {
+        "line": 143,
+        "content": "className=\"h-10 pr-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#F0F4FF"
+      },
+      {
+        "line": 143,
+        "content": "className=\"h-10 pr-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#4A6480"
+      },
+      {
+        "line": 143,
+        "content": "className=\"h-10 pr-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 143,
+        "content": "className=\"h-10 pr-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 149,
+        "content": "className=\"absolute inset-y-0 right-0 flex items-center pr-3 text-[#4A6480] hover:text-[#8BA3C7] focus:outline-none\"",
+        "color": "#4A6480"
+      },
+      {
+        "line": 149,
+        "content": "className=\"absolute inset-y-0 right-0 flex items-center pr-3 text-[#4A6480] hover:text-[#8BA3C7] focus:outline-none\"",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 158,
+        "content": "<div className=\"rounded-md bg-[#EF444415] border border-[#EF444430] p-3 text-center text-xs font-medium text-[#EF4444]\">",
+        "color": "#EF4444"
+      },
+      {
+        "line": 167,
+        "content": "className=\"w-full h-10 bg-[#1B4FD8] font-semibold text-white hover:bg-[#2563EB] focus:ring-2 focus:ring-[#1B4FD8] focus:ring-offset-2 focus:ring-offset-[#0D1829] active:scale-[0.98] transition-transform\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 167,
+        "content": "className=\"w-full h-10 bg-[#1B4FD8] font-semibold text-white hover:bg-[#2563EB] focus:ring-2 focus:ring-[#1B4FD8] focus:ring-offset-2 focus:ring-offset-[#0D1829] active:scale-[0.98] transition-transform\"",
+        "color": "#2563EB"
+      },
+      {
+        "line": 167,
+        "content": "className=\"w-full h-10 bg-[#1B4FD8] font-semibold text-white hover:bg-[#2563EB] focus:ring-2 focus:ring-[#1B4FD8] focus:ring-offset-2 focus:ring-offset-[#0D1829] active:scale-[0.98] transition-transform\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 167,
+        "content": "className=\"w-full h-10 bg-[#1B4FD8] font-semibold text-white hover:bg-[#2563EB] focus:ring-2 focus:ring-[#1B4FD8] focus:ring-offset-2 focus:ring-offset-[#0D1829] active:scale-[0.98] transition-transform\"",
+        "color": "#0D1829"
+      }
+    ]
+  },
+  {
+    "file": "app\\(employee)\\layout.tsx",
+    "matches": [
+      {
+        "line": 29,
+        "content": "<div className=\"min-h-screen bg-[#060D1A] text-[#F0F4FF] flex flex-col\">",
+        "color": "#060D1A"
+      },
+      {
+        "line": 29,
+        "content": "<div className=\"min-h-screen bg-[#060D1A] text-[#F0F4FF] flex flex-col\">",
+        "color": "#F0F4FF"
+      }
+    ]
+  },
+  {
+    "file": "app\\(employee)\\team\\error.tsx",
+    "matches": [
+      {
+        "line": 20,
+        "content": "<div className=\"bg-[#0D1829] border border-[#1E3352] rounded-lg p-8 max-w-md w-full shadow-sm text-center space-y-5\">",
+        "color": "#0D1829"
+      },
+      {
+        "line": 20,
+        "content": "<div className=\"bg-[#0D1829] border border-[#1E3352] rounded-lg p-8 max-w-md w-full shadow-sm text-center space-y-5\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 21,
+        "content": "<div className=\"w-12 h-12 bg-[#EF444415] border border-[#EF444430] text-[#EF4444] rounded-full flex items-center justify-center mx-auto\">",
+        "color": "#EF4444"
+      },
+      {
+        "line": 26,
+        "content": "<p className=\"text-xs text-[#8BA3C7] leading-relaxed\">",
+        "color": "#8BA3C7"
+      },
+      {
+        "line": 33,
+        "content": "className=\"bg-[#3B82F6] hover:bg-[#2563EB] text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#3B82F6"
+      },
+      {
+        "line": 33,
+        "content": "className=\"bg-[#3B82F6] hover:bg-[#2563EB] text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#2563EB"
+      },
+      {
+        "line": 41,
+        "content": "className=\"border-[#1E3352] bg-[#0D1829] hover:bg-[#1E335230] text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#1E3352"
+      },
+      {
+        "line": 41,
+        "content": "className=\"border-[#1E3352] bg-[#0D1829] hover:bg-[#1E335230] text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#0D1829"
+      },
+      {
+        "line": 43,
+        "content": "<Home className=\"h-3.5 w-3.5 text-[#4B6B94]\" />",
+        "color": "#4B6B94"
+      }
+    ]
+  },
+  {
+    "file": "app\\(employee)\\team\\loading.tsx",
+    "matches": [
+      {
+        "line": 7,
+        "content": "<div className=\"skeleton h-[18px] w-[25%] bg-[#132035]\" />",
+        "color": "#132035"
+      },
+      {
+        "line": 8,
+        "content": "<div className=\"skeleton h-[11px] w-[45%] bg-[#132035]\" />",
+        "color": "#132035"
+      },
+      {
+        "line": 10,
+        "content": "<div className=\"rounded-lg border border-[#1E3352] bg-[#0D1829] p-8 shadow-sm\">",
+        "color": "#1E3352"
+      },
+      {
+        "line": 10,
+        "content": "<div className=\"rounded-lg border border-[#1E3352] bg-[#0D1829] p-8 shadow-sm\">",
+        "color": "#0D1829"
+      }
+    ]
+  },
+  {
+    "file": "app\\(portal)\\layout.tsx",
+    "matches": [
+      {
+        "line": 41,
+        "content": "<div className=\"theme-light bg-[#F8FAFF] text-[#0A1628] min-h-screen flex items-center justify-center p-6\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 41,
+        "content": "<div className=\"theme-light bg-[#F8FAFF] text-[#0A1628] min-h-screen flex items-center justify-center p-6\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 42,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-8 max-w-md w-full shadow-sm text-center space-y-4\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 47,
+        "content": "<p className=\"text-xs text-[#475569] leading-relaxed\">",
+        "color": "#475569"
+      },
+      {
+        "line": 52,
+        "content": "className=\"inline-block bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-bold px-4 py-2 rounded-[7px] transition-colors\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 52,
+        "content": "className=\"inline-block bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-bold px-4 py-2 rounded-[7px] transition-colors\"",
+        "color": "#2563EB"
+      },
+      {
+        "line": 78,
+        "content": "Powered by <a href=\"https://veloxisglobal.com\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-[#1B4FD8] hover:underline font-bold\">Veloxis Global</a>",
+        "color": "#1B4FD8"
+      }
+    ]
+  },
+  {
+    "file": "app\\(portal)\\portal\\error.tsx",
+    "matches": [
+      {
+        "line": 19,
+        "content": "<div className=\"flex items-center justify-center min-h-[50vh] p-6 theme-light bg-[#F8FAFF]\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 20,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-8 max-w-md w-full shadow-sm text-center space-y-5\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 24,
+        "content": "<div className=\"space-y-1.5 select-none text-[#0A1628]\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 26,
+        "content": "<p className=\"text-xs text-[#475569] leading-relaxed\">",
+        "color": "#475569"
+      },
+      {
+        "line": 33,
+        "content": "className=\"bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 33,
+        "content": "className=\"bg-[#1B4FD8] hover:bg-[#2563EB] text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#2563EB"
+      },
+      {
+        "line": 41,
+        "content": "className=\"border-[#E2E8F4] bg-white hover:bg-slate-50 text-[#0A1628] text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 41,
+        "content": "className=\"border-[#E2E8F4] bg-white hover:bg-slate-50 text-[#0A1628] text-xs font-semibold px-4 py-2 flex items-center gap-1.5\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 43,
+        "content": "<Home className=\"h-3.5 w-3.5 text-[#475569]\" />",
+        "color": "#475569"
+      }
+    ]
+  },
+  {
+    "file": "app\\(portal)\\portal\\files\\page.tsx",
+    "matches": [
+      {
+        "line": 37,
+        "content": "<h1 className=\"text-lg font-bold text-[#0A1628]\">Document Vault & Assets</h1>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 38,
+        "content": "<p className=\"text-xs text-[#475569] mt-0.5\">",
+        "color": "#475569"
+      }
+    ]
+  },
+  {
+    "file": "app\\(portal)\\portal\\invoices\\page.tsx",
+    "matches": [
+      {
+        "line": 67,
+        "content": "<h1 className=\"text-lg font-bold text-[#0A1628]\">Invoices & Billing Statement</h1>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 68,
+        "content": "<p className=\"text-xs text-[#475569] mt-0.5\">",
+        "color": "#475569"
+      },
+      {
+        "line": 76,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-4 flex items-center justify-between shadow-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 78,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase tracking-wider block\">Outstanding Balance</span>",
+        "color": "#475569"
+      },
+      {
+        "line": 79,
+        "content": "<div className=\"flex items-center text-xl font-bold text-[#0A1628] font-mono mt-1\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 83,
+        "content": "<span className=\"text-[9px] text-[#94A3B8] block mt-0.5\">{outstandingInvoices.length} unpaid invoice(s)</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 91,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-4 flex items-center justify-between shadow-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 93,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase tracking-wider block\">Overdue Amount</span>",
+        "color": "#475569"
+      },
+      {
+        "line": 98,
+        "content": "<span className=\"text-[9px] text-[#94A3B8] block mt-0.5\">{overdueInvoices.length} overdue invoice(s)</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 106,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-4 flex items-center justify-between shadow-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 108,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase tracking-wider block\">Total Payments Made</span>",
+        "color": "#475569"
+      },
+      {
+        "line": 113,
+        "content": "<span className=\"text-[9px] text-[#94A3B8] block mt-0.5\">{paidInvoices.length} paid invoice(s)</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 122,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs space-y-4\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 123,
+        "content": "<h3 className=\"text-sm font-bold text-[#0A1628]\">Billing History</h3>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 126,
+        "content": "<div className=\"py-12 text-center text-xs text-[#94A3B8] space-y-2 border border-dashed border-[#E2E8F4] rounded-[8px]\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 126,
+        "content": "<div className=\"py-12 text-center text-xs text-[#94A3B8] space-y-2 border border-dashed border-[#E2E8F4] rounded-[8px]\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 127,
+        "content": "<FileText size={28} className=\"mx-auto text-[#E2E8F4]\" />",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 135,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 135,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 135,
+        "content": "<tr className=\"border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider\">",
+        "color": "#475569"
+      },
+      {
+        "line": 146,
+        "content": "<tbody className=\"divide-y divide-[#E2E8F4]/50 text-xs\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 148,
+        "content": "<tr key={inv.id} className=\"hover:bg-[#F8FAFF] text-[#475569] transition-colors\">",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 148,
+        "content": "<tr key={inv.id} className=\"hover:bg-[#F8FAFF] text-[#475569] transition-colors\">",
+        "color": "#475569"
+      },
+      {
+        "line": 149,
+        "content": "<td className=\"p-3 pl-4 font-bold text-[#0A1628] font-mono\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 158,
+        "content": "<td className=\"p-3 font-bold font-mono text-[#0A1628]\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 173,
+        "content": "className=\"p-1.5 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] transition-colors\"",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 173,
+        "content": "className=\"p-1.5 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] transition-colors\"",
+        "color": "#475569"
+      },
+      {
+        "line": 173,
+        "content": "className=\"p-1.5 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] transition-colors\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 181,
+        "content": "className=\"p-1.5 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] transition-colors\"",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 181,
+        "content": "className=\"p-1.5 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] transition-colors\"",
+        "color": "#475569"
+      },
+      {
+        "line": 181,
+        "content": "className=\"p-1.5 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] transition-colors\"",
+        "color": "#0A1628"
+      },
+      {
+        "line": 188,
+        "content": "<span className=\"text-[10px] text-[#94A3B8] italic\">No copy available</span>",
+        "color": "#94A3B8"
+      }
+    ]
+  },
+  {
+    "file": "app\\(portal)\\portal\\loading.tsx",
+    "matches": [
+      {
+        "line": 6,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-8 shadow-sm\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 7,
+        "content": "<LoadingSkeleton rows={5} variant=\"table\" className=\"[&_.skeleton]:bg-[#E2E8F4]\" />",
+        "color": "#E2E8F4"
+      }
+    ]
+  },
+  {
+    "file": "app\\(portal)\\portal\\page.tsx",
+    "matches": [
+      {
+        "line": 101,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 103,
+        "content": "<h1 className=\"text-xl font-bold text-[#0A1628]\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 106,
+        "content": "<p className=\"text-xs text-[#475569] mt-0.5\">",
+        "color": "#475569"
+      },
+      {
+        "line": 117,
+        "content": "className=\"text-[9px] px-2 py-0.5 font-bold uppercase rounded-full bg-brand-blue-muted text-[#1B4FD8] border border-[#1B4FD8]/10\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 117,
+        "content": "className=\"text-[9px] px-2 py-0.5 font-bold uppercase rounded-full bg-brand-blue-muted text-[#1B4FD8] border border-[#1B4FD8]/10\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 129,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs flex items-center justify-between\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 131,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase tracking-wider block\">",
+        "color": "#475569"
+      },
+      {
+        "line": 135,
+        "content": "<span className=\"text-2xl font-bold font-mono text-[#0A1628]\">{doneTasks}</span>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 136,
+        "content": "<span className=\"text-xs text-[#94A3B8] font-bold\">/ {totalTasks}</span>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 138,
+        "content": "<p className=\"text-[10px] text-[#94A3B8] italic\">This month&apos;s tasks completed</p>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 144,
+        "content": "stroke=\"#F1F5F9\"",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 152,
+        "content": "stroke=\"#1B4FD8\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 164,
+        "content": "<span className=\"absolute text-xs font-black font-mono text-[#0A1628]\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 171,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs flex flex-col justify-between\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 174,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase tracking-wider block\">",
+        "color": "#475569"
+      },
+      {
+        "line": 177,
+        "content": "<div className=\"flex items-center text-2xl font-bold text-[#F97316] font-mono mt-1\">",
+        "color": "#F97316"
+      },
+      {
+        "line": 187,
+        "content": "<span className=\"text-[#94A3B8]\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 192,
+        "content": "className=\"text-[#1B4FD8] hover:underline font-bold flex items-center gap-0.5\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 200,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs flex flex-col justify-between\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 203,
+        "content": "<span className=\"text-[10px] text-[#475569] font-bold uppercase tracking-wider block\">",
+        "color": "#475569"
+      },
+      {
+        "line": 207,
+        "content": "<div className=\"flex items-baseline gap-1 mt-1 text-2xl font-bold font-mono text-[#0A1628]\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 209,
+        "content": "<span className=\"text-[10px] text-[#22C55E] font-bold flex items-center gap-0.5\">",
+        "color": "#22C55E"
+      },
+      {
+        "line": 215,
+        "content": "<div className=\"text-sm font-semibold text-[#94A3B8] mt-2 select-none\">Pending sync...</div>",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 218,
+        "content": "<div className=\"p-1.5 rounded-full bg-blue-50 text-[#1B4FD8]\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 222,
+        "content": "<div className=\"mt-3 flex items-center justify-between text-[10px] text-[#94A3B8]\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 226,
+        "content": "className=\"text-[#1B4FD8] hover:underline font-bold flex items-center gap-0.5\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 237,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs lg:col-span-2 space-y-4\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 238,
+        "content": "<div className=\"flex items-center justify-between border-b border-[#F1F5F9] pb-3\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 239,
+        "content": "<h3 className=\"text-sm font-bold text-[#0A1628] flex items-center gap-2\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 240,
+        "content": "<Layers size={14} className=\"text-[#1B4FD8]\" />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 249,
+        "content": "<div className=\"py-8 text-center text-xs text-[#94A3B8]\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 253,
+        "content": "<div className=\"divide-y divide-[#F1F5F9] max-h-[250px] overflow-y-auto pr-1\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 257,
+        "content": "<h4 className=\"text-xs font-bold text-[#0A1628]\">{proj.name}</h4>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 258,
+        "content": "<p className=\"text-[10px] text-[#94A3B8] capitalize mt-0.5\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 264,
+        "content": "<span className=\"text-[9px] font-mono text-[#94A3B8] hidden sm:block\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 270,
+        "content": "? 'bg-green-50 text-[#22C55E]'",
+        "color": "#22C55E"
+      },
+      {
+        "line": 271,
+        "content": ": 'bg-amber-50 text-[#F59E0B]'",
+        "color": "#F59E0B"
+      },
+      {
+        "line": 283,
+        "content": "<div className=\"bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs space-y-4\">",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 284,
+        "content": "<div className=\"flex items-center justify-between border-b border-[#F1F5F9] pb-3\">",
+        "color": "#F1F5F9"
+      },
+      {
+        "line": 285,
+        "content": "<h3 className=\"text-sm font-bold text-[#0A1628] flex items-center gap-2\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 289,
+        "content": "<Link href=\"/portal/files\" className=\"text-[10px] text-[#1B4FD8] hover:underline font-bold\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 295,
+        "content": "<div className=\"py-8 text-center text-xs text-[#94A3B8]\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 306,
+        "content": "className=\"block p-2.5 rounded-[7px] border border-[#E2E8F4] hover:bg-[#F8FAFF] hover:border-[#1B4FD8]/30 transition-all group\"",
+        "color": "#E2E8F4"
+      },
+      {
+        "line": 306,
+        "content": "className=\"block p-2.5 rounded-[7px] border border-[#E2E8F4] hover:bg-[#F8FAFF] hover:border-[#1B4FD8]/30 transition-all group\"",
+        "color": "#F8FAFF"
+      },
+      {
+        "line": 306,
+        "content": "className=\"block p-2.5 rounded-[7px] border border-[#E2E8F4] hover:bg-[#F8FAFF] hover:border-[#1B4FD8]/30 transition-all group\"",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 309,
+        "content": "<span className=\"text-xs font-semibold text-[#0A1628] truncate group-hover:text-[#1B4FD8]\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 309,
+        "content": "<span className=\"text-xs font-semibold text-[#0A1628] truncate group-hover:text-[#1B4FD8]\">",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 312,
+        "content": "<ExternalLink size={10} className=\"text-[#94A3B8] shrink-0\" />",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 314,
+        "content": "<div className=\"flex items-center justify-between text-[9px] text-[#94A3B8] mt-1 font-mono\">",
+        "color": "#94A3B8"
+      },
+      {
+        "line": 327,
+        "content": "<Info size={16} className=\"text-[#1B4FD8] shrink-0 mt-0.5\" />",
+        "color": "#1B4FD8"
+      },
+      {
+        "line": 329,
+        "content": "<h4 className=\"font-bold text-[#0A1628] flex items-center gap-1.5\">",
+        "color": "#0A1628"
+      },
+      {
+        "line": 332,
+        "content": "<p className=\"text-[#475569] leading-relaxed\">",
+        "color": "#475569"
+      }
+    ]
+  },
+  {
+    "file": "app\\(portal)\\portal\\reports\\page.tsx",
+    "matches": [
+      {
+        "line": 81,
+        "content": "<h1 className=\"text-lg font-bold text-[#0A1628]\">Marketing & Campaign Reports</h1>",
+        "color": "#0A1628"
+      },
+      {
+        "line": 82,
+        "content": "<p className=\"text-xs text-[#475569] mt-0.5\">",
+        "color": "#475569"
+      }
+    ]
+  }
+]

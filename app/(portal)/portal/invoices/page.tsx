@@ -64,8 +64,8 @@ export default async function InvoicesPage() {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-lg font-bold text-[#0A1628]">Invoices & Billing Statement</h1>
-        <p className="text-xs text-[#475569] mt-0.5">
+        <h1 className="text-lg font-bold text-text-primary">Invoices & Billing Statement</h1>
+        <p className="text-xs text-text-secondary mt-0.5">
           View your payment history, check outstanding balances, and download invoice copies.
         </p>
       </div>
@@ -73,14 +73,14 @@ export default async function InvoicesPage() {
       {/* Stats row */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {/* Total Outstanding */}
-        <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-4 flex items-center justify-between shadow-xs">
+        <div className="bg-bg-light border border-border rounded-[10px] p-4 flex items-center justify-between shadow-xs">
           <div>
-            <span className="text-[10px] text-[#475569] font-bold uppercase tracking-wider block">Outstanding Balance</span>
-            <div className="flex items-center text-xl font-bold text-[#0A1628] font-mono mt-1">
+            <span className="text-[10px] text-text-secondary font-bold uppercase tracking-wider block">Outstanding Balance</span>
+            <div className="flex items-center text-xl font-bold text-text-primary font-mono mt-1">
               <IndianRupee size={16} className="stroke-[2.5]" />
               <span>{outstandingTotal.toLocaleString('en-IN')}</span>
             </div>
-            <span className="text-[9px] text-[#94A3B8] block mt-0.5">{outstandingInvoices.length} unpaid invoice(s)</span>
+            <span className="text-[9px] text-text-muted block mt-0.5">{outstandingInvoices.length} unpaid invoice(s)</span>
           </div>
           <div className="p-2 rounded-full bg-amber-50 text-amber-500">
             <Clock size={16} />
@@ -88,14 +88,14 @@ export default async function InvoicesPage() {
         </div>
 
         {/* Overdue Amount */}
-        <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-4 flex items-center justify-between shadow-xs">
+        <div className="bg-bg-light border border-border rounded-[10px] p-4 flex items-center justify-between shadow-xs">
           <div>
-            <span className="text-[10px] text-[#475569] font-bold uppercase tracking-wider block">Overdue Amount</span>
+            <span className="text-[10px] text-text-secondary font-bold uppercase tracking-wider block">Overdue Amount</span>
             <div className="flex items-center text-xl font-bold text-rose-500 font-mono mt-1">
               <IndianRupee size={16} className="stroke-[2.5]" />
               <span>{overdueTotal.toLocaleString('en-IN')}</span>
             </div>
-            <span className="text-[9px] text-[#94A3B8] block mt-0.5">{overdueInvoices.length} overdue invoice(s)</span>
+            <span className="text-[9px] text-text-muted block mt-0.5">{overdueInvoices.length} overdue invoice(s)</span>
           </div>
           <div className="p-2 rounded-full bg-rose-50 text-rose-500">
             <AlertTriangle size={16} />
@@ -103,14 +103,14 @@ export default async function InvoicesPage() {
         </div>
 
         {/* Paid This Year */}
-        <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-4 flex items-center justify-between shadow-xs">
+        <div className="bg-bg-light border border-border rounded-[10px] p-4 flex items-center justify-between shadow-xs">
           <div>
-            <span className="text-[10px] text-[#475569] font-bold uppercase tracking-wider block">Total Payments Made</span>
+            <span className="text-[10px] text-text-secondary font-bold uppercase tracking-wider block">Total Payments Made</span>
             <div className="flex items-center text-xl font-bold text-green-500 font-mono mt-1">
               <IndianRupee size={16} className="stroke-[2.5]" />
               <span>{paidTotal.toLocaleString('en-IN')}</span>
             </div>
-            <span className="text-[9px] text-[#94A3B8] block mt-0.5">{paidInvoices.length} paid invoice(s)</span>
+            <span className="text-[9px] text-text-muted block mt-0.5">{paidInvoices.length} paid invoice(s)</span>
           </div>
           <div className="p-2 rounded-full bg-green-50 text-green-500">
             <CheckCircle2 size={16} />
@@ -119,12 +119,12 @@ export default async function InvoicesPage() {
       </div>
 
       {/* Invoices List Table */}
-      <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs space-y-4">
-        <h3 className="text-sm font-bold text-[#0A1628]">Billing History</h3>
+      <div className="bg-bg-light border border-border rounded-[10px] p-5 shadow-xs space-y-4">
+        <h3 className="text-sm font-bold text-text-primary">Billing History</h3>
 
         {!invoices || invoices.length === 0 ? (
-          <div className="py-12 text-center text-xs text-[#94A3B8] space-y-2 border border-dashed border-[#E2E8F4] rounded-[8px]">
-            <FileText size={28} className="mx-auto text-[#E2E8F4]" />
+          <div className="py-12 text-center text-xs text-text-muted space-y-2 border border-dashed border-border rounded-[8px]">
+            <FileText size={28} className="mx-auto text-border" />
             <p className="font-semibold text-slate-500">No invoices generated yet</p>
             <p className="text-[10px]">Your billing statements will show up here once generated by Kanpur agency finance team.</p>
           </div>
@@ -132,7 +132,7 @@ export default async function InvoicesPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-[#E2E8F4] bg-[#F8FAFF] text-[9px] font-bold text-[#475569] uppercase tracking-wider">
+                <tr className="border-b border-border bg-bg-light text-[9px] font-bold text-text-secondary uppercase tracking-wider">
                   <th className="p-3 pl-4">Invoice #</th>
                   <th className="p-3">Issue Date</th>
                   <th className="p-3">Due Date</th>
@@ -143,10 +143,10 @@ export default async function InvoicesPage() {
                   <th className="p-3 text-right pr-4">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E2E8F4]/50 text-xs">
+              <tbody className="divide-y divide-border/50 text-xs">
                 {invoices.map((inv) => (
-                  <tr key={inv.id} className="hover:bg-[#F8FAFF] text-[#475569] transition-colors">
-                    <td className="p-3 pl-4 font-bold text-[#0A1628] font-mono">
+                  <tr key={inv.id} className="hover:bg-bg-light text-text-secondary transition-colors">
+                    <td className="p-3 pl-4 font-bold text-text-primary font-mono">
                       {inv.invoice_number}
                     </td>
                     <td className="p-3 font-mono">{formatDate(inv.issued_date)}</td>
@@ -155,7 +155,7 @@ export default async function InvoicesPage() {
                     </td>
                     <td className="p-3 font-mono">₹{Number(inv.amount || 0).toLocaleString('en-IN')}</td>
                     <td className="p-3 font-mono">₹{Number(inv.gst_amount || 0).toLocaleString('en-IN')}</td>
-                    <td className="p-3 font-bold font-mono text-[#0A1628]">
+                    <td className="p-3 font-bold font-mono text-text-primary">
                       ₹{Number(inv.total_amount || inv.amount || 0).toLocaleString('en-IN')}
                     </td>
                     <td className="p-3">
@@ -170,7 +170,7 @@ export default async function InvoicesPage() {
                             href={inv.files.public_url}
                             target="_blank"
                             rel="noreferrer"
-                            className="p-1.5 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] transition-colors"
+                            className="p-1.5 rounded hover:bg-bg-elevated text-text-secondary hover:text-text-primary transition-colors"
                             title="Preview PDF"
                           >
                             <ExternalLink size={12} />
@@ -178,14 +178,14 @@ export default async function InvoicesPage() {
                           <a
                             href={inv.files.public_url}
                             download={`${inv.invoice_number}.pdf`}
-                            className="p-1.5 rounded hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0A1628] transition-colors"
+                            className="p-1.5 rounded hover:bg-bg-elevated text-text-secondary hover:text-text-primary transition-colors"
                             title="Download PDF"
                           >
                             <Download size={12} />
                           </a>
                         </div>
                       ) : (
-                        <span className="text-[10px] text-[#94A3B8] italic">No copy available</span>
+                        <span className="text-[10px] text-text-muted italic">No copy available</span>
                       )}
                     </td>
                   </tr>

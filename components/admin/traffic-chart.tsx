@@ -74,7 +74,7 @@ export function TrafficChart({ data, className, ...props }: TrafficChartProps) {
                       <span className="text-[10px] text-text-secondary uppercase tracking-wider">
                         {payload[0].payload.fullName || payload[0].name}
                       </span>
-                      <span className="text-[#1B4FD8] font-mono">
+                      <span className="text-primary font-mono">
                         {Number(payload[0].value).toLocaleString()} visits
                       </span>
                     </div>

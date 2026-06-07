@@ -177,7 +177,7 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
       key: 'cron_expression',
       header: 'Schedule / Express',
       render: (val: any) => (
-        <code className="text-[11px] font-mono text-accent bg-[#F9731610] px-1.5 py-0.5 rounded border border-[#F9731620]">
+        <code className="text-[11px] font-mono text-accent bg-accent/10 px-1.5 py-0.5 rounded border border-accent/15">
           {val}
         </code>
       )
@@ -197,16 +197,16 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
       header: 'Last Execution Status',
       render: (val: any) => {
         const status = val || 'never';
-        let badgeColor = 'bg-[#1E335220] text-text-secondary border-[#1E335230]';
+        let badgeColor = 'bg-border/15 text-text-secondary border-border/20';
         let statusLabel = 'Never Run';
         if (status === 'success') {
-          badgeColor = 'bg-online/15 text-online border-[#22C55E30]';
+          badgeColor = 'bg-online/15 text-online border-success/20';
           statusLabel = 'Success';
         } else if (status === 'failed') {
-          badgeColor = 'bg-error/15 text-error border-[#EF444430]';
+          badgeColor = 'bg-error/15 text-error border-error/20';
           statusLabel = 'Failed';
         } else if (status === 'running') {
-          badgeColor = 'bg-[#3B82F615] text-[#3B82F6] border-[#3B82F630]';
+          badgeColor = 'bg-primary/10 text-primary border-primary/20';
           statusLabel = 'Running';
         }
         return (
@@ -267,7 +267,7 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
       <div className="border-b border-border/30 pb-2 flex items-center justify-between">
         <div>
           <h2 className="text-base font-semibold text-text-primary flex items-center gap-2">
-            <Database size={16} className="text-[#3B82F6]" />
+            <Database size={16} className="text-primary" />
             <span>Scheduled Workflows (n8n Sync)</span>
           </h2>
           <p className="text-xs text-text-secondary mt-0.5">Click any scheduled row to inspect execution runs history.</p>
@@ -315,7 +315,7 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
                 <div className="flex items-start justify-between">
                   <div className="space-y-0.5">
                     <h3 className="font-semibold text-xs sm:text-sm text-text-primary">{flow.name}</h3>
-                    <code className="text-[10px] font-mono text-accent bg-[#F973160c] px-1.5 py-0.5 rounded border border-[#F973161c]">
+                    <code className="text-[10px] font-mono text-accent bg-accent/5 px-1.5 py-0.5 rounded border border-accent/10">
                       {flow.triggerEvent}
                     </code>
                   </div>
@@ -359,7 +359,7 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
                 </div>
                 <div>
                   <span className="text-text-secondary block">n8n ID</span>
-                  <code className="text-[#3B82F6] font-mono">{selectedJob?.n8n_workflow_id || 'n/a'}</code>
+                  <code className="text-primary font-mono">{selectedJob?.n8n_workflow_id || 'n/a'}</code>
                 </div>
               </div>
             </div>
@@ -372,7 +372,7 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
 
               {isHistoryLoading ? (
                 <div className="space-y-3 py-4 text-center text-text-secondary">
-                  <RefreshCw size={20} className="animate-spin mx-auto text-[#1B4FD8]" />
+                  <RefreshCw size={20} className="animate-spin mx-auto text-primary" />
                   <span>Loading history...</span>
                 </div>
               ) : runHistory.length === 0 ? (
@@ -398,8 +398,8 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
                           </span>
                           <span className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-bold ${
                             isSuccess 
-                              ? 'bg-[#22C55E10] text-online' 
-                              : 'bg-[#EF444410] text-error'
+                              ? 'bg-success/10 text-online' 
+                              : 'bg-error/10 text-error'
                           }`}>
                             {isSuccess ? <CheckCircle2 size={9} /> : <XCircle size={9} />}
                             <span>{run.status?.toUpperCase() || 'RUNNING'}</span>
@@ -416,13 +416,13 @@ export function AutomationsDashboard({ initialCronJobs }: AutomationsDashboardPr
                         </div>
 
                         {run.error && (
-                          <div className="bg-[#EF44440c] border border-[#EF444420] text-error text-[10px] p-2 rounded font-mono break-all whitespace-pre-wrap max-h-24 overflow-y-auto">
+                          <div className="bg-error/5 border border-error/15 text-error text-[10px] p-2 rounded font-mono break-all whitespace-pre-wrap max-h-24 overflow-y-auto">
                             {run.error}
                           </div>
                         )}
                         {!run.error && run.output && (
                           <details className="cursor-pointer group">
-                            <summary className="text-[10px] text-[#3B82F6] hover:underline list-none flex items-center gap-0.5 select-none font-semibold">
+                            <summary className="text-[10px] text-primary hover:underline list-none flex items-center gap-0.5 select-none font-semibold">
                               <ChevronRight size={10} className="group-open:rotate-90 transition-transform" />
                               <span>View Payload / Result</span>
                             </summary>

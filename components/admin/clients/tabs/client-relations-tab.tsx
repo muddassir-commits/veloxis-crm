@@ -148,7 +148,7 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
             <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Communications</span>
             <span className="text-xl font-bold font-mono text-text-primary block mt-0.5">{comms.length} logs</span>
           </div>
-          <MessageSquare className="text-[#1B4FD8]" size={20} />
+          <MessageSquare className="text-primary" size={20} />
         </div>
 
         <div className="bg-bg-card border border-border/30 rounded-[8px] p-4 flex items-center justify-between">
@@ -176,7 +176,7 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
         <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4">
           <div className="flex justify-between items-center border-b border-border/30 pb-3">
             <h3 className="text-xs font-bold text-text-primary uppercase tracking-wider flex items-center gap-1.5">
-              <MessageSquare size={14} className="text-[#1B4FD8]" />
+              <MessageSquare size={14} className="text-primary" />
               <span>Communications Log</span>
             </h3>
             <Button
@@ -196,8 +196,8 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
                   <div className="flex items-center gap-1.5">
                     <span className={`px-1.5 py-0.5 rounded uppercase text-[8px] font-bold ${
                       c.type === 'call' ? 'bg-online/10 text-online' :
-                      c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :
-                      c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'
+                      c.type === 'whatsapp' ? 'bg-success/10 text-success' :
+                      c.type === 'email' ? 'bg-primary/10 text-primary' : 'bg-purple-500/10 text-purple-500'
                     }`}>
                       {c.type}
                     </span>
@@ -262,7 +262,7 @@ export function ClientRelationsTab({ client, profiles }: ClientRelationsTabProps
                     <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded uppercase ${
                       t.priority === 'urgent' ? 'bg-error/10 text-error' :
                       t.priority === 'high' ? 'bg-warning/10 text-warning' :
-                      t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'
+                      t.priority === 'medium' ? 'bg-primary/10 text-primary' : 'bg-text-muted/10 text-text-secondary'
                     }`}>
                       {t.priority}
                     </span>

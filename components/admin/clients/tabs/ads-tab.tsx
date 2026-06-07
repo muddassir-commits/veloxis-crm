@@ -447,7 +447,7 @@ export function AdsTab({ client }: AdsTabProps) {
           onClick={() => setIntegrationsOpen(!integrationsOpen)}
           className="flex items-center gap-2 text-xs font-semibold text-text-secondary hover:text-text-primary transition-all cursor-pointer w-full select-none"
         >
-          <Compass size={14} className={integrationsOpen ? 'text-[#1B4FD8]' : ''} />
+          <Compass size={14} className={integrationsOpen ? 'text-primary' : ''} />
           <span>Department Integrations & API Sync</span>
           {integrationsOpen ? <ChevronUp size={14} className="ml-auto" /> : <ChevronDown size={14} className="ml-auto" />}
         </button>
@@ -486,7 +486,7 @@ export function AdsTab({ client }: AdsTabProps) {
                       size="sm"
                       onClick={() => handleDisconnect('meta')}
                       disabled={disconnectingPlatform === 'meta'}
-                      className="bg-error/15 hover:bg-[#EF444425] border border-[#EF444430] text-error text-[10px] h-7 px-2.5 cursor-pointer"
+                      className="bg-error/15 hover:bg-error/15 border border-error/20 text-error text-[10px] h-7 px-2.5 cursor-pointer"
                     >
                       <Link2Off size={10} className="mr-1" />
                       Disconnect
@@ -537,7 +537,7 @@ export function AdsTab({ client }: AdsTabProps) {
                       size="sm"
                       onClick={() => handleDisconnect('google')}
                       disabled={disconnectingPlatform === 'google'}
-                      className="bg-error/15 hover:bg-[#EF444425] border border-[#EF444430] text-error text-[10px] h-7 px-2.5 cursor-pointer"
+                      className="bg-error/15 hover:bg-error/15 border border-error/20 text-error text-[10px] h-7 px-2.5 cursor-pointer"
                     >
                       <Link2Off size={10} className="mr-1" />
                       Disconnect
@@ -654,9 +654,9 @@ export function AdsTab({ client }: AdsTabProps) {
           if (campaignsToShow.length === 0) {
             return (
               <div className="flex flex-col items-center justify-center py-16 text-center border border-dashed border-border/30 rounded-[10px] bg-bg-dark select-none">
-                <Target size={32} className="text-[#1E3352] mb-3" />
+                <Target size={32} className="text-border mb-3" />
                 <p className="text-sm font-medium text-text-tertiary">No Campaigns Logged</p>
-                <p className="text-xs text-[#2A4060] mt-1">
+                <p className="text-xs text-text-muted mt-1">
                   No {platformTab === 'meta' ? 'Meta' : 'Google'} campaigns logged for this client in {monthYearString}.
                 </p>
               </div>

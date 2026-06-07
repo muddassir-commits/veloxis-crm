@@ -200,8 +200,8 @@ export function MarketingCampaignsDashboard({
           onClick={() => setActiveTab('overview')}
           className={`px-4 py-2.5 text-sm font-semibold transition-all border-b-2 ${
             activeTab === 'overview'
-              ? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'
-              : 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'
+              ? 'border-blue-500 text-blue-400 font-bold bg-bg-elevated/45'
+              : 'border-transparent text-text-secondary hover:text-white hover:bg-bg-elevated/20'
           }`}
         >
           Overview
@@ -210,8 +210,8 @@ export function MarketingCampaignsDashboard({
           onClick={() => setActiveTab('campaigns')}
           className={`px-4 py-2.5 text-sm font-semibold transition-all border-b-2 ${
             activeTab === 'campaigns'
-              ? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'
-              : 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'
+              ? 'border-blue-500 text-blue-400 font-bold bg-bg-elevated/45'
+              : 'border-transparent text-text-secondary hover:text-white hover:bg-bg-elevated/20'
           }`}
         >
           Campaigns Log
@@ -220,8 +220,8 @@ export function MarketingCampaignsDashboard({
           onClick={() => setActiveTab('templates')}
           className={`px-4 py-2.5 text-sm font-semibold transition-all border-b-2 ${
             activeTab === 'templates'
-              ? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'
-              : 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'
+              ? 'border-blue-500 text-blue-400 font-bold bg-bg-elevated/45'
+              : 'border-transparent text-text-secondary hover:text-white hover:bg-bg-elevated/20'
           }`}
         >
           Template Library
@@ -230,8 +230,8 @@ export function MarketingCampaignsDashboard({
           onClick={() => setActiveTab('webhooks')}
           className={`px-4 py-2.5 text-sm font-semibold transition-all border-b-2 ${
             activeTab === 'webhooks'
-              ? 'border-blue-500 text-blue-400 font-bold bg-[#132237]/45'
-              : 'border-transparent text-text-secondary hover:text-white hover:bg-[#132237]/20'
+              ? 'border-blue-500 text-blue-400 font-bold bg-bg-elevated/45'
+              : 'border-transparent text-text-secondary hover:text-white hover:bg-bg-elevated/20'
           }`}
         >
           Webhooks / API
@@ -310,7 +310,7 @@ export function MarketingCampaignsDashboard({
                 <Calendar className="w-4 h-4 mr-2 text-blue-400" />
                 Latest Campaigns
               </h3>
-              <div className="divide-y divide-[#1E3352]/50 space-y-3">
+              <div className="divide-y divide-border/50 space-y-3">
                 {allCampaigns.slice(0, 5).map((c) => (
                   <div key={c.id} className="flex justify-between items-center pt-3 first:pt-0">
                     <div className="flex items-center space-x-3">
@@ -337,7 +337,7 @@ export function MarketingCampaignsDashboard({
                   </div>
                 ))}
                 {allCampaigns.length === 0 && (
-                  <div className="text-sm text-[#4B5E7D] py-6 text-center">No campaigns logged yet.</div>
+                  <div className="text-sm text-text-muted py-6 text-center">No campaigns logged yet.</div>
                 )}
               </div>
             </div>
@@ -359,7 +359,7 @@ export function MarketingCampaignsDashboard({
               </div>
               <div className="grid grid-cols-1 gap-3">
                 {templates.slice(0, 4).map((t) => (
-                  <div key={t.id} className="bg-[#132237]/45 border border-border/30/70 rounded-md p-3 flex justify-between items-center">
+                  <div key={t.id} className="bg-bg-elevated/45 border border-border/30/70 rounded-md p-3 flex justify-between items-center">
                     <div>
                       <h4 className="text-sm font-semibold text-white">{t.name}</h4>
                       <p className="text-xs text-text-secondary truncate max-w-[280px] font-mono mt-1">
@@ -374,7 +374,7 @@ export function MarketingCampaignsDashboard({
                   </div>
                 ))}
                 {templates.length === 0 && (
-                  <div className="text-sm text-[#4B5E7D] py-6 text-center">No templates added yet.</div>
+                  <div className="text-sm text-text-muted py-6 text-center">No templates added yet.</div>
                 )}
               </div>
             </div>
@@ -394,7 +394,7 @@ export function MarketingCampaignsDashboard({
                 <input
                   type="text"
                   placeholder="Search campaigns..."
-                  className="w-full bg-[#132237] border border-border/30 rounded-md pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-[#4B5E7D]"
+                  className="w-full bg-bg-elevated border border-border/30 rounded-md pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-text-muted"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -404,7 +404,7 @@ export function MarketingCampaignsDashboard({
               <div className="flex items-center space-x-2">
                 <Filter className="h-4 w-4 text-text-secondary" />
                 <select
-                  className="bg-[#132237] border border-border/30 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="bg-bg-elevated border border-border/30 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                   value={clientFilter}
                   onChange={(e) => setClientFilter(e.target.value)}
                 >
@@ -420,7 +420,7 @@ export function MarketingCampaignsDashboard({
 
               {/* Channel Filter */}
               <select
-                className="bg-[#132237] border border-border/30 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="bg-bg-elevated border border-border/30 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                 value={channelFilter}
                 onChange={(e) => setChannelFilter(e.target.value)}
               >
@@ -453,7 +453,7 @@ export function MarketingCampaignsDashboard({
           <div className="bg-bg-card border border-border/30 rounded-lg overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-border/30 text-text-secondary text-xs font-semibold uppercase bg-[#132237]/20">
+                <tr className="border-b border-border/30 text-text-secondary text-xs font-semibold uppercase bg-bg-elevated/20">
                   <th className="py-3.5 px-4">Channel</th>
                   <th className="py-3.5 px-4">Campaign Name</th>
                   <th className="py-3.5 px-4">Target Client</th>
@@ -464,9 +464,9 @@ export function MarketingCampaignsDashboard({
                   <th className="py-3.5 px-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#1E3352]/40 text-sm text-[#E2E8F0]">
+              <tbody className="divide-y divide-border/40 text-sm text-text-primary">
                 {filteredCampaigns.map((c) => (
-                  <tr key={c.id} className="hover:bg-[#132237]/25 transition-colors">
+                  <tr key={c.id} className="hover:bg-bg-elevated/25 transition-colors">
                     {/* Channel */}
                     <td className="py-3.5 px-4">
                       <span className={`inline-flex items-center space-x-1 text-xs font-semibold px-2 py-0.5 rounded ${
@@ -549,7 +549,7 @@ export function MarketingCampaignsDashboard({
                             setDeleteWhatsappId(c.id);
                           }
                         }}
-                        className="text-text-secondary hover:text-red-400 p-1.5 hover:bg-[#1C2C42] rounded-md transition-colors"
+                        className="text-text-secondary hover:text-red-400 p-1.5 hover:bg-bg-card-hover rounded-md transition-colors"
                         title="Delete log"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -609,7 +609,7 @@ export function MarketingCampaignsDashboard({
                     </p>
                   )}
 
-                  <div className="bg-[#132237]/50 border border-border/30/40 rounded-md p-3 font-mono text-xs text-text-secondary max-h-[120px] overflow-y-auto whitespace-pre-wrap">
+                  <div className="bg-bg-elevated/50 border border-border/30/40 rounded-md p-3 font-mono text-xs text-text-secondary max-h-[120px] overflow-y-auto whitespace-pre-wrap">
                     {t.body}
                   </div>
                 </div>
@@ -620,14 +620,14 @@ export function MarketingCampaignsDashboard({
                       setSelectedTemplate(t);
                       setTemplateModalOpen(true);
                     }}
-                    className="text-xs text-blue-400 hover:text-blue-300 font-semibold flex items-center space-x-1 px-2.5 py-1.5 hover:bg-[#132237] rounded-md transition-colors"
+                    className="text-xs text-blue-400 hover:text-blue-300 font-semibold flex items-center space-x-1 px-2.5 py-1.5 hover:bg-bg-elevated rounded-md transition-colors"
                   >
                     <Edit2 className="w-3.5 h-3.5" />
                     <span>Edit</span>
                   </button>
                   <button
                     onClick={() => setDeleteTemplateId(t.id)}
-                    className="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center space-x-1 px-2.5 py-1.5 hover:bg-[#132237] rounded-md transition-colors"
+                    className="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center space-x-1 px-2.5 py-1.5 hover:bg-bg-elevated rounded-md transition-colors"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     <span>Delete</span>
@@ -660,7 +660,7 @@ export function MarketingCampaignsDashboard({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
             {/* Resend Webhook */}
-            <div className="space-y-4 bg-[#132237]/45 border border-border/30/70 rounded-lg p-5">
+            <div className="space-y-4 bg-bg-elevated/45 border border-border/30/70 rounded-lg p-5">
               <div className="flex items-center space-x-2">
                 <span className="p-1.5 bg-blue-950 text-blue-400 border border-blue-900 rounded-md">
                   <Mail className="w-4 h-4" />
@@ -691,7 +691,7 @@ export function MarketingCampaignsDashboard({
             </div>
 
             {/* WhatsApp Webhook */}
-            <div className="space-y-4 bg-[#132237]/45 border border-border/30/70 rounded-lg p-5">
+            <div className="space-y-4 bg-bg-elevated/45 border border-border/30/70 rounded-lg p-5">
               <div className="flex items-center space-x-2">
                 <span className="p-1.5 bg-purple-950 text-purple-400 border border-purple-900 rounded-md">
                   <MessageSquare className="w-4 h-4" />

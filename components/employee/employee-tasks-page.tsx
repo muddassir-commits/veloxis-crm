@@ -50,17 +50,17 @@ const STATUS_LABELS: Record<string, string> = {
   done: 'Done',
 };
 const STATUS_COLORS: Record<string, string> = {
-  todo: 'text-text-secondary bg-[#8BA3C7]/10',
+  todo: 'text-text-secondary bg-text-muted/10',
   in_progress: 'text-primary-light bg-primary/15',
-  review: 'text-[#A78BFA] bg-[#A78BFA]/15',
-  approved: 'text-[#34D399] bg-[#34D399]/15',
+  review: 'text-purple-400 bg-purple-500/15',
+  approved: 'text-emerald-400 bg-emerald-400/15',
   done: 'text-online bg-online/15',
 };
 const PRIORITY_COLORS: Record<string, string> = {
-  urgent: 'bg-[#EF444420] text-error border border-[#EF444430]',
-  high: 'bg-[#F9731620] text-accent border border-[#F9731630]',
-  medium: 'bg-[#EAB30820] text-[#EAB308] border border-[#EAB30830]',
-  low: 'bg-[#22C55E20] text-online border border-[#22C55E30]',
+  urgent: 'bg-error/15 text-error border border-error/20',
+  high: 'bg-accent/15 text-accent border border-accent/20',
+  medium: 'bg-warning/15 text-warning border border-warning/20',
+  low: 'bg-success/15 text-online border border-success/20',
 };
 
 function parseMonthYear(monthYear: string) {
@@ -210,7 +210,7 @@ export function EmployeeTasksPage({
               }`}
             >
               {STATUS_LABELS[status]}
-              <span className={`text-[9px] px-1 py-0.5 rounded-full font-black ${activeStatus === status ? 'bg-white/20 text-white' : 'bg-bg-card-hover/20 text-text-tertiary'}`}>
+              <span className={`text-[9px] px-1 py-0.5 rounded-full font-black ${activeStatus === status ? 'bg-bg-light/20 text-white' : 'bg-bg-card-hover/20 text-text-tertiary'}`}>
                 {count}
               </span>
             </button>

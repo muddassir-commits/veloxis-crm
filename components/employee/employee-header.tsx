@@ -48,7 +48,7 @@ export function EmployeeHeader({ profile }: EmployeeHeaderProps) {
         </div>
         <div className="leading-tight hidden sm:block">
           <span className="text-text-primary font-bold text-sm tracking-tight">Veloxis</span>
-          <span className="text-[#1B4FD8] font-bold text-sm ml-1">Global</span>
+          <span className="text-primary font-bold text-sm ml-1">Global</span>
         </div>
         <span className="text-[10px] text-text-tertiary bg-bg-card-hover/20 border border-border/30 px-2 py-0.5 rounded-full font-semibold uppercase hidden sm:block">
           Team
@@ -84,7 +84,7 @@ export function EmployeeHeader({ profile }: EmployeeHeaderProps) {
           <DropdownMenuSeparator className="bg-border/30" />
           <DropdownMenuItem
             onClick={handleLogout}
-            className="gap-2 text-xs text-error hover:text-[#FCA5A5] hover:bg-[#EF444410] cursor-pointer"
+            className="gap-2 text-xs text-error hover:text-error/70 hover:bg-error/10 cursor-pointer"
           >
             <LogOut size={13} /> Sign Out
           </DropdownMenuItem>

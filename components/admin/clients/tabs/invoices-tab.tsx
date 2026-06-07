@@ -328,7 +328,7 @@ export function InvoicesTab({ client }: InvoicesTabProps) {
   return (
     <div className="space-y-6">
       {/* Prominent Outstanding billing banner */}
-      <div className="bg-accent/5 border border-[#F97316]/20 rounded-[10px] p-5 flex items-center justify-between select-none">
+      <div className="bg-accent/5 border border-accent/20 rounded-[10px] p-5 flex items-center justify-between select-none">
         <div>
           <span className="text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">Client Billing Summary</span>
           <h2 className="text-xl font-bold text-accent mt-1 font-mono">

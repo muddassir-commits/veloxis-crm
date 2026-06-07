@@ -31,7 +31,7 @@ export default async function HRPage() {
 
   return (
     <PageContainer title="HR & Team" description="Manage team members, roles, performance, and stipends.">
-      <Suspense fallback={<div className="text-sm text-[#8BA3C7] animate-pulse">Loading HR dashboard...</div>}>
+      <Suspense fallback={<div className="text-sm text-text-muted animate-pulse">Loading HR dashboard...</div>}>
         <HRDashboard
           employees={employees || []}
           tasks={tasks || []}

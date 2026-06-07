@@ -8,7 +8,7 @@ interface StatusBadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 export function StatusBadge({ status, className, ...props }: StatusBadgeProps) {
   const normalizedStatus = status.toLowerCase().replace(/[\s-]/g, '_');
 
-  let badgeStyle = "bg-[#1E335215] text-[#64748B]";
+  let badgeStyle = "bg-border/10 text-text-muted";
   let label = status;
   let showDot = false;
 
@@ -23,19 +23,19 @@ export function StatusBadge({ status, className, ...props }: StatusBadgeProps) {
       label = "Paused";
       break;
     case 'churned':
-      badgeStyle = "bg-[#64748B15] text-[#64748B]";
+      badgeStyle = "bg-text-muted/10 text-text-muted";
       label = "Churned";
       break;
     case 'lost':
-      badgeStyle = "bg-[#64748B15] text-[#64748B]";
+      badgeStyle = "bg-text-muted/10 text-text-muted";
       label = "Lost";
       break;
     case 'lead':
-      badgeStyle = "bg-[#8B5CF615] text-[#8B5CF6]";
+      badgeStyle = "bg-purple-500/10 text-purple-500";
       label = "Lead";
       break;
     case 'new':
-      badgeStyle = "bg-[#8B5CF615] text-[#8B5CF6]";
+      badgeStyle = "bg-purple-500/10 text-purple-500";
       label = "New";
       break;
     case 'paid':
@@ -67,15 +67,15 @@ export function StatusBadge({ status, className, ...props }: StatusBadgeProps) {
       label = "Urgent";
       break;
     case 'todo':
-      badgeStyle = "bg-[#1E335215] text-[#64748B]";
+      badgeStyle = "bg-border/10 text-text-muted";
       label = "To Do";
       break;
     case 'planning':
-      badgeStyle = "bg-[#1E335215] text-[#64748B]";
+      badgeStyle = "bg-border/10 text-text-muted";
       label = "Planning";
       break;
     case 'review':
-      badgeStyle = "bg-[#1B4FD815] text-[#1B4FD8]";
+      badgeStyle = "bg-primary/10 text-primary";
       label = "In Review";
       break;
     case 'won':
@@ -87,7 +87,7 @@ export function StatusBadge({ status, className, ...props }: StatusBadgeProps) {
       label = "Completed";
       break;
     case 'agency_self':
-      badgeStyle = "bg-[#F9731615] text-accent";
+      badgeStyle = "bg-accent/10 text-accent";
       label = "My Agency";
       break;
     default:

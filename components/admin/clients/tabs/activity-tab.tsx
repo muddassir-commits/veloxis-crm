@@ -25,13 +25,13 @@ const ACTION_ICONS: Record<string, React.ElementType> = {
 
 const ACTION_COLORS: Record<string, string> = {
   task_submitted: 'text-online bg-online/10 border-online/20',
-  task_created: 'text-primary-light bg-[#4D90FE]/10 border-[#4D90FE]/20',
+  task_created: 'text-primary-light bg-primary/10 border-primary/20',
   invoice_created: 'text-warning bg-warning/10 border-warning/20',
   invoice_paid: 'text-online bg-online/10 border-online/20',
-  client_updated: 'text-[#A78BFA] bg-[#A78BFA]/10 border-[#A78BFA]/20',
-  project_created: 'text-primary-light bg-[#4D90FE]/10 border-[#4D90FE]/20',
-  note_added: 'text-text-secondary bg-[#8BA3C7]/10 border-[#8BA3C7]/20',
-  default: 'text-text-tertiary bg-[#4A6480]/10 border-border/20/20',
+  client_updated: 'text-purple-400 bg-purple-400/10 border-purple-400/20',
+  project_created: 'text-primary-light bg-primary/10 border-primary/20',
+  note_added: 'text-text-secondary bg-text-muted/10 border-text-muted/20',
+  default: 'text-text-tertiary bg-text-muted/10 border-border/20/20',
 };
 
 const ACTION_OPTIONS = [
@@ -183,9 +183,9 @@ export function ActivityTab({ client }: ActivityTabProps) {
         </div>
       ) : logs.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center border border-dashed border-border/30 rounded-[10px] bg-bg-dark">
-          <Activity size={32} className="text-[#1E3352] mb-3" />
+          <Activity size={32} className="text-border mb-3" />
           <p className="text-sm font-medium text-text-tertiary">No Activity Recorded Yet</p>
-          <p className="text-xs text-[#2A4060] mt-1 max-w-xs">
+          <p className="text-xs text-text-muted mt-1 max-w-xs">
             Events will render automatically when updates are processed.
           </p>
         </div>
@@ -193,7 +193,7 @@ export function ActivityTab({ client }: ActivityTabProps) {
         <div className="relative space-y-4">
           <div className="relative">
             {/* Connector line */}
-            <div className="absolute left-4 top-4 bottom-4 w-px bg-[#1E3352]" />
+            <div className="absolute left-4 top-4 bottom-4 w-px bg-border" />
 
             <div className="space-y-1">
               {logs.map((log, index) => {
@@ -206,7 +206,7 @@ export function ActivityTab({ client }: ActivityTabProps) {
                     </div>
 
                     {/* Timeline box description */}
-                    <div className={`flex-1 pb-5 ${index < logs.length - 1 ? 'border-b border-[#0D1829]' : ''}`}>
+                    <div className={`flex-1 pb-5 ${index < logs.length - 1 ? 'border-b border-bg-darker' : ''}`}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-semibold text-text-primary leading-tight">
@@ -222,7 +222,7 @@ export function ActivityTab({ client }: ActivityTabProps) {
                               {log.action.replace(/_/g, ' ')}
                             </span>
                             {log.entity_type && (
-                              <span className="text-[9px] text-[#2A4060] font-mono">
+                              <span className="text-[9px] text-text-muted font-mono">
                                 {log.entity_type}
                               </span>
                             )}

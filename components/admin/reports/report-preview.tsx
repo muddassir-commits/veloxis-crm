@@ -55,7 +55,7 @@ export function ReportPreview({
   const totalLeadsConversions = metaLeads + gadsConvs;
 
   return (
-    <div className="bg-white text-[#0A1628] rounded-2xl shadow-xl border border-slate-200 p-6 md:p-10 max-w-5xl mx-auto font-sans leading-normal">
+    <div className="bg-bg-light text-text-primary rounded-2xl shadow-xl border border-slate-200 p-6 md:p-10 max-w-5xl mx-auto font-sans leading-normal">
       {/* Report Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-200 pb-8 mb-8 gap-4">
         <div>

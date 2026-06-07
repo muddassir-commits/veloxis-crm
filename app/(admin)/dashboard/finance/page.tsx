@@ -119,7 +119,7 @@ export default async function FinancePage({ searchParams }: PageProps) {
 
   return (
     <PageContainer title="Finance" description="Track invoices, retainers, stipends, and expenses.">
-      <Suspense fallback={<div className="text-sm text-[#8BA3C7] animate-pulse">Loading finance console...</div>}>
+      <Suspense fallback={<div className="text-sm text-text-muted animate-pulse">Loading finance console...</div>}>
         <FinanceDashboard
           clients={clients || []}
           invoices={invoices || []}

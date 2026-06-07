@@ -199,7 +199,7 @@ export function ClientRelationsDashboard({
               <Phone size={9} /> {comms.filter(c => c.type === 'call').length} calls · <Mail size={9} /> {comms.filter(c => c.type === 'email').length} emails
             </span>
           </div>
-          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-[#1B4FD8]">
+          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
             <MessageSquare size={18} />
           </div>
         </div>
@@ -322,7 +322,7 @@ export function ClientRelationsDashboard({
             <div className="bg-bg-card border border-border/30 rounded-[10px] p-5 space-y-4">
               <div className="flex justify-between items-center border-b border-border/30 pb-3">
                 <h3 className="text-sm font-bold text-text-primary flex items-center gap-1.5">
-                  <MessageCircle size={16} className="text-[#1B4FD8]" />
+                  <MessageCircle size={16} className="text-primary" />
                   <span>Recent Communications</span>
                 </h3>
                 <button
@@ -346,8 +346,8 @@ export function ClientRelationsDashboard({
                       <div className="flex items-center gap-2 text-[9px] font-semibold">
                         <span className={`px-1.5 py-0.5 rounded uppercase ${
                           c.type === 'call' ? 'bg-online/10 text-online' :
-                          c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :
-                          c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'
+                          c.type === 'whatsapp' ? 'bg-success/10 text-success' :
+                          c.type === 'email' ? 'bg-primary/10 text-primary' : 'bg-purple-500/10 text-purple-500'
                         }`}>
                           {c.type}
                         </span>
@@ -388,7 +388,7 @@ export function ClientRelationsDashboard({
                         <span className={`px-1.5 py-0.5 rounded uppercase font-semibold text-[8px] ${
                           t.priority === 'urgent' ? 'bg-error/10 text-error' :
                           t.priority === 'high' ? 'bg-warning/10 text-warning' :
-                          t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'
+                          t.priority === 'medium' ? 'bg-primary/10 text-primary' : 'bg-text-muted/10 text-text-secondary'
                         }`}>
                           {t.priority}
                         </span>
@@ -472,8 +472,8 @@ export function ClientRelationsDashboard({
                           <span className="text-xs font-bold text-text-primary">{client?.name}</span>
                           <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded uppercase ${
                             c.type === 'call' ? 'bg-online/10 text-online' :
-                            c.type === 'whatsapp' ? 'bg-[#10B981]/10 text-[#10B981]' :
-                            c.type === 'email' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6]'
+                            c.type === 'whatsapp' ? 'bg-success/10 text-success' :
+                            c.type === 'email' ? 'bg-primary/10 text-primary' : 'bg-purple-500/10 text-purple-500'
                           }`}>
                             {c.type}
                           </span>
@@ -535,14 +535,14 @@ export function ClientRelationsDashboard({
                           key={t.id}
                           draggable
                           onDragStart={(e) => handleDragStart(e, t.id)}
-                          className="bg-bg-dark border border-border/30 rounded-[8px] p-3 space-y-2 cursor-grab active:cursor-grabbing hover:border-[#4D90FE] transition-colors"
+                          className="bg-bg-dark border border-border/30 rounded-[8px] p-3 space-y-2 cursor-grab active:cursor-grabbing hover:border-primary transition-colors"
                         >
                           <div className="flex justify-between items-start gap-2">
                             <span className="text-[10px] font-bold text-text-secondary truncate max-w-[120px]">{client?.name}</span>
                             <span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded uppercase ${
                               t.priority === 'urgent' ? 'bg-error/10 text-error' :
                               t.priority === 'high' ? 'bg-warning/10 text-warning' :
-                              t.priority === 'medium' ? 'bg-[#3B82F6]/10 text-[#3B82F6]' : 'bg-[#4B5563]/10 text-text-secondary'
+                              t.priority === 'medium' ? 'bg-primary/10 text-primary' : 'bg-text-muted/10 text-text-secondary'
                             }`}>
                               {t.priority}
                             </span>
@@ -698,7 +698,7 @@ export function ClientRelationsDashboard({
                           </span>
                         )}
                         {c.status === 'paused' && (
-                          <span className="text-[8px] font-bold bg-[#4B5563]/10 text-text-secondary border border-[#4B5563]/20 rounded px-1.5 py-0.5 uppercase">
+                          <span className="text-[8px] font-bold bg-text-muted/10 text-text-secondary border border-text-muted/20 rounded px-1.5 py-0.5 uppercase">
                             Paused Account
                           </span>
                         )}

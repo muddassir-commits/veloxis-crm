@@ -233,7 +233,7 @@ export function Header({ userProfile, onMenuClick }: HeaderProps) {
               {unreadCount > 0 && (
                 <button
                   onClick={handleMarkAllRead}
-                  className="text-primary-light hover:text-[#2563EB] text-[10px] flex items-center gap-1 font-medium transition-colors"
+                  className="text-primary-light hover:text-primary text-[10px] flex items-center gap-1 font-medium transition-colors"
                 >
                   <CheckSquare size={11} />
                   Mark all read

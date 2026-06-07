@@ -416,7 +416,7 @@ export function FileBrowser({
               <span className="text-[9px] text-text-tertiary uppercase tracking-wider block font-bold">Total Files</span>
               <span className="font-bold text-sm text-text-primary font-mono mt-0.5">{filteredFiles.length}</span>
             </div>
-            <Folder size={18} className="text-[#1B4FD8] opacity-60" />
+            <Folder size={18} className="text-primary opacity-60" />
           </div>
           <div className="bg-bg-card border border-border/30 rounded-[8px] p-3 flex items-center justify-between">
             <div>
@@ -522,7 +522,7 @@ export function FileBrowser({
                           onClick={() => handleToggleShare(file)}
                           className={`px-1.5 py-0.5 rounded-[3px] font-bold uppercase transition-colors cursor-pointer ${
                             file.is_shared_with_client
-                              ? 'bg-online/15 text-online border border-[#22C55E30]'
+                              ? 'bg-online/15 text-online border border-success/20'
                               : 'bg-bg-card-hover/20 text-text-tertiary border border-border/30 hover:text-text-primary'
                           }`}
                         >
@@ -612,7 +612,7 @@ export function FileBrowser({
         ) : (
           /* EMPTY STATE */
           <div className="bg-bg-card border border-border/30 border-dashed rounded-[10px] p-12 text-center text-text-tertiary space-y-2 select-none">
-            <Folder size={32} className="mx-auto text-[#1E3352]" />
+            <Folder size={32} className="mx-auto text-border" />
             <p className="font-bold text-sm text-text-secondary">No files found</p>
             <p className="text-xs max-w-xs mx-auto">
               There are no documents uploaded under this category yet, or nothing matches your current search.

@@ -51,7 +51,7 @@ function getFileIcon(mimeType: string | null) {
 
 function getFileIconColor(mimeType: string | null): string {
   if (!mimeType) return 'text-text-tertiary';
-  if (mimeType.startsWith('image/')) return 'text-[#A78BFA]';
+  if (mimeType.startsWith('image/')) return 'text-purple-400';
   if (mimeType.startsWith('video/')) return 'text-warning';
   if (mimeType.includes('pdf')) return 'text-error';
   if (mimeType.includes('document') || mimeType.includes('word')) return 'text-primary-light';
@@ -169,9 +169,9 @@ export function FilesTab({ client }: FilesTabProps) {
       {/* Files Grid */}
       {files.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center border border-dashed border-border/30 rounded-[10px] bg-bg-dark">
-          <FileText size={32} className="text-[#1E3352] mb-3" />
+          <FileText size={32} className="text-border mb-3" />
           <p className="text-sm font-medium text-text-tertiary">No Files Uploaded Yet</p>
-          <p className="text-xs text-[#2A4060] mt-1 max-w-xs">
+          <p className="text-xs text-text-muted mt-1 max-w-xs">
             Upload contracts, brand assets, audit reports, or any documents for this client.
           </p>
           <Button
@@ -193,7 +193,7 @@ export function FilesTab({ client }: FilesTabProps) {
             return (
               <div
                 key={file.id}
-                className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col gap-3 hover:border-[#2A4060] transition-all group"
+                className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex flex-col gap-3 hover:border-text-muted transition-all group"
               >
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-[8px] bg-bg-dark border border-border/30 flex items-center justify-center shrink-0">
@@ -227,7 +227,7 @@ export function FilesTab({ client }: FilesTabProps) {
                         href={file.public_url}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-1 text-[10px] text-primary-light hover:text-[#7BB3FF] transition-colors"
+                        className="flex items-center gap-1 text-[10px] text-primary-light hover:text-primary-light transition-colors"
                       >
                         <ExternalLink size={11} />
                         <span>View</span>

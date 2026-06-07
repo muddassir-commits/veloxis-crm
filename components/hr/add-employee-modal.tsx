@@ -304,7 +304,7 @@ export function AddEmployeeModal({ open, onOpenChange, onSuccess }: AddEmployeeM
                       <button
                         type="button"
                         onClick={() => removeSkill(index)}
-                        className="text-text-secondary hover:text-text-primary hover:bg-white/10 rounded-full p-0.5 cursor-pointer"
+                        className="text-text-secondary hover:text-text-primary hover:bg-bg-light/10 rounded-full p-0.5 cursor-pointer"
                       >
                         <X size={10} />
                       </button>

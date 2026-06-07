@@ -34,8 +34,8 @@ export default async function FilesPage() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-lg font-bold text-[#0A1628]">Document Vault & Assets</h1>
-        <p className="text-xs text-[#475569] mt-0.5">
+        <h1 className="text-lg font-bold text-text-primary">Document Vault & Assets</h1>
+        <p className="text-xs text-text-secondary mt-0.5">
           Browse and download files, reports, and creative brand assets shared with your company.
         </p>
       </div>

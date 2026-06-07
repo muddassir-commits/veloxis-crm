@@ -45,17 +45,17 @@ interface EmployeeTodayDashboardProps {
 }
 
 const PRIORITY_COLORS: Record<string, string> = {
-  urgent: 'bg-[#EF444420] text-error border border-[#EF444430]',
-  high: 'bg-[#F9731620] text-accent border border-[#F9731630]',
-  medium: 'bg-[#EAB30820] text-[#EAB308] border border-[#EAB30830]',
-  low: 'bg-[#22C55E20] text-online border border-[#22C55E30]',
+  urgent: 'bg-error/15 text-error border border-error/20',
+  high: 'bg-accent/15 text-accent border border-accent/20',
+  medium: 'bg-warning/15 text-warning border border-warning/20',
+  low: 'bg-success/15 text-online border border-success/20',
 };
 
 const STATUS_COLORS: Record<string, string> = {
-  todo: 'bg-[#4A648020] text-text-secondary',
-  in_progress: 'bg-[#1B4FD820] text-primary-light',
-  review: 'bg-[#A78BFA20] text-[#A78BFA]',
-  done: 'bg-[#22C55E20] text-online',
+  todo: 'bg-text-muted/15 text-text-secondary',
+  in_progress: 'bg-primary/15 text-primary-light',
+  review: 'bg-purple-500/15 text-purple-400',
+  done: 'bg-success/15 text-online',
 };
 
 export function EmployeeTodayDashboard({
@@ -107,7 +107,7 @@ export function EmployeeTodayDashboard({
       <div>
         <h1 className="text-xl font-bold text-text-primary">
           {greeting()},{' '}
-          <span className="text-[#1B4FD8]">{profile.full_name.split(' ')[0]}</span>! 👋
+          <span className="text-primary">{profile.full_name.split(' ')[0]}</span>! 👋
         </h1>
         <p className="text-xs text-text-tertiary mt-0.5">{todayFormatted}</p>
       </div>
@@ -141,12 +141,12 @@ export function EmployeeTodayDashboard({
             <Clock size={14} className="text-accent" />
             Due Today
             {todayTasks.length > 0 && (
-              <span className="text-[10px] bg-accent/20 text-accent border border-[#F97316]/30 px-1.5 py-0.5 rounded-full font-bold">
+              <span className="text-[10px] bg-accent/20 text-accent border border-accent/30 px-1.5 py-0.5 rounded-full font-bold">
                 {todayTasks.length}
               </span>
             )}
           </h2>
-          <Link href="/team/tasks" className="text-[10px] text-primary-light hover:text-[#60A5FA] font-semibold flex items-center gap-1">
+          <Link href="/team/tasks" className="text-[10px] text-primary-light hover:text-primary-light font-semibold flex items-center gap-1">
             View All <ArrowRight size={10} />
           </Link>
         </div>
@@ -263,8 +263,8 @@ export function EmployeeTodayDashboard({
           href="/team/profile"
           className="bg-bg-card border border-border/30 rounded-[10px] p-4 flex items-center gap-3 hover:border-primary/40 hover:bg-bg-card-hover/20/40 transition-all group"
         >
-          <div className="w-9 h-9 rounded-[7px] bg-[#A78BFA]/20 flex items-center justify-center">
-            <AlertTriangle size={16} className="text-[#A78BFA] group-hover:scale-110 transition-transform" />
+          <div className="w-9 h-9 rounded-[7px] bg-purple-500/20 flex items-center justify-center">
+            <AlertTriangle size={16} className="text-purple-400 group-hover:scale-110 transition-transform" />
           </div>
           <div>
             <p className="text-xs font-bold text-text-primary">My Profile</p>

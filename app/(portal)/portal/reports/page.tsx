@@ -78,8 +78,8 @@ export default async function ReportsPage() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-lg font-bold text-[#0A1628]">Marketing & Campaign Reports</h1>
-        <p className="text-xs text-[#475569] mt-0.5">
+        <h1 className="text-lg font-bold text-text-primary">Marketing & Campaign Reports</h1>
+        <p className="text-xs text-text-secondary mt-0.5">
           View your SEO search rankings, traffic stats, and paid advertising performance results.
         </p>
       </div>

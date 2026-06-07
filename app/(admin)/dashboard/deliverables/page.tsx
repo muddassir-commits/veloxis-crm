@@ -36,7 +36,7 @@ export default async function DeliverablesPage() {
       title="Deliverables"
       description="Track monthly SEO, social media, ads, content, and development tasks across all clients."
     >
-      <Suspense fallback={<div className="text-sm text-[#8BA3C7] animate-pulse">Loading deliverables...</div>}>
+      <Suspense fallback={<div className="text-sm text-text-muted animate-pulse">Loading deliverables...</div>}>
         <DeliverablesDashboard
           initialClients={clients || []}
           profiles={profiles || []}

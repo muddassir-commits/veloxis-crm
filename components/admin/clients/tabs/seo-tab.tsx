@@ -472,7 +472,7 @@ function SeoTabContent({ client }: SeoTabProps) {
 
         let colorClass = 'text-error'; // > 20
         if (pos <= 3) colorClass = 'text-online font-bold';
-        else if (pos <= 10) colorClass = 'text-[#1B4FD8] font-bold';
+        else if (pos <= 10) colorClass = 'text-primary font-bold';
         else if (pos <= 20) colorClass = 'text-warning';
 
         return <span className={`font-mono text-xs ${colorClass}`}>#{pos}</span>;
@@ -701,7 +701,7 @@ function SeoTabContent({ client }: SeoTabProps) {
         {integrationsOpen && (
           <div className="p-4 border-t border-border/30/40 grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* GSC Card */}
-            <div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
+            <div className={`p-4 rounded-lg border ${integrationStatus.gsc?.connected ? 'bg-bg-card border-online/30' : 'bg-bg-darker border-border/30'} flex flex-col justify-between h-40`}>
               <div>
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-text-primary">Google Search Console</span>
@@ -746,7 +746,7 @@ function SeoTabContent({ client }: SeoTabProps) {
             </div>
 
             {/* GA4 Card */}
-            <div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-bg-card border-online/30' : 'bg-[#0A1220] border-border/30'} flex flex-col justify-between h-40`}>
+            <div className={`p-4 rounded-lg border ${integrationStatus.ga4?.connected ? 'bg-bg-card border-online/30' : 'bg-bg-darker border-border/30'} flex flex-col justify-between h-40`}>
               <div>
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-text-primary">Google Analytics 4</span>
@@ -1221,7 +1221,7 @@ function SeoTabContent({ client }: SeoTabProps) {
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setGscPropertyModalOpen(false)} className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 cursor-pointer">Skip</Button>
-            <Button onClick={handleSaveGscProperty} disabled={connecting} className="bg-warning hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold">
+            <Button onClick={handleSaveGscProperty} disabled={connecting} className="bg-warning hover:bg-warning/90 text-bg-dark cursor-pointer font-bold">
               {connecting ? 'Saving...' : 'Save & Sync'}
             </Button>
           </DialogFooter>
@@ -1249,7 +1249,7 @@ function SeoTabContent({ client }: SeoTabProps) {
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setGa4PropertyModalOpen(false)} className="bg-transparent border-border/30 text-text-secondary hover:bg-bg-card-hover/20 cursor-pointer">Skip</Button>
-            <Button onClick={handleSaveGa4Property} disabled={connecting} className="bg-warning hover:bg-[#D97706] text-[#060D1A] cursor-pointer font-bold">
+            <Button onClick={handleSaveGa4Property} disabled={connecting} className="bg-warning hover:bg-warning/90 text-bg-dark cursor-pointer font-bold">
               {connecting ? 'Saving...' : 'Save & Sync'}
             </Button>
           </DialogFooter>
