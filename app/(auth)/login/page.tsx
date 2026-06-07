@@ -81,31 +81,31 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#060D1A] px-4 py-12">
-      <div className="w-full max-w-[400px] rounded-xl border border-[#1E3352] bg-[#0D1829] p-8 shadow-2xl">
+    <main className="flex min-h-screen items-center justify-center bg-bg-dark px-4 py-12">
+      <div className="w-full max-w-[400px] rounded-xl border border-border bg-bg-darker p-8 shadow-2xl">
         {/* Brand Header */}
         <div className="flex flex-col items-center text-center">
           <div className="flex items-center text-2xl font-bold tracking-tight">
-            <span className="text-[#1B4FD8]">Veloxis</span>
-            <span className="text-[#F97316]">Global</span>
+            <span className="text-primary">Veloxis</span>
+            <span className="text-accent">Global</span>
           </div>
           
-          <Badge className="mt-2 bg-[#1B4FD820] text-[#4D90FE] hover:bg-[#1B4FD830] border border-[#1E3352] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
+          <Badge className="mt-2 bg-brand-blue-muted text-text-link hover:bg-primary/30 border border-border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
             CRM
           </Badge>
           
-          <span className="mt-3 text-[13px] font-medium text-[#8BA3C7] tracking-wide">
+          <span className="mt-3 text-[13px] font-medium text-text-secondary tracking-wide">
             Operations Hub
           </span>
         </div>
 
         {/* Separator */}
-        <hr className="my-6 border-[#1E3352]" />
+        <hr className="my-6 border-border" />
 
         {/* Login Form */}
         <form onSubmit={handleLogin} className="space-y-5">
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-xs font-semibold text-[#8BA3C7] uppercase tracking-wider">
+            <Label htmlFor="email" className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
               Email Address
             </Label>
             <Input
@@ -117,16 +117,16 @@ export default function LoginPage() {
               disabled={isLoading}
               required
               placeholder="name@veloxisglobal.com"
-              className="h-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]"
+              className="h-10 border-border bg-bg-dark text-text-primary placeholder-text-muted focus:border-primary focus:ring-1 focus:ring-primary"
             />
           </div>
 
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="password" className="text-xs font-semibold text-[#8BA3C7] uppercase tracking-wider">
+              <Label htmlFor="password" className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
                 Password
               </Label>
-              <a href="#" className="text-xs font-medium text-[#4D90FE] hover:underline hover:text-[#2563EB]">
+              <a href="#" className="text-xs font-medium text-text-link hover:underline hover:text-primary-hover">
                 Forgot password?
               </a>
             </div>
@@ -140,13 +140,13 @@ export default function LoginPage() {
                 disabled={isLoading}
                 required
                 placeholder="••••••••"
-                className="h-10 pr-10 border-[#1E3352] bg-[#060D1A] text-[#F0F4FF] placeholder-[#4A6480] focus:border-[#1B4FD8] focus:ring-1 focus:ring-[#1B4FD8]"
+                className="h-10 pr-10 border-border bg-bg-dark text-text-primary placeholder-text-muted focus:border-primary focus:ring-1 focus:ring-primary"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 disabled={isLoading}
-                className="absolute inset-y-0 right-0 flex items-center pr-3 text-[#4A6480] hover:text-[#8BA3C7] focus:outline-none"
+                className="absolute inset-y-0 right-0 flex items-center pr-3 text-text-muted hover:text-text-secondary focus:outline-none"
               >
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
@@ -155,7 +155,7 @@ export default function LoginPage() {
 
           {/* Inline Error Message */}
           {errorMsg && (
-            <div className="rounded-md bg-[#EF444415] border border-[#EF444430] p-3 text-center text-xs font-medium text-[#EF4444]">
+            <div className="rounded-md bg-error/15 border border-error/30 p-3 text-center text-xs font-medium text-error">
               {errorMsg}
             </div>
           )}
@@ -164,7 +164,7 @@ export default function LoginPage() {
           <Button
             type="submit"
             disabled={isLoading}
-            className="w-full h-10 bg-[#1B4FD8] font-semibold text-white hover:bg-[#2563EB] focus:ring-2 focus:ring-[#1B4FD8] focus:ring-offset-2 focus:ring-offset-[#0D1829] active:scale-[0.98] transition-transform"
+            className="w-full h-10 bg-primary font-semibold text-white hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-bg-darker active:scale-[0.98] transition-transform"
           >
             {isLoading ? (
               <span className="flex items-center justify-center gap-2">

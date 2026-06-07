@@ -22,9 +22,8 @@ const CHART_COLORS = [
   "var(--color-success)",
   "var(--color-warning)",
   "var(--color-error)",
-  "var(--color-accent)",
-  "#8B5CF6",
-  "#06B6D4"
+  "var(--color-primary-light)",
+  "var(--color-accent)"
 ]
 
 interface BaseChartProps {

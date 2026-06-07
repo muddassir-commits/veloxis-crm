@@ -196,45 +196,45 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
     switch (action) {
       case 'invoice_paid':
         return (
-          <div className="h-8 w-8 rounded-full bg-[#10B981]/15 text-[#10B981] flex items-center justify-center border border-[#10B981]/30">
+          <div className="h-8 w-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center border border-green-500/20">
             <DollarSign className="h-4 w-4" />
           </div>
         );
       case 'invoice_created':
         return (
-          <div className="h-8 w-8 rounded-full bg-[#3B82F6]/15 text-[#3B82F6] flex items-center justify-center border border-[#3B82F6]/30">
+          <div className="h-8 w-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center border border-blue-500/20">
             <FileText className="h-4 w-4" />
           </div>
         );
       case 'client_created':
         return (
-          <div className="h-8 w-8 rounded-full bg-[#6366F1]/15 text-[#6366F1] flex items-center justify-center border border-[#6366F1]/30">
+          <div className="h-8 w-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/20">
             <Briefcase className="h-4 w-4" />
           </div>
         );
       case 'lead_new':
       case 'lead_created':
         return (
-          <div className="h-8 w-8 rounded-full bg-accent/15 text-accent flex items-center justify-center border border-[#F97316]/30">
+          <div className="h-8 w-8 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center border border-orange-500/20">
             <User className="h-4 w-4" />
           </div>
         );
       case 'task_submitted':
         return (
-          <div className="h-8 w-8 rounded-full bg-warning/15 text-warning flex items-center justify-center border border-warning/30">
+          <div className="h-8 w-8 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center border border-yellow-500/20">
             <Clock className="h-4 w-4" />
           </div>
         );
       case 'task_completed':
       case 'task_approved':
         return (
-          <div className="h-8 w-8 rounded-full bg-[#10B981]/15 text-[#10B981] flex items-center justify-center border border-[#10B981]/30">
+          <div className="h-8 w-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center border border-green-500/20">
             <CheckCircle2 className="h-4 w-4" />
           </div>
         );
       default:
         return (
-          <div className="h-8 w-8 rounded-full bg-[#8BA3C7]/15 text-text-secondary flex items-center justify-center border border-[#8BA3C7]/30">
+          <div className="h-8 w-8 rounded-full bg-slate-500/20 text-slate-400 flex items-center justify-center border border-slate-500/20">
             <Activity className="h-4 w-4" />
           </div>
         );
@@ -362,7 +362,7 @@ export function ActivityDashboard({ initialLogs, clients }: ActivityDashboardPro
             </p>
           </Card>
         ) : (
-          <div className="divide-y divide-[#1E3352]/30 rounded-lg border border-border/30 bg-bg-card overflow-hidden shadow-xl">
+          <div className="divide-y divide-border/30 rounded-lg border border-border/30 bg-bg-card overflow-hidden shadow-xl">
             {logs.map((log) => (
               <div 
                 key={log.id} 

@@ -453,7 +453,7 @@ export function SettingsDashboard({
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
       {/* ── LEFT TABS LIST ────────────────────────────────────────── */}
       <div className="rounded-lg border border-border/30 bg-bg-card p-3 h-fit flex flex-col gap-1.5">
-        <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[#4B6B94] select-none">
+        <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-text-muted select-none">
           CRM Setup Tabs
         </div>
         {[
@@ -474,11 +474,11 @@ export function SettingsDashboard({
               onClick={() => selectTab(tab.id as any)}
               className={`flex items-center gap-3 rounded-md px-3.5 py-2.5 text-sm font-medium transition-all select-none ${
                 isActive
-                  ? 'bg-[#1E3352] text-white border-l-2 border-[#3B82F6]'
-                  : 'text-text-secondary hover:bg-[#1E335230] hover:text-white'
+                  ? 'bg-bg-border text-white border-l-2 border-primary'
+                  : 'text-text-secondary hover:bg-bg-border/30 hover:text-white'
               }`}
             >
-              <Icon className={`h-4.5 w-4.5 ${isActive ? 'text-[#3B82F6]' : 'text-[#4B6B94]'}`} />
+              <Icon className={`h-4.5 w-4.5 ${isActive ? 'text-primary' : 'text-text-muted'}`} />
               {tab.label}
               <ChevronRight className="ml-auto h-3.5 w-3.5 opacity-50" />
             </button>
@@ -503,12 +503,12 @@ export function SettingsDashboard({
                 <div className="space-y-2">
                   <Label htmlFor="agencyName" className="text-white text-sm">Agency Brand Name</Label>
                   <div className="relative">
-                    <Building className="absolute left-3 top-3 h-4 w-4 text-[#4B6B94]" />
+                    <Building className="absolute left-3 top-3 h-4 w-4 text-text-muted" />
                     <Input
                       id="agencyName"
                       value={agencyName}
                       onChange={(e) => setAgencyName(e.target.value)}
-                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-primary"
                     />
                   </div>
                 </div>
@@ -516,13 +516,13 @@ export function SettingsDashboard({
                 <div className="space-y-2">
                   <Label htmlFor="adminEmail" className="text-white text-sm">Primary Admin Email</Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-[#4B6B94]" />
+                    <Mail className="absolute left-3 top-3 h-4 w-4 text-text-muted" />
                     <Input
                       id="adminEmail"
                       type="email"
                       value={adminEmail}
                       onChange={(e) => setAdminEmail(e.target.value)}
-                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-primary"
                     />
                   </div>
                 </div>
@@ -530,12 +530,12 @@ export function SettingsDashboard({
                 <div className="space-y-2">
                   <Label htmlFor="agencyPhone" className="text-white text-sm">Contact Number</Label>
                   <div className="relative">
-                    <Phone className="absolute left-3 top-3 h-4 w-4 text-[#4B6B94]" />
+                    <Phone className="absolute left-3 top-3 h-4 w-4 text-text-muted" />
                     <Input
                       id="agencyPhone"
                       value={agencyPhone}
                       onChange={(e) => setAgencyPhone(e.target.value)}
-                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-primary"
                     />
                   </div>
                 </div>
@@ -543,12 +543,12 @@ export function SettingsDashboard({
                 <div className="space-y-2">
                   <Label htmlFor="agencyAddress" className="text-white text-sm">Office Headquarters Address</Label>
                   <div className="relative">
-                    <MapPin className="absolute left-3 top-3 h-4 w-4 text-[#4B6B94]" />
+                    <MapPin className="absolute left-3 top-3 h-4 w-4 text-text-muted" />
                     <Input
                       id="agencyAddress"
                       value={agencyAddress}
                       onChange={(e) => setAgencyAddress(e.target.value)}
-                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-primary"
                     />
                   </div>
                 </div>
@@ -558,12 +558,12 @@ export function SettingsDashboard({
                 <Label className="text-white text-sm">Agency Primary Brand Logo</Label>
                 {agencyLogoUrl ? (
                   <div className="flex items-center gap-4 p-4 rounded-md border border-border/30 bg-bg-dark">
-                    <img src={agencyLogoUrl} alt="Logo" className="h-10 w-auto rounded border border-border/30/50 object-contain bg-bg-card px-2 py-1" />
+                    <img src={agencyLogoUrl} alt="Logo" className="h-10 w-auto rounded border border-border/30 object-contain bg-bg-card px-2 py-1" />
                     <div className="text-xs text-text-secondary truncate max-w-md">{agencyLogoUrl}</div>
                     <Button
                       variant="ghost"
                       onClick={() => setAgencyLogoUrl('')}
-                      className="ml-auto text-error hover:bg-[#EF444410] hover:text-error"
+                      className="ml-auto text-error hover:bg-error/10 hover:text-error"
                     >
                       Delete
                     </Button>
@@ -584,7 +584,7 @@ export function SettingsDashboard({
                 <Button
                   onClick={() => handleSaveSettings('agency')}
                   disabled={isSaving}
-                  className="bg-[#3B82F6] hover:bg-primary-light text-white select-none px-6"
+                  className="bg-primary hover:bg-primary-light text-white select-none px-6"
                 >
                   {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   Save Agency Changes
@@ -608,12 +608,12 @@ export function SettingsDashboard({
                 <div className="space-y-2">
                   <Label htmlFor="invoicePrefix" className="text-white text-sm">Invoice Prefix</Label>
                   <div className="relative">
-                    <span className="absolute left-3.5 top-2.5 text-sm font-semibold text-[#4B6B94]">#</span>
+                    <span className="absolute left-3.5 top-2.5 text-sm font-semibold text-text-muted">#</span>
                     <Input
                       id="invoicePrefix"
                       value={invoicePrefix}
                       onChange={(e) => setInvoicePrefix(e.target.value)}
-                      className="border-border/30 bg-bg-dark text-white pl-8 focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white pl-8 focus:border-primary"
                     />
                   </div>
                 </div>
@@ -621,13 +621,13 @@ export function SettingsDashboard({
                 <div className="space-y-2">
                   <Label htmlFor="gstRate" className="text-white text-sm">Standard GST Rate (%)</Label>
                   <div className="relative">
-                    <Percent className="absolute left-3 top-3 h-4 w-4 text-[#4B6B94]" />
+                    <Percent className="absolute left-3 top-3 h-4 w-4 text-text-muted" />
                     <Input
                       id="gstRate"
                       type="number"
                       value={gstRate}
                       onChange={(e) => setGstRate(Number(e.target.value))}
-                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-primary"
                     />
                   </div>
                 </div>
@@ -635,19 +635,19 @@ export function SettingsDashboard({
                 <div className="space-y-2">
                   <Label htmlFor="paymentTerms" className="text-white text-sm">Standard Due Net Terms</Label>
                   <div className="relative">
-                    <Calendar className="absolute left-3 top-3 h-4 w-4 text-[#4B6B94]" />
+                    <Calendar className="absolute left-3 top-3 h-4 w-4 text-text-muted" />
                     <Input
                       id="paymentTerms"
                       type="number"
                       value={paymentTerms}
                       onChange={(e) => setPaymentTerms(Number(e.target.value))}
-                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white pl-10 focus:border-primary"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="rounded-md border border-border/30/50 bg-bg-dark/50 p-4">
+              <div className="rounded-md border border-border/30 bg-bg-dark/50 p-4">
                 <div className="text-sm font-semibold text-white mb-4">Official Bank Account Information</div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
@@ -656,7 +656,7 @@ export function SettingsDashboard({
                       id="bankName"
                       value={bankName}
                       onChange={(e) => setBankName(e.target.value)}
-                      className="border-border/30 bg-bg-dark text-white focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white focus:border-primary"
                     />
                   </div>
 
@@ -666,7 +666,7 @@ export function SettingsDashboard({
                       id="bankAccountName"
                       value={bankAccountName}
                       onChange={(e) => setBankAccountName(e.target.value)}
-                      className="border-border/30 bg-bg-dark text-white focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white focus:border-primary"
                     />
                   </div>
 
@@ -676,7 +676,7 @@ export function SettingsDashboard({
                       id="bankAccountNumber"
                       value={bankAccountNumber}
                       onChange={(e) => setBankAccountNumber(e.target.value)}
-                      className="border-border/30 bg-bg-dark text-white focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white focus:border-primary"
                     />
                   </div>
 
@@ -686,7 +686,7 @@ export function SettingsDashboard({
                       id="bankIfsc"
                       value={bankIfsc}
                       onChange={(e) => setBankIfsc(e.target.value)}
-                      className="border-border/30 bg-bg-dark text-white focus:border-[#3B82F6]"
+                      className="border-border/30 bg-bg-dark text-white focus:border-primary"
                     />
                   </div>
                 </div>
@@ -695,12 +695,12 @@ export function SettingsDashboard({
               <div className="space-y-2">
                 <Label htmlFor="upiId" className="text-white text-sm">UPI ID for Quick Checkout</Label>
                 <div className="relative">
-                  <span className="absolute left-3.5 top-2.5 text-sm font-semibold text-[#4B6B94]">UPI</span>
+                  <span className="absolute left-3.5 top-2.5 text-sm font-semibold text-text-muted">UPI</span>
                   <Input
                     id="upiId"
                     value={upiId}
                     onChange={(e) => setUpiId(e.target.value)}
-                    className="border-border/30 bg-bg-dark text-white pl-12 focus:border-[#3B82F6]"
+                    className="border-border/30 bg-bg-dark text-white pl-12 focus:border-primary"
                   />
                 </div>
               </div>
@@ -709,7 +709,7 @@ export function SettingsDashboard({
                 <Button
                   onClick={() => handleSaveSettings('invoice')}
                   disabled={isSaving}
-                  className="bg-[#3B82F6] hover:bg-primary-light text-white select-none px-6"
+                  className="bg-primary hover:bg-primary-light text-white select-none px-6"
                 >
                   {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   Save Invoices Config
@@ -740,8 +740,8 @@ export function SettingsDashboard({
                       <div className="flex items-start gap-4">
                         <div className={`p-2.5 rounded-lg border ${
                           isConnected 
-                            ? 'bg-[#22C55E10] border-[#22C55E30] text-online' 
-                            : 'bg-[#EF444410] border-[#EF444430] text-error'
+                            ? 'bg-success/10 border-success/30 text-online' 
+                            : 'bg-error/10 border-error/30 text-error'
                         }`}>
                           <Globe className="h-6 w-6" />
                         </div>
@@ -750,15 +750,15 @@ export function SettingsDashboard({
                             <span className="text-sm font-semibold text-white">{integration.name}</span>
                             <span className={`px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase rounded-full border ${
                               isConnected 
-                                ? 'bg-online/15 text-online border-[#22C55E30]' 
-                                : 'bg-error/15 text-error border-[#EF444430]'
+                                ? 'bg-online/15 text-online border-success/30' 
+                                : 'bg-error/15 text-error border-error/30'
                             }`}>
                               {integration.status}
                             </span>
                           </div>
                           <div className="text-xs text-text-secondary mt-0.5">{integration.type}</div>
                           {isConnected && (
-                            <div className="flex items-center gap-1 text-[10px] text-[#4B6B94] mt-1">
+                            <div className="flex items-center gap-1 text-[10px] text-text-muted mt-1">
                               <Key className="h-3 w-3" />
                               Active Token: <span className="font-mono text-text-secondary">{integration.keySuffix}</span>
                             </div>
@@ -770,7 +770,7 @@ export function SettingsDashboard({
                         <Button
                           variant="outline"
                           onClick={() => handleToggleIntegration(integration.id, integration.status)}
-                          className={`border-border/30 bg-bg-card hover:bg-[#1E335250] ${
+                          className={`border-border/30 bg-bg-card hover:bg-bg-border/50 ${
                             isConnected ? 'text-error hover:text-error' : 'text-white'
                           }`}
                         >
@@ -800,7 +800,7 @@ export function SettingsDashboard({
                   setTempCredentials(null);
                   setIsInviteOpen(true);
                 }}
-                className="bg-[#3B82F6] hover:bg-primary-light text-white"
+                className="bg-primary hover:bg-primary-light text-white"
               >
                 <Plus className="mr-1.5 h-4 w-4" />
                 Invite User
@@ -822,16 +822,16 @@ export function SettingsDashboard({
                   </TableHeader>
                   <TableBody>
                     {usersList.map((user) => (
-                      <TableRow key={user.id} className="border-border/30 hover:bg-[#1E335210]">
+                      <TableRow key={user.id} className="border-border/30 hover:bg-bg-border/10">
                         <TableCell className="font-medium text-white">{user.full_name}</TableCell>
                         <TableCell className="text-text-secondary">{user.email}</TableCell>
                         <TableCell>
                           <span className={`px-2 py-0.5 text-xs font-semibold uppercase rounded-full border tracking-wider ${
                             user.role === 'admin' 
-                              ? 'bg-[#F9731615] text-accent border-[#F9731630]' 
+                              ? 'bg-accent/15 text-accent border-accent/30' 
                               : user.role === 'employee'
-                              ? 'bg-[#3B82F615] text-[#3B82F6] border-[#3B82F630]'
-                              : 'bg-online/15 text-online border-[#22C55E30]'
+                              ? 'bg-primary/15 text-primary border-primary/30'
+                              : 'bg-online/15 text-online border-success/30'
                           }`}>
                             {user.role}
                           </span>
@@ -849,7 +849,7 @@ export function SettingsDashboard({
                             size="sm"
                             variant="ghost"
                             onClick={() => handleUserAction(user.id, 'reset-password')}
-                            className="h-8 text-text-secondary hover:bg-[#1E335250] hover:text-white"
+                            className="h-8 text-text-secondary hover:bg-bg-border/50 hover:text-white"
                           >
                             <Key className="mr-1 h-3.5 w-3.5" />
                             Reset Password
@@ -859,7 +859,7 @@ export function SettingsDashboard({
                             variant="ghost"
                             onClick={() => handleUserAction(user.id, user.is_active ? 'deactivate' : 'reactivate')}
                             className={`h-8 ${
-                              user.is_active ? 'text-error hover:bg-[#EF444410]' : 'text-online hover:bg-[#22C55E10]'
+                              user.is_active ? 'text-error hover:bg-error/10' : 'text-online hover:bg-success/10'
                             }`}
                           >
                             {user.is_active ? (
@@ -883,7 +883,7 @@ export function SettingsDashboard({
 
               {/* Temporary Password Notice popover */}
               {tempCredentials && (
-                <div className="mt-5 p-4 rounded-md border border-[#22C55E30] bg-[#22C55E10]/10 flex flex-col gap-2">
+                <div className="mt-5 p-4 rounded-md border border-success/30 bg-success/10 flex flex-col gap-2">
                   <div className="flex items-center gap-2 text-sm font-semibold text-online">
                     <ShieldCheck className="h-4.5 w-4.5" />
                     Secure Credentials Generated Successfully
@@ -892,7 +892,7 @@ export function SettingsDashboard({
                     Muddassir, share this private token directly with <span className="text-white font-semibold">{tempCredentials.email}</span>. It will not be shown again.
                   </div>
                   <div className="flex items-center gap-3 mt-1.5 p-2.5 rounded bg-bg-dark border border-border/30">
-                    <div className="text-xs font-semibold text-[#4B6B94] select-none">Temp Password:</div>
+                    <div className="text-xs font-semibold text-text-muted select-none">Temp Password:</div>
                     <div className="font-mono text-sm text-white select-all">{tempCredentials.pass}</div>
                   </div>
                 </div>
@@ -928,7 +928,7 @@ export function SettingsDashboard({
                       { key: 'task_submitted', label: 'Delivery Task Submission' },
                       { key: 'sync_failed', label: 'Integration API Sync Failure' }
                     ].map((row) => (
-                      <TableRow key={row.key} className="border-border/30 hover:bg-[#1E335210]">
+                      <TableRow key={row.key} className="border-border/30 hover:bg-bg-border/10">
                         <TableCell className="font-medium text-white">{row.label}</TableCell>
                         <TableCell className="text-center">
                           <Switch
@@ -967,7 +967,7 @@ export function SettingsDashboard({
                 <Button
                   onClick={handleSaveNotifications}
                   disabled={isSaving}
-                  className="bg-[#3B82F6] hover:bg-primary-light text-white select-none px-6"
+                  className="bg-primary hover:bg-primary-light text-white select-none px-6"
                 >
                   {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   Save Notification Preferences
@@ -1013,7 +1013,7 @@ export function SettingsDashboard({
                   <Button
                     variant="ghost"
                     onClick={handleRevokeAllSessions}
-                    className="text-error hover:bg-[#EF444410]"
+                    className="text-error hover:bg-error/10"
                   >
                     Revoke All Sessions
                   </Button>
@@ -1032,7 +1032,7 @@ export function SettingsDashboard({
                     <TableBody>
                       {activeSessions.length > 0 ? (
                         activeSessions.map((session) => (
-                          <TableRow key={session.id} className="border-border/30 hover:bg-[#1E335210]">
+                          <TableRow key={session.id} className="border-border/30 hover:bg-bg-border/10">
                             <TableCell className="font-mono text-xs text-white">{session.ip_address || '127.0.0.1'}</TableCell>
                             <TableCell className="text-xs text-text-secondary max-w-xs truncate">{session.user_agent || 'Mozilla/5.0...'}</TableCell>
                             <TableCell className="text-xs text-text-secondary">{new Date(session.created_at).toLocaleString()}</TableCell>
@@ -1041,7 +1041,7 @@ export function SettingsDashboard({
                                 size="sm"
                                 variant="ghost"
                                 onClick={() => handleRevokeSession(session.id)}
-                                className="h-8 text-error hover:bg-[#EF444410]"
+                                className="h-8 text-error hover:bg-error/10"
                               >
                                 Revoke Session
                               </Button>
@@ -1050,7 +1050,7 @@ export function SettingsDashboard({
                         ))
                       ) : (
                         <TableRow>
-                          <TableCell colSpan={4} className="text-center text-xs text-[#4B6B94] py-8">
+                          <TableCell colSpan={4} className="text-center text-xs text-text-muted py-8">
                             No other active admin sessions found.
                           </TableCell>
                         </TableRow>
@@ -1078,14 +1078,14 @@ export function SettingsDashboard({
               <div className="p-4 rounded-md border border-border/30 bg-bg-dark space-y-3">
                 <div className="flex justify-between items-center text-sm font-semibold text-white">
                   <div className="flex items-center gap-2">
-                    <HardDrive className="h-4.5 w-4.5 text-[#3B82F6]" />
+                    <HardDrive className="h-4.5 w-4.5 text-primary" />
                     Supabase Storage usage limits
                   </div>
                   <div>
                     {formatBytes(storageUsed)} / 1.0 GB limit
                   </div>
                 </div>
-                <Progress value={storagePercentage} className="h-2.5 bg-[#1E3352]" />
+                <Progress value={storagePercentage} className="h-2.5 bg-bg-border" />
                 <div className="text-[11px] text-text-secondary">
                   Standard free plan tier allocated space. Storage contains invoices, client files, and contracts.
                 </div>
@@ -1106,8 +1106,8 @@ export function SettingsDashboard({
                     { label: 'Web Projects', count: dbCounts.projects },
                     { label: 'Audit Logs Trails', count: dbCounts.auditLogs }
                   ].map((dbMetric, idx) => (
-                    <div key={idx} className="p-3.5 rounded bg-bg-dark border border-border/30/50">
-                      <div className="text-[10px] uppercase font-bold tracking-wider text-[#4B6B94]">{dbMetric.label}</div>
+                    <div key={idx} className="p-3.5 rounded bg-bg-dark border border-border/30">
+                      <div className="text-[10px] uppercase font-bold tracking-wider text-text-muted">{dbMetric.label}</div>
                       <div className="text-lg font-bold text-white mt-1">{dbMetric.count}</div>
                     </div>
                   ))}
@@ -1115,7 +1115,7 @@ export function SettingsDashboard({
               </div>
 
               {/* CSV master downloader */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-md border border-[#22C55E30] bg-[#22C55E10]/5 mt-2">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-md border border-success/30 bg-success/10/5 mt-2">
                 <div>
                   <div className="text-sm font-semibold text-white flex items-center gap-1.5">
                     <CheckCircle2 className="h-4.5 w-4.5 text-online" />
@@ -1133,8 +1133,8 @@ export function SettingsDashboard({
               </div>
 
               {/* Danger Zone panel */}
-              <div className="rounded-md border border-[#EF444430] overflow-hidden mt-2">
-                <div className="bg-[#EF444410]/10 px-4 py-3 border-b border-[#EF444430] flex items-center gap-2">
+              <div className="rounded-md border border-error/30 overflow-hidden mt-2">
+                <div className="bg-error/10 px-4 py-3 border-b border-error/30 flex items-center gap-2">
                   <AlertTriangle className="h-5 w-5 text-error" />
                   <span className="text-sm font-bold text-white">System Destructive Actions (Danger Zone)</span>
                 </div>
@@ -1147,7 +1147,7 @@ export function SettingsDashboard({
                     <Button
                       variant="ghost"
                       onClick={() => setIsDangerConfirmOpen(true)}
-                      className="border border-error text-error hover:bg-[#EF444410]"
+                      className="border border-error text-error hover:bg-error/10"
                     >
                       Clear Audit Logs
                     </Button>
@@ -1237,7 +1237,7 @@ export function SettingsDashboard({
                     ))}
                   </SelectContent>
                 </Select>
-                <div className="text-[10px] text-[#4B6B94] mt-0.5">
+                <div className="text-[10px] text-text-muted mt-0.5">
                   Links this credential cabinet explicitly to see their invoices/reports only.
                 </div>
               </div>
@@ -1245,7 +1245,7 @@ export function SettingsDashboard({
 
             {/* Employee specific setup fields */}
             {inviteRole === 'employee' && (
-              <div className="space-y-3 p-3 rounded bg-bg-dark border border-border/30/50 animate-fadeIn">
+              <div className="space-y-3 p-3 rounded bg-bg-dark border border-border/30 animate-fadeIn">
                 <div className="space-y-1">
                   <Label className="text-[10px] text-text-secondary uppercase font-bold tracking-wider">Designation Title</Label>
                   <Input
@@ -1294,14 +1294,14 @@ export function SettingsDashboard({
                 type="button"
                 variant="ghost"
                 onClick={() => setIsInviteOpen(false)}
-                className="text-text-secondary hover:bg-[#1E335250] hover:text-white"
+                className="text-text-secondary hover:bg-bg-border/50 hover:text-white"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={isSaving}
-                className="bg-[#3B82F6] hover:bg-primary-light text-white"
+                className="bg-primary hover:bg-primary-light text-white"
               >
                 {isSaving && <Loader2 className="mr-1.5 h-4 w-4 animate-spin" />}
                 Generate Invitation
@@ -1331,14 +1331,14 @@ export function SettingsDashboard({
               value={dangerConfirmText}
               onChange={(e) => setDangerConfirmText(e.target.value)}
               placeholder="Type CONFIRM PURGE"
-              className="border-[#EF444430] focus:border-error bg-bg-dark text-white"
+              className="border-error/30 focus:border-error bg-bg-dark text-white"
             />
           </div>
           <DialogFooter>
             <Button
               variant="ghost"
               onClick={() => setIsDangerConfirmOpen(false)}
-              className="text-text-secondary hover:bg-[#1E335250] hover:text-white"
+              className="text-text-secondary hover:bg-bg-border/50 hover:text-white"
             >
               Cancel
             </Button>

@@ -98,12 +98,12 @@ export default async function ClientDashboardPage() {
   return (
     <div className="space-y-6">
       {/* 1. Header with Greeting and Services */}
-      <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="bg-bg-light border border-border rounded-[10px] p-5 shadow-xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-xl font-bold text-[#0A1628]">
+          <h1 className="text-xl font-bold text-text-primary">
             Hello, {profileName(user.email || '', client.name)} 👋
           </h1>
-          <p className="text-xs text-[#475569] mt-0.5">
+          <p className="text-xs text-text-secondary mt-0.5">
             Welcome to your company workspace. Here is your dashboard for today.
           </p>
         </div>
@@ -114,7 +114,7 @@ export default async function ClientDashboardPage() {
             {client.services.map((service: string, idx: number) => (
               <span
                 key={idx}
-                className="text-[9px] px-2 py-0.5 font-bold uppercase rounded-full bg-brand-blue-muted text-[#1B4FD8] border border-[#1B4FD8]/10"
+                className="text-[9px] px-2 py-0.5 font-bold uppercase rounded-full bg-brand-blue-muted text-brand-blue border border-brand-blue/10"
               >
                 {service}
               </span>
@@ -126,22 +126,22 @@ export default async function ClientDashboardPage() {
       {/* 2. Top Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Deliverables Circular Progress Card */}
-        <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs flex items-center justify-between">
+        <div className="bg-bg-light border border-border rounded-[10px] p-5 shadow-xs flex items-center justify-between">
           <div className="space-y-1">
-            <span className="text-[10px] text-[#475569] font-bold uppercase tracking-wider block">
+            <span className="text-[10px] text-text-secondary font-bold uppercase tracking-wider block">
               Deliverables Progress
             </span>
             <div className="flex items-baseline gap-1 mt-1">
-              <span className="text-2xl font-bold font-mono text-[#0A1628]">{doneTasks}</span>
-              <span className="text-xs text-[#94A3B8] font-bold">/ {totalTasks}</span>
+              <span className="text-2xl font-bold font-mono text-text-primary">{doneTasks}</span>
+              <span className="text-xs text-text-muted font-bold">/ {totalTasks}</span>
             </div>
-            <p className="text-[10px] text-[#94A3B8] italic">This month&apos;s tasks completed</p>
+            <p className="text-[10px] text-text-muted italic">This month&apos;s tasks completed</p>
           </div>
           {/* Progress Ring */}
           <div className="relative w-20 h-20 flex items-center justify-center shrink-0">
             <svg className="w-full h-full -rotate-90">
               <circle
-                stroke="#F1F5F9"
+                stroke="var(--bg-elevated)"
                 fill="transparent"
                 strokeWidth={stroke}
                 r={normalizedRadius}
@@ -149,7 +149,7 @@ export default async function ClientDashboardPage() {
                 cy={radius}
               />
               <circle
-                stroke="#1B4FD8"
+                stroke="var(--brand-blue)"
                 fill="transparent"
                 strokeWidth={stroke}
                 strokeDasharray={circumference + ' ' + circumference}
@@ -161,20 +161,20 @@ export default async function ClientDashboardPage() {
                 strokeLinecap="round"
               />
             </svg>
-            <span className="absolute text-xs font-black font-mono text-[#0A1628]">
+            <span className="absolute text-xs font-black font-mono text-text-primary">
               {completionRate}%
             </span>
           </div>
         </div>
 
         {/* Outstanding Balance Card */}
-        <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs flex flex-col justify-between">
+        <div className="bg-bg-light border border-border rounded-[10px] p-5 shadow-xs flex flex-col justify-between">
           <div className="flex justify-between items-start">
             <div className="space-y-1">
-              <span className="text-[10px] text-[#475569] font-bold uppercase tracking-wider block">
+              <span className="text-[10px] text-text-secondary font-bold uppercase tracking-wider block">
                 Outstanding Balance
               </span>
-              <div className="flex items-center text-2xl font-bold text-[#F97316] font-mono mt-1">
+              <div className="flex items-center text-2xl font-bold text-brand-orange font-mono mt-1">
                 <IndianRupee size={20} className="stroke-[2.5]" />
                 <span>{outstandingBalance.toLocaleString('en-IN')}</span>
               </div>
@@ -184,12 +184,12 @@ export default async function ClientDashboardPage() {
             </div>
           </div>
           <div className="mt-3 flex items-center justify-between text-[10px]">
-            <span className="text-[#94A3B8]">
+            <span className="text-text-muted">
               {nextPaymentDue ? `Due by ${formatDate(nextPaymentDue.due_date)}` : 'All invoices paid ✓'}
             </span>
             <Link
               href="/portal/invoices"
-              className="text-[#1B4FD8] hover:underline font-bold flex items-center gap-0.5"
+              className="text-text-link hover:underline font-bold flex items-center gap-0.5"
             >
               Pay Now <ArrowUpRight size={10} />
             </Link>
@@ -197,33 +197,33 @@ export default async function ClientDashboardPage() {
         </div>
 
         {/* SEO Metrics Highlights */}
-        <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs flex flex-col justify-between">
+        <div className="bg-bg-light border border-border rounded-[10px] p-5 shadow-xs flex flex-col justify-between">
           <div className="flex justify-between items-start">
             <div className="space-y-1">
-              <span className="text-[10px] text-[#475569] font-bold uppercase tracking-wider block">
+              <span className="text-[10px] text-text-secondary font-bold uppercase tracking-wider block">
                 Organic Performance
               </span>
               {seoCampaign ? (
-                <div className="flex items-baseline gap-1 mt-1 text-2xl font-bold font-mono text-[#0A1628]">
+                <div className="flex items-baseline gap-1 mt-1 text-2xl font-bold font-mono text-text-primary">
                   <span>{(seoCampaign.organic_traffic || 0).toLocaleString('en-US')}</span>
-                  <span className="text-[10px] text-[#22C55E] font-bold flex items-center gap-0.5">
+                  <span className="text-[10px] text-status-active font-bold flex items-center gap-0.5">
                     <TrendingUp size={10} />
                     {seoMoMChange(seoCampaign.organic_traffic, seoCampaign.organic_traffic_prev)}
                   </span>
                 </div>
               ) : (
-                <div className="text-sm font-semibold text-[#94A3B8] mt-2 select-none">Pending sync...</div>
+                <div className="text-sm font-semibold text-text-muted mt-2 select-none">Pending sync...</div>
               )}
             </div>
-            <div className="p-1.5 rounded-full bg-blue-50 text-[#1B4FD8]">
+            <div className="p-1.5 rounded-full bg-brand-blue-muted text-brand-blue">
               <TrendingUp size={15} />
             </div>
           </div>
-          <div className="mt-3 flex items-center justify-between text-[10px] text-[#94A3B8]">
+          <div className="mt-3 flex items-center justify-between text-[10px] text-text-muted">
             <span>{seoCampaign ? `${seoCampaign.month_year} Traffic Stats` : 'No data synced'}</span>
             <Link
               href="/portal/reports"
-              className="text-[#1B4FD8] hover:underline font-bold flex items-center gap-0.5"
+              className="text-text-link hover:underline font-bold flex items-center gap-0.5"
             >
               View Report <ArrowUpRight size={10} />
             </Link>
@@ -234,41 +234,41 @@ export default async function ClientDashboardPage() {
       {/* 3. Middle Content: Projects list and Recent Shared Files */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Projects List */}
-        <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs lg:col-span-2 space-y-4">
-          <div className="flex items-center justify-between border-b border-[#F1F5F9] pb-3">
-            <h3 className="text-sm font-bold text-[#0A1628] flex items-center gap-2">
-              <Layers size={14} className="text-[#1B4FD8]" />
+        <div className="bg-bg-light border border-border rounded-[10px] p-5 shadow-xs lg:col-span-2 space-y-4">
+          <div className="flex items-center justify-between border-b border-border pb-3">
+            <h3 className="text-sm font-bold text-text-primary flex items-center gap-2">
+              <Layers size={14} className="text-brand-blue" />
               Active Projects & Retainers
             </h3>
-            <span className="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-bold">
+            <span className="text-[9px] bg-bg-light text-text-secondary px-2 py-0.5 rounded-full font-bold">
               {projects?.length || 0} Total
             </span>
           </div>
 
           {!projects || projects.length === 0 ? (
-            <div className="py-8 text-center text-xs text-[#94A3B8]">
+            <div className="py-8 text-center text-xs text-text-muted">
               No active projects listed.
             </div>
           ) : (
-            <div className="divide-y divide-[#F1F5F9] max-h-[250px] overflow-y-auto pr-1">
+            <div className="divide-y divide-border max-h-[250px] overflow-y-auto pr-1">
               {projects.map((proj) => (
                 <div key={proj.id} className="py-3 flex items-center justify-between gap-4 first:pt-0 last:pb-0">
                   <div>
-                    <h4 className="text-xs font-bold text-[#0A1628]">{proj.name}</h4>
-                    <p className="text-[10px] text-[#94A3B8] capitalize mt-0.5">
+                    <h4 className="text-xs font-bold text-text-primary">{proj.name}</h4>
+                    <p className="text-[10px] text-text-muted capitalize mt-0.5">
                       Service: {proj.type?.replace('_', ' ') || 'Retainer'}
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
                     {proj.start_date && (
-                      <span className="text-[9px] font-mono text-[#94A3B8] hidden sm:block">
+                      <span className="text-[9px] font-mono text-text-muted hidden sm:block">
                         Started {formatDate(proj.start_date)}
                       </span>
                     )}
                     <span className={`text-[9px] px-2 py-0.5 font-bold uppercase rounded-full ${
                       proj.status === 'active'
-                        ? 'bg-green-50 text-[#22C55E]'
-                        : 'bg-amber-50 text-[#F59E0B]'
+                        ? 'bg-green-50 text-status-active'
+                        : 'bg-amber-50 text-status-paused'
                     }`}>
                       {proj.status}
                     </span>
@@ -280,19 +280,19 @@ export default async function ClientDashboardPage() {
         </div>
 
         {/* Recent shared files */}
-        <div className="bg-white border border-[#E2E8F4] rounded-[10px] p-5 shadow-xs space-y-4">
-          <div className="flex items-center justify-between border-b border-[#F1F5F9] pb-3">
-            <h3 className="text-sm font-bold text-[#0A1628] flex items-center gap-2">
+        <div className="bg-bg-light border border-border rounded-[10px] p-5 shadow-xs space-y-4">
+          <div className="flex items-center justify-between border-b border-border pb-3">
+            <h3 className="text-sm font-bold text-text-primary flex items-center gap-2">
               <FileText size={14} className="text-brand-blue" />
               Shared Reports & Files
             </h3>
-            <Link href="/portal/files" className="text-[10px] text-[#1B4FD8] hover:underline font-bold">
+            <Link href="/portal/files" className="text-[10px] text-text-link hover:underline font-bold">
               View Vault
             </Link>
           </div>
 
           {!recentFiles || recentFiles.length === 0 ? (
-            <div className="py-8 text-center text-xs text-[#94A3B8]">
+            <div className="py-8 text-center text-xs text-text-muted">
               No reports uploaded yet.
             </div>
           ) : (
@@ -303,15 +303,15 @@ export default async function ClientDashboardPage() {
                   href={file.public_url || '#'}
                   target="_blank"
                   rel="noreferrer"
-                  className="block p-2.5 rounded-[7px] border border-[#E2E8F4] hover:bg-[#F8FAFF] hover:border-[#1B4FD8]/30 transition-all group"
+                  className="block p-2.5 rounded-[7px] border border-border hover:bg-bg-light hover:border-brand-blue/30 transition-all group"
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-semibold text-[#0A1628] truncate group-hover:text-[#1B4FD8]">
+                     <span className="text-xs font-semibold text-text-primary truncate group-hover:text-brand-blue">
                       {file.name}
                     </span>
-                    <ExternalLink size={10} className="text-[#94A3B8] shrink-0" />
+                    <ExternalLink size={10} className="text-text-muted shrink-0" />
                   </div>
-                  <div className="flex items-center justify-between text-[9px] text-[#94A3B8] mt-1 font-mono">
+                  <div className="flex items-center justify-between text-[9px] text-text-muted mt-1 font-mono">
                     <span>{file.department?.toUpperCase() || 'VAULT'}</span>
                     <span>{formatDate(file.created_at)}</span>
                   </div>
@@ -323,13 +323,13 @@ export default async function ClientDashboardPage() {
       </div>
 
       {/* 4. Help & Guidelines notice banner */}
-      <div className="bg-blue-50 border border-blue-100 rounded-[10px] p-4 flex gap-3">
-        <Info size={16} className="text-[#1B4FD8] shrink-0 mt-0.5" />
+      <div className="bg-brand-blue-muted border border-brand-blue/10 rounded-[10px] p-4 flex gap-3">
+        <Info size={16} className="text-brand-blue shrink-0 mt-0.5" />
         <div className="text-xs space-y-1">
-          <h4 className="font-bold text-[#0A1628] flex items-center gap-1.5">
+          <h4 className="font-bold text-text-primary flex items-center gap-1.5">
             Need Support?
           </h4>
-          <p className="text-[#475569] leading-relaxed">
+          <p className="text-text-secondary leading-relaxed">
             If you have requests regarding ongoing campaigns, SEO keywords, or billing discrepancies, please reach out directly via WhatsApp at <strong>+91-8887620727</strong> or email <strong>muddassir@veloxisglobal.com</strong>.
           </p>
         </div>

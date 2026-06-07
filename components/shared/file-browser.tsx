@@ -104,10 +104,10 @@ export function FileBrowser({
     const ext = name.split('.').pop()?.toLowerCase() || '';
 
     if (type.startsWith('image/') || ['png', 'jpg', 'jpeg', 'webp', 'gif', 'svg'].includes(ext)) {
-      return <FileImage className="text-[#38BDF8]" size={20} />;
+      return <FileImage className="text-blue-400" size={20} />;
     }
     if (type === 'application/pdf' || ext === 'pdf') {
-      return <FileText className="text-[#F87171]" size={20} />;
+      return <FileText className="text-red-400" size={20} />;
     }
     if (
       type.includes('spreadsheet') ||
@@ -115,13 +115,13 @@ export function FileBrowser({
       type.includes('csv') ||
       ['xlsx', 'xls', 'csv'].includes(ext)
     ) {
-      return <FileSpreadsheet className="text-[#34D399]" size={20} />;
+      return <FileSpreadsheet className="text-green-400" size={20} />;
     }
     if (type.startsWith('video/') || ['mp4', 'mov', 'avi', 'mkv'].includes(ext)) {
-      return <Video className="text-[#A78BFA]" size={20} />;
+      return <Video className="text-purple-400" size={20} />;
     }
     if (type.startsWith('audio/') || ['mp3', 'wav', 'aac'].includes(ext)) {
-      return <Music className="text-[#F472B6]" size={20} />;
+      return <Music className="text-pink-400" size={20} />;
     }
     if (
       type.includes('zip') ||
@@ -129,9 +129,9 @@ export function FileBrowser({
       type.includes('tar') ||
       ['zip', 'rar', '7z', 'gz'].includes(ext)
     ) {
-      return <Archive className="text-[#FBBF24]" size={20} />;
+      return <Archive className="text-yellow-400" size={20} />;
     }
-    return <File className="text-[#94A3B8]" size={20} />;
+    return <File className="text-text-muted" size={20} />;
   };
 
   // Toggle Sharing state with backend API
@@ -547,7 +547,7 @@ export function FileBrowser({
                     <th className="p-3 text-right pr-4">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#1E3352]/30 text-xs">
+                <tbody className="divide-y divide-border/30 text-xs">
                   {filteredFiles.map((file) => (
                     <tr
                       key={file.id}

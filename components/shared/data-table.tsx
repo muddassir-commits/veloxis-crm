@@ -95,7 +95,7 @@ export function DataTable({
             )}
           </tr>
         </thead>
-        <tbody className="divide-y divide-[#1E3352]/30">
+        <tbody className="divide-y divide-border/30">
           {data.map((row, rowIndex) => (
             <tr
               key={typeof row.id === 'string' ? row.id : rowIndex}
